@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const FtyAwardAddPage = () => {
   const { state } = useLocation();
   const utype = state.utype;
-  var email = sessionStorage.getItem('email');
+  var email = localStorage.getItem('email');
   const navigate = useNavigate();
   const id = state.id;
   var defaultFormFields ={}
@@ -18,7 +18,6 @@ const FtyAwardAddPage = () => {
     faculty_name:"",
     award_name: "",
     award_reason: "",
-    year: "",
     date: "",
     shared_with: "",
     };
@@ -28,7 +27,6 @@ const FtyAwardAddPage = () => {
     faculty_name:email,
     award_name: "",
     award_reason: "",
-    year: "",
     date: "",
     shared_with: "",
   };}
@@ -43,20 +41,22 @@ const FtyAwardAddPage = () => {
   const handleSubmit = async(event) => {
     event.preventDefault();
 
-    const{award_name,award_reason,year,date,shared_with,faculty_name} = formFields;
+    var {award_name,award_reason,date,shared_with,faculty_name} = formFields;
     if(award_name === ""){
 
       toast.error("Enter Award Name")
 
     }
     else{
+      //       const dateObject = new Date(date);
+      // const isoDate = dateObject.toISOString();
+      // date = isoDate;
       const response = await FtyAddAwards(formFields);
       if(response.status === 200){
         if(utype === "1"){
           setFormFields({...formFields,
             award_name: "",
             award_reason: "",
-            year: "",
             date: "",
             shared_with: "",
             faculty_name:"",
@@ -66,7 +66,6 @@ const FtyAwardAddPage = () => {
         setFormFields({...formFields,
           award_name: "",
           award_reason: "",
-          year: "",
           date: "",
           shared_with: "",
           faculty_name:email,
@@ -114,24 +113,12 @@ const FtyAwardAddPage = () => {
   
             </div>
   
-            <div className={signupStyle["form-item"]} id="year">
-              <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Year</label>
-              <input style={{ height: "30px" }} className={signupStyle.myInput}
-                placeholder="Enter the Year"
-                name="year"
-                type="text"
-                value={formFields.year}
-                onChange={hanldeInputValueChange}
-              />
-  
-            </div>
-  
             <div className={signupStyle["form-item"]} id="date">
               <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>date</label>
               <input style={{ height: "30px" }} className={signupStyle.myInput}
                 placeholder="Enter the date"
                 name="date"
-                type="text"
+                type="date"
                 value={formFields.date}
                 onChange={hanldeInputValueChange}
               />
@@ -196,24 +183,12 @@ const FtyAwardAddPage = () => {
 
           </div>
 
-          <div className={signupStyle["form-item"]} id="year">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Year</label>
-            <input style={{ height: "30px" }} className={signupStyle.myInput}
-              placeholder="Enter the Year"
-              name="year"
-              type="text"
-              value={formFields.year}
-              onChange={hanldeInputValueChange}
-            />
-
-          </div>
-
           <div className={signupStyle["form-item"]} id="date">
             <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>date</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
               placeholder="Enter the date"
               name="date"
-              type="text"
+              type="date"
               value={formFields.date}
               onChange={hanldeInputValueChange}
             />

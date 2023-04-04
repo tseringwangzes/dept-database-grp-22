@@ -3,6 +3,7 @@ import Papa from 'papaparse';
 import { stt_award_csv } from "../services/Apis";
 import Table, { StatusPill } from "./Table2";
 import { useNavigate } from "react-router-dom";
+import Sidebar from "../components/Sidebar";
 
 function StAwardCsv(){
   const navigate = useNavigate();
@@ -25,10 +26,13 @@ function StAwardCsv(){
         delimiter: ',',
         skipEmptyLines: true,
   
-        columns: ['st_name', 'award_name', 'year', 'date', 'shared_with', 'status'],
+        columns: ['student_name','faculty_name','award_reason', 'award_name','date', 'shared_with', 'status'],
         header: true, complete: function (results) {
   
-          console.log("Finished:", results.data);
+          console.log("Finished:", results.data[0].faculty_name);
+      //           const dateObject = new Date(results.data[0].date);
+      // const isoDate = dateObject.toISOString();
+      // results.data[0].date = isoDate;
           stt_award_csv(results.data);
           alert("sucessfully uploaded!");
           navigate('/Profile/Awards');
@@ -49,9 +53,18 @@ function StAwardCsv(){
           accessor: "student_name",
         },
         {
-          Header: "Year",
-          accessor: "year",
+          Header: "Faculty Name",
+          accessor: "faculty_name",
         },
+        {
+          Header: "Award Reason",
+          accessor: "award_reason",
+        },
+        {
+          Header: "Award Name",
+          accessor: "award_name",
+        },
+        
         {
           Header: "Date",
           accessor: "date",
@@ -60,11 +73,6 @@ function StAwardCsv(){
           Header: "Shared With",
           accessor: "shared_with",
         },
-        {
-          Header: "Status",
-          accessor: "status",
-          Cell: StatusPill,
-        }
       
       ],
       []
@@ -80,6 +88,7 @@ function StAwardCsv(){
       <>
   
         <div className=" absolute right-0  w-3/4 bg-gray-100 text-gray-900">
+          <Sidebar/>
           <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
             <div className="">
   

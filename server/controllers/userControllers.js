@@ -273,9 +273,8 @@ exports.useraddmore = async (req, res) => {
 
 exports.st_award_csv = async (req, res) => {
     
-    
+    // const { award_name,award_reason,date,shared_with,status,faculty_name,student_name} = req.body;
     try {
-        //console.log(req);
         await stdetails.insertMany(req.body);
         res.status(200).json({ message: 'Data successfully inserted' });
     } catch ( error) {
@@ -342,14 +341,14 @@ exports.facultygetprojects = async(req,res)=>{
 }
 
 exports.facultyaddawards = async (req, res) => {
-    const { award_name,award_reason,year,date,shared_with,faculty_name} = req.body;
+    const { award_name,award_reason,date,shared_with,faculty_name} = req.body;
 
-    if (!award_name || !award_reason || !year || !date || !shared_with || !faculty_name) {
+    if (!award_name || !award_reason || !date || !shared_with || !faculty_name) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
     try {            
             const facultyaddawards = new ft_awards({
-                award_name,award_reason,year,date,shared_with,faculty_name
+                award_name,award_reason,date,shared_with,faculty_name
             });
 
             const storeData = await facultyaddawards.save();
