@@ -55,6 +55,8 @@ import FtyProjectAdd from './pages/FtyProjectAdd.js';
 import FtySeminarAdd from './pages/FtySeminarAdd.js';
 import FtyForeignAdd from './pages/FtyForeignAdd.js';
 import StaffReminder from './pages/StaffReminder';
+import StAwardCsv from './pages/StAwardCsv';
+
 import Admin from './pages/Admin';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -74,7 +76,8 @@ function App() {
         <Route path='/Profile/Achievements' element={<Achievements />} />
         <Route path='/Profile/Seminars' element={<Seminars />} />
         <Route path='/Profile/Awards' element={<Awards />} />
-        
+        <Route path='/Profile/Awards/StAwardCsv' element={<StAwardCsv />} />
+
         <Route path='/StaffHome/StaffCsv' element={<StaffCsv />} />
         <Route path='/StaffHome/StaffStudent' element={<StaffStudent />} />
         <Route path='/StaffHome/StaffFaculty' element={<StaffFaculty />} />

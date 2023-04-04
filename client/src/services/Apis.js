@@ -117,3 +117,7 @@ export const FtyEditProjects = async(data)=>{
 export const send_reminder = async(data)=>{
     return await commonrequest("POST",`${BACKEND_URL}/user/st_reminder`,data)
 }
+
+export const stt_award_csv = async(data)=>{
+    return await commonrequest("POST",`${BACKEND_URL}/user/st_award_csv`,data)
+}

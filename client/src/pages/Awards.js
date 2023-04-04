@@ -44,10 +44,6 @@ function Awards() {
         accessor: "award_reason",
       },
       {
-        Header: "Year",
-        accessor: "year",
-      },
-      {
         Header: "Date",
         accessor: "date",
       },
@@ -73,7 +69,6 @@ function Awards() {
                 student_name: original.student_name,
                 award_name: original.award_name,
                 award_reason: original.award_reason,
-                year: original.year,
                 date: original.date,
                 shared_with: original.shared_with,
                 id: original._id,
@@ -158,9 +153,21 @@ const rows = filteredData.map(user=>[user.award_name,user.award_reason,user.date
         <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
           <div className="">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={generatePDF}>Generate PDF</button>
+            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("./StAwardCsv" )} >Upload Data in Bulk</button>
+
           </div>
           <div className="">
-            <h1 className="text-xl font-semibold">Your Awards</h1>
+          {/* <div class=" flex flex-row ... "> */}
+          <div >
+      
+          {/* <h1 className="text-xl font-semibold">To upload data in bulk {' '}</h1>  */}
+  
+          {/* <button class=" float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("./StAwardCsv" )} >click here</button> */}
+         
+
+          </div>
+          <br />
+            <h2 className="text-center bg-indigo-100 text-xl font-semibold">Your Awards</h2>
           </div>
           <div className="mt-4">
             <TablesAwards columns={columns} data={data} utype={utype} />

@@ -5,8 +5,7 @@ const stschema = new mongoose.Schema({
     student_name:String,
     award_name: String,
     award_reason: String,
-    year: String,
-    date: String,
+    date: Date,
     shared_with: String,
     status: String,
     

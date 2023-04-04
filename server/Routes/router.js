@@ -43,6 +43,8 @@ router.get("/user/stsemi", controllers.stsemi);
 router.get("/user/stforvisits", controllers.stforvisits);
 router.get("/user/stpubli", controllers.stpubli);
 router.get("/user/stproj", controllers.stproj);
+router.post("/user/st_award_csv", controllers.st_award_csv);
+
 
 router.get("/user/faculty/awards",controllers.facultygetawards);
 router.get("/user/faculty/achievements",controllers.facultygetachievements);
