@@ -74,6 +74,10 @@ export const FtyAddAwards = async(data)=>{
     return await commonrequest("POST",`${BACKEND_URL}/user/faculty/addawards`,data)
 }
 
+export const fty_award_csv = async(data)=>{
+    return await commonrequest("POST",`${BACKEND_URL}/user/fty_award_csv`,data)
+}
+
 export const achievementEdit = async(data)=>{
     return await commonrequest("POST",`${BACKEND_URL}/user/editachievements`,data)
 }

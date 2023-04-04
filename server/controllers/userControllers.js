@@ -543,6 +543,19 @@ exports.facultyeditforeign = async (req, res) => {
 
 };
 
+exports.fty_award_csv = async (req, res) => {
+    
+     
+    try {
+        //console.log(req);
+        await ft_awards.insertMany(req.body);
+        res.status(200).json({ message: 'Data successfully inserted' });
+    } catch ( error) {
+        console.error(error);
+        res.status(500).json({ message: 'An error occurred while inserting data' });
+    }
+};
+
 exports.facultyeditpublication = async (req, res) => {
     const { topic,year, date, collaboration,faculty_name} = req.body;
 

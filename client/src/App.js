@@ -56,6 +56,7 @@ import FtySeminarAdd from './pages/FtySeminarAdd.js';
 import FtyForeignAdd from './pages/FtyForeignAdd.js';
 import StaffReminder from './pages/StaffReminder';
 import StAwardCsv from './pages/StAwardCsv';
+import FtyAwardCsv from './pages/FtyAwardCsv';
 
 import Admin from './pages/Admin';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -144,6 +145,7 @@ function App() {
         <Route path='/faculty/foreign/FtyForeignEdit.js/:id' element={<FtyForeignEdit />} />
         <Route path='/faculty/Publications/FtyPublicationsEdit.js/:id' element={<FtyPublicationsEdit />} />
         <Route path='/faculty/Projects/FtyProjectsEdit.js/:id' element={<FtyProjectsEdit />} />
+        <Route path='/faculty/Awards/FtyAwardCsv' element={<FtyAwardCsv />} />
 
 
         <Route path='/Profile/Achievements/AchievementAdd.js' element={<AchievementAdd />} />
