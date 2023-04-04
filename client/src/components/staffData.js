@@ -49,11 +49,6 @@ export const SidebarData = [
         link:"/StaffHome/StaffProject"
     },
     {
-        title:"Upload CSV Data",
-        icon:<FontAwesomeIcon icon={faFileCsv} />,
-        link:"/StaffHome/StaffCsv"
-    },
-    {
         title:"Send Reminders",
         icon:<FontAwesomeIcon icon={faEnvelope} />,
         link:"/StaffHome/StaffReminder"

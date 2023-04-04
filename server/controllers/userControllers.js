@@ -598,21 +598,56 @@ exports.facultyeditproject = async (req, res) => {
 exports.send_mail = async (req, res) => {
     try {
        
-        const {emailContent} = req.body.data;
-        //console.log(emailContent);
+        const { emailSubject, emailContent, sendToFaculty, sendToStudents } = req.body.data;
+        console.log(emailSubject, emailContent, sendToFaculty, sendToStudents);
         
-    if (!emailContent) {
-        res.status(400).json({ error: "Please Enter Your Email Content" })
-    }
+        let mes = '';
+        
+        // let recepient = sendToFaculty.toString();
+        // console.log(recepient);
+       
+        if (!emailContent) {
+            mes = "Please Enter Your Email Content";
+        }
 
-    const allUsers = await users.find().select('email'); 
-    //console.log(allUsers);
+        if (!emailSubject) {
+            mes = "Please Enter Your Email Subject";
+        }
+
+        if (!sendToFaculty && !sendToStudents) {
+            mes = "Please Select at least one recepient";
+        }
+
+        if (mes) {
+            res.status(400).json({ message: mes });
+            console.log('1');
+            return;
+        }
+
+        let allUsers = '';
+
+        if (sendToFaculty && !sendToStudents) {
+            allUsers = await users.find({usertype: '2'}).select('email');
+        }
+
+        if (sendToStudents && !sendToFaculty) {
+            allUsers = await users.find({usertype: '1'}).select('email');
+        }
+
+        if ( sendToFaculty && sendToStudents) {
+            allUsers = await users.find({usertype: {$in: ['1', '2']}}).select('email');
+
+        }
+
+        
+    // const allUsers = await users.find().select('email'); 
+     //console.log(allUsers);
     allUsers.forEach(user => {
         const userEmail = user.email;
         const mailOptions = {
             from: `"Office Staff" <${process.env.EMAIL}>`,            
             to: userEmail,
-            subject: "Reminder to provide data to the staff ",
+            subject: emailSubject,
             text: emailContent
         }  
         
@@ -626,10 +661,9 @@ exports.send_mail = async (req, res) => {
         })
       });
       
-        //res.status(200).json({ message: 'Email sent successfully.' });
+        res.status(200).json({ message: 'Email sent successfully.' });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'An error occurred while sending email.' });
     }
 };
-
