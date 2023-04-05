@@ -11,6 +11,16 @@ function Awards() {
   var email = localStorage.getItem('email');
   // console.log(email)
   const utype = "0";
+
+
+  const deleteRow=async (id)=>{
+    let result= await fetch(`http://localhost:4002/user/deleteid/${id}`,{
+      method:"Delete"});
+     // result=await result.json()
+      window.location.reload();
+  }
+
+
   const [data, setUserData] = useState([]);
 
   const userGet = async () => {
@@ -19,6 +29,7 @@ function Awards() {
     }
     console.log(data)
     const response = await userfunc(data);
+    // window.location.reload();
     if (response.status === 200) {
       setUserData(response.data)
       console.log(response.data)
@@ -75,6 +86,18 @@ function Awards() {
                 utype: utype,
               }
             })}>Edit</button>
+          </div>);
+
+
+        }
+      },
+      {
+        Header: 'Delete',
+        Cell: props => {
+          const { original } = props.cell.row;
+          return (<div>
+
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() =>deleteRow(original._id)}>Delete</button>
           </div>);
 
 

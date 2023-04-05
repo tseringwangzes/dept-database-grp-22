@@ -21,10 +21,10 @@ function Profile() {
                                 <div className='col-md-8'>
                                     <div className={ProfileStyles["user-details"]}>
 
-                                        <h5>Tarushi</h5>
-                                        <h6>tarushi2k@gmail.com</h6>
-                                        <h6>PhD in Computer Networks</h6>
-                                        <h6>Under Prof. XYZ</h6>
+                                        <h5>Vishwas Rathi</h5>
+                                        <h6>2020csb1124@iitrpr.ac.in</h6>
+                                        <h6>PhD in Computer Science</h6>
+                                        <h6>Under Prof. Dr. Puneet Goyal</h6>
 
                                     </div>
                                 </div>
