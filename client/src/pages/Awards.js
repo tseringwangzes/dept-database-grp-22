@@ -143,6 +143,9 @@ function Awards() {
     doc.setFont("helvetica", "bold");
     doc.text("Student Name", 20, 60);
     doc.text(":", 70, 60);
+    doc.setFont("helvetica", "normal");
+    doc.text("Vishwas Rathi", 72, 60);
+    doc.setFont("helvetica", "bold");
     doc.text("Student Email", 20, 65);
     doc.text(": ", 70, 65);
     doc.setFont("helvetica", "normal");
