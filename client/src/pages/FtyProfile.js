@@ -24,11 +24,11 @@ function FtyProfile() {
                                 <div className='col-md-8'>
                                     <div className={ProfileStyles["user-details"]}>
 
-                                        <h5>Tzering Wangzes</h5>
+                                        <h5>Dr. Puneet Goyal</h5>
                                         <h6>2020csb1136@iitrpr.ac.in</h6>
-                                        <h6>Assosciate professor</h6>
-                                        <h6>9 years of Experience</h6>
-                                        <h6>Phd from Dalhousie College, Canada</h6>
+                                        <h6>Assistant professor</h6>
+                                        <h6>7 years of Experience</h6>
+                                        <h6>Phd from Purdue University, USA</h6>
                                     </div>
                                 </div>
                             </div>

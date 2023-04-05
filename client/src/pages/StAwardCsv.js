@@ -36,6 +36,7 @@ function StAwardCsv(){
           stt_award_csv(results.data);
           alert("sucessfully uploaded!");
           navigate('/Profile/Awards');
+          window.location.reload();
   
         }
       });
