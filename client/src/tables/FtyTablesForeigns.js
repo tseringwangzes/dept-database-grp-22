@@ -48,7 +48,7 @@ function GlobalFilter({
 }
 
 function FtyTablesForeigns({ columns, data,utype }) {
-    var email = sessionStorage.getItem('email');
+    var email = localStorage.getItem('email');
 
     const navigate = useNavigate();
     // Use the state and functions returned from useTable to build your UI

@@ -111,7 +111,7 @@ exports.userOtpSend = async (req, res) => {
                 const mailOptions = {
                     from: process.env.EMAIL,
                     to: email,
-                    subject: "Sending Eamil For Otp Validation",
+                    subject: "Sending Email For Otp Validation",
                     text: `OTP:- ${OTP}`
                 }
 
@@ -132,6 +132,81 @@ exports.userOtpSend = async (req, res) => {
         res.status(400).json({ error: "Invalid Details", error })
     }
 };
+
+
+
+exports.userApprovalSend = async (req, res) => {
+    const { email } = req.body;
+    console.log(email)
+    if (!email) {
+        res.status(400).json({ error: "Please Enter Your Email" })
+        return;
+    }
+
+
+    try {
+        const presuer = await users.findOne({ email: email });
+
+        if (presuer) {
+            const existEmail = await users.findOne({ email: email });
+            const myText = "Your Data Approved by faculty Advisor";
+            if (existEmail) {
+                const mailOptions = {
+                    from: process.env.EMAIL,
+                    to: email,
+                    subject: "Approval Done!",
+                    text: myText
+                }
+
+
+                tarnsporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        console.log("error", error);
+                        res.status(400).json({ error: "Email not send" })
+                        return;
+                    } else {
+                        console.log("Email sent", info.response);
+                        res.status(200).json({ message: "Email sent Successfully" })
+                        return;
+                    }
+                })
+
+            } else {
+
+                // const saveOtpData = new userotp({
+                //     email, otp: OTP
+                // });
+
+                // await saveOtpData.save();
+                // const mailOptions = {
+                //     from: process.env.EMAIL,
+                //     to: email,
+                //     subject: "Sending Email For Otp Validation",
+                //     text: `OTP:- ${OTP}`
+                // }
+
+                // tarnsporter.sendMail(mailOptions, (error, info) => {
+                //     if (error) {
+                //         console.log("error", error);
+                //         res.status(400).json({ error: "email not send" })
+                //     } else {
+                //         console.log("Email sent", info.response);
+                //         res.status(200).json({ message: "Email sent Successfully" })
+                //     }
+                // })
+            }
+        } else {
+            res.status(400).json({ error: "This User Not Exist In our Db" })
+            return;
+        }
+    } catch (error) {
+        res.status(400).json({ error: "Invalid Details", error })
+        return;
+    }
+};
+
+
+
 
 
 exports.userLogin = async (req, res) => {

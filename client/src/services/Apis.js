@@ -10,6 +10,10 @@ export const sentOtpFunction = async(data)=>{
     return await commonrequest("POST",`${BACKEND_URL}/user/sendotp`,data)
 }
 
+export const sentApprovalFunction = async(data)=>{
+    return await commonrequest("POST",`${BACKEND_URL}/user/sendApproval`,data)
+}
+
 export const userVerify = async(data)=>{
     return await commonrequest("POST",`${BACKEND_URL}/user/login`,data)
 }

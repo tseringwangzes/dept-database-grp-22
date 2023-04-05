@@ -3,7 +3,7 @@ import FtySidebar from "../components/FtySidebar";
 import ProfileStyles from './Profile.module.css';
 import { useLocation } from 'react-router-dom';
 function FtyProfile() {
-    var email = sessionStorage.getItem('email');
+    var email = localStorage.getItem('email');
     const location = useLocation();
     // const email = location.state;
     console.log(email)

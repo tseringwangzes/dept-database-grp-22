@@ -9,6 +9,8 @@ import { stforvisits } from '../services/Apis'
 import Table, { StatusPill } from "./FtyTable";
 import Sidebar from "../components/FtySidebar";
 import { useLocation } from 'react-router-dom';
+import { sentApprovalFunction } from "../services/Apis";
+import { toast } from "react-toastify";
 function FtyApprove() {
     const navigate = useNavigate();
     const location = useLocation();
@@ -48,10 +50,6 @@ function FtyApprove() {
                 accessor: "award_reason",
             },
             {
-                Header: "Year",
-                accessor: "year",
-            },
-            {
                 Header: "Date",
                 accessor: "date",
             },
@@ -68,8 +66,9 @@ function FtyApprove() {
                 Header: 'Approve',
                 Cell: props => {
                     const { original } = props.cell.row;
+                    console.log(original.student_name);
                     return (<div>
-                        <button class="activeButtonIndex === 0 ? bg-blue-500 : bg-green-500  hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() => updateStatus(original._id, original.award_name, original.award_reason, original.year, original.date, original.shared_with, "Verified")}>Approve</button>
+                        <button class="activeButtonIndex === 0 ? bg-blue-500 : bg-green-500  hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() => updateStatus(original._id, original.student_name,original.award_name, original.award_reason, original.date, original.shared_with, "Verified")}>Approve</button>
                     </div>);
                 }
             }
@@ -77,13 +76,14 @@ function FtyApprove() {
         []
     );
 
-    const updateStatus = async (id, award_name, award_reason, year, date, shared_with, status) => {
-        let item = { award_name, award_reason, year, date, shared_with, status }
+    const updateStatus = async (id,student_name, award_name, award_reason, date, shared_with, status) => {
+        let item = { award_name, award_reason, date, shared_with, status }
+        console.log("DATA HERE")
         console.log(item);
 
         let result = await fetch(`http://localhost:4002/user/faculty/Approve/${id}`, {
             method: 'Put',
-            body: JSON.stringify({ award_name, award_reason, year, date, shared_with, status }),
+            body: JSON.stringify({ award_name, award_reason, date, shared_with, status }),
             headers: {
                 'Accept': "application/json",
                 'content-Type': "application/json"
@@ -91,9 +91,23 @@ function FtyApprove() {
 
         });
 
-        result = await result.json()
-        //    navigate('/faculty/Approve')
+        result = await result.json();
+        // console.log(data)
+        const data = {
+          email: student_name
+      }
+
+      const response = await sentApprovalFunction(data);
+
+      if (response.status === 200) {
         window.location.reload();
+      } else {
+          toast.error(response.response.data.error);
+      }
+
+
+        //    navigate('/faculty/Approve')
+        
     }
 
 
