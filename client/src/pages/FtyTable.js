@@ -49,7 +49,7 @@ function GlobalFilter({
 }
 
 function FtyTable({ columns, data }) {
-    var email = sessionStorage.getItem('email');
+    var email = localStorage.getItem('email');
     const navigate = useNavigate();
     // Use the state and functions returned from useTable to build your UI
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, state, // new
