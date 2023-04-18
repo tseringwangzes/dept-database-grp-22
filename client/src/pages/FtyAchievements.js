@@ -33,10 +33,6 @@ const utype = "0";
         accessor: "Achievements",
       },
       {
-        Header: "Year",
-        accessor: "year",
-      },
-      {
         Header: "Date",
         accessor: "date",
       },
@@ -54,7 +50,6 @@ return(
               state: {
                 faculty_name:original.faculty_name,
                 Achievements: original.Achievements,
-                year: original.year,
                 date: original.date,
                 shared_with: original.shared_with,
                 id:original._id,

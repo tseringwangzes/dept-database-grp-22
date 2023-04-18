@@ -23,43 +23,38 @@ export const AdminSidebarData = [
     {
         title:"Awards",
         icon:<EmojiEventsIcon />,
-        link:"/Admin/Awards",
+        link:"/Admin/AdminStudent",
         fname:"",
     },
     {
         title:"Achievements",
         icon:<StarsIcon />,
-        link:"/Admin/Achievements",
+        link:"/Admin/AdminFaculty",
         fname:""
     },
     {
         title:"Workshops/Seminar Organised",
         icon:<PeopleIcon />,
-        link:"/Admin/Seminars",
+        link:"/Admin/AdminSeminar",
         fname:""
     },
     {
         title:"Foreign Visits",
         icon:<TourIcon />,
-        link:"/Admin/foreign",
+        link:"/Admin/AdminForeign",
         fname:""
     },
     {
         title:"Publications/Patents",
         icon:<ImportContactsSharpIcon />,
-        link:"/Admin/Publications",
+        link:"/Admin/AdminPublications",
         fname:""
     },
     {
         title:"Project Grants",
         icon:<CurrencyExchangeSharpIcon />,
-        link:"/Admin/Projects",
+        link:"/Admin/AdminProject",
         fname:""
     },
-    {
-        title:"Approve students",
-        icon:<VerifiedIcon/>,
-        link:"/Admin/Approve",
-        fname:"",
-    },
+   
 ]

@@ -114,6 +114,7 @@ function FtyTablesAwards({ columns, data,utype }) {
                                                  
     
                                                     {row.cells.map((cell) => {
+                                                        
                                                         return (
                                                             <td
                                                                 {...cell.getCellProps()}
