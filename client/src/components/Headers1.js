@@ -1,35 +1,49 @@
-import { margin } from '@mui/system';
-import React from 'react'
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import {NavLink} from "react-router-dom";
-
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Headers = () => {
   var email = sessionStorage.getItem('email');
-    const handleClick = () => {
-      sessionStorage.removeItem('email');
-    };
+  const handleClick = () => {
+    sessionStorage.removeItem('email');
+  };
   return (
-    <>    
-      <Navbar bg="dark" fixed="top" style = {{zIndex:1}}>
-        <Container>
-          {/* <NavLink to="/" className=" text-light text-decoration-none">IIT Ropar</NavLink> */}
-          <Nav className="navbar-brand d-flex justify-content-between">
-  <img src={process.env.PUBLIC_URL + '/images/download.png'} style={{width:60, marginRight:20}} alt=" " />
-  <NavLink to="/" className="text-light text-decoration-none font-weight-bolder mt-3 mb-3">IIT Ropar</NavLink>
-  <span style={{ display: 'inline-block', width: '1100px' }}></span>
-
-  <NavLink to="/register" className="text-light text-decoration-none font-weight-bolder mt-3 mb-3">Signup</NavLink>
-</Nav>
-
-
-        </Container>
-      </Navbar>
-      <div style={{height:90}}/>
-    </>
+    <nav className="bg-gray-900 fixed top-0 z-50 w-full">
+  <div className="container mx-auto px-2 md:px-4 ml-0">
+    <div className="flex justify-between items-center py-2 md:py-4">
+      <div className="flex items-center">
+        <img
+          src={process.env.PUBLIC_URL + '/images/download.png'}
+          alt="IIT Ropar Logo"
+          className="h-8 md:h-12 mr-2 md:mr-4"
+        />
+        <NavLink
+          exact
+          to="/"
+          className="text-white font-bold text-xl md:text-2xl hover:text-gray-300 transition duration-200"
+        >IIT Ropar
+        </NavLink>
+      </div>
+            <div className="flex items-center">
+            <NavLink
+              exact
+              to="/register"
+              className="text-white font-bold text-base md:text-lg mr-4 hover:text-gray-300 transition duration-200"
+            >
+              Signup
+            </NavLink>
+            <NavLink
+              exact
+              to="/"
+              className="text-white font-bold text-base md:text-lg hover:text-gray-300 transition duration-200"
+              onClick={handleClick}
+            >
+              Logout
+            </NavLink>
+          </div>
+        </div>
+      </div>
+    </nav>
   );
 };
 
-export default Headers
+export default Headers;
