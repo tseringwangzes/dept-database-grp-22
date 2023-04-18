@@ -327,13 +327,32 @@ exports.insert_csv = async (req, res) => {
 exports.st_achievement_csv = async (req, res) => {
     
     
-    try {
-        //console.log(req);
-        await st_achievements.insertMany(req.body);
-        res.status(200).json({ message: 'Data successfully inserted' });
-    } catch ( error) {
-        console.error(error);
-        res.status(500).json({ message: 'An error occurred while inserting data' });
+    // try {
+    //     //console.log(req);
+    //     await st_achievements.insertMany(req.body);
+    //     res.status(200).json({ message: 'Data successfully inserted' });
+    // } catch ( error) {
+    //     console.error(error);
+    //     res.status(500).json({ message: 'An error occurred while inserting data' });
+    // }
+    
+    const data = req.body;
+
+    for (const entry of data) {
+        try {
+           // console.log(entry);
+            const existingEntry = await st_achievements.findOne(entry);
+            //console.log(existingEntry);
+            if ( existingEntry === null) {
+                await st_achievements.create(entry)
+            } 
+           
+           
+        }  catch ( error) {
+            console.error(error);
+            res.status(500).json({ message: 'An error occurred while checking data' });
+            return;
+        }
     }
 };
 
@@ -353,13 +372,31 @@ exports.st_project_csv = async (req, res) => {
 exports.st_seminar_csv = async (req, res) => {
     
     
-    try {
-        //console.log(req);
-        await st_seminar.insertMany(req.body);
-        res.status(200).json({ message: 'Data successfully inserted' });
-    } catch ( error) {
-        console.error(error);
-        res.status(500).json({ message: 'An error occurred while inserting data' });
+    // try {
+    //     //console.log(req);
+    //     await st_seminar.insertMany(req.body);
+    //     res.status(200).json({ message: 'Data successfully inserted' });
+    // } catch ( error) {
+    //     console.error(error);
+    //     res.status(500).json({ message: 'An error occurred while inserting data' });
+    // }
+    const data = req.body;
+    
+    for (const entry of data) {
+        try {
+           // console.log(entry);
+            const existingEntry = await st_seminar.findOne(entry);
+            //console.log(existingEntry);
+            if ( existingEntry === null) {
+                await st_seminar.create(entry)
+            } 
+           
+           
+        }  catch ( error) {
+            console.error(error);
+            res.status(500).json({ message: 'An error occurred while checking data' });
+            return;
+        }
     }
 };
 
@@ -578,14 +615,14 @@ exports.editforeign = async (req, res) => {
 };
 
 exports.editseminar = async (req, res) => {
-    const { title, type, year, date, venue, chief_guest, mode, collaborator, status,faculty_name,student_name} = req.body;
+    const { title, type, date, venue, chief_guest, mode, collaborator, status,faculty_name,student_name} = req.body;
 
-    if (!title || !type || !year || !date || !venue || !chief_guest || !mode || !collaborator || !status || !faculty_name || !student_name) {
+    if (!title || !type || !date || !venue || !chief_guest || !mode || !collaborator || !status || !faculty_name || !student_name) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
     try {            
             const editseminar = new st_seminar({
-                title, type, year, date, venue, chief_guest, mode, collaborator, status,faculty_name,student_name
+                title, type, date, venue, chief_guest, mode, collaborator, status,faculty_name,student_name
             });
             const findSeminar = await st_seminar.findOne({title:title, type:type, year:year, date:date, venue:venue, chief_guest:chief_guest, mode:mode, collaborator:collaborator})
             if(!findSeminar){

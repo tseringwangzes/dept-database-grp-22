@@ -102,7 +102,7 @@ const AchievementEditPage = () => {
           <input style={{height: "30px"}} className={signupStyle.myInput}
             placeholder="Enter the date"
             name="date"
-            type="text"
+            type="date"
             value={formFields.date}
             onChange={hanldeInputValueChange}
           />
