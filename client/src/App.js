@@ -57,6 +57,11 @@ import FtyForeignAdd from './pages/FtyForeignAdd.js';
 import StaffReminder from './pages/StaffReminder';
 import StAwardCsv from './pages/StAwardCsv';
 import FtyAwardCsv from './pages/FtyAwardCsv';
+import StAchievementCsv from './pages/StAchievementCsv';
+import StSeminarCsv from './pages/StSeminarCsv';
+import StForeignCsv from './pages/StForeignCsv';
+import StPublicationCsv from './pages/StPublicationCsv';
+import StProjectCsv from './pages/StProjectCsv';
 
 import Admin from './pages/Admin';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -78,6 +83,12 @@ function App() {
         <Route path='/Profile/Seminars' element={<Seminars />} />
         <Route path='/Profile/Awards' element={<Awards />} />
         <Route path='/Profile/Awards/StAwardCsv' element={<StAwardCsv />} />
+        <Route path='/Profile/Achievements/StAchievementCsv' element={<StAchievementCsv />} />
+        <Route path='/Profile/Seminars/StSeminarCsv' element={<StSeminarCsv />} />
+        <Route path='/Profile/Foreign/StForeignCsv' element={<StForeignCsv />} />
+        <Route path='/Profile/Publications/StPublicationCsv' element={<StPublicationCsv />} />
+        <Route path='/Profile/Project/StProjectCsv' element={<StProjectCsv />} />
+        
 
         <Route path='/StaffHome/StaffCsv' element={<StaffCsv />} />
         <Route path='/StaffHome/StaffStudent' element={<StaffStudent />} />

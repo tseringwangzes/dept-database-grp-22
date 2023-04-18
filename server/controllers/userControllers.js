@@ -324,6 +324,72 @@ exports.insert_csv = async (req, res) => {
 
 }
 
+exports.st_achievement_csv = async (req, res) => {
+    
+    
+    try {
+        //console.log(req);
+        await st_achievements.insertMany(req.body);
+        res.status(200).json({ message: 'Data successfully inserted' });
+    } catch ( error) {
+        console.error(error);
+        res.status(500).json({ message: 'An error occurred while inserting data' });
+    }
+};
+
+exports.st_project_csv = async (req, res) => {
+    
+     
+    try {
+        //console.log(req);
+        await st_project.insertMany(req.body);
+        res.status(200).json({ message: 'Data successfully inserted' });
+    } catch ( error) {
+        console.error(error);
+        res.status(500).json({ message: 'An error occurred while inserting data' });
+    }
+};
+
+exports.st_seminar_csv = async (req, res) => {
+    
+    
+    try {
+        //console.log(req);
+        await st_seminar.insertMany(req.body);
+        res.status(200).json({ message: 'Data successfully inserted' });
+    } catch ( error) {
+        console.error(error);
+        res.status(500).json({ message: 'An error occurred while inserting data' });
+    }
+};
+
+exports.st_foreign_csv = async (req, res) => {
+    
+     
+    try {
+        //console.log(req);
+        await st_for_visits.insertMany(req.body);
+        res.status(200).json({ message: 'Data successfully inserted' });
+    } catch ( error) {
+        console.error(error);
+        res.status(500).json({ message: 'An error occurred while inserting data' });
+    }
+};
+
+exports.st_publication_csv = async (req, res) => {
+    
+     
+    try {
+        //console.log(req);
+        await st_publi.insertMany(req.body);
+        res.status(200).json({ message: 'Data successfully inserted' });
+    } catch ( error) {
+        console.error(error);
+        res.status(500).json({ message: 'An error occurred while inserting data' });
+    }
+};
+
+
 exports.useraddmore = async (req, res) => {
     const { award_name,award_reason,date,shared_with,status,faculty_name,student_name} = req.body;
 
@@ -464,16 +530,16 @@ exports.facultyaddawards = async (req, res) => {
 };
 
 exports.editachievements = async (req, res) => {
-    const { achievements,year,date,shared_with,status,faculty_name,student_name} = req.body;
+    const { achievements,date,shared_with,status,faculty_name,student_name} = req.body;
 
-    if (!achievements || !year || !date || !shared_with || !status || !faculty_name || !student_name) {
+    if (!achievements || !date || !shared_with || !status || !faculty_name || !student_name) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
     try {            
             const editachievements = new st_achievements({
-                achievements,year,date,shared_with,status,faculty_name,student_name
+                achievements,date,shared_with,status,faculty_name,student_name
             });
-            const findAchievement = await st_achievements.findOne({achievements:achievements,year:year,date:date,shared_with:shared_with})
+            const findAchievement = await st_achievements.findOne({achievements:achievements,date:date,shared_with:shared_with})
             if(!findAchievement){
             const storeData = await editachievements.save();
             res.status(200).json(storeData);

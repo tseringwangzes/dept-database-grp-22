@@ -129,3 +129,18 @@ export const send_reminder = async(data)=>{
 export const stt_award_csv = async(data)=>{
     return await commonrequest("POST",`${BACKEND_URL}/user/st_award_csv`,data)
 }
+export const st_achievement_csv = async(data)=>{
+    return await commonrequest("POST",`${BACKEND_URL}/user/st_achievement_csv`,data)
+}
+export const st_seminar_csv = async(data)=>{
+    return await commonrequest("POST",`${BACKEND_URL}/user/st_seminar_csv`,data)
+}
+export const st_foreign_csv = async(data)=>{
+    return await commonrequest("POST",`${BACKEND_URL}/user/st_foreign_csv`,data)
+}
+export const st_publication_csv = async(data)=>{
+    return await commonrequest("POST",`${BACKEND_URL}/user/st_publication_csv`,data)
+}
+export const st_project_csv = async(data)=>{
+    return await commonrequest("POST",`${BACKEND_URL}/user/st_project_csv`,data)
+}
