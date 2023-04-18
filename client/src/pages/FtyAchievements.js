@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { ft_achievements } from '../services/Apis'
 import FtyTablesAchievements, { StatusPill } from "../tables/FtyTablesAchievements";
 import FtySidebar from "../components/FtySidebar";
-import jsPDF from 'jspdf';
+import * as fs from "fs";
+const { Document, Table, TableCell, TableRow } = require('docx');
 
 function FtyAchievements() {
   const navigate = useNavigate();
@@ -95,69 +96,57 @@ return(
 
 
   function generatePDF() {
-    const doc = new jsPDF();
-    fetch('https://akm-img-a-in.tosshub.com/aajtak/images/story/201502/iit_ropar_650_022415062015.jpg?size=948:533')
-  .then(response => response.blob())
-  .then(blob => {
-    const imgUrl = URL.createObjectURL(blob);
-    const imageWidth = 46;
-    const imageHeight = 26;
-    const xPos = 10;
-    const yPos = 10;
-    const pageWidth =
-    doc.internal.pageSize.width || doc.internal.pageSize.getWidth();
-
-    doc.addImage(imgUrl, 'PNG', xPos, yPos, imageWidth, imageHeight);
-
-    doc.setFontSize(16);
-    doc.setFont("helvetica", "bold");
-    doc.text("Indian Institute of Technology, Ropar", pageWidth / 2, 16, {
-      align: "center"
-    });
-  
-    doc.setFontSize(14);
-    doc.setFont("helvetica", "normal");
-    doc.text("Rupnagar,Punjab-140001", pageWidth / 2, 22, { align: "center" });
-    doc.text("Tele:+91-1881-235101, email:cs@iitrpr.ac.in", pageWidth / 2, 28, { align: "center" });
-    doc.setLineWidth(0.5);
-    doc.line(10, 38, pageWidth - 10, 38);
-    doc.setFontSize(12);
-    doc.setFont("helvetica", "bold");
-    doc.text("AWARDS LIST", pageWidth / 2, 45, {
-      align: "center"
-    });
-    doc.setLineWidth(0.2);
-    doc.line(90, 46, pageWidth - 90, 46);
-    doc.setFont("helvetica", "bold");
-    doc.text("Faculty Name", 20, 60);
-    doc.text(":", 70, 60);
-    doc.setFont("helvetica", "normal");
-    doc.text("Dr. Puneet Goyal",72,60);
-    doc.setFont("helvetica", "bold");
-    doc.text("Faculty Email", 20, 65);
-    doc.text(": ", 70, 65);
-    doc.setFont("helvetica", "normal");
-    doc.text(email, 72, 65);
-    doc.setFont("helvetica", "bold");
-    doc.text("Faculty Department", 20, 70);
-    doc.text(": ", 70, 70);
-    doc.setFont("helvetica", "normal");
-    doc.text("CSE", 72, 70);
-    
-    const columns = [["Award Name", "Award Reason", "Date","Shared With"]];
-    const filteredData = data.filter(item => item.faculty_name === email);
-
-const rows = filteredData.map(user=>[user.award_name,user.award_reason,user.date,user.shared_with]);
-    doc.autoTable({
-      head: columns,
-      body: rows,
-      startY: 80,
-    });
-    doc.save('my-document.pdf');
-
-    // add image to PDF here
-
-  });
+    // Fetch data from the database (replace this with your own fetch code)
+    fetch('http://localhost:4002/user/faculty/achievements')
+      .then(response => response.json())
+      .then(data => {
+        // Create a new document
+        const doc = new Document();
+        
+        // Create a table with data
+        const table = new Table({
+          rows: [
+            new TableRow({
+              children: [
+                new TableCell({
+                  children: [doc.createParagraph(data[0]._id)] // Replace field1 with your actual field names
+            }),
+                new TableCell({
+                  children: [doc.createParagraph(data[0].faculty_name)]
+            }),
+                // Add more TableCell for additional fields
+              ]
+            }),
+            // Add more TableRow for additional data rows
+          ]
+          
+        });
+        
+        // Add the table to the document
+        doc.addTable(table);
+        
+        // Create a buffer from the document
+        const buffer = Buffer.from(doc.generate());
+        
+        // Create a Blob from the buffer
+        const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+        
+        // Create a download link
+        const downloadLink = document.createElement('a');
+        downloadLink.href = URL.createObjectURL(blob);
+        downloadLink.download = 'some.docx';
+        downloadLink.style.display = 'none';
+        
+        // Append the download link to the DOM
+        document.body.appendChild(downloadLink);
+        
+        // Trigger a click event on the download link
+        downloadLink.click();
+        
+        // Clean up by removing the download link from the DOM
+        document.body.removeChild(downloadLink);
+      })
+      .catch(error => console.error(error));
   }
 
 
