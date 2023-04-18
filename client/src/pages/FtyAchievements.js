@@ -9,6 +9,7 @@ function FtyAchievements() {
   const navigate = useNavigate();
   
   var email = localStorage.getItem('email');
+  
   console.log(email)
 
   

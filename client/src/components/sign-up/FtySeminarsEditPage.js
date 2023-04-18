@@ -17,7 +17,6 @@ const utype = state.utype;
         faculty_name:state.faculty_name,
         title:state.title,
         type: state.type,
-        year: state.year,
         date: state.date,
         venue: state.venue,
         chief_guest: state.chief_guest,
@@ -42,7 +41,7 @@ const utype = state.utype;
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { title,type,year,date,venue,chief_guest,mode,collaborator,faculty_name} = formFields;
+        const { title,type,date,venue,chief_guest,mode,collaborator,faculty_name} = formFields;
         if (type === "") {
 
             toast.error("Enter type Name")
@@ -55,7 +54,6 @@ const utype = state.utype;
                     ...formFields,title:state.title, 
                     faculty_name:state.faculty_name,
                     type: state.type,
-                    year: state.year,
                     date: state.date,
                     venue: state.venue,
                     chief_guest: state.chief_guest,
@@ -106,18 +104,6 @@ const utype = state.utype;
                             value={formFields.type}
                             onChange={hanldeInputValueChange}
                         />
-                    </div>
-
-                    <div className={signupStyle["form-item"]} id="year">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Year</label>
-                        <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the Year"
-                            name="year"
-                            type="text"
-                            value={formFields.year}
-                            onChange={hanldeInputValueChange}
-                        />
-
                     </div>
 
                     <div className={signupStyle["form-item"]} id="date">
