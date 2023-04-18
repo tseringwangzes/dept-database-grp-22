@@ -3,8 +3,7 @@ const mongoose = require("mongoose");
 const ftprojects = new mongoose.Schema({
     faculty_name: String,
     topic: String,
-    year: String,
-    date: String,
+    date: Date,
     granted_money: String,
     status: String,
 },
