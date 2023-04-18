@@ -5,7 +5,7 @@ const stpublica = new mongoose.Schema({
     student_name:String,
     topic: String,
     year: String,
-    date: String,
+    date: Date,
     collaboration: String,
     no_of_students: String,
     status: String,

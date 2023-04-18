@@ -48,7 +48,7 @@ router.post("/user/st_award_csv", controllers.st_award_csv);
 router.post("/user/st_achievement_csv", controllers.st_achievement_csv);
 router.post("/user/st_seminar_csv", controllers.st_seminar_csv);
 router.post("/user/st_foreign_csv", controllers.st_foreign_csv);
-// router.post("/user/st_publication_csv", controllers.st_publication_csv);
+router.post("/user/st_publication_csv", controllers.st_publication_csv);
 // router.post("/user/st_project_csv", controllers.st_project_csv);
 
 
