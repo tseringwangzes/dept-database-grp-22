@@ -816,13 +816,180 @@ exports.facultyeditforeign = async (req, res) => {
 exports.fty_award_csv = async (req, res) => {
     
      
-    try {
-        //console.log(req);
-        await ft_awards.insertMany(req.body);
-        res.status(200).json({ message: 'Data successfully inserted' });
-    } catch ( error) {
-        console.error(error);
-        res.status(500).json({ message: 'An error occurred while inserting data' });
+    // try {
+    //     //console.log(req);
+    //     await ft_awards.insertMany(req.body);
+    //     res.status(200).json({ message: 'Data successfully inserted' });
+    // } catch ( error) {
+    //     console.error(error);
+    //     res.status(500).json({ message: 'An error occurred while inserting data' });
+    // }
+
+    const data = req.body;
+
+    for (const entry of data) {
+        try {
+           // console.log(entry);
+            const existingEntry = await ft_awards.findOne(entry);
+            //console.log(existingEntry);
+            if ( existingEntry === null) {
+                await ft_awards.create(entry)
+            } 
+           
+           
+        }  catch ( error) {
+            console.error(error);
+            res.status(500).json({ message: 'An error occurred while checking data' });
+            return;
+        }
+    }
+};
+
+exports.fty_project_csv = async (req, res) => {
+    
+    const data = req.body;
+
+    for (const entry of data) {
+        try {
+           // console.log(entry);
+            const existingEntry = await ft_projects.findOne(entry);
+            //console.log(existingEntry);
+            if ( existingEntry === null) {
+                await ft_projects.create(entry)
+            } 
+           
+           
+        }  catch ( error) {
+            console.error(error);
+            res.status(500).json({ message: 'An error occurred while checking data' });
+            return;
+        }
+    }
+};
+
+exports.fty_achievement_csv = async (req, res) => {
+    
+    
+    // try {
+    //     //console.log(req);
+    //     await ft_achievements.insertMany(req.body);
+    //     res.status(200).json({ message: 'Data successfully inserted' });
+    // } catch ( error) {
+    //     console.error(error);
+    //     res.status(500).json({ message: 'An error occurred while inserting data' });
+    // }
+
+    const data = req.body;
+
+    for (const entry of data) {
+        try {
+           // console.log(entry);
+            const existingEntry = await ft_achievements.findOne(entry);
+            //console.log(existingEntry);
+            if ( existingEntry === null) {
+                await ft_achievements.create(entry)
+            } 
+           
+           
+        }  catch ( error) {
+            console.error(error);
+            res.status(500).json({ message: 'An error occurred while checking data' });
+            return;
+        }
+    }
+};
+
+exports.fty_seminar_csv = async (req, res) => {
+    
+    
+    // try {
+    //     //console.log(req);
+    //     await ft_seminars.insertMany(req.body);
+    //     res.status(200).json({ message: 'Data successfully inserted' });
+    // } catch ( error) {
+    //     console.error(error);
+    //     res.status(500).json({ message: 'An error occurred while inserting data' });
+    // }
+
+    const data = req.body;
+
+    for (const entry of data) {
+        try {
+           // console.log(entry);
+            const existingEntry = await ft_seminars.findOne(entry);
+            //console.log(existingEntry);
+            if ( existingEntry === null) {
+                await ft_seminars.create(entry)
+            } 
+           
+           
+        }  catch ( error) {
+            console.error(error);
+            res.status(500).json({ message: 'An error occurred while checking data' });
+            return;
+        }
+    }
+};
+exports.fty_foreign_csv = async (req, res) => {
+    
+    
+    // try {
+    //     //console.log(req);
+    //     await ft_foreign.insertMany(req.body);
+    //     res.status(200).json({ message: 'Data successfully inserted' });
+    // } catch ( error) {
+    //     console.error(error);
+    //     res.status(500).json({ message: 'An error occurred while inserting data' });
+    // }
+
+    const data = req.body;
+
+    for (const entry of data) {
+        try {
+           // console.log(entry);
+            const existingEntry = await ft_foreign.findOne(entry);
+            //console.log(existingEntry);
+            if ( existingEntry === null) {
+                await ft_foreign.create(entry)
+            } 
+           
+           
+        }  catch ( error) {
+            console.error(error);
+            res.status(500).json({ message: 'An error occurred while checking data' });
+            return;
+        }
+    }
+};
+exports.fty_publication_csv = async (req, res) => {
+    
+    
+    // try {
+    //     //console.log(req);
+    //     await ft_publications.insertMany(req.body);
+    //     res.status(200).json({ message: 'Data successfully inserted' });
+    // } catch ( error) {
+    //     console.error(error);
+    //     res.status(500).json({ message: 'An error occurred while inserting data' });
+    // }
+
+    const data = req.body;
+
+    for (const entry of data) {
+        try {
+           // console.log(entry);
+            const existingEntry = await ft_publications.findOne(entry);
+            //console.log(existingEntry);
+            if ( existingEntry === null) {
+                await ft_publications.create(entry)
+            } 
+           
+           
+        }  catch ( error) {
+            console.error(error);
+            res.status(500).json({ message: 'An error occurred while checking data' });
+            return;
+        }
     }
 };
 

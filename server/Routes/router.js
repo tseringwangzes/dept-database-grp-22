@@ -59,6 +59,11 @@ router.get("/user/faculty/foreign",controllers.facultygetforeign);
 router.get("/user/faculty/publications",controllers.facultygetpublications);
 router.get("/user/faculty/projects",controllers.facultygetprojects);
 router.post("/user/fty_award_csv", controllers.fty_award_csv);
+router.post("/user/fty_achievement_csv", controllers.fty_achievement_csv);
+router.post("/user/fty_seminar_csv", controllers.fty_seminar_csv);
+router.post("/user/fty_publication_csv", controllers.fty_publication_csv);
+router.post("/user/fty_foreign_csv", controllers.fty_foreign_csv);
+router.post("/user/fty_project_csv", controllers.fty_project_csv);
 
 router.post("/user/insert_csv", controllers.insert_csv);
 router.post("/user/adddata",controllers.useraddmore);

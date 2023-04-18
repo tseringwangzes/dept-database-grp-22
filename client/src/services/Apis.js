@@ -82,6 +82,22 @@ export const fty_award_csv = async(data)=>{
     return await commonrequest("POST",`${BACKEND_URL}/user/fty_award_csv`,data)
 }
 
+export const fty_seminar_csv = async(data)=>{
+    return await commonrequest("POST",`${BACKEND_URL}/user/fty_seminar_csv`,data)
+}
+export const fty_foreign_csv = async(data)=>{
+    return await commonrequest("POST",`${BACKEND_URL}/user/fty_foreign_csv`,data)
+}
+export const fty_publication_csv = async(data)=>{
+    return await commonrequest("POST",`${BACKEND_URL}/user/fty_publication_csv`,data)
+}
+export const fty_achievement_csv = async(data)=>{
+    return await commonrequest("POST",`${BACKEND_URL}/user/fty_achievement_csv`,data)
+}
+export const fty_project_csv = async(data)=>{
+    return await commonrequest("POST",`${BACKEND_URL}/user/fty_project_csv`,data)
+}
+
 export const achievementEdit = async(data)=>{
     return await commonrequest("POST",`${BACKEND_URL}/user/editachievements`,data)
 }

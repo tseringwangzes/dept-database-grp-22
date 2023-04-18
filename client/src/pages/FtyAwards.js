@@ -12,9 +12,22 @@ function FtyAwards() {
   const navigate = useNavigate();
   var email = localStorage.getItem('email');
   console.log(email)
+
+
+  const deleteRow=async (id)=>{
+    let result= await fetch(`http://localhost:4002/user/ftydeleteaward/${id}`,{
+      method:"Delete"});
+     // result=await result.json()
+      window.location.reload();
+  }
+
+
   const [data, setUserData] = useState([]);
   const userGet = async () => {
-    const response = await ft_awards();
+    const data = {
+      email:email
+    }
+    const response = await ft_awards(data);
     if (response.status === 200) {
       setUserData(response.data)
       console.log(response.data)
@@ -67,6 +80,18 @@ function FtyAwards() {
           </div>);
         }
 
+      },
+      {
+        Header: 'Delete',
+        Cell: props => {
+          const { original } = props.cell.row;
+          return (<div>
+
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() =>deleteRow(original._id)}>Delete</button>
+          </div>);
+
+
+        }
       }
     ],
     []
