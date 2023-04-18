@@ -16,7 +16,6 @@ const FtyPublicationsEditPage = () => {
     const defaultFormFields = {
         faculty_name:state.faculty_name,
         topic: state.topic,
-        year: state.year,
         date: state.date,
         collaboration: state.collaboration,
     };
@@ -38,7 +37,7 @@ const FtyPublicationsEditPage = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { topic,year, date, collaboration,faculty_name } = formFields;
+        const { topic,date, collaboration,faculty_name } = formFields;
         if (topic === "") {
 
             toast.error("Enter topic Name")
@@ -51,7 +50,7 @@ const FtyPublicationsEditPage = () => {
                     ...formFields, 
                     topic: state.topic,
                     faculty_name:state.faculty_name,
-                    year: state.year,
+                   
                     date: state.date,
                     collaboration: state.collaboration,
                 });
@@ -86,18 +85,6 @@ const FtyPublicationsEditPage = () => {
                             value={formFields.topic}
                             onChange={hanldeInputValueChange}
                         />
-                    </div>
-
-                    <div className={signupStyle["form-item"]} id="year">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Year</label>
-                        <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the Year"
-                            name="year"
-                            type="text"
-                            value={formFields.year}
-                            onChange={hanldeInputValueChange}
-                        />
-
                     </div>
 
                     <div className={signupStyle["form-item"]} id="date">
