@@ -196,7 +196,7 @@ const rows = filteredData.map(user=>[user.award_name,user.award_reason,user.date
           </div>
           <div className="">
           <br />
-            <h1 className="text-xl font-semibold">Your Workshops and Seminars</h1>
+            <h1 className="text-center bg-indigo-100  text-xl font-semibold">Your Workshops and Seminars</h1>
           </div>
           <div className="mt-4">
             <TablesSeminars columns={columns} data={data} utype = {utype}/>
