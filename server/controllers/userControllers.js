@@ -466,7 +466,7 @@ exports.facultyaddawards = async (req, res) => {
 exports.editachievements = async (req, res) => {
     const { achievements,year,date,shared_with,status,faculty_name,student_name} = req.body;
 
-    if (!achievements || !year || !date || !shared_with || !status || !faculty_name || !student_name) {
+    if (!achievements || !year||!date || !shared_with || !status || !faculty_name || !student_name) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
     try {            
@@ -586,25 +586,29 @@ exports.editproject = async (req, res) => {
 
 
 exports.facultyeditachievements = async (req, res) => {
-    const { Achievements,year,date,shared_with,faculty_name} = req.body;
+    const { Achievements,date,shared_with,faculty_name} = req.body;
 
-    if (!Achievements || !year || !date || !shared_with || !faculty_name) {
+    if (!Achievements || !date || !shared_with || !faculty_name) {
         res.status(400).json({ error: "Please Enter All Input Data" })
+        return;
     }
     try {            
             const facultyeditachievements = new ft_achievements({
-                Achievements,year,date,shared_with,faculty_name
+                Achievements,date,shared_with,faculty_name
             });
-            const findAward = await ft_achievements.findOne({Achievements:Achievements,year:year,date:date,shared_with:shared_with})
+            const findAward = await ft_achievements.findOne({Achievements:Achievements,date:date,shared_with:shared_with})
             if(!findAward){
             const storeData = await facultyeditachievements.save();
             res.status(200).json(storeData);
+            return;
             }
             else{
                 res.status(400).json({error:"Data already exist"})  
+                return;
             }
     } catch (error) {
         res.status(400).json({ error: "Invalid Details", error })
+        return;
     }
 
 };
