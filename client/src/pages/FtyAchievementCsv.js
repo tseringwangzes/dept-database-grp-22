@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Papa from 'papaparse';
-import { fty_award_csv } from "../services/Apis";
+import { fty_achievement_csv } from "../services/Apis";
 import Table, { StatusPill } from "./Table2";
 import FtySidebar from "../components/FtySidebar";
 import { useNavigate } from "react-router-dom";
 
-function FtyAwardCsv(){
+
+function FtyAchievementCsv(){
     const navigate = useNavigate();
 
     var file;
@@ -26,14 +27,15 @@ function FtyAwardCsv(){
         delimiter: ',',
         skipEmptyLines: true,
   
-        columns: ['faculty_name', 'award_name','award_reason', 'date', 'shared_with'],
+        columns: ['faculty_name', 'Achievements', 'date', 'shared_with', 'status'],
         header: true, complete: function (results) {
   
           console.log("Finished:", results.data);
-          fty_award_csv(results.data);
+          fty_achievement_csv(results.data);
           alert("sucessfully uploaded!");
-          navigate('/faculty/Awards');
+          navigate('/faculty/Achievements');
           window.location.reload();
+  
         }
       });
     }
@@ -44,27 +46,20 @@ function FtyAwardCsv(){
 
     const columns = React.useMemo(
       () => [
-        {
-            Header: "Faculty Name",
-            accessor: "faculty_name",
-          },
   
         {
-            Header: "Award Name",
-            accessor: "award_name",
-          },
-          {
-            Header: "Award Reason",
-            accessor: "award_reason",
+            Header: " Achievements",
+            accessor: "Achievements",
           },
           {
             Header: "Date",
             accessor: "date",
           },
-          {
-            Header: "Shared With",
-            accessor: "shared_with",
-          },
+        {
+          Header: "Status",
+          accessor: "status",
+          Cell: StatusPill,
+        }
       
       ],
       []
@@ -80,7 +75,7 @@ function FtyAwardCsv(){
       <>
   
         <div className=" absolute right-0  w-3/4 bg-gray-100 text-gray-900">
-            <FtySidebar/>
+        <FtySidebar/>
           <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
             <div className="">
   
@@ -113,4 +108,4 @@ function FtyAwardCsv(){
     );  
 
 }
-export default FtyAwardCsv;
+export default FtyAchievementCsv;

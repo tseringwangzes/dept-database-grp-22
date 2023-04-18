@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Papa from 'papaparse';
-import { fty_award_csv } from "../services/Apis";
+import { st_project_csv } from "../services/Apis";
 import Table, { StatusPill } from "./Table2";
-import FtySidebar from "../components/FtySidebar";
 import { useNavigate } from "react-router-dom";
+import Sidebar from "../components/Sidebar";
 
-function FtyAwardCsv(){
-    const navigate = useNavigate();
+
+function StProjectCsv(){
+    
+  const navigate = useNavigate();
 
     var file;
 
@@ -26,14 +28,17 @@ function FtyAwardCsv(){
         delimiter: ',',
         skipEmptyLines: true,
   
-        columns: ['faculty_name', 'award_name','award_reason', 'date', 'shared_with'],
+        columns: ['student_name','faculty_name', 'topic', 'date', 'granted_money','collaboration', 'status'],
         header: true, complete: function (results) {
   
           console.log("Finished:", results.data);
-          fty_award_csv(results.data);
-          alert("sucessfully uploaded!");
-          navigate('/faculty/Awards');
-          window.location.reload();
+        //   st_project_csv(results.data);
+        //   alert("sucessfully uploaded!");
+        st_project_csv(results.data);
+        alert("sucessfully uploaded!");
+        navigate('/Profile/Project');
+        window.location.reload();
+  
         }
       });
     }
@@ -44,27 +49,23 @@ function FtyAwardCsv(){
 
     const columns = React.useMemo(
       () => [
-        {
-            Header: "Faculty Name",
-            accessor: "faculty_name",
-          },
   
         {
-            Header: "Award Name",
-            accessor: "award_name",
-          },
-          {
-            Header: "Award Reason",
-            accessor: "award_reason",
-          },
-          {
-            Header: "Date",
-            accessor: "date",
-          },
-          {
-            Header: "Shared With",
-            accessor: "shared_with",
-          },
+          Header: "Student Name",
+          accessor: "student_name",
+        },
+        {
+          Header: "Year",
+          accessor: "year",
+        },
+        {
+          Header: "Date",
+          accessor: "date",
+        },
+        {
+          Header: "Shared With",
+          accessor: "shared_with",
+        },
       
       ],
       []
@@ -80,7 +81,7 @@ function FtyAwardCsv(){
       <>
   
         <div className=" absolute right-0  w-3/4 bg-gray-100 text-gray-900">
-            <FtySidebar/>
+        <Sidebar/>
           <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
             <div className="">
   
@@ -113,4 +114,4 @@ function FtyAwardCsv(){
     );  
 
 }
-export default FtyAwardCsv;
+export default StProjectCsv;

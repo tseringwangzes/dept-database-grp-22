@@ -18,7 +18,6 @@ const AchievementEditPage = () => {
     faculty_name:state.faculty_name,
     student_name:state.student_name,
     achievements: state.achievements,
-    year: state.year,
     date: state.date,
     shared_with: state.shared_with,
     status: "Pending..",
@@ -42,7 +41,7 @@ const AchievementEditPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const{achievements,year,date,shared_with,status,faculty_name,student_name} = formFields;
+    const{achievements,date,shared_with,status,faculty_name,student_name} = formFields;
     if(achievements === ""){
 
       toast.error("Enter achievement Name")
@@ -53,7 +52,6 @@ const AchievementEditPage = () => {
       if(response.status === 200){
         setFormFields({...formFields,
           achievements: state.achievements,
-          year: state.year,
           date: state.date,
           shared_with: state.shared_with,
           status:"Pending",
@@ -97,24 +95,14 @@ const AchievementEditPage = () => {
           />
         </div>
 
-        <div className={signupStyle['form-item']} id="year">
-          <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Year</label>
-          <input style={{height: "30px"}} className={signupStyle.myInput}
-            placeholder="Enter the year"
-            name="year"
-            type="text"
-            value={formFields.year}
-            onChange={hanldeInputValueChange}
-          />
-          
-        </div>
+    
 
         <div className={signupStyle["form-item"]} id="date">
         <label style={{ fontSize: 20 }}className={signupStyle.myLabel}>Date</label>
           <input style={{height: "30px"}} className={signupStyle.myInput}
             placeholder="Enter the date"
             name="date"
-            type="text"
+            type="date"
             value={formFields.date}
             onChange={hanldeInputValueChange}
           />

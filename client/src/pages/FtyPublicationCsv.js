@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Papa from 'papaparse';
-import { fty_award_csv } from "../services/Apis";
+import { fty_publication_csv } from "../services/Apis";
 import Table, { StatusPill } from "./Table2";
 import FtySidebar from "../components/FtySidebar";
 import { useNavigate } from "react-router-dom";
 
-function FtyAwardCsv(){
+function FtyPublicationCsv(){
     const navigate = useNavigate();
 
     var file;
@@ -26,13 +26,13 @@ function FtyAwardCsv(){
         delimiter: ',',
         skipEmptyLines: true,
   
-        columns: ['faculty_name', 'award_name','award_reason', 'date', 'shared_with'],
+        columns: ['faculty_name', 'topic', 'year', 'date', 'collaboration'],
         header: true, complete: function (results) {
   
           console.log("Finished:", results.data);
-          fty_award_csv(results.data);
+          fty_publication_csv(results.data);
           alert("sucessfully uploaded!");
-          navigate('/faculty/Awards');
+          navigate('/faculty/Publications');
           window.location.reload();
         }
       });
@@ -44,26 +44,18 @@ function FtyAwardCsv(){
 
     const columns = React.useMemo(
       () => [
-        {
-            Header: "Faculty Name",
-            accessor: "faculty_name",
-          },
   
         {
-            Header: "Award Name",
-            accessor: "award_name",
-          },
-          {
-            Header: "Award Reason",
-            accessor: "award_reason",
+            Header: " Topic",
+            accessor: "topic",
           },
           {
             Header: "Date",
             accessor: "date",
           },
           {
-            Header: "Shared With",
-            accessor: "shared_with",
+            Header: "Collaborations",
+            accessor: "collaboration",
           },
       
       ],
@@ -80,7 +72,7 @@ function FtyAwardCsv(){
       <>
   
         <div className=" absolute right-0  w-3/4 bg-gray-100 text-gray-900">
-            <FtySidebar/>
+        <FtySidebar/>
           <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
             <div className="">
   
@@ -113,4 +105,4 @@ function FtyAwardCsv(){
     );  
 
 }
-export default FtyAwardCsv;
+export default FtyPublicationCsv;

@@ -18,7 +18,6 @@ const FtyAchievementsEditPage = () => {
     const defaultFormFields = {
         faculty_name:state.faculty_name,
         Achievements: state.Achievements,
-        year: state.year,
         date: state.date,
         shared_with: state.shared_with,
     };
@@ -40,7 +39,7 @@ const FtyAchievementsEditPage = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { Achievements,year, date, shared_with,faculty_name } = formFields;
+        const { Achievements,date, shared_with,faculty_name } = formFields;
         if (Achievements === "") {
 
             toast.error("Enter Achievement Name")
@@ -52,7 +51,6 @@ const FtyAchievementsEditPage = () => {
                 setFormFields({
                     ...formFields,
                     Achievements: state.Achievements,
-                    year: state.year,
                     date: state.date,
                     shared_with: state.shared_with,
                     faculty_name:state.faculty_name,
@@ -90,24 +88,12 @@ const FtyAchievementsEditPage = () => {
                         />
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="year">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Year</label>
-                        <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the Year"
-                            name="year"
-                            type="text"
-                            value={formFields.year}
-                            onChange={hanldeInputValueChange}
-                        />
-
-                    </div>
-
                     <div className={signupStyle["form-item"]} id="date">
                         <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"
                             name="date"
-                            type="text"
+                            type="date"
                             value={formFields.date}
                             onChange={hanldeInputValueChange}
                         />

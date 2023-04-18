@@ -16,7 +16,6 @@ const ProjectsEditPage = () => {
         faculty_name: state.faculty_name,
         student_name: state.student_name,
         topic: state.topic,
-        year: state.year,
         date: state.date,
         granted_money: state.granted_money,
         description: state.description,
@@ -41,7 +40,7 @@ const ProjectsEditPage = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { topic, year, date, collaboration, granted_money, description, status, faculty_name, student_name } = formFields;
+        const { topic, date, collaboration, granted_money, description, status, faculty_name, student_name } = formFields;
         if (topic === "") {
 
             toast.error("Enter topic Name")
@@ -53,7 +52,6 @@ const ProjectsEditPage = () => {
                 setFormFields({
                     ...formFields,
                     topic: state.topic,
-                    year: state.year,
                     date: state.date,
                     granted_money: state.granted_money,
                     description: state.description,
@@ -95,24 +93,12 @@ const ProjectsEditPage = () => {
                         />
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="year">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Year</label>
-                        <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the Year"
-                            name="year"
-                            type="text"
-                            value={formFields.year}
-                            onChange={hanldeInputValueChange}
-                        />
-
-                    </div>
-
                     <div className={signupStyle["form-item"]} id="date">
                         <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"
                             name="date"
-                            type="text"
+                            type="date"
                             value={formFields.date}
                             onChange={hanldeInputValueChange}
                         />
