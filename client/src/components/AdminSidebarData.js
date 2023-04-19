@@ -2,11 +2,12 @@ import React from "react";
 import HomeIcon from '@mui/icons-material/Home';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import PeopleIcon from '@mui/icons-material/People';
-import TourIcon from '@mui/icons-material/Tour';
+import AirplanemodeActiveOutlinedIcon from '@mui/icons-material/AirplanemodeActiveOutlined';
 import ImportContactsSharpIcon from '@mui/icons-material/ImportContactsSharp';
 import CurrencyExchangeSharpIcon from '@mui/icons-material/CurrencyExchangeSharp';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import StarsIcon from '@mui/icons-material/Stars';
+import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 export const AdminSidebarData = [
     {
         title:"Home",
@@ -16,7 +17,7 @@ export const AdminSidebarData = [
     },
     {
         title:"Add new User",
-        icon:<EmojiEventsIcon />,
+        icon:<PersonAddAltOutlinedIcon />,
         link:"/Admin/register",
         fname:"",
     },
@@ -40,7 +41,7 @@ export const AdminSidebarData = [
     },
     {
         title:"Foreign Visits",
-        icon:<TourIcon />,
+        icon:<AirplanemodeActiveOutlinedIcon />,
         link:"/Admin/AdminForeign",
         fname:""
     },
