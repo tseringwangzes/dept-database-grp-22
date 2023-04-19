@@ -13,7 +13,8 @@ const Headers = () => {
           <div className="flex justify-between h-16">
             <div className="flex-shrink-0 flex items-center">
               <img src={process.env.PUBLIC_URL + '/images/download.png'} style={{ width: 50, marginRight: 20 }} alt=" " />
-              <NavLink to="/" className="text-white font-bold text-lg mt-3 mb-3" >IIT Ropar</NavLink>
+              {/* <NavLink to="/" className="text-white font-bold text-lg mt-3 mb-3" >IIT Ropar</NavLink> */}
+              <h1  className="text-white font-bold text-lg mt-3 mb-3"  >IIT Ropar</h1>
             </div>
             <div className="flex items-center">
               {/* <NavLink to="/register" className="text-white font-bold text-lg mt-3 mb-3 mr-4">Signup</NavLink> */}

@@ -26,7 +26,7 @@ function StPublicationCsv(){
         delimiter: ',',
         skipEmptyLines: true,
   
-        columns: ['student_name', 'topic', 'date', 'collaboration','no_of_student', 'status'],
+        columns: ['student_name', 'topic', 'published_date','accepted_date', 'collaboration','no_of_student', 'status'],
         header: true, complete: function (results) {
   
            console.log("Finished:", results.data);
@@ -52,8 +52,12 @@ function StPublicationCsv(){
             accessor: "topic",
           },
           {
-            Header: "Date",
-            accessor: "date",
+            Header: "Published Date",
+            accessor: "published_date",
+          },
+          {
+            Header: "Accepted Date",
+            accessor: "accepted_date",
           },
           {
             Header: "Collaborations",

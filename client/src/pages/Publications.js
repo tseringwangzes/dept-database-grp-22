@@ -24,7 +24,7 @@ function Publications() {
     const data = {
       email:email
     }
-    const response = await st_publi();
+    const response = await st_publi(data);
     if (response.status === 200) {
       setUserData(response.data)
       console.log(response.data)
@@ -47,8 +47,12 @@ function Publications() {
         accessor: "topic",
       },
       {
-        Header: "Date",
-        accessor: "date",
+        Header: "Published Date",
+        accessor: "published_date",
+      },,
+      {
+        Header: "Accepted Date",
+        accessor: "accepted_date",
       },
       {
         Header: "Collaborations",
@@ -75,7 +79,8 @@ function Publications() {
                 faculty_name:original.faculty_name,
                 student_name:original.student_name,
                 topic:original.topic,
-                date:original.date,
+                published_date:original.published_date,
+                accepted_date:original.accepted_date,
                 collaboration:original.collaboration,
                 no_of_students:original.no_of_students,
                 id:original._id,
