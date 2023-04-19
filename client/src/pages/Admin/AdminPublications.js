@@ -256,10 +256,7 @@ const rows = data.map(user=>[user.student_name,user.faculty_name,user.award_name
         Header: " Topic",
         accessor: "topic",
       },
-      {
-        Header: "Year",
-        accessor: "year",
-      },
+     
       {
         Header: "Date",
         accessor: "date",
