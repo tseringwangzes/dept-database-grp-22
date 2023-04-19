@@ -3,6 +3,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import {registerfunction} from "../services/Apis";
 import { NavLink,useNavigate} from "react-router-dom"
 import registerStyle from "../styles/mix.module.css"
+import Sidebar from "../components/AdminSidebar";
 
 const Register = () => {
 
@@ -63,7 +64,9 @@ const Register = () => {
 
   return (
     <>
+     <Sidebar />
       <section className={registerStyle.page}>
+     
         <div className={registerStyle.form_data}>
           <div className={registerStyle.form_heading}>
             <h1 className={registerStyle.heading}>Sign Up</h1>
