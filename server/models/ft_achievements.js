@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const ft_achieve = new mongoose.Schema({
     faculty_name:String,
     Achievements: String,
-    date: Date,
+    date: String,
     shared_with: String,    
 },
     {

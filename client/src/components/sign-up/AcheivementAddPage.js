@@ -8,7 +8,7 @@ import { achievementEdit } from "../../services/Apis";
 
 const AchievementAddPage = () => {
 
-  var email = sessionStorage.getItem('email');
+  var email = localStorage.getItem('email');
   const { state } = useLocation();
   const utype = state.utype;
   const navigate = useNavigate();
@@ -18,7 +18,6 @@ if(utype === "1"){
     faculty_name: "",
     student_name: "",
     achievements: "",
-    year: "",
     date: "",
     shared_with: "",
     status: "Pending..",
@@ -26,10 +25,9 @@ if(utype === "1"){
 }
 else{
   defaultFormFields = {
-    faculty_name: "2020csb1135@iitrpr.ac.in",
+    faculty_name: "2020csb1136@iitrpr.ac.in",
     student_name: email,
     achievements: "",
-    year: "",
     date: "",
     shared_with: "",
     status: "Pending..",
@@ -47,7 +45,7 @@ else{
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const { achievements, year, date, shared_with, status, faculty_name, student_name } = formFields;
+    const { achievements, date, shared_with, status, faculty_name, student_name } = formFields;
     if (achievements === "") {
 
       toast.error("Enter achievement Name")
@@ -62,7 +60,6 @@ else{
             faculty_name: "",
             student_name: "",
             achievements: "",
-            year: "",
             date: "",
             shared_with: "",
             status: "Pending..",
@@ -71,10 +68,9 @@ else{
         else{
         setFormFields({
           ...formFields,
-          faculty_name: "2020csb1135@iitrpr.ac.in",
+          faculty_name: "2020csb1136@iitrpr.ac.in",
           student_name: email,
           achievements: "",
-          year: "",
           date: "",
           shared_with: "",
           status: "Pending..",
@@ -109,24 +105,12 @@ else{
               />
             </div>
   
-            <div className={signupStyle['form-item']} id="year">
-              <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Year</label>
-              <input style={{ height: "30px" }} className={signupStyle.myInput}
-                placeholder="Enter the year"
-                name="year"
-                type="text"
-                value={formFields.year}
-                onChange={hanldeInputValueChange}
-              />
-  
-            </div>
-  
             <div className={signupStyle["form-item"]} id="date">
               <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Date</label>
               <input style={{ height: "30px" }} className={signupStyle.myInput}
                 placeholder="Enter the date"
                 name="date"
-                type="text"
+                type="date"
                 value={formFields.date}
                 onChange={hanldeInputValueChange}
               />
@@ -194,24 +178,12 @@ else{
             />
           </div>
 
-          <div className={signupStyle['form-item']} id="year">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Year</label>
-            <input style={{ height: "30px" }} className={signupStyle.myInput}
-              placeholder="Enter the year"
-              name="year"
-              type="text"
-              value={formFields.year}
-              onChange={hanldeInputValueChange}
-            />
-
-          </div>
-
           <div className={signupStyle["form-item"]} id="date">
             <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Date</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
               placeholder="Enter the date"
               name="date"
-              type="text"
+              type="date"
               value={formFields.date}
               onChange={hanldeInputValueChange}
             />

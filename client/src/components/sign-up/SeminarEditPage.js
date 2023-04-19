@@ -121,7 +121,7 @@ const utype = state.utype;
           </div>
 
           <div className={signupStyle["form-item"]} id="venue">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Shared with</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Venue</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
               placeholder="venue"
               name="venue"

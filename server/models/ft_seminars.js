@@ -4,7 +4,7 @@ const ftschema = new mongoose.Schema({
     faculty_name:String,
     type: String,
     title: String,
-    date: Date,
+    date: String,
     venue: String,
     chief_guest: String,
     mode: String,

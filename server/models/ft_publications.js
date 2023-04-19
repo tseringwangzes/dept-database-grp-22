@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const ftpublications = new mongoose.Schema({
     faculty_name:String,
     topic: String,
-    date: Date,
+    date: String,
     collaboration: String,
     
 },
