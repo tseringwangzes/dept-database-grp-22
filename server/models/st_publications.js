@@ -4,8 +4,8 @@ const stpublica = new mongoose.Schema({
     faculty_name:String,
     student_name:String,
     topic: String,
-  
-    date: Date,
+    published_date: Date,
+    accepted_date: Date,
     collaboration: String,
     no_of_students: String,
     status: String,

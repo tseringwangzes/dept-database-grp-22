@@ -26,7 +26,7 @@ function FtyPublicationCsv(){
         delimiter: ',',
         skipEmptyLines: true,
   
-        columns: ['faculty_name', 'topic', 'year', 'date', 'collaboration'],
+        columns: ['faculty_name', 'topic', 'published_date','accepted_date', 'collaboration'],
         header: true, complete: function (results) {
   
           console.log("Finished:", results.data);
@@ -50,8 +50,12 @@ function FtyPublicationCsv(){
             accessor: "topic",
           },
           {
-            Header: "Date",
-            accessor: "date",
+            Header: "Published Date",
+            accessor: "published_date",
+          },
+          {
+            Header: "Accepted Date",
+            accessor: "accepted_date",
           },
           {
             Header: "Collaborations",

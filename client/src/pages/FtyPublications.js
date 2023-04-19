@@ -48,8 +48,12 @@ function FtyPublications() {
         accessor: "topic",
       },
       {
-        Header: "Date",
-        accessor: "date",
+        Header: "Published Date",
+        accessor: "published_date",
+      },
+      {
+        Header: "Accepted Date",
+        accessor: "accepted_date",
       },
       {
         Header: "Collaborations",
@@ -64,7 +68,8 @@ function FtyPublications() {
               state: {
                 faculty_name:original.faculty_name,
                 topic: original.topic,
-                date: original.date,
+                published_date: original.published_date,
+                accepted_date: original.accepted_date,
                 collaboration: original.collaboration,
                 id: original._id,
                 utype:utype

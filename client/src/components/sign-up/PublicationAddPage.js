@@ -15,7 +15,8 @@ var email = localStorage.getItem('email');
     if(utype === "1"){
         defaultFormFields = {
             topic: "",
-            date: "",
+            published_date: "",
+            accepted_date: "",
             collaboration: "",
             no_of_students: "",
             faculty_name: "",
@@ -26,7 +27,8 @@ var email = localStorage.getItem('email');
     else{
     defaultFormFields = {
         topic: "",
-        date: "",
+        published_date: "",
+        accepted_date: "",
         collaboration: "",
         no_of_students: "",
         faculty_name: "2020csb1136@iitrpr.ac.in",
@@ -44,7 +46,7 @@ var email = localStorage.getItem('email');
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { topic, date, collaboration, no_of_students, status, faculty_name, student_name } = formFields;
+        const { topic, published_date,accepted_date, collaboration, no_of_students, status, faculty_name, student_name } = formFields;
         if (topic === "") {
 
             toast.error("Enter topic Name")
@@ -57,7 +59,8 @@ var email = localStorage.getItem('email');
                     setFormFields({
                         ...formFields,
                         topic: "",
-                        date: "",
+                        published_date: "",
+                        accepted_date: "",
                         collaboration: "",
                         no_of_students: "",
                         faculty_name: "",
@@ -70,7 +73,8 @@ var email = localStorage.getItem('email');
                 setFormFields({
                     ...formFields,
                     topic: "",
-                    date: "",
+                    published_date: "",
+                    accepted_date: "",
                     collaboration: "",
                     no_of_students: "",
                     faculty_name: "2020csb1135@iitrpr.ac.in",
@@ -127,12 +131,24 @@ if(utype === "1"){
                     </div>
 
                     <div className={signupStyle["form-item"]} id="date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>date</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Published_date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"
-                            name="date"
+                            name="Published_date"
                             type="date"
-                            value={formFields.date}
+                            value={formFields.Published_date}
+                            onChange={hanldeInputValueChange}
+                        />
+
+                    </div>
+
+                    <div className={signupStyle["form-item"]} id="date">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>accepted_date</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter the date"
+                            name="accepted_date"
+                            type="date"
+                            value={formFields.accepted_date}
                             onChange={hanldeInputValueChange}
                         />
 
@@ -185,12 +201,24 @@ else{
                     </div>
 
                     <div className={signupStyle["form-item"]} id="date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>date</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>published_date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"
-                            name="date"
+                            name="published_date"
                             type="date"
-                            value={formFields.date}
+                            value={formFields.published_date}
+                            onChange={hanldeInputValueChange}
+                        />
+
+                    </div>
+
+                    <div className={signupStyle["form-item"]} id="date">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>accepted_date</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter the date"
+                            name="accepted_date"
+                            type="date"
+                            value={formFields.accepted_date}
                             onChange={hanldeInputValueChange}
                         />
 
