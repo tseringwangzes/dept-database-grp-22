@@ -193,6 +193,8 @@ function App() {
         <Route path='/faculty/Projects/FtyProjectAdd.js' element={<FtyProjectAdd />} />
 
         <Route path='/Admin' element={<Admin/>}/>
+        <Route path='/Admin/register' element={<Register/>}/>
+
         <Route path='/Admin/AdminCsv' element={<AdminCsv />} />
         <Route path='/Admin/AdminStudent' element={<AdminStudent />} />
         <Route path='/Admin/AdminFaculty' element={<AdminFaculty />} />
@@ -203,38 +205,38 @@ function App() {
         <Route path='/Admin/AdminReminder' element={<AdminReminder />} />
 
 
-        <Route path='/Admin/StaffStudent/Addmore.js' element={<Addmore />} />
-        <Route path='/StaffHome/StaffStudent/FtyAwardAdd.js' element={<FtyAwardAdd/>}/>
-        <Route path='/StaffHome/StaffStudent/Home.js/:id' element={<Home />} />
-        <Route path='/StaffHome/StaffStudent/FtyAwardsEdit.js/:id' element={<FtyAwardsEdit />} />
+        <Route path='/Admin/AdminStudent/Addmore.js' element={<Addmore />} />
+        <Route path='/Admin/AdminStudent/FtyAwardAdd.js' element={<FtyAwardAdd/>}/>
+        <Route path='/Admin/AdminStudent/Home.js/:id' element={<Home />} />
+        <Route path='/Admin/AdminStudent/FtyAwardsEdit.js/:id' element={<FtyAwardsEdit />} />
 
-        <Route path='/StaffHome/StaffFaculty/AchievementEdit.js/:id' element={<AchievementEdit />} />
-        <Route path='/StaffHome/StaffFaculty/FtyAchievementsEdit.js/:id' element={<FtyAchievementsEdit />} />
-        <Route path='/StaffHome/StaffFaculty/AchievementAdd.js' element={<AchievementAdd />} />
-        <Route path='/StaffHome/StaffFaculty/FtyAchievementAdd.js' element={<FtyAchievementAdd />} />
+        <Route path='/Admin/AdminFaculty/AchievementEdit.js/:id' element={<AchievementEdit />} />
+        <Route path='/Admin/AdminFaculty/FtyAchievementsEdit.js/:id' element={<FtyAchievementsEdit />} />
+        <Route path='/Admin/AdminFaculty/AchievementAdd.js' element={<AchievementAdd />} />
+        <Route path='/Admin/AdminFaculty/FtyAchievementAdd.js' element={<FtyAchievementAdd />} />
 
-        <Route path='/StaffHome/StaffSeminar/SeminarsEdit.js/:id' element={<SeminarEdit />} />
-        <Route path='/StaffHome/StaffSeminar/SeminarAdd.js' element={<SeminarAdd />} />
-        <Route path='/StaffHome/StaffSeminar/FtySeminarsEdit.js/:id' element={<FtySeminarsEdit />} />
-        <Route path='/StaffHome/StaffSeminar/FtySeminarAdd.js' element={<FtySeminarAdd />} />
+        <Route path='/Admin/AdminSeminar/SeminarsEdit.js/:id' element={<SeminarEdit />} />
+        <Route path='/Admin/AdminSeminar/SeminarAdd.js' element={<SeminarAdd />} />
+        <Route path='/Admin/AdminSeminar/FtySeminarsEdit.js/:id' element={<FtySeminarsEdit />} />
+        <Route path='/Admin/AdminSeminar/FtySeminarAdd.js' element={<FtySeminarAdd />} />
 
-        <Route path='/StaffHome/StaffForeign/ForeignEdit.js/:id' element={<ForeignEdit />} />
-        <Route path='/StaffHome/StaffForeign/FtyForeignEdit.js/:id' element={<FtyForeignEdit />} />
-        <Route path='/StaffHome/StaffForeign/ForeignAdd.js' element={<ForeignAdd />} />
-        <Route path='/StaffHome/StaffForeign/FtyForeignAdd.js' element={<FtyForeignAdd />} />
-
-
-        <Route path='/StaffHome/StaffPublications/PublicationsEdit.js/:id' element={<PublicationsEdit />} />
-        <Route path='/StaffHome/StaffPublications/FtyPublicationsEdit.js/:id' element={<FtyPublicationsEdit />} />
-        <Route path='/StaffHome/StaffPublications/PublicationAdd.js' element={<PublicationAdd />} />
-        <Route path='/StaffHome/StaffPublications/FtyPublicationAdd.js' element={<FtyPublicationAdd />} />
+        <Route path='/Admin/AdminForeign/ForeignEdit.js/:id' element={<ForeignEdit />} />
+        <Route path='/Admin/AdminForeign/FtyForeignEdit.js/:id' element={<FtyForeignEdit />} />
+        <Route path='/Admin/AdminForeign/ForeignAdd.js' element={<ForeignAdd />} />
+        <Route path='/Admin/AdminForeign/FtyForeignAdd.js' element={<FtyForeignAdd />} />
 
 
+        <Route path='/Admin/AdminPublications/PublicationsEdit.js/:id' element={<PublicationsEdit />} />
+        <Route path='/Admin/AdminPublications/FtyPublicationsEdit.js/:id' element={<FtyPublicationsEdit />} />
+        <Route path='/Admin/AdminPublications/PublicationAdd.js' element={<PublicationAdd />} />
+        <Route path='/Admin/AdminPublications/FtyPublicationAdd.js' element={<FtyPublicationAdd />} />
 
-        <Route path='/StaffHome/StaffProject/ProjectsEdit.js/:id' element={<ProjectEdit />} />
-        <Route path='/StaffHome/StaffProject/FtyProjectsEdit.js/:id' element={<FtyProjectsEdit />} />
-        <Route path='/StaffHome/StaffProject/ProjectAdd.js' element={<ProjectAdd />} />
-        <Route path='/StaffHome/StaffProject/FtyProjectAdd.js' element={<FtyProjectAdd />} />
+
+
+        <Route path='/Admin/AdminProject/ProjectsEdit.js/:id' element={<ProjectEdit />} />
+        <Route path='/Admin/AdminProject/FtyProjectsEdit.js/:id' element={<FtyProjectsEdit />} />
+        <Route path='/Admin/AdminProject/ProjectAdd.js' element={<ProjectAdd />} />
+        <Route path='/Admin/AdminProject/FtyProjectAdd.js' element={<FtyProjectAdd />} />
 
       </Routes>
     </>

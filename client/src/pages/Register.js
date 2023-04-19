@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import {registerfunction} from "../services/Apis";
-import { NavLink,useNavigate} from "react-router-dom"
+import { NavLink,useNavigate, useLocation} from "react-router-dom"
 import registerStyle from "../styles/mix.module.css"
 import Sidebar from "../components/AdminSidebar";
 
@@ -14,7 +14,8 @@ const Register = () => {
   });
 
   const navigate = useNavigate();
-  
+  const location = useLocation();
+  const currentPath = location.pathname;  
 
   // setinputvalue
   const handleChange = (e)=>{
@@ -52,7 +53,8 @@ const Register = () => {
 
         setInputdata({...inputdata,fname:"",email:"",password:""});
 
-        navigate("/Admin")
+        if (currentPath === '/register')navigate("/");
+        else navigate ('/Admin');
 
       }else{
         
@@ -64,7 +66,7 @@ const Register = () => {
 
   return (
     <>
-     <Sidebar />
+     {currentPath !== '/register' && <Sidebar />}
       <section className={registerStyle.page}>
      
         <div className={registerStyle.form_data}>

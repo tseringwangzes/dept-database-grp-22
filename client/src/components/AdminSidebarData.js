@@ -17,7 +17,7 @@ export const AdminSidebarData = [
     {
         title:"Add new User",
         icon:<EmojiEventsIcon />,
-        link:"/register",
+        link:"/Admin/register",
         fname:"",
     },
     {
