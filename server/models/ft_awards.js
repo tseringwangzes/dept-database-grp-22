@@ -4,7 +4,7 @@ const ftschema = new mongoose.Schema({
     faculty_name:String,
     award_name: String,
     award_reason: String,
-    date: Date,
+    date: String,
     shared_with: String,
     
 },
