@@ -35,9 +35,9 @@ const Register = () => {
 
       toast.error("Enter User Email")
 
-    }else if(!email.includes("@")){
+    }else if(!email.includes("@iitrpr.ac.in")){
 
-      toast.error("Enter Valid Email")
+      toast.error("Enter Valid IITRPR Email")
 
     }else if(usertype === ""){
 
