@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const FtyForeignAddPage = () => {
     const {state} = useLocation();
     const utype = state.utype;
-    var email = sessionStorage.getItem('email')
+    var email = localStorage.getItem('email')
     const navigate = useNavigate();
     var defaultFormFields={};
 if(utype === "1"){
@@ -112,7 +112,7 @@ if(utype === "1"){
                     <input style={{ height: "30px" }} className={signupStyle.myInput}
                         placeholder="Enter the Start Date"
                         name="start_date"
-                        type="text"
+                        type="date"
                         value={formFields.start_date}
                         onChange={hanldeInputValueChange}
                     />
@@ -123,7 +123,7 @@ if(utype === "1"){
                     <input style={{ height: "30px" }} className={signupStyle.myInput}
                         placeholder="Enter the End Date"
                         name="end_date"
-                        type="text"
+                        type="date"
                         value={formFields.end_date}
                         onChange={hanldeInputValueChange}
                     />
@@ -175,7 +175,7 @@ else{
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the Start Date"
                             name="start_date"
-                            type="text"
+                            type="date"
                             value={formFields.start_date}
                             onChange={hanldeInputValueChange}
                         />
@@ -186,7 +186,7 @@ else{
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the End Date"
                             name="end_date"
-                            type="text"
+                            type="date"
                             value={formFields.end_date}
                             onChange={hanldeInputValueChange}
                         />

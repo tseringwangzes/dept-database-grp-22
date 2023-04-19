@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const FtyProjectAddPage = () => {
 
-var email = sessionStorage.getItem('email');
+var email = localStorage.getItem('email');
     const navigate = useNavigate();
     const {state} = useLocation();
     const utype = state.utype;
@@ -16,7 +16,6 @@ var email = sessionStorage.getItem('email');
         defaultFormFields = {
             faculty_name:"",
             topic: "",
-            year: "",
             date: "",
             granted_money: "",
             status: "",
@@ -26,7 +25,6 @@ var email = sessionStorage.getItem('email');
     defaultFormFields = {
         faculty_name:email,
         topic: "",
-        year: "",
         date: "",
         granted_money: "",
         status: "",
@@ -42,7 +40,7 @@ var email = sessionStorage.getItem('email');
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { topic,year, date,granted_money,status,faculty_name } = formFields;
+        const { topic,date,granted_money,status,faculty_name } = formFields;
         if (topic === "") {
 
             toast.error("Enter topic Name")
@@ -56,7 +54,6 @@ var email = sessionStorage.getItem('email');
                     ...formFields, 
                     faculty_name:"",
                     topic: "",
-                    year: "",
                     date: "",
                     granted_money: "",
                     status: "",
@@ -68,7 +65,6 @@ var email = sessionStorage.getItem('email');
                     ...formFields, 
                     faculty_name:email,
                     topic: "",
-                    year: "",
                     date: "",
                     granted_money: "",
                     status: "",
@@ -112,24 +108,13 @@ if(utype === "1"){
                         />
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="year">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Year</label>
-                        <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the Year"
-                            name="year"
-                            type="text"
-                            value={formFields.year}
-                            onChange={hanldeInputValueChange}
-                        />
-
-                    </div>
 
                     <div className={signupStyle["form-item"]} id="date">
                         <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"
                             name="date"
-                            type="text"
+                            type="date"
                             value={formFields.date}
                             onChange={hanldeInputValueChange}
                         />
@@ -184,24 +169,12 @@ else{
                         />
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="year">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Year</label>
-                        <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the Year"
-                            name="year"
-                            type="text"
-                            value={formFields.year}
-                            onChange={hanldeInputValueChange}
-                        />
-
-                    </div>
-
                     <div className={signupStyle["form-item"]} id="date">
                         <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"
                             name="date"
-                            type="text"
+                            type="date"
                             value={formFields.date}
                             onChange={hanldeInputValueChange}
                         />

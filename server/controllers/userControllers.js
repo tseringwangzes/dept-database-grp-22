@@ -804,13 +804,19 @@ exports.facultyeditforeign = async (req, res) => {
             const facultyeditforeign = new ft_foreign({
                 topic,start_date,end_date,country,faculty_name
             });
-
+            const findAward = await ft_foreign.findOne({topic:topic,start_date:start_date,end_date:end_date,country:country,faculty_name:faculty_name})
+            if(!findAward){
             const storeData = await facultyeditforeign.save();
             res.status(200).json(storeData);
+            return;
+            }
+            else{
+                res.status(400).json({error:"Data already exist"})  
+                return;
+            }
     } catch (error) {
         res.status(400).json({ error: "Invalid Details", error })
     }
-
 };
 
 exports.fty_award_csv = async (req, res) => {
@@ -994,18 +1000,25 @@ exports.fty_publication_csv = async (req, res) => {
 };
 
 exports.facultyeditpublication = async (req, res) => {
-    const { topic,year, date, collaboration,faculty_name} = req.body;
+    const { topic, date, collaboration,faculty_name} = req.body;
 
-    if (!topic || !year || !date || !collaboration || !faculty_name) {
+    if (!topic || !date || !collaboration || !faculty_name) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
     try {            
             const facultyeditpublication = new ft_publications({
-                topic,year, date, collaboration,faculty_name
+                topic,date, collaboration,faculty_name
             });
-
+            const findAward = await ft_publications.findOne({ topic:topic,date:date, collaboration:collaboration,faculty_name:faculty_name})
+            if(!findAward){
             const storeData = await facultyeditpublication.save();
             res.status(200).json(storeData);
+            return;
+            }
+            else{
+                res.status(400).json({error:"Data already exist"})  
+                return;
+            }
     } catch (error) {
         res.status(400).json({ error: "Invalid Details", error })
     }
@@ -1013,14 +1026,14 @@ exports.facultyeditpublication = async (req, res) => {
 };
 
 exports.facultyeditproject = async (req, res) => {
-    const { topic,year, date,granted_money,status,faculty_name} = req.body;
+    const { topic,date,granted_money,status,faculty_name} = req.body;
 
-    if (!topic || !year || !date || !granted_money || !status || !faculty_name) {
+    if (!topic || !date || !granted_money || !status || !faculty_name) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
     try {            
             const facultyeditproject = new ft_projects({
-                topic,year, date,granted_money,status,faculty_name
+                topic, date,granted_money,status,faculty_name
             });
 
             const storeData = await facultyeditproject.save();

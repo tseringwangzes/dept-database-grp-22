@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const FtyPublicationAddPage = () => {
 
-    var email = sessionStorage.getItem('email')
+    var email = localStorage.getItem('email')
     const navigate = useNavigate();
     const {state} = useLocation();
     const utype = state.utype;
