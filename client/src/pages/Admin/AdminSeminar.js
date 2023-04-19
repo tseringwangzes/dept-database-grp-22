@@ -119,7 +119,7 @@ const deleteRowst=async (id)=>{
     ],
     []
   );
-
+/*
   function generatePDFst() {
     const doc = new jsPDF();
     fetch('https://akm-img-a-in.tosshub.com/aajtak/images/story/201502/iit_ropar_650_022415062015.jpg?size=948:533')
@@ -184,7 +184,7 @@ const rows = filteredData.map(user=>[user.award_name,user.award_reason,user.date
     // add image to PDF here
   });
   }
-
+*/
 
 
   const [data2, setUserData2] = useState([]);
@@ -290,7 +290,11 @@ const rows = filteredData.map(user=>[user.award_name,user.award_reason,user.date
     []
   );
 
-  function generatePDF() {
+
+
+
+ function generatePDF() {
+  /* 
     const doc = new jsPDF();
     fetch('https://akm-img-a-in.tosshub.com/aajtak/images/story/201502/iit_ropar_650_022415062015.jpg?size=948:533')
   .then(response => response.blob())
@@ -353,6 +357,7 @@ const rows = filteredData.map(user=>[user.award_name,user.award_reason,user.date
 
     // add image to PDF here
   });
+  */
   }
 
 
