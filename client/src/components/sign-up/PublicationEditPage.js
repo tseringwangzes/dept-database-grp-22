@@ -15,7 +15,8 @@ const PublicationEditPage = () => {
 
     const defaultFormFields = {
         topic: state.topic,
-        date: state.date,
+        published_date: state.published_date,
+        accepted_date: state.accepted_date,
         collaboration: state.collaboration,
         no_of_students: state.no_of_students,
         faculty_name: state.faculty_name,
@@ -52,7 +53,8 @@ const PublicationEditPage = () => {
                 setFormFields({
                     ...formFields,
                     topic: state.topic,
-                    date: state.date,
+                    published_date: state.published_date,
+                    accepted_date: state.accepted_date,
                     collaboration: state.collaboration,
                     no_of_students: state.no_of_students,
                     status: "Pending..",
@@ -92,12 +94,23 @@ const PublicationEditPage = () => {
                     </div>
 
                     <div className={signupStyle["form-item"]} id="date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>date</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>published_date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"
-                            name="date"
+                            name="published_date"
                             type="date"
-                            value={formFields.date}
+                            value={formFields.published_date}
+                            onChange={hanldeInputValueChange}
+                        />
+
+                    </div>
+                    <div className={signupStyle["form-item"]} id="date">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>accepted_date</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter the date"
+                            name="accepted_date"
+                            type="date"
+                            value={formFields.accepted_date}
                             onChange={hanldeInputValueChange}
                         />
 

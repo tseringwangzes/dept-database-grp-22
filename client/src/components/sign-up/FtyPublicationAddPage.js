@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const FtyPublicationAddPage = () => {
 
-    var email = sessionStorage.getItem('email')
+    var email = localStorage.getItem('email')
     const navigate = useNavigate();
     const {state} = useLocation();
     const utype = state.utype;
@@ -16,8 +16,8 @@ const FtyPublicationAddPage = () => {
         defaultFormFields = {
             faculty_name:"",
             topic: "",
-            year: "",
-            date: "",
+            published_date: "",
+            accepted_date: "",
             collaboration: "",
         };
     }
@@ -25,8 +25,8 @@ const FtyPublicationAddPage = () => {
     defaultFormFields = {
         faculty_name:email,
         topic: "",
-        year: "",
-        date: "",
+        published_date: "",
+        accepted_date: "",
         collaboration: "",
     };}
 
@@ -40,7 +40,7 @@ const FtyPublicationAddPage = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { topic,year, date, collaboration,faculty_name } = formFields;
+        const { topic, published_date, accepted_date,collaboration,faculty_name } = formFields;
         if (topic === "") {
 
             toast.error("Enter topic Name")
@@ -54,8 +54,8 @@ const FtyPublicationAddPage = () => {
                     ...formFields, 
                     topic: "",
                     faculty_name:"",
-                    year: "",
-                    date: "",
+                    published_date: "",
+                    accepted_date: "",
                     collaboration: "",
                 });
                 navigate("/StaffHome/StaffPublications")}
@@ -64,8 +64,8 @@ const FtyPublicationAddPage = () => {
                         ...formFields, 
                         topic: "",
                         faculty_name:email,
-                        year: "",
-                        date: "",
+                        published_date: "",
+                        accepted_date: "",
                         collaboration: "",
                     });
                     navigate("/faculty/Publications")
@@ -107,30 +107,32 @@ if(utype === "1"){
                         />
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="year">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Year</label>
-                        <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the Year"
-                            name="year"
-                            type="text"
-                            value={formFields.year}
-                            onChange={hanldeInputValueChange}
-                        />
-
-                    </div>
+                
 
                     <div className={signupStyle["form-item"]} id="date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>date</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>published_date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"
-                            name="date"
-                            type="text"
-                            value={formFields.date}
+                            name="published_date"
+                            type="date"
+                            value={formFields.published_date}
                             onChange={hanldeInputValueChange}
                         />
 
                     </div>
 
+
+                    <div className={signupStyle["form-item"]} id="date">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>accepted_date</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter the date"
+                            name="accepted_date"
+                            type="date"
+                            value={formFields.accepted_date}
+                            onChange={hanldeInputValueChange}
+                        />
+
+                    </div>
                     <div className={signupStyle["form-item"]} id="collaboration">
                         <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>collaboration</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
@@ -166,25 +168,26 @@ else{
                         />
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="year">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Year</label>
+
+                    <div className={signupStyle["form-item"]} id="date">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>published_date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the Year"
-                            name="year"
-                            type="text"
-                            value={formFields.year}
+                            placeholder="Enter the date"
+                            name="published_date"
+                            type="date"
+                            value={formFields.published_date}
                             onChange={hanldeInputValueChange}
                         />
 
                     </div>
 
                     <div className={signupStyle["form-item"]} id="date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>date</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>accepted_date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"
-                            name="date"
-                            type="text"
-                            value={formFields.date}
+                            name="accepted_date"
+                            type="date"
+                            value={formFields.accepted_date}
                             onChange={hanldeInputValueChange}
                         />
 

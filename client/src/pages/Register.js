@@ -64,7 +64,6 @@ const Register = () => {
 
   return (
     <>
-     <Sidebar />
       <section className={registerStyle.page}>
      
         <div className={registerStyle.form_data}>

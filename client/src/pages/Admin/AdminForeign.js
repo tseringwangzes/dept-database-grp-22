@@ -81,7 +81,7 @@ function StaffForeign() {
     doc.text("Student Email", 20, 65);
     doc.text(": ", 70, 65);
     doc.setFont("helvetica", "normal");
-    doc.text(email, 72, 65);
+    // doc.text(email, 72, 65);
     doc.setFont("helvetica", "bold");
     doc.text("Student Programme", 20, 70);
     doc.text(": ", 70, 70);
@@ -89,9 +89,9 @@ function StaffForeign() {
     doc.text("PhD, CSE", 72, 70);
     
     const columns = [["Award Name", "Award Reason", "Date","Shared With","Status"]];
-    const filteredData = data.filter(item => item.student_name === email);
+    // const filteredData = data.filter(item => item.student_name === email);
 
-const rows = filteredData.map(user=>[user.award_name,user.award_reason,user.date,user.shared_with,user.status]);
+const rows = data.map(user=>[user.award_name,user.award_reason,user.date,user.shared_with,user.status]);
     doc.autoTable({
       head: columns,
       body: rows,

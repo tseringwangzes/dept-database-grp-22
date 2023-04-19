@@ -16,12 +16,13 @@ const Headers = () => {
           alt="IIT Ropar Logo"
           className="h-8 md:h-12 mr-2 md:mr-4"
         />
-        <NavLink
+        {/* <NavLink
           exact
           to="/"
           className="text-white font-bold text-xl md:text-2xl hover:text-gray-300 transition duration-200"
         >IIT Ropar
-        </NavLink>
+        </NavLink> */}
+        <h1 className="text-white font-bold text-xl md:text-2xl hover:text-gray-300 transition duration-200">IIT Ropar</h1>
       </div>
             <div className="flex items-center">
             <NavLink
