@@ -40,10 +40,7 @@ export default function StaffProject() {
         Header: " Topic",
         accessor: "topic",
       },
-      {
-        Header: "Year",
-        accessor: "year",
-      },
+     
       {
         Header: "Date",
         accessor: "date",
@@ -263,10 +260,7 @@ const rows = data.map(user=>[user.student_name,user.faculty_name,user.award_name
       Header: " Topic",
       accessor: "topic",
     },
-    {
-      Header: "Year",
-      accessor: "year",
-    },
+    
     {
       Header: "Date",
       accessor: "date",
@@ -343,25 +337,7 @@ const rows = data.map(user=>[user.student_name,user.faculty_name,user.award_name
 }
 
 
-/* <div className=" absolute right-0  w-3/4 bg-gray-100 text-gray-900">
-        <Sidebar />
-        <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-          <div className="">
-            <h1 className="text-xl font-semibold">Student Project Grants</h1>
-          </div>
-          <div className="mt-4">
-            <TablesProjects columns={columns} data={data} utype={utype} />
-          </div>
-          <br />
-          <div className="">
-            <h1 className="text-xl font-semibold">Faculty Project Grants</h1>
-          </div>
-          <div className="mt-4">
-            <FtyTablesProjects columns={columns2} data={data2} utype={utype} />
-          </div>
-        </main>
-      </div>
-      <div className="w-1/2 bg-gray-100 text-gray-900"></div>*/
+
 
 
 

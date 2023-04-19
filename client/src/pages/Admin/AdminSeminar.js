@@ -49,10 +49,7 @@ const deleteRowst=async (id)=>{
         Header: " Type",
         accessor: "type",
       },
-      {
-        Header: "Year",
-        accessor: "year",
-      },
+      
       {
         Header: "Date",
         accessor: "date",
@@ -225,10 +222,7 @@ const rows = data.map(user=>[user.award_name,user.award_reason,user.date,user.sh
         Header: " Type",
         accessor: "type",
       },
-      {
-        Header: "Year",
-        accessor: "year",
-      },
+      
       {
         Header: "Date",
         accessor: "date",
