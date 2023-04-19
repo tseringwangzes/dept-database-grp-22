@@ -6,7 +6,7 @@ import { foreignEdit } from "../../services/Apis";
 import { useNavigate } from "react-router-dom";
 
 const ForeignAddPage = () => {
-    var email = sessionStorage.getItem('email');
+    var email = localStorage.getItem('email');
     const navigate = useNavigate();
     const {state} = useLocation();
 const utype = state.utype;
@@ -73,7 +73,7 @@ else{
                     start_date: "",
                     end_date: "",
                     country: "",
-                    faculty_name: "2020csb1135@iitrpr.ac.in",
+                    faculty_name: "",
                     status: "Pending..",
                 });
                 navigate("/Profile/Foreign")}
@@ -106,7 +106,7 @@ if(utype === "1"){
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the Start Date"
                             name="start_date"
-                            type="text"
+                            type="date"
                             value={formFields.start_date}
                             onChange={hanldeInputValueChange}
                         />
@@ -117,7 +117,7 @@ if(utype === "1"){
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the End Date"
                             name="end_date"
-                            type="text"
+                            type="date"
                             value={formFields.end_date}
                             onChange={hanldeInputValueChange}
                         />
@@ -190,7 +190,7 @@ return (
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the Start Date"
                             name="start_date"
-                            type="text"
+                            type="date"
                             value={formFields.start_date}
                             onChange={hanldeInputValueChange}
                         />
@@ -201,7 +201,7 @@ return (
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the End Date"
                             name="end_date"
-                            type="text"
+                            type="date"
                             value={formFields.end_date}
                             onChange={hanldeInputValueChange}
                         />

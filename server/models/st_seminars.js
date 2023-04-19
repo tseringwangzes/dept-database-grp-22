@@ -5,7 +5,6 @@ const stseminar = new mongoose.Schema({
     student_name:String,
     type: String,
     title: String,
-    year: String,
     date: String,
     venue: String,
     chief_guest: String,

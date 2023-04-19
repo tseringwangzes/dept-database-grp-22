@@ -16,7 +16,7 @@ const Headers = () => {
               <NavLink to="/" className="text-white font-bold text-lg mt-3 mb-3" >IIT Ropar</NavLink>
             </div>
             <div className="flex items-center">
-              <NavLink to="/register" className="text-white font-bold text-lg mt-3 mb-3 mr-4">Signup</NavLink>
+              {/* <NavLink to="/register" className="text-white font-bold text-lg mt-3 mb-3 mr-4">Signup</NavLink> */}
               <NavLink to="/" className="text-white font-bold text-lg mt-3 mb-3 mr-4" onClick={handleClick}>Logout</NavLink>
             </div>
           </div>

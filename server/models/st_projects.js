@@ -4,7 +4,6 @@ const stprojects = new mongoose.Schema({
     faculty_name:String,
     student_name:String,
     topic: String,
-    year: String,
     date: String,
     granted_money: String,
     description: String,

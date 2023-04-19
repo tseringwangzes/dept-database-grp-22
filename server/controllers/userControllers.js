@@ -627,7 +627,7 @@ exports.facultyaddawards = async (req, res) => {
 
 exports.editachievements = async (req, res) => {
     const { achievements,date,shared_with,status,faculty_name,student_name} = req.body;
-
+    console.log(req.body)
     if (!achievements || !date || !shared_with || !status || !faculty_name || !student_name) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
@@ -675,7 +675,7 @@ exports.editforeign = async (req, res) => {
 
 exports.editseminar = async (req, res) => {
     const { title, type, date, venue, chief_guest, mode, collaborator, status,faculty_name,student_name} = req.body;
-
+    console.log(req.body)
     if (!title || !type || !date || !venue || !chief_guest || !mode || !collaborator || !status || !faculty_name || !student_name) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
@@ -683,7 +683,7 @@ exports.editseminar = async (req, res) => {
             const editseminar = new st_seminar({
                 title, type, date, venue, chief_guest, mode, collaborator, status,faculty_name,student_name
             });
-            const findSeminar = await st_seminar.findOne({title:title, type:type, year:year, date:date, venue:venue, chief_guest:chief_guest, mode:mode, collaborator:collaborator})
+            const findSeminar = await st_seminar.findOne({title:title, type:type, date:date, venue:venue, chief_guest:chief_guest, mode:mode, collaborator:collaborator})
             if(!findSeminar){
             const storeData = await editseminar.save();
             res.status(200).json(storeData);
@@ -698,16 +698,16 @@ exports.editseminar = async (req, res) => {
 };
 
 exports.editpublication = async (req, res) => {
-    const { topic, year, date, collaboration, no_of_students, status,faculty_name,student_name} = req.body;
+    const { topic,date, collaboration, no_of_students, status,faculty_name,student_name} = req.body;
 
-    if (!topic || !year || !date || !collaboration || !no_of_students || !status || !faculty_name || !student_name) {
+    if (!topic || !date || !collaboration || !no_of_students || !status || !faculty_name || !student_name) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
     try {            
             const editpublication = new st_publi({
-                topic, year, date, collaboration, no_of_students, status,faculty_name,student_name
+                topic, date, collaboration, no_of_students, status,faculty_name,student_name
             });
-            const findAward = await st_publi.findOne({ topic:topic, year:year, date:date, collaboration:collaboration, no_of_students:no_of_students})
+            const findAward = await st_publi.findOne({ topic:topic, date:date, collaboration:collaboration, no_of_students:no_of_students})
             if(!findAward){
             const storeData = await editpublication.save();
             res.status(200).json(storeData);
@@ -722,16 +722,16 @@ exports.editpublication = async (req, res) => {
 };
 
 exports.editproject = async (req, res) => {
-    const {topic, year, date, collaboration, granted_money,description, status,faculty_name,student_name} = req.body;
+    const {topic, date, collaboration, granted_money,description, status,faculty_name,student_name} = req.body;
 
-    if (!topic || !year || !date || !collaboration || !granted_money || !description || !status || !faculty_name || !student_name) {
+    if (!topic || !date || !collaboration || !granted_money || !description || !status || !faculty_name || !student_name) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
     try {            
             const editproject = new st_project({
-                topic, year, date, collaboration, granted_money,description, status,faculty_name,student_name
+                topic, date, collaboration, granted_money,description, status,faculty_name,student_name
             });
-            const findAward = await st_project.findOne({topic:topic, year:year, date:date, collaboration:collaboration, granted_money:granted_money,description:description})
+            const findAward = await st_project.findOne({topic:topic, date:date, collaboration:collaboration, granted_money:granted_money,description:description})
             if(!findAward){
             const storeData = await editproject.save();
             res.status(200).json(storeData);

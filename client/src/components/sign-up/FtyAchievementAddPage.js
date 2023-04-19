@@ -7,7 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { FtyEditAchievements } from "../../services/Apis";
 import { useNavigate } from "react-router-dom";
 
-const FtyAchievementsEditPage = () => {
+const FtyAchievementsAddPage = () => {
 
 var email = sessionStorage.getItem('email');
     const navigate = useNavigate();
@@ -182,4 +182,4 @@ var email = sessionStorage.getItem('email');
     );}
 };
 
-export default FtyAchievementsEditPage;
+export default FtyAchievementsAddPage;

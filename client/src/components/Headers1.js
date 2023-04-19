@@ -31,14 +31,14 @@ const Headers = () => {
             >
               Signup
             </NavLink>
-            <NavLink
+            {/* <NavLink
               exact
               to="/"
               className="text-white font-bold text-base md:text-lg hover:text-gray-300 transition duration-200"
               onClick={handleClick}
             >
               Logout
-            </NavLink>
+            </NavLink> */}
           </div>
         </div>
       </div>
