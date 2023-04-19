@@ -13,6 +13,13 @@ function StaffStudent() {
   const utype = "1";
   const [data, setUserData] = useState([]);
 
+  const deleteRowst=async (id)=>{
+    let result= await fetch(`http://localhost:4002/user/deleteid/${id}`,{
+      method:"Delete"});
+     // result=await result.json()
+      window.location.reload();
+  }
+
   const userGet = async () => {
     const response = await userfunc(data);
     if (response.status === 200) {
@@ -76,12 +83,30 @@ function StaffStudent() {
             })}>Edit</button>
           </div>);
         }
+      },
+      {
+        Header: 'Delete',
+        Cell: props => {
+          const { original } = props.cell.row;
+          return (<div>
+
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() =>deleteRowst(original._id)}>Delete</button>
+          </div>);
+
+
+        }
       }
     ],
     []
   );
 
 
+  const deleteRow=async (id)=>{
+    let result= await fetch(`http://localhost:4002/user/ftydeleteaward/${id}`,{
+      method:"Delete"});
+     // result=await result.json()
+      window.location.reload();
+  }
 
 
   const [data2, setUserData2] = useState([]);
@@ -143,6 +168,18 @@ function StaffStudent() {
           </div>);
         }
 
+      },
+      {
+        Header: 'Delete',
+        Cell: props => {
+          const { original } = props.cell.row;
+          return (<div>
+
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() =>deleteRow(original._id)}>Delete</button>
+          </div>);
+
+
+        }
       }
     ],
     []
