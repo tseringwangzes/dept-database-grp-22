@@ -48,7 +48,7 @@ function FtyPublications() {
         accessor: "topic",
       },
       {
-        Header: "Date",
+        Header: "Accept Date",
         accessor: "date",
       },
       {

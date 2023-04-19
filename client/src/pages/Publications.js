@@ -47,7 +47,11 @@ function Publications() {
         accessor: "topic",
       },
       {
-        Header: "Date",
+        Header: "Accept Date",
+        accessor: "date",
+      },
+      {
+        Header: "Publish Date",
         accessor: "date",
       },
       {

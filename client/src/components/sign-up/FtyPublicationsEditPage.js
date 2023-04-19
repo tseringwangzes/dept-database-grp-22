@@ -49,8 +49,7 @@ const FtyPublicationsEditPage = () => {
                 setFormFields({
                     ...formFields, 
                     topic: state.topic,
-                    faculty_name:state.faculty_name,
-                   
+                    faculty_name:state.faculty_name,                   
                     date: state.date,
                     collaboration: state.collaboration,
                 });
@@ -92,7 +91,7 @@ const FtyPublicationsEditPage = () => {
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"
                             name="date"
-                            type="text"
+                            type="date"
                             value={formFields.date}
                             onChange={hanldeInputValueChange}
                         />
