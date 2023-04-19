@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { ft_achievements } from '../services/Apis'
 import FtyTablesAchievements, { StatusPill } from "../tables/FtyTablesAchievements";
 import FtySidebar from "../components/FtySidebar";
-import * as fs from "fs";
-const { Document, Table, TableCell, TableRow } = require('docx');
 
 function FtyAchievements() {
   const navigate = useNavigate();
@@ -97,56 +95,7 @@ return(
 
   function generatePDF() {
     // Fetch data from the database (replace this with your own fetch code)
-    fetch('http://localhost:4002/user/faculty/achievements')
-      .then(response => response.json())
-      .then(data => {
-        // Create a new document
-        const doc = new Document();
-        
-        // Create a table with data
-        const table = new Table({
-          rows: [
-            new TableRow({
-              children: [
-                new TableCell({
-                  children: [doc.createParagraph(data[0]._id)] // Replace field1 with your actual field names
-            }),
-                new TableCell({
-                  children: [doc.createParagraph(data[0].faculty_name)]
-            }),
-                // Add more TableCell for additional fields
-              ]
-            }),
-            // Add more TableRow for additional data rows
-          ]
-          
-        });
-        
-        // Add the table to the document
-        doc.addTable(table);
-        
-        // Create a buffer from the document
-        const buffer = Buffer.from(doc.generate());
-        
-        // Create a Blob from the buffer
-        const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
-        
-        // Create a download link
-        const downloadLink = document.createElement('a');
-        downloadLink.href = URL.createObjectURL(blob);
-        downloadLink.download = 'some.docx';
-        downloadLink.style.display = 'none';
-        
-        // Append the download link to the DOM
-        document.body.appendChild(downloadLink);
-        
-        // Trigger a click event on the download link
-        downloadLink.click();
-        
-        // Clean up by removing the download link from the DOM
-        document.body.removeChild(downloadLink);
-      })
-      .catch(error => console.error(error));
+   
   }
 
 
