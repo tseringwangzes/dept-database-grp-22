@@ -188,7 +188,9 @@ const rows = filteredData.map(user=>[user.award_name,user.award_reason,user.date
          
         <div className="">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={generatePDF}>Generate PDF</button>
-            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("./FtySeminarCsv" )} >Upload Data in Bulk</button>
+            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("./FtySeminarCsv" ,{state:{
+               utype: utype,
+            }})} >Upload Data in Bulk</button>
           </div>
           <br />
           <div className="">

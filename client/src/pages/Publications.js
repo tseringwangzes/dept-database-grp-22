@@ -4,7 +4,7 @@ import { st_publi } from '../services/Apis'
 import TablesPublications, { StatusPill } from "../tables/TablesPublications";
 import Sidebar from "../components/Sidebar";
 import jsPDF from 'jspdf';
-
+import autoTable from 'jspdf-autotable';
 function Publications() {
   const navigate = useNavigate();
 
@@ -183,7 +183,9 @@ const rows = filteredData.map(user=>[user.award_name,user.award_reason,user.date
         <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
         <div className="">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={generatePDF}>Generate PDF</button>
-            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("./StPublicationCsv" )} >Upload Data in Bulk</button>
+            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full " onClick={() => navigate("./StPublicationCsv" ,{state:{
+               utype: utype,
+            }})} >Upload Data in Bulk</button>
           </div>
           <div className="">
           <br />

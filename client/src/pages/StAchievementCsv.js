@@ -4,9 +4,12 @@ import { st_achievement_csv } from "../services/Apis";
 import Table, { StatusPill } from "./Table2";
 import Sidebar from "../components/Sidebar";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function StAchievementCsv(){
     const navigate = useNavigate();
+    const { state } = useLocation();
+    const utype = state.utype;
 
     var file;
 
@@ -32,7 +35,11 @@ function StAchievementCsv(){
           console.log("Finished:", results.data);
           st_achievement_csv(results.data);
           alert("sucessfully uploaded!");
-          navigate('/Profile/Achievements');
+          if(utype==='0'){
+          navigate('/Profile/Achievements');}
+          else if(utype==='4' || utype==='1'){
+            navigate('/Admin/AdminFaculty');
+          }
           window.location.reload();
   
         }
@@ -81,7 +88,7 @@ function StAchievementCsv(){
       <>
   
         <div className=" absolute right-0  w-3/4 bg-gray-100 text-gray-900">
-        <Sidebar/>
+       {/*<Sidebar/>*/}
           <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
             <div className="">
   

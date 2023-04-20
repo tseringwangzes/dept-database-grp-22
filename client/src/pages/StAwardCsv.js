@@ -11,8 +11,7 @@ function StAwardCsv(){
   const navigate = useNavigate();
   const { state } = useLocation();
   const utype = state.utype;
-
-    var file;
+  var file;
 
     const handleSubmit = async (event) => {
   
