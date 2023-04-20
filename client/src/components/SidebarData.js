@@ -6,6 +6,7 @@ import TourIcon from '@mui/icons-material/Tour';
 import ImportContactsSharpIcon from '@mui/icons-material/ImportContactsSharp';
 import CurrencyExchangeSharpIcon from '@mui/icons-material/CurrencyExchangeSharp';
 import StarsIcon from '@mui/icons-material/Stars';
+import AirplanemodeActiveOutlinedIcon from '@mui/icons-material/AirplanemodeActiveOutlined';
 
 export const SidebarData = [
     {
@@ -30,7 +31,7 @@ export const SidebarData = [
     },
     {
         title:"Foreign Visits",
-        icon:<TourIcon />,
+        icon:<AirplanemodeActiveOutlinedIcon />,
         link:"/Profile/Foreign"
     },
     {

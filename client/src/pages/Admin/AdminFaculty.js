@@ -37,10 +37,7 @@ function StaffFaculty() {
         Header: " Achievements",
         accessor: "achievements",
       },
-      {
-        Header: "Year",
-        accessor: "year",
-      },
+     
       {
         Header: "Date",
         accessor: "date",
@@ -111,10 +108,7 @@ function StaffFaculty() {
         Header: " Achievements",
         accessor: "Achievements",
       },
-      {
-        Header: "Year",
-        accessor: "year",
-      },
+     
       {
         Header: "Date",
         accessor: "date",

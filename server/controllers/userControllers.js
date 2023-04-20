@@ -84,7 +84,7 @@ exports.userOtpSend = async (req, res) => {
                 await updateData.save();
 
                 const mailOptions = {
-                    from: process.env.EMAIL,
+                    from: `"Validator" <${process.env.EMAIL}>`,
                     to: email,
                     subject: "Sending Email For Otp Validation",
                     text: `Your OTP is :- ${OTP}`

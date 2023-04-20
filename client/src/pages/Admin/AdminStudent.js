@@ -184,9 +184,12 @@ function StaffStudent() {
     ],
     []
   );
+  
 
+  
 
   function generatePDF() {
+    /*
     const doc = new jsPDF();
     fetch('https://akm-img-a-in.tosshub.com/aajtak/images/story/201502/iit_ropar_650_022415062015.jpg?size=948:533')
   .then(response => response.blob())
@@ -255,12 +258,13 @@ const rows = data.map(user=>[user.student_name,user.faculty_name,user.award_name
     // add image to PDF here
 
   });
+  */
   }
 
 
 
   function FtygeneratePDF() {
-    const doc = new jsPDF();
+   /* const doc = new jsPDF();
     fetch('https://akm-img-a-in.tosshub.com/aajtak/images/story/201502/iit_ropar_650_022415062015.jpg?size=948:533')
   .then(response => response.blob())
   .then(blob => {
@@ -324,9 +328,11 @@ const rows = data.map(user=>[user.faculty_name,user.award_name,user.award_reason
     doc.save('my-document.pdf');
 
     // add image to PDF here
-
-  });
+*/
   }
+  
+
+
 
 
   return (
@@ -372,3 +378,4 @@ const rows = data.map(user=>[user.faculty_name,user.award_name,user.award_reason
 }
 
 export default StaffStudent;
+  

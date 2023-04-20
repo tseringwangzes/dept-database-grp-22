@@ -49,10 +49,7 @@ const deleteRowst=async (id)=>{
         Header: " Type",
         accessor: "type",
       },
-      {
-        Header: "Year",
-        accessor: "year",
-      },
+      
       {
         Header: "Date",
         accessor: "date",
@@ -119,7 +116,7 @@ const deleteRowst=async (id)=>{
     ],
     []
   );
-
+/*
   function generatePDFst() {
     const doc = new jsPDF();
     fetch('https://akm-img-a-in.tosshub.com/aajtak/images/story/201502/iit_ropar_650_022415062015.jpg?size=948:533')
@@ -184,7 +181,7 @@ const rows = data.map(user=>[user.award_name,user.award_reason,user.date,user.sh
     // add image to PDF here
   });
   }
-
+*/
 
 
   const [data2, setUserData2] = useState([]);
@@ -225,10 +222,7 @@ const rows = data.map(user=>[user.award_name,user.award_reason,user.date,user.sh
         Header: " Type",
         accessor: "type",
       },
-      {
-        Header: "Year",
-        accessor: "year",
-      },
+      
       {
         Header: "Date",
         accessor: "date",
@@ -290,7 +284,11 @@ const rows = data.map(user=>[user.award_name,user.award_reason,user.date,user.sh
     []
   );
 
-  function generatePDF() {
+
+
+
+ function generatePDF() {
+  /* 
     const doc = new jsPDF();
     fetch('https://akm-img-a-in.tosshub.com/aajtak/images/story/201502/iit_ropar_650_022415062015.jpg?size=948:533')
   .then(response => response.blob())
@@ -353,6 +351,7 @@ const rows = data.map(user=>[user.award_name,user.award_reason,user.date,user.sh
 
     // add image to PDF here
   });
+  */
   }
 
 

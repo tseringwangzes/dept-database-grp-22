@@ -7,10 +7,7 @@ import ImportContactsSharpIcon from '@mui/icons-material/ImportContactsSharp';
 import CurrencyExchangeSharpIcon from '@mui/icons-material/CurrencyExchangeSharp';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import StarsIcon from '@mui/icons-material/Stars';
-import * as RiIcons from "react-icons/ri";
-import * as FaIcons from "react-icons/fa";
-import * as AiIcons from "react-icons/ai";
-import * as IoIcons from "react-icons/io";
+import AirplanemodeActiveOutlinedIcon from '@mui/icons-material/AirplanemodeActiveOutlined';
 export const FtySidebarData = [
     {
         title:"Home",
@@ -38,7 +35,7 @@ export const FtySidebarData = [
     },
     {
         title:"Foreign Visits",
-        icon:<TourIcon />,
+        icon:<AirplanemodeActiveOutlinedIcon />,
         link:"/faculty/foreign",
         fname:""
     },
