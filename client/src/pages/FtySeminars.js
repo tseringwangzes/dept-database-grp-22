@@ -3,11 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { ft_seminars } from '../services/Apis'
 import FtyTablesSeminars, { StatusPill } from "../tables/FtyTablesSeminars";
 import FtySidebar from "../components/FtySidebar";
+import { useLocation } from 'react-router-dom';
 import jsPDF from 'jspdf';
 
 function FtySeminars() {
+  const utype= "0";
   const navigate = useNavigate();
   var email = localStorage.getItem('email');
+  console.log(email)
   
   const deleteRow=async (id)=>{
     let result = await fetch(`http://localhost:4002/user/ftydeleteseminar/${id}`, {
@@ -16,7 +19,7 @@ function FtySeminars() {
       window.location.reload();
   }
 
-const utype = "0";
+
   const [data, setUserData] = useState([]);
   const userGet = async () => {
     const data = {
