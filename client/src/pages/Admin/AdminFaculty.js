@@ -8,8 +8,8 @@ import FtyTablesAchievements from "../../tables/FtyTablesAchievements";
 
 function StaffFaculty() {
   const navigate = useNavigate();
-  var email = sessionStorage.getItem('email');
-  const utype = "1";
+  var email = localStorage.getItem('email');
+  const utype = "4";
   const [data, setUserData] = useState([]);
 
   const deleteRowst=async (id)=>{
@@ -65,16 +65,15 @@ function StaffFaculty() {
           const { original } = props.cell.row;
           return (<div>
 
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() => navigate("./AchievementEdit.js/" + original._id, {
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() => navigate("/StaffHome/StaffFaculty/AchievementEdit.js/" + original._id, {
               state: {
                 faculty_name:original.faculty_name,
                 student_name:original.student_name,
                 achievements: original.achievements,
-                year: original.year,
                 date: original.date,
                 shared_with: original.shared_with,
                 id: original._id,
-				utype:utype
+				        utype:utype
               }
             })}>Edit</button>
           </div>);
@@ -148,15 +147,14 @@ function StaffFaculty() {
           const { original } = props.cell.row;
 return(
           <div>
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() => navigate("./FtyAchievementsEdit.js/"+original._id, {
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() => navigate("/StaffHome/StaffFaculty/FtyAchievementsEdit.js/"+original._id, {
               state: {
                 faculty_name:original.faculty_name,
                 Achievements: original.Achievements,
-                year: original.year,
                 date: original.date,
                 shared_with: original.shared_with,
                 id:original._id,
-				utype:utype
+				        utype:utype
               }
             })}>Edit</button>
           </div>);

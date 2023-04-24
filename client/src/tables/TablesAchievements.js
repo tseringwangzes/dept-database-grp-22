@@ -76,7 +76,7 @@ function TablesAchievements({ columns, data,utype }) {
                 />
 
 
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" style={{ marginLeft: "auto", }} onClick={() => navigate("./AchievementAdd.js",{state:{utype:utype}})} >Add More</button>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" style={{ marginLeft: "auto", }} onClick={() => navigate("/StaffHome/StaffFaculty/AchievementAdd.js",{state:{utype:utype}})} >Add More</button>
             </div> <br />
             <div className="mt-2 flex flex-col">
                 <div className="-my-2 overflow-x-auto -mx-4 sm:-mx-6 lg:-mx-8">
@@ -111,7 +111,7 @@ function TablesAchievements({ columns, data,utype }) {
                                 >
                                     {page.map((row, i) => {
                                         prepareRow(row);
-                                        if(utype === "1"){
+                                        if(utype === "1" || utype === "4"){
                                             {return (
                                                 <tr {...row.getRowProps()}>
                                                  

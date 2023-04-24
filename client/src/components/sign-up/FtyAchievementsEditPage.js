@@ -58,6 +58,9 @@ const FtyAchievementsEditPage = () => {
                 if(utype === "1"){
                     navigate("/StaffHome/StaffFaculty")
                 }
+                else if(utype === "2"){
+                    navigate("/Admin/AdminFaculty")
+                }
                 else{
                 navigate("/faculty/Achievements")
                 }
