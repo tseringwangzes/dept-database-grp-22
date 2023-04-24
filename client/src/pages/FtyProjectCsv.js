@@ -4,11 +4,12 @@ import { fty_project_csv } from "../services/Apis";
 import Table, { StatusPill } from "./Table2";
 import FtySidebar from "../components/FtySidebar";
 import { useNavigate } from "react-router-dom";
-
+import { useLocation } from "react-router-dom";
 
 function FtyProjectCsv(){
     const navigate = useNavigate();
-
+    const { state } = useLocation();
+    const utype = state.utype;
     var file;
 
     const handleSubmit = async (event) => {
@@ -33,7 +34,11 @@ function FtyProjectCsv(){
           console.log("Finished:", results.data);
           fty_project_csv(results.data);
           alert("sucessfully uploaded!");
-          navigate('/faculty/Projects');
+          if(utype==='0'){
+          navigate('/faculty/Projects');}
+          else if(utype==='1' || utype==='4'){
+          navigate('/Admin/AdminProject');
+          }
           window.location.reload();
   
         }

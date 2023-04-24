@@ -18,7 +18,7 @@ export const AdminSidebarData = [
     {
         title:"Add new User",
         icon:<PersonAddAltOutlinedIcon />,
-        link:"/register",
+        link:"/Admin/register",
         fname:"",
     },
     {

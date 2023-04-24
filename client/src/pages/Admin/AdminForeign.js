@@ -336,8 +336,8 @@ const rows = data.map(user=>[user.award_name,user.award_reason,user.date,user.sh
         <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
         <div className="">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={generatePDF}>Generate PDF</button>
-            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("./StAwardCsv" )} >Upload Data in Bulk</button>
-          </div>
+            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("/Profile/Foreign/StForeignCsv",{state:{utype:utype}} )} >Upload Data in Bulk</button>
+            </div>
           <br></br>
           <div className="">
             <h1 className="text-center bg-indigo-100 text-xl font-semibold">Student Foreign Visits</h1>
@@ -348,7 +348,7 @@ const rows = data.map(user=>[user.award_name,user.award_reason,user.date,user.sh
           <br/>
           <div className="">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={FtygeneratePDF}>Generate PDF</button>
-            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("./StAwardCsv" )} >Upload Data in Bulk</button>
+            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("/faculty/foreign/FtyForeignCsv",{state:{utype:utype}} )} >Upload Data in Bulk</button>
 
           </div>
           <br></br>
@@ -373,39 +373,7 @@ const rows = data.map(user=>[user.award_name,user.award_reason,user.date,user.sh
 export default StaffForeign
 
 
-/*<div className=" absolute right-0  w-3/4 bg-gray-100 text-gray-900">
-        <Sidebar />
-        <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-      
-        <div className="">
-            
-            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("./StForeignCsv" )} >Upload Data in Bulk</button>
-          </div>
-               <br />       
-          <div className="">
-            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Student Foreign Visits</h1>
-          </div>
-          <div className="mt-4">
-            <TablesForeigns columns={columns} data={data} utype={utype} />
-          </div>
-          <br />
-          <div className="">
-            
-            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("./FtyForeignCsv" )} >Upload Data in Bulk</button>
-          </div>
-          <br />
-         
-          <div className="">
-            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Faculty Foreign Visits</h1>
-          </div>
-          <div className="mt-4">
-            <FtyTablesForeigns columns={columns2} data={data2} utype={utype} />
-          </div>
 
-
-        </main>
-      </div>
-      <div className="w-1/2 bg-gray-100 text-gray-900"></div> */
 
 
 

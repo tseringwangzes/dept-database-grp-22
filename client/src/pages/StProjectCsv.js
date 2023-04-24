@@ -4,13 +4,15 @@ import { st_project_csv } from "../services/Apis";
 import Table, { StatusPill } from "./Table2";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
+import { useLocation } from "react-router-dom";
 
 
 function StProjectCsv(){
     
   const navigate = useNavigate();
-
-    var file;
+  const { state } = useLocation();
+  const utype = state.utype;
+  var file;
 
     const handleSubmit = async (event) => {
   
@@ -36,7 +38,11 @@ function StProjectCsv(){
         //   alert("sucessfully uploaded!");
         st_project_csv(results.data);
         alert("sucessfully uploaded!");
-        navigate('/Profile/Project');
+        if(utype==='0'){
+        navigate('/Profile/Project');}
+        else if(utype==='4' || utype==='1'){
+        navigate('/Admin/AdminProject');
+          }
         window.location.reload();
   
         }

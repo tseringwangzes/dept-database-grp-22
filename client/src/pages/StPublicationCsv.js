@@ -4,10 +4,12 @@ import { st_publication_csv } from "../services/Apis";
 import Table, { StatusPill } from "./Table2";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
+import { useLocation } from "react-router-dom";
 
 function StPublicationCsv(){
     const navigate = useNavigate();
-
+    const { state } = useLocation();
+    const utype = state.utype;
     var file;
 
     const handleSubmit = async (event) => {
@@ -34,7 +36,11 @@ function StPublicationCsv(){
         //   alert("sucessfully uploaded!");
         st_publication_csv(results.data);
         alert("sucessfully uploaded!");
-        navigate('/Profile/Publications');
+        if(utype==='0'){
+        navigate('/Profile/Publications');}
+        else if(utype==='4' || utype==='1'){
+        navigate('/Admin/AdminPublications');
+        }
         window.location.reload();
         }
       });

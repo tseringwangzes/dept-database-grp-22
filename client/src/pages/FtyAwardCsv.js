@@ -4,9 +4,13 @@ import { fty_award_csv } from "../services/Apis";
 import Table, { StatusPill } from "./Table2";
 import FtySidebar from "../components/FtySidebar";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+
 
 function FtyAwardCsv(){
     const navigate = useNavigate();
+    const { state } = useLocation();
+    const utype = state.utype;
 
     var file;
 
@@ -32,7 +36,11 @@ function FtyAwardCsv(){
           console.log("Finished:", results.data);
           fty_award_csv(results.data);
           alert("sucessfully uploaded!");
-          navigate('/faculty/Awards');
+          if(utype==='0'){
+          navigate('/faculty/Awards');}
+          else if(utype==='1' || utype==='4'){
+            navigate('/Admin/AdminStudent');
+          }
           window.location.reload();
         }
       });
@@ -80,7 +88,7 @@ function FtyAwardCsv(){
       <>
   
         <div className=" absolute right-0  w-3/4 bg-gray-100 text-gray-900">
-            <FtySidebar/>
+            {/* <FtySidebar/> */}
           <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
             <div className="">
   
