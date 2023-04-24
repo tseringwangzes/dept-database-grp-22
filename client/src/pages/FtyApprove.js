@@ -281,6 +281,10 @@ function FtyApprove() {
 
   const columns4 = React.useMemo(
     () => [
+      {
+        Header: "Student Name",
+        accessor: "student_name",
+      },
 
       {
         Header: " Topic",
@@ -358,6 +362,10 @@ function FtyApprove() {
 
   const columns5 = React.useMemo(
     () => [
+      {
+        Header: "Student Name",
+        accessor: "student_name",
+      },
 
       {
         Header: " Title",
@@ -443,6 +451,10 @@ function FtyApprove() {
 
   const columns6 = React.useMemo(
     () => [
+      {
+        Header: "Student Name",
+        accessor: "student_name",
+      },
 
       {
         Header: " Topic",

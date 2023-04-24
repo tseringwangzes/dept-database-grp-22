@@ -10,6 +10,8 @@ function StSeminarCsv(){
     const navigate = useNavigate();
     const { state } = useLocation();
     const utype = state.utype;
+    const fname=state.fname;
+
     var file;
 
     const handleSubmit = async (event) => {
@@ -28,17 +30,21 @@ function StSeminarCsv(){
         delimiter: ',',
         skipEmptyLines: true,
   
-        columns: ['student_name', 'faculty_name','title' ,'type', 'date','chief_guest','mode', 'Collaborator', 'status'],
+        columns: ['student_name','title' ,'type', 'date','chief_guest','mode', 'collaborator'],
         header: true, complete: function (results) {
   
         
-        
+          let data=results.data;
       
           console.log("Finished:", results.data[0].faculty_name);
-          //           const dateObject = new Date(results.data[0].date);
-          // const isoDate = dateObject.toISOString();
-          // results.data[0].date = isoDate;
-          st_seminar_csv(results.data);
+          for(const entry of data){
+            if(utype==='0')
+           { entry.status="pending..";}
+           else if(utype==='4' || utype==='1')
+           { entry.status="verified";}
+            entry.faculty_name=fname;
+           }
+          st_seminar_csv(data);
               alert("sucessfully uploaded!");
               if(utype==='0'){
               navigate('/Profile/Seminars');}
@@ -105,7 +111,7 @@ function StSeminarCsv(){
       <>
   
         <div className=" absolute right-0  w-3/4 bg-gray-100 text-gray-900">
-        <Sidebar/>
+      
           <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
             <div className="">
   

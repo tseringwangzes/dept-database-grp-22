@@ -10,6 +10,7 @@ function FtyProjectCsv(){
     const navigate = useNavigate();
     const { state } = useLocation();
     const utype = state.utype;
+    const email=state.email;
     var file;
 
     const handleSubmit = async (event) => {
@@ -28,9 +29,15 @@ function FtyProjectCsv(){
         delimiter: ',',
         skipEmptyLines: true,
   
-        columns: ['faculty_name', 'topic', 'date', 'granted_money', 'status'],
+        columns: ['topic', 'date', 'granted_money', 'status'],
         header: true, complete: function (results) {
-  
+         
+          let data=results.data;
+        
+          if(utype==='0')  {  for(const entry of data){
+                entry.faculty_name=email;
+              }}
+    
           console.log("Finished:", results.data);
           fty_project_csv(results.data);
           alert("sucessfully uploaded!");
@@ -84,7 +91,6 @@ function FtyProjectCsv(){
       <>
   
         <div className=" absolute right-0  w-3/4 bg-gray-100 text-gray-900">
-        <FtySidebar/>
           <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
             <div className="">
   

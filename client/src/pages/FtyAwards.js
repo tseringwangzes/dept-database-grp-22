@@ -9,6 +9,9 @@ import jsPDF from 'jspdf';
 
 function FtyAwards() {
   const utype= "0";
+
+  const url='http://localhost:3000/Fty_Award_Header.csv'
+
   const navigate = useNavigate();
   var email = localStorage.getItem('email');
   console.log(email)
@@ -100,7 +103,23 @@ function FtyAwards() {
 
   //  console.log(data);
 
+  function uploadbulk(){
 
+    const aTag=document.createElement("a");
+    aTag.href=url;
+    aTag.setAttribute("download","Faculty_Awards");
+    document.body.appendChild(aTag);
+    aTag.click();
+    aTag.remove();
+    console.log(data[0].faculty_name)
+    
+  navigate("./FtyAwardCsv" ,{state:{
+      utype: utype,
+      email:email,
+
+   }})
+    
+    }
 
 
   function generatePDF() {
@@ -178,9 +197,7 @@ const rows = filteredData.map(user=>[user.award_name,user.award_reason,user.date
         <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
         <div className="">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={generatePDF}>Generate PDF</button>
-            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("./FtyAwardCsv" ,{state:{
-               utype: utype,
-            }})} >Upload Data in Bulk</button>
+            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={uploadbulk} >Upload Data in Bulk</button>
           </div>
           <br></br>
           <div className="">

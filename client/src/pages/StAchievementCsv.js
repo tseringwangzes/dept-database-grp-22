@@ -10,6 +10,8 @@ function StAchievementCsv(){
     const navigate = useNavigate();
     const { state } = useLocation();
     const utype = state.utype;
+    const fname=state.fname;
+
 
     var file;
 
@@ -29,11 +31,20 @@ function StAchievementCsv(){
         delimiter: ',',
         skipEmptyLines: true,
   
-        columns: ['student_name','faculty_name','achievements', 'date', 'shared_with', 'status'],
+        columns: ['student_name','achievements', 'date', 'shared_with',],
         header: true, complete: function (results) {
-  
+          let data=results.data;
+
           console.log("Finished:", results.data);
-          st_achievement_csv(results.data);
+          for(const entry of data){
+            if(utype==='0')
+           { entry.status="pending..";}
+           else if(utype==='4' || utype==='1')
+           { entry.status="verified";}
+            entry.faculty_name=fname;
+           }
+
+          st_achievement_csv(data);
           alert("sucessfully uploaded!");
           if(utype==='0'){
           navigate('/Profile/Achievements');}
