@@ -2,7 +2,6 @@ import React from "react";
 import HomeIcon from '@mui/icons-material/Home';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import PeopleIcon from '@mui/icons-material/People';
-import TourIcon from '@mui/icons-material/Tour';
 import ImportContactsSharpIcon from '@mui/icons-material/ImportContactsSharp';
 import CurrencyExchangeSharpIcon from '@mui/icons-material/CurrencyExchangeSharp';
 import StarsIcon from '@mui/icons-material/Stars';

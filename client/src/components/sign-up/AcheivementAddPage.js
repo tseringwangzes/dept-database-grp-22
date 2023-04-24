@@ -13,14 +13,14 @@ const AchievementAddPage = () => {
   const utype = state.utype;
   const navigate = useNavigate();
   var defaultFormFields={};
-if(utype === "1"){
+if(utype === "1" || utype === "4"){
   defaultFormFields = {
     faculty_name: "",
     student_name: "",
     achievements: "",
     date: "",
     shared_with: "",
-    status: "Pending..",
+    status: "Verified",
   };
 }
 else{
@@ -54,7 +54,7 @@ else{
     else {
       const response = await achievementEdit(formFields);
       if (response.status === 200) {
-        if(utype === "1"){
+        if(utype === "1" || utype==="4"){
           setFormFields({
             ...formFields,
             faculty_name: "",
@@ -62,7 +62,7 @@ else{
             achievements: "",
             date: "",
             shared_with: "",
-            status: "Pending..",
+            status: "Verified",
           });
         }
         else{
@@ -78,6 +78,9 @@ else{
         if(utype === "1"){
           navigate("/StaffHome/StaffFaculty")
         }
+        else if(utype === "4"){
+          navigate("/Admin/AdminFaculty")
+        }
         else{
         navigate("/Profile/Achievements")
         }
@@ -88,7 +91,7 @@ else{
     }
 
   };
-  if(utype === "1"){
+  if(utype === "1" || utype === "4"){
     return (
       <body className={signupStyle.rooted}>
         <section className={signupStyle["form-container"]}>
