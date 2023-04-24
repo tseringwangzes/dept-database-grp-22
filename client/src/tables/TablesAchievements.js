@@ -1,5 +1,5 @@
 import React from "react";
-import { useTable, useGlobalFilter, useAsyncDebounce, useSortBy } from 'react-table';
+import { useTable, useGlobalFilter, useAsyncDebounce, useSortBy, usePagination } from 'react-table';
 import { useNavigate } from "react-router-dom";
 import classNames from 'classnames';
 import { Button } from "@material-tailwind/react";
@@ -52,7 +52,8 @@ function TablesAchievements({ columns, data,utype }) {
 
     const navigate = useNavigate();
     // Use the state and functions returned from useTable to build your UI
-    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, state, // new
+    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, page, canPreviousPage, canNextPage, pageOptions, pageCount, gotoPage,
+        nextPage, previousPage, setPageSize, state, // new
         preGlobalFilteredRows, // new
         setGlobalFilter, } =
         useTable({
@@ -60,7 +61,8 @@ function TablesAchievements({ columns, data,utype }) {
             data,
         },
             useGlobalFilter,
-            useSortBy);
+            useSortBy,
+            usePagination);
 
     // Render the UI for your table
     return (
@@ -74,7 +76,7 @@ function TablesAchievements({ columns, data,utype }) {
                 />
 
 
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" style={{ marginLeft: "auto", }} onClick={() => navigate("./AchievementAdd.js",{state:{utype:utype}})} >Add More</button>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" style={{ marginLeft: "auto", }} onClick={() => navigate("/StaffHome/StaffFaculty/AchievementAdd.js",{state:{utype:utype}})} >Add More</button>
             </div> <br />
             <div className="mt-2 flex flex-col">
                 <div className="-my-2 overflow-x-auto -mx-4 sm:-mx-6 lg:-mx-8">
@@ -107,9 +109,9 @@ function TablesAchievements({ columns, data,utype }) {
                                 <tbody {...getTableBodyProps()}
                                     className="bg-white divide-y divide-gray-200"
                                 >
-                                    {rows.map((row, i) => {
+                                    {page.map((row, i) => {
                                         prepareRow(row);
-                                        if(utype === "1"){
+                                        if(utype === "1" || utype === "4"){
                                             {return (
                                                 <tr {...row.getRowProps()}>
                                                  
@@ -156,6 +158,43 @@ function TablesAchievements({ columns, data,utype }) {
                                     })}
                                 </tbody>
                             </table>
+                            <div className="pagination">
+        <button class="mr-2 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 text-white font-bold w-6 h-6 rounded-md" onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+          {'<<'}
+        </button>{' '}
+        <button class="bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 text-white font-bold w-6 h-6 rectangular-md" onClick={() => previousPage()} disabled={!canPreviousPage}>
+          {'<'}
+        </button>{' '}
+        <button class="mr-2 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 text-white font-bold w-6 h-6 rectangular-md" onClick={() => nextPage()} disabled={!canNextPage}>
+          {'>'}
+        </button>{' '}
+        <button class="mr-10 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 text-white font-bold w-6 h-6 rounded-md" onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+          {'>>'}
+        </button>{' '}
+        <span class="mr-10">
+          Page{' '}
+          <strong>
+            {state.pageIndex + 1} of {pageOptions.length}
+          </strong>{' '}
+        </span>
+        <select
+  value={state.pageSize}
+  onChange={e => {
+    setPageSize(Number(e.target.value));
+  }}
+  className="bg-gray-400 hover:bg-white-600 focus:bg-gray-400 text-white font-bold w-18 h-9 rounded-none flex justify-center items-center"
+>
+  {[5, 10, 20].map(pageSize => (
+    <option
+      key={pageSize}
+      value={pageSize}
+      className="text-white font-bold"
+    >
+      {"Show "}{pageSize}
+    </option>
+  ))}
+</select>
+      </div>
                         </div>
                     </div>
                 </div>

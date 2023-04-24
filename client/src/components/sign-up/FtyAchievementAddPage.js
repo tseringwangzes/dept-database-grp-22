@@ -14,7 +14,7 @@ var email = localStorage.getItem('email');
     const { state } = useLocation();
   const utype = state.utype;
   var defaultFormFields = {};
-  if(utype === "1"){
+  if(utype === "1" || utype === "4"){
     defaultFormFields = {
         faculty_name:"",
         Achievements: "",
@@ -59,6 +59,16 @@ var email = localStorage.getItem('email');
                     });
                     navigate("/StaffHome/StaffFaculty")
                 }
+                else if(utype === "4"){
+                    setFormFields({
+                        ...formFields,
+                        Achievements: "",
+                        date: "",
+                        shared_with: "",
+                        faculty_name:"",
+                    });
+                    navigate("/Admin/AdminFaculty")
+                }
                 else{
                 setFormFields({
                     ...formFields,
@@ -75,7 +85,7 @@ var email = localStorage.getItem('email');
             }
         }
     };
-    if(utype === "1"){
+    if(utype === "1" || utype === "4"){
         return (
             <body className={signupStyle.rooted}>
                 <section className={signupStyle["form-container"]}>

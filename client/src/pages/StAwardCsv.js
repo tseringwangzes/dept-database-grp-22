@@ -4,11 +4,14 @@ import { stt_award_csv } from "../services/Apis";
 import Table, { StatusPill } from "./Table2";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
+import { useLocation } from "react-router-dom";
+
 
 function StAwardCsv(){
   const navigate = useNavigate();
-
-    var file;
+  const { state } = useLocation();
+  const utype = state.utype;
+  var file;
 
     const handleSubmit = async (event) => {
   
@@ -35,7 +38,11 @@ function StAwardCsv(){
       // results.data[0].date = isoDate;
           stt_award_csv(results.data);
           alert("sucessfully uploaded!");
-          navigate('/Profile/Awards');
+          if(utype==='0')
+        {  navigate('/Profile/Awards');}
+        else if(utype==='4' || utype==='1'){
+          navigate('/Admin/AdminStudent');
+        }
           window.location.reload();
   
         }
@@ -89,7 +96,7 @@ function StAwardCsv(){
       <>
   
         <div className=" absolute right-0  w-3/4 bg-gray-100 text-gray-900">
-          <Sidebar/>
+          {/* <Sidebar/> */}
           <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
             <div className="">
   

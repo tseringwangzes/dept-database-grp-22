@@ -4,10 +4,13 @@ import { st_foreign_csv } from "../services/Apis";
 import Table, { StatusPill } from "./Table2";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
+import { useLocation } from "react-router-dom";
 
 function StForeignCsv(){
     
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const utype = state.utype;
 
     var file;
 
@@ -36,7 +39,11 @@ function StForeignCsv(){
         // results.data[0].date = isoDate;
         st_foreign_csv(results.data);
             alert("sucessfully uploaded!");
-            navigate('/Profile/Foreign');
+            if(utype==='0'){
+            navigate('/Profile/Foreign');}
+            else if(utype==='4' || utype==='1'){
+              navigate('/Admin/AdminForeign');
+            }
             window.location.reload();
     
 
