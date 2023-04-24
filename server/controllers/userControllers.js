@@ -550,14 +550,14 @@ exports.st_award_csv = async (req, res) => {
 };
 
 exports.facultygetawards = async(req,res)=>{
-    // const {email} = req.body;
     try {
-        const allUser=await ft_awards.find();
+        const allUser=await ft_awards.find().sort({updatedAt: -1});
         res.status(200).json(allUser)
     } catch (error) {
         res.status(401).json(error)
     }
 }
+
 
 exports.facultygetachievements = async(req,res)=>{
     // const {email} = req.body;
