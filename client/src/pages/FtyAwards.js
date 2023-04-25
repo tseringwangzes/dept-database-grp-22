@@ -127,10 +127,69 @@ function FtyAwards() {
     }
 
 
-  function generatePDF() {
+    function generatePDF() {
+      const doc = new jsPDF();
+      fetch('https://akm-img-a-in.tosshub.com/aajtak/images/story/201502/iit_ropar_650_022415062015.jpg?size=948:533')
+    .then(response => response.blob())
+    .then(blob => {
+      const imgUrl = URL.createObjectURL(blob);
+      const imageWidth = 46;
+      const imageHeight = 26;
+      const xPos = 10;
+      const yPos = 10;
+      const pageWidth =
+      doc.internal.pageSize.width || doc.internal.pageSize.getWidth();
+  
+      doc.addImage(imgUrl, 'PNG', xPos, yPos, imageWidth, imageHeight);
+  
+      doc.setFontSize(16);
+      doc.setFont("helvetica", "bold");
+      doc.text("Indian Institute of Technology, Ropar", pageWidth / 2, 16, {
+        align: "center"
+      });
     
-  }
-
+      doc.setFontSize(14);
+      doc.setFont("helvetica", "normal");
+      doc.text("Rupnagar,Punjab-140001", pageWidth / 2, 22, { align: "center" });
+      doc.text("Tele:+91-1881-235101, email:cs@iitrpr.ac.in", pageWidth / 2, 28, { align: "center" });
+      doc.setLineWidth(0.5);
+      doc.line(10, 38, pageWidth - 10, 38);
+      doc.setFontSize(12);
+      doc.setFont("helvetica", "bold");
+      doc.text("AWARDS LIST", pageWidth / 2, 45, {
+        align: "center"
+      });
+      doc.setLineWidth(0.2);
+      doc.line(90, 46, pageWidth - 90, 46);
+      doc.setFont("helvetica", "bold");
+      doc.text("Faculty Name", 20, 60);
+      doc.text(":", 70, 60);
+      doc.setFont("helvetica", "normal");
+      doc.text("Dr. Puneet Goyal", 72, 60);
+      doc.setFont("helvetica", "bold");
+      doc.text("Faculty Email", 20, 65);
+      doc.text(": ", 70, 65);
+      doc.setFont("helvetica", "normal");
+      doc.text(email, 72, 65);
+      doc.setFont("helvetica", "bold");
+      doc.text("Faculty Department", 20, 70);
+      doc.text(": ", 70, 70);
+      doc.setFont("helvetica", "normal");
+      doc.text("CSE", 72, 70);
+      
+      const columns = [["Award Name", "Award Reason", "Date","Shared With"]];
+      const filteredData = data.filter(item => item.faculty_name === email);
+  
+  const rows = filteredData.map(user=>[user.award_name,user.award_reason,user.date,user.shared_with]);
+      doc.autoTable({
+        head: columns,
+        body: rows,
+        startY: 80,
+      });
+      doc.save('my-document.pdf');
+      // add image to PDF here
+    });
+    }
 
   return (
     <>

@@ -165,16 +165,16 @@ function FtySeminars() {
     doc.line(10, 38, pageWidth - 10, 38);
     doc.setFontSize(12);
     doc.setFont("helvetica", "bold");
-    doc.text("AWARDS LIST", pageWidth / 2, 45, {
+    doc.text("WORKSHOPS/SEMINARS ORGANIZED LIST", pageWidth / 2, 45, {
       align: "center"
     });
     doc.setLineWidth(0.2);
-    doc.line(90, 46, pageWidth - 90, 46);
+    doc.line(65, 46, pageWidth - 65, 46);
     doc.setFont("helvetica", "bold");
     doc.text("Faculty Name", 20, 60);
     doc.text(":", 70, 60);
     doc.setFont("helvetica", "normal");
-    doc.text("Dr. Puneet Goyal",72,60);
+    doc.text("Dr. Puneet Goyal", 72, 60);
     doc.setFont("helvetica", "bold");
     doc.text("Faculty Email", 20, 65);
     doc.text(": ", 70, 65);
@@ -186,10 +186,10 @@ function FtySeminars() {
     doc.setFont("helvetica", "normal");
     doc.text("CSE", 72, 70);
     
-    const columns = [["Award Name", "Award Reason", "Date","Shared With"]];
+    const columns = [["Type", "Title", "Date","Venue","Chief Guest","Mode","Collaborator"]];
     const filteredData = data.filter(item => item.faculty_name === email);
 
-const rows = filteredData.map(user=>[user.award_name,user.award_reason,user.date,user.shared_with]);
+const rows = filteredData.map(user=>[user.type,user.title,user.date,user.venue,user.chief_guest,user.mode,user.collaborator]);
     doc.autoTable({
       head: columns,
       body: rows,
@@ -198,7 +198,6 @@ const rows = filteredData.map(user=>[user.award_name,user.award_reason,user.date
     doc.save('my-document.pdf');
 
     // add image to PDF here
-
   });
   }
 
