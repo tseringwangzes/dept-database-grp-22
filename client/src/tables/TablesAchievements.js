@@ -111,7 +111,7 @@ function TablesAchievements({ columns, data,utype }) {
                                 >
                                     {page.map((row, i) => {
                                         prepareRow(row);
-                                        if(utype === "1" || utype === "4"){
+                                        if(utype === "1" || utype === "4" || utype === "2"){
                                             {return (
                                                 <tr {...row.getRowProps()}>
                                                  

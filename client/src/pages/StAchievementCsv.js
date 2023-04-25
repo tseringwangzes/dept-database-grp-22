@@ -38,10 +38,12 @@ function StAchievementCsv(){
           console.log("Finished:", results.data);
           for(const entry of data){
             if(utype==='0')
-           { entry.status="pending..";}
-           else if(utype==='4' || utype==='1')
-           { entry.status="verified";}
-            entry.faculty_name=fname;
+           { entry.status="pending..";
+           entry.faculty_name=fname;
+          }
+           else if(utype==='4' || utype==='1' || utype==='2')
+           { entry.status="verified";
+          }
            }
 
           st_achievement_csv(data);
@@ -50,6 +52,9 @@ function StAchievementCsv(){
           navigate('/Profile/Achievements');}
           else if(utype==='4' || utype==='1'){
             navigate('/Admin/AdminFaculty');
+          }
+          else if(utype==='2'){
+            navigate('/StaffHome/StaffFaculty');
           }
           window.location.reload();
   

@@ -41,10 +41,11 @@ function StProjectCsv(){
        
           for(const entry of data){
             if(utype==='0')
-           { entry.status="pending..";}
-           else if(utype==='4' || utype==='1')
+           { entry.status="pending..";
+           entry.faculty_name=fname;
+          }
+           else if(utype==='4' || utype==='1' || utype==='2')
            { entry.status="verified";}
-            entry.faculty_name=fname;
            }
        
           //   st_project_csv(results.data);
@@ -56,6 +57,9 @@ function StProjectCsv(){
         else if(utype==='4' || utype==='1'){
         navigate('/Admin/AdminProject');
           }
+          else if(utype==='2'){
+            navigate('/StaffHome/StaffProject');
+              }
         window.location.reload();
   
         }

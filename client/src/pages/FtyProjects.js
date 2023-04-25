@@ -69,7 +69,6 @@ function FtyProjects() {
               state: {
                 faculty_name:original.faculty_name,
                 topic: original.topic,
-                year: original.year,
                 date: original.date,
                 granted_money: original.granted_money,
                 status:original.status,

@@ -37,17 +37,22 @@ function StAwardCsv(){
           console.log("Finished:", data);
    for(const entry of data){
     if(utype==='0')
-   { entry.status="pending..";}
-   else if(utype==='4' || utype==='1')
+   { entry.status="pending..";
+   entry.faculty_name=fname;}
+   else if(utype==='4' || utype==='1' || utype==='2')
    { entry.status="verified";}
-    entry.faculty_name=fname;
+   
    }
+   
           stt_award_csv(data);
           alert("sucessfully uploaded!");
           if(utype==='0')
         {  navigate('/Profile/Awards');}
         else if(utype==='4' || utype==='1'){
           navigate('/Admin/AdminStudent');
+        }
+        else if(utype==='2'){
+          navigate('/StaffHome/StaffStudent');
         }
           window.location.reload();
   

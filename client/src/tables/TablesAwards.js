@@ -111,7 +111,7 @@ function TablesAwards({ columns, data,utype }) {
                                 >
                                     {page.map((row, i) => {
                                         prepareRow(row);
-                                        if(utype === "1"){
+                                        if(utype === "2"  ||  utype==="1"){
                                             {return (
                                                 <tr {...row.getRowProps()}>
                                                  

@@ -47,6 +47,10 @@ function FtySeminarCsv(){
             else if(utype==='1' || utype==='4'){
               navigate('/Admin/AdminSeminar');
             }
+            else if(utype==='2'){
+              navigate('/StaffHome/StaffSeminar');
+            }
+
           window.location.reload();
   
         }

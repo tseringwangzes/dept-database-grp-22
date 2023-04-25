@@ -73,7 +73,6 @@ const deleteRow=async (id)=>{
                 faculty_name:original.faculty_name,
                 student_name:original.student_name,
                 achievements: original.achievements,
-             
                 date: original.date,
                 shared_with: original.shared_with,
                 id: original._id,

@@ -48,6 +48,9 @@ function FtyForeignCsv(){
           else if(utype==='1' || utype==='4'){
             navigate('/Admin/AdminForeign');
             }
+            else if(utype==='2'){
+              navigate('/StaffHome/StaffForeign');
+              }
           window.location.reload();
   
         }
