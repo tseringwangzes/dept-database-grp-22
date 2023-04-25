@@ -167,11 +167,11 @@ const deleteRow=async (id)=>{
     doc.line(10, 38, pageWidth - 10, 38);
     doc.setFontSize(12);
     doc.setFont("helvetica", "bold");
-    doc.text("AWARDS LIST", pageWidth / 2, 45, {
+    doc.text("WORKSHOPS/SEMINARS ORGANIZED LIST", pageWidth / 2, 45, {
       align: "center"
     });
     doc.setLineWidth(0.2);
-    doc.line(90, 46, pageWidth - 90, 46);
+    doc.line(65, 46, pageWidth - 65, 46);
     doc.setFont("helvetica", "bold");
     doc.text("Student Name", 20, 60);
     doc.text(":", 70, 60);
@@ -188,10 +188,10 @@ const deleteRow=async (id)=>{
     doc.setFont("helvetica", "normal");
     doc.text("PhD, CSE", 72, 70);
     
-    const columns = [["Award Name", "Award Reason", "Date","Shared With","Status"]];
+    const columns = [["Type", "Title", "Date","Venue","Chief Guest","Mode","Collaborator","Status"]];
     const filteredData = data.filter(item => item.student_name === email);
 
-const rows = filteredData.map(user=>[user.award_name,user.award_reason,user.date,user.shared_with,user.status]);
+const rows = filteredData.map(user=>[user.type,user.title,user.date,user.venue,user.chief_guest,user.mode,user.collaborator,user.status]);
     doc.autoTable({
       head: columns,
       body: rows,

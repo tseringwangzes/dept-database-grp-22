@@ -151,7 +151,7 @@ console.log(data[0].faculty_name)
       align: "center"
     });
     doc.setLineWidth(0.2);
-    doc.line(90, 46, pageWidth - 90, 46);
+    doc.line(85, 46, pageWidth - 85, 46);
     doc.setFont("helvetica", "bold");
     doc.text("Student Name", 20, 60);
     doc.text(":", 70, 60);

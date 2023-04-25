@@ -134,7 +134,7 @@ function TablesAwards({ columns, data,utype }) {
                                                 </tr>
                                             );} 
                                         }
-                                        else if(rows[i].original.student_name===email)
+                                        else if(page[i].original.student_name===email)
                                         {return (
                                             <tr {...row.getRowProps()}>
                                              
