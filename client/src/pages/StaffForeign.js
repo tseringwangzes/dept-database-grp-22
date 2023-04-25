@@ -210,7 +210,7 @@ const rows = data.map(user=>[user.student_name,user.topic,user.start_date,user.e
     // add image to PDF here
   });
  
-  */
+  
 }
   const [data2, setUserData2] = useState([]);
   const userGet2 = async () => {
