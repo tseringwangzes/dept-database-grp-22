@@ -11,7 +11,7 @@ const SeminarAddPage = () => {
   const navigate = useNavigate();
   const utype = state.utype;
   var defaultFormFields = {};
-  if (utype === "1") {
+  if (utype === "1" || utype === "4") {
     defaultFormFields = {
       faculty_name: "",
       student_name: "",
@@ -59,7 +59,7 @@ const SeminarAddPage = () => {
     else {
       const response = await seminarEdit(formFields);
       if (response.status === 200) {
-        if(utype === "1"){
+        if(utype === "1" || utype === "4"){
           setFormFields({
             ...formFields,
             faculty_name: "",
@@ -73,7 +73,7 @@ const SeminarAddPage = () => {
             collaborator: "",
             status: "Pending..",
           });
-          navigate("/StaffHome/StaffSeminar")}
+          }
         else{
         setFormFields({
           ...formFields,
@@ -88,7 +88,16 @@ const SeminarAddPage = () => {
           collaborator: "",
           status: "Pending..",
         });
-        navigate("/Profile/Seminars")}
+        }
+        if(utype === "1"){
+          navigate("/StaffHome/StaffSeminar")
+        }
+        else if(utype === "4"){
+          navigate("/Admin/AdminSeminar")
+        }
+        else{
+          navigate("/Profile/Seminars")
+        }
       }
       else {
         toast.error(response.response.data.error);
@@ -97,7 +106,7 @@ const SeminarAddPage = () => {
 
   };
 
-if(utype === "1"){
+if(utype === "1" || utype === "4"){
   return (
     <body className={signupStyle.rooted}>
       <section className={signupStyle["form-container"]}>

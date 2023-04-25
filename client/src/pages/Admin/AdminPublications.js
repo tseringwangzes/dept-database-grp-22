@@ -10,7 +10,7 @@ import FtyTablesPublications from "../../tables/FtyTablesPublications";
 
 export default function StaffStudent() {
   const navigate = useNavigate();
-  const utype = "1";
+  const utype = "4";
 
   const [data, setUserData] = useState([]);
   const userGet = async () => {
@@ -41,8 +41,12 @@ export default function StaffStudent() {
       },
       
       {
-        Header: "Date",
-        accessor: "date",
+        Header: "Published Date",
+        accessor: "published_date",
+      },
+      {
+        Header: "Accepted Date",
+        accessor: "accepted_date",
       },
       {
         Header: "Collaborations",
@@ -69,7 +73,8 @@ export default function StaffStudent() {
                   faculty_name: original.faculty_name,
                   student_name: original.student_name,
                   topic: original.topic,
-                  date: original.date,
+                  published_date: original.published_date,
+                  accepted_date: original.accepted_date,
                   collaboration: original.collaboration,
                   no_of_students: original.no_of_students,
                   id: original._id,
@@ -281,8 +286,12 @@ const rows = data.map(user=>[user.student_name,user.faculty_name,user.award_name
       },
      
       {
-        Header: "Date",
-        accessor: "date",
+        Header: "Published Date",
+        accessor: "published_date",
+      },
+      {
+        Header: "Accepted Date",
+        accessor: "accepted_date",
       },
       {
         Header: "Collaborations",
@@ -297,7 +306,8 @@ const rows = data.map(user=>[user.student_name,user.faculty_name,user.award_name
               state: {
                 faculty_name: original.faculty_name,
                 topic: original.topic,
-                date: original.date,
+                published_date: original.published_date,
+                accepted_date: original.accepted_date,
                 collaboration: original.collaboration,
                 id: original._id,
                 utype:utype

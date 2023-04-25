@@ -17,7 +17,7 @@ const deleteRowst=async (id)=>{
     window.location.reload();
 }
 
-  const utype = "1";
+  const utype = "4";
   const [data, setUserData] = useState([]);
   const userGet = async () => {
     const response = await st_semi();

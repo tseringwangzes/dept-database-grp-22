@@ -12,7 +12,7 @@ var email = localStorage.getItem('email');
     const {state} = useLocation();
     const utype = state.utype;
     var defaultFormFields = {};
-    if(utype === "1"){
+    if(utype === "1" || utype === "4"){
         defaultFormFields = {
             topic: "",
             published_date: "",
@@ -55,7 +55,7 @@ var email = localStorage.getItem('email');
         else {
             const response = await publicationEdit(formFields);
             if (response.status === 200) {
-                if(utype === "1"){
+                if(utype === "1" || utype === "4"){
                     setFormFields({
                         ...formFields,
                         topic: "",
@@ -67,7 +67,7 @@ var email = localStorage.getItem('email');
                         student_name: "",
                         status: "Pending..",
                     });
-                    navigate("/StaffHome/StaffPublications")
+                   
                 }
                 else{
                 setFormFields({
@@ -81,7 +81,16 @@ var email = localStorage.getItem('email');
                     student_name: email,
                     status: "Pending..",
                 });
-                navigate("/Profile/Publications")}
+                }
+                if(utype === "1"){
+                    navigate("/StaffHome/StaffPublications")
+                }
+                else if(utype==="4"){
+                    navigate("/Admin/AdminPublications")
+                }
+                else{
+                    navigate("/Profile/Publications")
+                }
             }
             else {
                 toast.error(response.response.data.error);
@@ -89,7 +98,7 @@ var email = localStorage.getItem('email');
         }
     };
 
-if(utype === "1"){
+if(utype === "1" || utype === "4"){
     return (
         <body className={signupStyle.rooted}>
             <section className={signupStyle["form-container"]}>

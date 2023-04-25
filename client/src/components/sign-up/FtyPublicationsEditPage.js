@@ -14,7 +14,7 @@ const FtyPublicationsEditPage = () => {
 
 
     const defaultFormFields = {
-        faculty_name:state.faculty_name,
+        faculty_name: state.faculty_name,
         topic: state.topic,
         published_date: state.published_date,
         accepted_date: state.accepted_date,
@@ -38,7 +38,7 @@ const FtyPublicationsEditPage = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { topic,published_date,accepted_date, collaboration,faculty_name } = formFields;
+        const { topic, published_date, accepted_date, collaboration, faculty_name } = formFields;
         if (topic === "") {
 
             toast.error("Enter topic Name")
@@ -48,26 +48,27 @@ const FtyPublicationsEditPage = () => {
             const response = await FtyEditPublications(formFields);
             if (response.status === 200) {
                 setFormFields({
-                    ...formFields, 
+                    ...formFields,
                     topic: state.topic,
-                    faculty_name:state.faculty_name,
+                    faculty_name: state.faculty_name,
                     published_date: state.published_date,
                     accepted_date: state.accepted_date,
                     collaboration: state.collaboration,
                 });
-                if(utype==="1"){
+                if (utype === "1") {
                     navigate("/StaffHome/StaffPublications")
                 }
-                else{
-                navigate("/faculty/Publications")
+                else if (utype === "4") {
+                    navigate("/Admin/AdminPublications")
+                }
+                else {
+                    navigate("/faculty/Publications")
                 }
             }
             else {
                 toast.error(response.response.data.error);
             }
         }
-
-
         deleteid(id);
     };
 

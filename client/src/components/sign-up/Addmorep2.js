@@ -10,7 +10,7 @@ const Addmorep2 = () => {
   const navigate = useNavigate();
   var email = localStorage.getItem('email');
   var defaultFormFields = {}
-  if (utype === "1") {
+  if (utype === "1" || utype === "4") {
     defaultFormFields = {
       faculty_name: "",
       student_name: "",
@@ -62,7 +62,7 @@ const Addmorep2 = () => {
       // date = isoDate;
       const response = await addmorefunction(formFields);
       if (response.status === 200) {
-        if (utype === "1") {
+        if (utype === "1" || utype === "4") {
           setFormFields({
             ...formFields, award_name: "",
             award_reason: "",
@@ -88,6 +88,9 @@ const Addmorep2 = () => {
         if(utype==="1"){
           navigate("/StaffHome/StaffStudent")
         }
+        else if(utype === "4"){
+          navigate("/Admin/AdminStudent")
+        }
         else{
         navigate("/Profile/Awards")
         }
@@ -98,7 +101,7 @@ const Addmorep2 = () => {
     }
   };
 
-if(utype === "1")
+if(utype === "1" || utype === "4")
   {return (
     <body className={signupStyle.rooted}>
       <section className={signupStyle["form-container"]}>

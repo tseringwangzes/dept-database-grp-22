@@ -10,7 +10,7 @@ import jsPDF from 'jspdf';
 function StaffStudent() {
   const navigate = useNavigate();
   var email = localStorage.getItem('email');
-  const utype = "1";
+  const utype = "4";
   const [data, setUserData] = useState([]);
 
   const deleteRowst=async (id)=>{

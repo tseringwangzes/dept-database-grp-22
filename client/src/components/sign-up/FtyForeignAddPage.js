@@ -11,7 +11,7 @@ const FtyForeignAddPage = () => {
     var email = localStorage.getItem('email')
     const navigate = useNavigate();
     var defaultFormFields={};
-if(utype === "1"){
+if(utype === "1" || utype === "4"){
     defaultFormFields = {
         faculty_name:"",
         topic:"",
@@ -49,7 +49,7 @@ else{
         else {
             const response = await FtyEditForeign(formFields);
             if (response.status === 200) {
-                if(utype === "1"){
+                if(utype === "1" || utype === "4"){
                     setFormFields({
                         ...formFields, 
                         faculty_name:"",
@@ -58,7 +58,7 @@ else{
                         end_date: "",
                         country: "",
                     });
-                    navigate("/StaffHome/StaffForeign")                  
+                                     
                 }
                 else{
                 setFormFields({
@@ -69,7 +69,16 @@ else{
                     end_date: "",
                     country: "",
                 });
-                navigate("/faculty/foreign")}
+                }
+                if(utype === "1"){
+                    navigate("/StaffHome/StaffForeign") 
+                }
+                else if(utype === "4"){
+                    navigate("/Admin/AdminForeign")
+                }
+                else{
+                    navigate("/faculty/foreign")
+                }
             }
             else {
                 toast.error(response.response.data.error);
@@ -77,7 +86,7 @@ else{
         }
     };
 
-if(utype === "1"){
+if(utype === "1" || utype === "4"){
     return(
         <body className={signupStyle.rooted}>
         <section className={signupStyle["form-container"]}>

@@ -10,7 +10,7 @@ import jsPDF from 'jspdf';
 
 function StaffForeign() {
   const navigate = useNavigate();
-  const utype = "1";
+  const utype = "4";
 
   const deleteRowst=async (id)=>{
     let result= await fetch(`http://localhost:4002/user/foreigndeleteid/${id}`,{

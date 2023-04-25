@@ -58,6 +58,9 @@ const navigate = useNavigate();
         if(utype === "1"){
           navigate("/StaffHome/StaffStudent")
         }
+        else if(utype === "4"){
+          navigate("/Admin/AdminStudent")
+        }
         else{
           navigate("/faculty/Awards")
         }
