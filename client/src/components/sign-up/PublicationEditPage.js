@@ -41,7 +41,7 @@ const PublicationEditPage = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { topic, date, collaboration, no_of_students, status, faculty_name, student_name } = formFields;
+        const { topic, published_date,accepted_date, collaboration, no_of_students, status, faculty_name, student_name } = formFields;
         if (topic === "") {
 
             toast.error("Enter topic Name")
@@ -94,7 +94,7 @@ const PublicationEditPage = () => {
                     </div>
 
                     <div className={signupStyle["form-item"]} id="published_date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>published_date</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Published Date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"
                             name="published_date"
@@ -105,7 +105,7 @@ const PublicationEditPage = () => {
 
                     </div>
                     <div className={signupStyle["form-item"]} id="accepted_date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>accepted_date</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Accepted Date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"
                             name="accepted_date"
@@ -128,7 +128,7 @@ const PublicationEditPage = () => {
                     </div>
 
                     <div className={signupStyle["form-item"]} id="no_of_students">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>no_of_students</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>no of students</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="no_of_students with whom"
                             name="no_of_students"

@@ -10,8 +10,8 @@ import jsPDF from 'jspdf';
 
 function StaffForeign() {
   const navigate = useNavigate();
-  const utype = "2";
-
+  const utype = "1";
+  const email = localStorage.getItem('email');
     const url='http://localhost:3000/Staff_St_Foreign_Header.csv'
     const url2='http://localhost:3000/Staff_Fty_Foreign_Header.csv'
 
@@ -147,7 +147,7 @@ function StaffForeign() {
       }
 
 
-  function generatePDF() { /*
+  function generatePDF() { 
     const doc = new jsPDF();
     fetch('https://akm-img-a-in.tosshub.com/aajtak/images/story/201502/iit_ropar_650_022415062015.jpg?size=948:533')
   .then(response => response.blob())

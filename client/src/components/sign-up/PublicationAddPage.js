@@ -130,11 +130,11 @@ if(utype === "1"){
                         />
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Published_date</label>
+                    <div className={signupStyle["form-item"]} id="published_date">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Published date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"
-                            name="Published_date"
+                            name="published_date"
                             type="date"
                             value={formFields.Published_date}
                             onChange={hanldeInputValueChange}
@@ -142,8 +142,8 @@ if(utype === "1"){
 
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>accepted_date</label>
+                    <div className={signupStyle["form-item"]} id="accepted_date">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Accepted Date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"
                             name="accepted_date"
@@ -155,7 +155,7 @@ if(utype === "1"){
                     </div>
 
                     <div className={signupStyle["form-item"]} id="collaboration">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>collaboration</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Collaboration</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="collaboration with whom"
                             name="collaboration"
