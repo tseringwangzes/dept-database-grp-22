@@ -11,6 +11,7 @@ function StAwardCsv(){
   const navigate = useNavigate();
   const { state } = useLocation();
   const utype = state.utype;
+  const fname=state.fname;
   var file;
 
     const handleSubmit = async (event) => {
@@ -29,19 +30,29 @@ function StAwardCsv(){
         delimiter: ',',
         skipEmptyLines: true,
   
-        columns: ['student_name','faculty_name','award_reason', 'award_name','date', 'shared_with', 'status'],
+        columns: ['student_name','award_reason', 'award_name','date', 'shared_with', ],
         header: true, complete: function (results) {
+          let data=results.data;
   
-          console.log("Finished:", results.data[0].faculty_name);
-      //           const dateObject = new Date(results.data[0].date);
-      // const isoDate = dateObject.toISOString();
-      // results.data[0].date = isoDate;
-          stt_award_csv(results.data);
+          console.log("Finished:", data);
+   for(const entry of data){
+    if(utype==='0')
+   { entry.status="pending..";
+   entry.faculty_name=fname;}
+   else if(utype==='4' || utype==='1' || utype==='2')
+   { entry.status="verified";}
+   
+   }
+   
+          stt_award_csv(data);
           alert("sucessfully uploaded!");
           if(utype==='0')
         {  navigate('/Profile/Awards');}
         else if(utype==='4' || utype==='1'){
           navigate('/Admin/AdminStudent');
+        }
+        else if(utype==='2'){
+          navigate('/StaffHome/StaffStudent');
         }
           window.location.reload();
   

@@ -12,6 +12,8 @@ function StProjectCsv(){
   const navigate = useNavigate();
   const { state } = useLocation();
   const utype = state.utype;
+  const fname=state.fname;
+
   var file;
 
     const handleSubmit = async (event) => {
@@ -30,19 +32,34 @@ function StProjectCsv(){
         delimiter: ',',
         skipEmptyLines: true,
   
-        columns: ['student_name','faculty_name', 'topic', 'date', 'granted_money','collaboration', 'status'],
+        columns: ['student_name', 'topic', 'date', 'granted_money','collaboration','description',],
         header: true, complete: function (results) {
-  
+          let data=results.data;
+
+
           console.log("Finished:", results.data);
-        //   st_project_csv(results.data);
+       
+          for(const entry of data){
+            if(utype==='0')
+           { entry.status="pending..";
+           entry.faculty_name=fname;
+          }
+           else if(utype==='4' || utype==='1' || utype==='2')
+           { entry.status="verified";}
+           }
+       
+          //   st_project_csv(results.data);
         //   alert("sucessfully uploaded!");
-        st_project_csv(results.data);
+        st_project_csv(data);
         alert("sucessfully uploaded!");
         if(utype==='0'){
         navigate('/Profile/Project');}
         else if(utype==='4' || utype==='1'){
         navigate('/Admin/AdminProject');
           }
+          else if(utype==='2'){
+            navigate('/StaffHome/StaffProject');
+              }
         window.location.reload();
   
         }
@@ -87,7 +104,6 @@ function StProjectCsv(){
       <>
   
         <div className=" absolute right-0  w-3/4 bg-gray-100 text-gray-900">
-        <Sidebar/>
           <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
             <div className="">
   

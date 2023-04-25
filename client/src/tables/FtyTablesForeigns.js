@@ -78,6 +78,54 @@ function FtyTablesForeigns({ columns, data,utype }) {
 
                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" style={{ marginLeft: "auto", }} onClick={() => navigate("./FtyForeignAdd.js",{state:{utype:utype}})} >Add More</button>
             </div> <br />
+            <div className="pagination"  >
+                              <button class="mr-1 bg-gray-300 hover:bg-gray-400 focus:bg-blue-700 text-black font w-28 h-6 rounded-md"  onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+            
+                                {'Start Page'}
+                              </button>{' '}
+                              <button class="mr-2 bg-gray-300 hover:bg-gray-400 focus:bg-blue-700 text-black font w-16 h-6 rounded-md"  onClick={() => previousPage()} disabled={!canPreviousPage}>
+                                {'prev'}
+                              </button>{' '}
+                              <span class="mr-10">
+                                Page{' '}
+                                <strong>
+                                  {state.pageIndex + 1} of {pageOptions.length}
+                                </strong>{' '}
+                              </span>
+                              
+                              
+                              <select
+         value={state.pageSize}
+          onChange={e => {
+          setPageSize(Number(e.target.value));
+           }}
+  className="mr-4 bg-gray-100 hover:bg-white-600 focus:bg-white-300 text-black font w-18 h-6 rounded-none flex justify-center items-center"
+                                               >
+                                       {[5, 10, 20].map(pageSize => (
+                                                       <option
+                                                  key={pageSize}
+                                                value={pageSize}
+                                          className="text-black font" 
+                                                >
+                                            {"Show "}{pageSize}
+                                     </option>
+                                      ))}
+                                </select>
+
+                              <button class="mr-1 bg-gray-300 hover:bg-gray-400 focus:bg-blue-700 text-black font w-16 h-6 rounded-md" onClick={() => nextPage()} disabled={!canNextPage}>
+                                {'next'}
+                              </button>{' '}
+                              <button class="mr-10 bg-gray-300 hover:bg-gray-400 focus:bg-blue-700 text-black font w-28 h-6 rounded-md" onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+                                {'End Page'}
+                              </button>{' '}
+                             
+           
+            
+                            
+                            </div>
+      
+      
+      <br></br>
             <div className="mt-2 flex flex-col">
                 <div className="-my-2 overflow-x-auto -mx-4 sm:-mx-6 lg:-mx-8">
                     <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -111,7 +159,7 @@ function FtyTablesForeigns({ columns, data,utype }) {
                                 >
                                     {page.map((row, i) => {
                                         prepareRow(row);
-                                        if(utype === "1"){
+                                        if(utype === "1"|| utype === "2"){
                                             {return (
                                                 <tr {...row.getRowProps()}>
                                                  
@@ -134,7 +182,7 @@ function FtyTablesForeigns({ columns, data,utype }) {
                                                 </tr>
                                             );}
                                         }
-                                        else if(rows[i].original.faculty_name===email)
+                                        else if(page[i].original.faculty_name===email)
                                         {return (
                                             <tr {...row.getRowProps()}>
                                              
@@ -159,51 +207,7 @@ function FtyTablesForeigns({ columns, data,utype }) {
                                     })}
                                 </tbody>
                             </table>
-                            <div className="pagination">
-        <button class="mr-2 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 text-white font-bold w-6 h-6 rounded-md" onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          {'<<'} 
-        </button>{' '}
-        
-        
-        <button class="bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 text-white font-bold w-6 h-6 rectangular-md" onClick={() => previousPage()} disabled={!canPreviousPage}>
-          {'<'}
-        </button>{' '}
-        
-        <button class="mr-2 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 text-white font-bold w-6 h-6 rectangular-md" onClick={() => nextPage()} disabled={!canNextPage}>
-          {'>'}
-        </button>{' '}
-        
-        <button class="mr-10 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 text-white font-bold w-6 h-6 rounded-md" onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-          {'>>'}
-        </button>{' '}
-        
-        <span class="mr-10">
-          Page{' '}
-          <strong>
-            {state.pageIndex + 1} of {pageOptions.length}
-          </strong>{' '}
-        </span>
-        <select
-  value={state.pageSize}
-  onChange={e => {
-    setPageSize(Number(e.target.value));
-  }}
-  className="bg-gray-400 hover:bg-white-600 focus:bg-gray-400 text-white font-bold w-18 h-9 rounded-none flex justify-center items-center"
->
-  {[5, 10, 20].map(pageSize => (
-    <option
-      key={pageSize}
-      value={pageSize}
-      className="text-white font-bold"
-    >
-      {"Show "}{pageSize}
-    </option>
-  ))}
-</select>
-
-
-
-                          </div>
+                          
                         </div>
                     </div>
                 </div>

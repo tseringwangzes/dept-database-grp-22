@@ -249,10 +249,10 @@ exports.userget = async (req, res) => {
 
 exports.usergetall = async (req, res) => {
    const {email}=req.body;
-    console.log(req.body)
+ //   console.log(req.body)
     try {
-        const allUser = await stdetails.find().sort({updatedAt: -1});
-        console.log(allUser)
+        const allUser = await stdetails.find();
+      //  console.log(allUser)
         res.status(200).json(allUser)
     } catch (error) {
         res.status(401).json(error)
@@ -404,9 +404,9 @@ exports.st_seminar_csv = async (req, res) => {
 
     for (const entry of data) {
         try {
-           // console.log(entry);
+            console.log(entry);
             const existingEntry = await st_seminar.findOne(entry);
-            //console.log(existingEntry);
+           // console.log(existingEntry);
             if ( existingEntry === null) {
                 await st_seminar.create(entry)
             } 
@@ -528,11 +528,12 @@ exports.st_award_csv = async (req, res) => {
     //     res.status(500).json({ message: 'An error occurred while inserting data' });
     // }
 
-    const data = req.body;
+    let data = req.body;
 
     for (const entry of data) {
         try {
-           // console.log(entry);
+
+            console.log(entry.status);
             const existingEntry = await stdetails.findOne(entry);
             //console.log(existingEntry);
             if ( existingEntry === null) {
@@ -1086,7 +1087,7 @@ exports.send_mail = async (req, res) => {
     try {
        
         const { emailSubject, emailContent, sendToFaculty, sendToStudents } = req.body.data;
-        console.log(emailSubject, emailContent, sendToFaculty, sendToStudents);
+     //   console.log(emailSubject, emailContent, sendToFaculty, sendToStudents);
         
         let mes = '';
         

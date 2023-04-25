@@ -69,7 +69,6 @@ export default function StaffStudent() {
                   faculty_name: original.faculty_name,
                   student_name: original.student_name,
                   topic: original.topic,
-                  year: original.year,
                   date: original.date,
                   collaboration: original.collaboration,
                   no_of_students: original.no_of_students,
@@ -80,6 +79,18 @@ export default function StaffStudent() {
             </div>);
         }
 
+      },
+      {
+        Header: 'Delete',
+        Cell: props => {
+          const { original } = props.cell.row;
+          return (<div>
+
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() =>stdeleteRow(original._id)}>Delete</button>
+          </div>);
+
+
+        }
       }
     ],
     []
@@ -224,9 +235,21 @@ const rows = data.map(user=>[user.student_name,user.faculty_name,user.award_name
      // add image to PDF here
  */
    }
+   const stdeleteRow=async (id)=>{
+    let result= await fetch(`http://localhost:4002/user/deletepublicationid/${id}`,{
+      method:"Delete"});
+     // result=await result.json()
+      window.location.reload();
+  }
+
    
 
-
+   const deleteRow=async (id)=>{
+    let result = await fetch(`http://localhost:4002/user/ftydeletepublication/${id}`, {
+      method:"Delete"});
+     // result=await result.json()
+      window.location.reload();
+  }
 
 
   const [data2, setUserData2] = useState([]);
@@ -274,7 +297,6 @@ const rows = data.map(user=>[user.student_name,user.faculty_name,user.award_name
               state: {
                 faculty_name: original.faculty_name,
                 topic: original.topic,
-                year: original.year,
                 date: original.date,
                 collaboration: original.collaboration,
                 id: original._id,
@@ -284,6 +306,18 @@ const rows = data.map(user=>[user.student_name,user.faculty_name,user.award_name
           </div>);
         }
 
+      },
+      {
+        Header: 'Delete',
+        Cell: props => {
+          const { original } = props.cell.row;
+          return (<div>
+
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() =>deleteRow(original._id)}>Delete</button>
+          </div>);
+
+
+        }
       }
     ],
     []

@@ -72,7 +72,6 @@ export default function StaffProject() {
               <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() => navigate("./ProjectsEdit.js/" + original._id, {
                 state: {
                   topic: original.topic,
-                  year: original.year,
                   date: original.date,
                   granted_money: original.granted_money,
                   description: original.description,
@@ -87,10 +86,48 @@ export default function StaffProject() {
             </div>);
         }
 
-      }
+      },
+      {
+        Header: 'Delete',
+        Cell: props => {
+          const { original } = props.cell.row;
+          return (<div>
+
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() =>deleteRow(original._id)}>Delete</button>
+          </div>);
+
+
+        }
+      },
+      {
+        Header: 'Delete',
+        Cell: props => {
+          const { original } = props.cell.row;
+          return (<div>
+
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() =>stdeleteRow(original._id)}>Delete</button>
+          </div>);
+
+
+        }
+      },
     ],
     []
   );
+
+  const stdeleteRow=async (id)=>{
+    let result= await fetch(`http://localhost:4002/user/deleteprojectid/${id}`,{
+      method:"Delete"});
+     // result=await result.json()
+      window.location.reload();
+  }
+
+  const deleteRow=async (id)=>{
+    let result = await fetch(`http://localhost:4002/user/ftydeleteproject/${id}`, {
+      method:"Delete"});
+     // result=await result.json()
+      window.location.reload();
+  }
 
   function generatePDF() {
     /*
