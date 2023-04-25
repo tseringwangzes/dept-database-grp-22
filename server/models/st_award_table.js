@@ -11,6 +11,7 @@ const st_award = new mongoose.Schema({
 },
     {
         collection: "student_award",
+        timestamps: true
     }
 );
 

@@ -140,7 +140,7 @@ if(utype === "1"){
           </div>
 
           <div className={signupStyle["form-item"]} id="venue">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Shared with</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Venue</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
               placeholder="venue"
               name="venue"
@@ -151,7 +151,7 @@ if(utype === "1"){
           </div>
 
           <div className={signupStyle["form-item"]} id="chief_guest">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>chief_guest</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Chief Guest</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
               placeholder="chief_guest"
               name="chief_guest"
@@ -173,7 +173,7 @@ if(utype === "1"){
           </div>
 
           <div className={signupStyle["form-item"]} id="collaborator">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>collaborator</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Collaborator</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
               placeholder="collaborator"
               name="collaborator"
@@ -231,7 +231,7 @@ else{
           </div>
 
           <div className={signupStyle['form-item']} id="type">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>type</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Type</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
               placeholder="Enter the type"
               name="type"
@@ -244,7 +244,7 @@ else{
 
 
           <div className={signupStyle["form-item"]} id="date">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>date</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Date</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
               placeholder="Enter the date"
               name="date"
@@ -256,7 +256,7 @@ else{
           </div>
 
           <div className={signupStyle["form-item"]} id="venue">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Shared with</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Venue</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
               placeholder="venue"
               name="venue"
@@ -267,7 +267,7 @@ else{
           </div>
 
           <div className={signupStyle["form-item"]} id="chief_guest">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>chief_guest</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Chief Guest</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
               placeholder="chief_guest"
               name="chief_guest"

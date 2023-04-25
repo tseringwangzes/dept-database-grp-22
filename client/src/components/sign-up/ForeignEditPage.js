@@ -95,7 +95,7 @@ const ForeignEditPage = () => {
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the Start Date"
                             name="start_date"
-                            type="text"
+                            type="date"
                             value={formFields.start_date}
                             onChange={hanldeInputValueChange}
                         />
@@ -106,7 +106,7 @@ const ForeignEditPage = () => {
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the End Date"
                             name="end_date"
-                            type="text"
+                            type="date"
                             value={formFields.end_date}
                             onChange={hanldeInputValueChange}
                         />

@@ -10,6 +10,7 @@ const ftforeign = new mongoose.Schema({
 },
     {
         collection: "ft_foreign",
+        timestamps: true
     }
 );
 

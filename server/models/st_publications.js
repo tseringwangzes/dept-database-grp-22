@@ -13,6 +13,7 @@ const stpublica = new mongoose.Schema({
 },
     {
         collection: "stpublication",
+        timestamps: true
     }
 );
 

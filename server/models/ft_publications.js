@@ -3,13 +3,14 @@ const mongoose = require("mongoose");
 const ftpublications = new mongoose.Schema({
     faculty_name:String,
     topic: String,
-    published_date: Date,
-    accepted_date:Date,
+    published_date: String,
+    accepted_date:String,
     collaboration: String,
     
 },
     {
         collection: "ft_publications",
+        timestamps: true
     }
 );
 

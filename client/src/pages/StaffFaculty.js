@@ -10,7 +10,7 @@ import jsPDF from 'jspdf';
 function StaffFaculty() {
   const navigate = useNavigate();
   var email = sessionStorage.getItem('email');
-  const utype = "2";
+  const utype = "1";
 
   const url='http://localhost:3000/Staff_St_Achievement_Header.csv'
   const url2='http://localhost:3000/Staff_Fty_Achievement_Header.csv'
