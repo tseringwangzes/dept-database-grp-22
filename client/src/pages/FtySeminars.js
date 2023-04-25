@@ -3,11 +3,18 @@ import { useNavigate } from "react-router-dom";
 import { ft_seminars } from '../services/Apis'
 import FtyTablesSeminars, { StatusPill } from "../tables/FtyTablesSeminars";
 import FtySidebar from "../components/FtySidebar";
+import { useLocation } from 'react-router-dom';
 import jsPDF from 'jspdf';
 
 function FtySeminars() {
+  const utype= "0";
   const navigate = useNavigate();
   var email = localStorage.getItem('email');
+ 
+  const url='http://localhost:3000/Fty_Seminar_Header.csv'
+
+
+  console.log(email)
   
   const deleteRow=async (id)=>{
     let result = await fetch(`http://localhost:4002/user/ftydeleteseminar/${id}`, {
@@ -16,7 +23,7 @@ function FtySeminars() {
       window.location.reload();
   }
 
-const utype = "0";
+
   const [data, setUserData] = useState([]);
   const userGet = async () => {
     const data = {
@@ -109,6 +116,25 @@ const utype = "0";
   );
 
 
+
+  function uploadbulk(){
+
+    const aTag=document.createElement("a");
+    aTag.href=url;
+    aTag.setAttribute("download","Faculty_Seminars");
+    document.body.appendChild(aTag);
+    aTag.click();
+    aTag.remove();
+    console.log(data[0].faculty_name)
+    
+    navigate("./FtySeminarCsv" ,{state:{
+      utype: utype,
+      email:email,
+
+   }})
+    
+    }
+
   //  console.log(data);
   function generatePDF() {
     const doc = new jsPDF();
@@ -188,9 +214,7 @@ const rows = filteredData.map(user=>[user.award_name,user.award_reason,user.date
          
         <div className="">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={generatePDF}>Generate PDF</button>
-            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("./FtySeminarCsv" ,{state:{
-               utype: utype,
-            }})} >Upload Data in Bulk</button>
+            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={uploadbulk} >Upload Data in Bulk</button>
           </div>
           <br />
           <div className="">

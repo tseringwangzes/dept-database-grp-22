@@ -6,9 +6,11 @@ const ftschema = new mongoose.Schema({
     award_reason: String,
     date: String,
     shared_with: String,
+    created_At: Date
     
 },
-    {
+    {   
+        timestamps: true,
         collection: "ft_award",
     }
 );

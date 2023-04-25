@@ -91,7 +91,7 @@ if(utype === "1"){
                 <h2 className={signupStyle["form-heading"]}>Add</h2>
                 <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
                     <div className={signupStyle["form-item"]} id="topic">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>topic</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Topic</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the Topic"
                             name="topic"
@@ -102,7 +102,7 @@ if(utype === "1"){
                     </div>
 
                     <div className={signupStyle["form-item"]} id="start_date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>start_date</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Start Date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the Start Date"
                             name="start_date"
@@ -113,7 +113,7 @@ if(utype === "1"){
                     </div>
 
                     <div className={signupStyle["form-item"]} id="end_date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>end_date</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>End Date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the End Date"
                             name="end_date"
@@ -125,9 +125,9 @@ if(utype === "1"){
                     </div>
 
                     <div className={signupStyle["form-item"]} id="country">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>country</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Country</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the date"
+                            placeholder="Enter Country"
                             name="country"
                             type="text"
                             value={formFields.country}
@@ -137,7 +137,7 @@ if(utype === "1"){
                     </div>
 
                     <div className={signupStyle["form-item"]} id="faculty_name">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>faculty_name</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Faculty Name</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the faculty_name"
                             name="faculty_name"
@@ -175,7 +175,7 @@ return (
                 <h2 className={signupStyle["form-heading"]}>Add</h2>
                 <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
                     <div className={signupStyle["form-item"]} id="topic">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>topic</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Topic</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the Topic"
                             name="topic"
@@ -186,7 +186,7 @@ return (
                     </div>
 
                     <div className={signupStyle["form-item"]} id="start_date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>start_date</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Start Date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the Start Date"
                             name="start_date"
@@ -197,7 +197,7 @@ return (
                     </div>
 
                     <div className={signupStyle["form-item"]} id="end_date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>end_date</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>End Date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the End Date"
                             name="end_date"
@@ -209,7 +209,7 @@ return (
                     </div>
 
                     <div className={signupStyle["form-item"]} id="country">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>country</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Country</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"
                             name="country"
@@ -221,7 +221,7 @@ return (
                     </div>
 
                     <div className={signupStyle["form-item"]} id="faculty_name">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>faculty_name</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Faculty Name</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the faculty_name"
                             name="faculty_name"

@@ -13,6 +13,9 @@ function Seminars() {
 
 const utype = "0";
 
+const url='http://localhost:3000/St_Seminar_Header.csv'
+
+
 const deleteRow=async (id)=>{
   let result= await fetch(`http://localhost:4002/user/deleteseminarid/${id}`,{
     method:"Delete"});
@@ -116,6 +119,25 @@ const deleteRow=async (id)=>{
     []
   );
 
+  function uploadbulk(){
+
+    const aTag=document.createElement("a");
+    aTag.href=url;
+    aTag.setAttribute("download","Student_Seminars");
+    document.body.appendChild(aTag);
+    aTag.click();
+    aTag.remove();
+    console.log(data[0].faculty_name)
+    
+    navigate("./StSeminarCsv" ,{state:{
+      utype: utype,
+      fname: data[0].faculty_name,
+
+   }})
+    
+    }
+    
+
   function generatePDF() {
     const doc = new jsPDF();
     fetch('https://akm-img-a-in.tosshub.com/aajtak/images/story/201502/iit_ropar_650_022415062015.jpg?size=948:533')
@@ -192,9 +214,7 @@ const rows = filteredData.map(user=>[user.award_name,user.award_reason,user.date
         <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
         <div className="">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={generatePDF}>Generate PDF</button>
-            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("./StSeminarCsv" ,{state:{
-               utype: utype,
-            }})} >Upload Data in Bulk</button>
+            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={uploadbulk} >Upload Data in Bulk</button>
           </div>
           <div className="">
           <br />
