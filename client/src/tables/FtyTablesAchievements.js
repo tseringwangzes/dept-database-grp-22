@@ -78,49 +78,50 @@ function FtyTablesAchievements({ columns, data,utype }) {
 
                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" style={{ marginLeft: "auto", }} onClick={() => navigate("/StaffHome/StaffFaculty/FtyAchievementAdd.js",{state:{utype:utype}})} >Add More</button>
             </div> <br />
-            <div className="pagination"  style={{position:'absolute',right:`${44}rem`}}>
-                              <button class="mr-2 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 text-white font-bold w-6 h-6 rounded-md"  onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+            <div className="pagination"  >
+                              <button class="mr-1 bg-gray-300 hover:bg-gray-400 focus:bg-blue-700 text-black font w-28 h-6 rounded-md"  onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
             
-                                {'<<'}
+                                {'Start Page'}
                               </button>{' '}
-                              <button class="mr-2 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 text-white font-bold w-6 h-6 rectangular-md"  onClick={() => previousPage()} disabled={!canPreviousPage}>
-                                {'<'}
+                              <button class="mr-2 bg-gray-300 hover:bg-gray-400 focus:bg-blue-700 text-black font w-16 h-6 rounded-md"  onClick={() => previousPage()} disabled={!canPreviousPage}>
+                                {'prev'}
                               </button>{' '}
-                              <button class="mr-2 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 text-white font-bold w-6 h-6 rectangular-md" onClick={() => nextPage()} disabled={!canNextPage}>
-                                {'>'}
-                              </button>{' '}
-                              <button class="mr-10 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 text-white font-bold w-6 h-6 rounded-md" onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-                                {'>>'}
-                              </button>{' '}
-                             
-            </div>
-            <div className="pagination1"  style={{position:'absolute',left:`${35}rem`}}>
-                      
                               <span class="mr-10">
                                 Page{' '}
                                 <strong>
                                   {state.pageIndex + 1} of {pageOptions.length}
                                 </strong>{' '}
                               </span>
-                              </div>
-                              <div  className="pagination2"  style={{position:'absolute',left:`${45}rem`}}>
+                              
+                              
                               <select
          value={state.pageSize}
           onChange={e => {
           setPageSize(Number(e.target.value));
            }}
-  className="bg-gray-400 hover:bg-white-600 focus:bg-gray-400 text-white font-bold w-18 h-9 rounded-none flex justify-center items-center"
-  >
-  {[5, 10, 20].map(pageSize => (
-    <option
-      key={pageSize}
-      value={pageSize}
-      className="text-white font-bold" 
-    >
-      {"Show "}{pageSize}
-    </option>
-  ))}
-</select>
+  className="mr-4 bg-gray-100 hover:bg-white-600 focus:bg-white-300 text-black font w-18 h-6 rounded-none flex justify-center items-center"
+                                               >
+                                       {[5, 10, 20].map(pageSize => (
+                                                       <option
+                                                  key={pageSize}
+                                                value={pageSize}
+                                          className="text-black font" 
+                                                >
+                                            {"Show "}{pageSize}
+                                     </option>
+                                      ))}
+                                </select>
+
+                              <button class="mr-1 bg-gray-300 hover:bg-gray-400 focus:bg-blue-700 text-black font w-16 h-6 rounded-md" onClick={() => nextPage()} disabled={!canNextPage}>
+                                {'next'}
+                              </button>{' '}
+                              <button class="mr-10 bg-gray-300 hover:bg-gray-400 focus:bg-blue-700 text-black font w-28 h-6 rounded-md" onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+                                {'End Page'}
+                              </button>{' '}
+                             
+           
+            
+                            
                             </div>
       
       
