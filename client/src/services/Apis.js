@@ -50,6 +50,11 @@ export const addmorefunction = async(data)=>{
     return await commonrequest("POST",`${BACKEND_URL}/user/adddata`,data)
 }
 
+export const ft_home = async (email) => {
+    return await commonrequest("GET", `${BACKEND_URL}/user/faculty/home?email=${email}`);
+  }
+  
+
 export const ft_awards = async()=>{
     return await commonrequest("GET",`${BACKEND_URL}/user/faculty/awards`,);
 }

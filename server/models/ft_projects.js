@@ -9,6 +9,7 @@ const ftprojects = new mongoose.Schema({
 },
     {
         collection: "ft_projects",
+        timestamps: true
     }
 );
 

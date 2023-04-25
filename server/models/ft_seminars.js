@@ -12,6 +12,7 @@ const ftschema = new mongoose.Schema({
 },
     {
         collection: "ft_seminars",
+        timestamps: true
     }
 );
 

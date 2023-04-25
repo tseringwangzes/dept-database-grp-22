@@ -11,6 +11,7 @@ const stachieve = new mongoose.Schema({
 },
     {
         collection: "stachievements",
+        timestamps: true
     }
 );
 

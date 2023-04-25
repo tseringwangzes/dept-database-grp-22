@@ -13,6 +13,7 @@ const staforeign = new mongoose.Schema({
 },
     {
         collection: "stforeign",
+        timestamps: true
     }
 );
 
