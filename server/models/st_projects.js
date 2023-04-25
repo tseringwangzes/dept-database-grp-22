@@ -13,6 +13,7 @@ const stprojects = new mongoose.Schema({
 },
     {
         collection: "stprojects",
+        timestamps: true
     }
 );
 

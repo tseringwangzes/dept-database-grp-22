@@ -9,8 +9,49 @@ import jsPDF from 'jspdf';
 
 function StaffFaculty() {
   const navigate = useNavigate();
-  var email = localStorage.getItem('email');
-  const utype = "1";
+  var email = sessionStorage.getItem('email');
+  const utype = "2";
+
+  const url='http://localhost:3000/Staff_St_Achievement_Header.csv'
+  const url2='http://localhost:3000/Staff_Fty_Achievement_Header.csv'
+
+
+  function uploadbulk(){
+
+    const aTag=document.createElement("a");
+    aTag.href=url;
+    aTag.setAttribute("download","Student_Achievements");
+    document.body.appendChild(aTag);
+    aTag.click();
+    aTag.remove();
+    console.log(data[0].faculty_name)
+    
+    navigate("/Profile/Achievements/StAchievementCsv" ,{state:{
+      utype: utype,
+   }})
+  }
+
+  function uploadbulk2(){
+
+    const aTag=document.createElement("a");
+    aTag.href=url2;
+    aTag.setAttribute("download","Faculty_Achievements");
+    document.body.appendChild(aTag);
+    aTag.click();
+    aTag.remove();
+    console.log(data[0].faculty_name)
+    
+    navigate("/faculty/Achievements/FtyAchievementCsv",{state:{utype:utype}} )
+    
+    }
+
+  const deleteRowst=async (id)=>{
+    let result= await fetch(`http://localhost:4002/user/achdeleteid/${id}`,{
+      method:"Delete"});
+     // result=await result.json()
+      window.location.reload();
+  }
+
   const [data, setUserData] = useState([]);
   const userGet = async () => {
     const response = await st_ach();
@@ -39,10 +80,6 @@ function StaffFaculty() {
         accessor: "achievements",
       },
       {
-        Header: "Year",
-        accessor: "year",
-      },
-      {
         Header: "Date",
         accessor: "date",
       },
@@ -66,7 +103,6 @@ function StaffFaculty() {
                 faculty_name: original.faculty_name,
                 student_name: original.student_name,
                 achievements: original.achievements,
-                year: original.year,
                 date: original.date,
                 shared_with: original.shared_with,
                 id: original._id,
@@ -77,10 +113,30 @@ function StaffFaculty() {
 
 
         }
+      },
+      {
+        Header: 'Delete',
+        Cell: props => {
+          const { original } = props.cell.row;
+          return (<div>
+
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() =>deleteRowst(original._id)}>Delete</button>
+          </div>);
+
+
+        }
       }
     ],
     []
   );
+
+  const deleteRow=async (id)=>{
+    let result = await fetch(`http://localhost:4002/user/ftydeleteachievements/${id}`, {
+      method:"Delete"});
+     // result=await result.json()
+      window.location.reload();
+  }
+
 
   function generatePDF() {
     const doc = new jsPDF();
@@ -174,10 +230,6 @@ function StaffFaculty() {
         accessor: "Achievements",
       },
       {
-        Header: "Year",
-        accessor: "year",
-      },
-      {
         Header: "Date",
         accessor: "date",
       },
@@ -189,22 +241,33 @@ function StaffFaculty() {
         Header: 'Edit',
         Cell: props => {
           const { original } = props.cell.row;
-          return (
-            <div>
-              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() => navigate("./FtyAchievementsEdit.js/" + original._id, {
-                state: {
-                  faculty_name: original.faculty_name,
-                  Achievements: original.Achievements,
-                  year: original.year,
-                  date: original.date,
-                  shared_with: original.shared_with,
-                  id: original._id,
-                  utype: utype
-                }
-              })}>Edit</button>
-            </div>);
+return(
+          <div>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() => navigate("./FtyAchievementsEdit.js/"+original._id, {
+              state: {
+                faculty_name:original.faculty_name,
+                Achievements: original.Achievements,
+                date: original.date,
+                shared_with: original.shared_with,
+                id:original._id,
+				utype:utype
+              }
+            })}>Edit</button>
+          </div>);
         }
 
+      },
+      {
+        Header: 'Delete',
+        Cell: props => {
+          const { original } = props.cell.row;
+          return (<div>
+
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() =>deleteRow(original._id)}>Delete</button>
+          </div>);
+
+
+        }
       }
     ],
     []
@@ -281,11 +344,7 @@ function StaffFaculty() {
         <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
           <div className="">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={generatePDF}>Generate PDF</button>
-            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full " onClick={() => navigate("/Profile/Achievements/StAwardCsv", {
-              state: {
-                utype: utype,
-              }
-            })} >Upload Data in Bulk</button>
+            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={uploadbulk} >Upload Data in Bulk</button>
           </div>
           <br></br>
           <div className="">
@@ -297,7 +356,7 @@ function StaffFaculty() {
           <br />
           <div className="">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={FtygeneratePDF}>Generate PDF</button>
-            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full " onClick={() => navigate("/faculty/Achievements/FtyAchievementsCsv", { state: { utype: utype } })} >Upload Data in Bulk</button>
+            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={uploadbulk2} >Upload Data in Bulk</button>
 
           </div>
           <br></br>

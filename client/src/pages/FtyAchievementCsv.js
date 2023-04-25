@@ -46,6 +46,9 @@ function FtyAchievementCsv(){
           else if(utype==='1' || utype==='4'){
             navigate('/Admin/AdminFaculty');
           }
+          else if(utype==='2'){
+            navigate('/StaffHome/StaffFaculty');
+          }
           window.location.reload();
   
         }

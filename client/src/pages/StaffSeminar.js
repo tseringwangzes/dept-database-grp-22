@@ -9,8 +9,11 @@ import jsPDF from 'jspdf';
 
 function StaffSeminar() {
   const navigate = useNavigate();
-  const email = localStorage.getItem('email');
-  const utype = "1";
+
+  const utype = "2";
+  const url='http://localhost:3000/Staff_St_Seminar_Header.csv'
+  const url2='http://localhost:3000/Staff_Fty_Seminar_Header.csv'
+
   const [data, setUserData] = useState([]);
   const userGet = async () => {
     const response = await st_semi();
@@ -26,6 +29,21 @@ function StaffSeminar() {
     setTimeout(() => {
     }, 1200)
   }, [])
+
+
+  const deleteRow=async (id)=>{
+    let result = await fetch(`http://localhost:4002/user/ftydeleteseminar/${id}`, {
+      method:"Delete"});
+     // result=await result.json()
+      window.location.reload();
+  }
+
+  const deleteRowst=async (id)=>{
+    let result= await fetch(`http://localhost:4002/user/deleteseminarid/${id}`,{
+      method:"Delete"});
+     // result=await result.json()
+      window.location.reload();
+  }
 
 
   const columns = React.useMemo(
@@ -80,7 +98,6 @@ function StaffSeminar() {
                 student_name: original.student_name,
                 title: original.title,
                 type: original.type,
-                year: original.year,
                 date: original.date,
                 venue: original.venue,
                 chief_guest: original.chief_guest,
@@ -93,12 +110,53 @@ function StaffSeminar() {
           </div>);
         }
 
+      },
+      {
+        Header: 'Delete',
+        Cell: props => {
+          const { original } = props.cell.row;
+          return (<div>
+
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() =>deleteRowst(original._id)}>Delete</button>
+          </div>);
+
+
+        }
       }
     ],
     []
   );
 
+  function uploadbulk2(){
 
+    const aTag=document.createElement("a");
+    aTag.href=url2;
+    aTag.setAttribute("download","Faculty_Seminars");
+    document.body.appendChild(aTag);
+    aTag.click();
+    aTag.remove();
+    console.log(data[0].faculty_name)
+    
+   navigate("/faculty/Seminars/FtySeminarCsv",{state:{utype:utype}} )
+    
+    }
+
+
+  function uploadbulk(){
+
+    const aTag=document.createElement("a");
+    aTag.href=url;
+    aTag.setAttribute("download","Student_Seminars");
+    document.body.appendChild(aTag);
+    aTag.click();
+    aTag.remove();
+    console.log(data[0].faculty_name)
+    
+   navigate("/Profile/Seminars/StSeminarCsv" ,{state:{
+      utype: utype,
+   }})
+    
+    }
 
 
   const [data2, setUserData2] = useState([]);
@@ -164,7 +222,6 @@ function StaffSeminar() {
                 faculty_name: original.faculty_name,
                 title: original.title,
                 type: original.type,
-                year: original.year,
                 date: original.date,
                 venue: original.venue,
                 chief_guest: original.chief_guest,
@@ -177,6 +234,18 @@ function StaffSeminar() {
           </div>);
         }
 
+      },
+      {
+        Header: 'Delete',
+        Cell: props => {
+          const { original } = props.cell.row;
+          return (<div>
+
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() =>deleteRow(original._id)}>Delete</button>
+          </div>);
+
+
+        }
       }
     ],
     []
@@ -319,9 +388,7 @@ const rows = data2.map(user=>[user.faculty_name,user.type,user.title,user.date,u
         <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
         <div className="">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={generatePDF}>Generate PDF</button>
-            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("/Profile/Seminars/StSeminarCsv" ,{state:{
-               utype: utype,
-            }})} >Upload Data in Bulk</button>
+            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={uploadbulk} >Upload Data in Bulk</button>
           </div>
           <br></br>
           <div className="">
@@ -333,7 +400,7 @@ const rows = data2.map(user=>[user.faculty_name,user.type,user.title,user.date,u
           <br/>
           <div className="">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={FtygeneratePDF}>Generate PDF</button>
-            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("/faculty/Seminars/FtySeminarCsv",{state:{utype:utype}} )} >Upload Data in Bulk</button>
+            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={uploadbulk2} >Upload Data in Bulk</button>
 
           </div>
           <br></br>

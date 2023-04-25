@@ -48,6 +48,9 @@ function FtyPublicationCsv(){
           else if(utype==='1' || utype==='4'){
             navigate('/Admin/AdminPublications');
           }
+          else if(utype==='2'){
+            navigate('/StaffHome/StaffPublications');
+          }
           window.location.reload();
         }
       });

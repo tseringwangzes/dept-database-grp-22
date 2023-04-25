@@ -38,11 +38,13 @@ function StSeminarCsv(){
       
           console.log("Finished:", results.data[0].faculty_name);
           for(const entry of data){
-            if(utype==='0')
-           { entry.status="pending..";}
-           else if(utype==='4' || utype==='1')
+            if(utype==='0') {
+               entry.status="pending..";
+               entry.faculty_name=fname;
+              }
+           else if(utype==='4' || utype==='1' || utype==='2')
            { entry.status="verified";}
-            entry.faculty_name=fname;
+           
            }
           st_seminar_csv(data);
               alert("sucessfully uploaded!");
@@ -50,6 +52,9 @@ function StSeminarCsv(){
               navigate('/Profile/Seminars');}
               else if(utype==='4' || utype==='1'){
                 navigate('/Admin/AdminSeminar');
+                }
+                else if(utype==='2'){
+                  navigate('/StaffHome/StaffSeminar');
                 }
               window.location.reload();
   

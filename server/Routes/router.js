@@ -52,6 +52,7 @@ router.post("/user/st_publication_csv", controllers.st_publication_csv);
 router.post("/user/st_project_csv", controllers.st_project_csv);
 
 
+router.get("/user/faculty/home", controllers.facultyHome);
 router.get("/user/faculty/awards",controllers.facultygetawards);
 router.get("/user/faculty/achievements",controllers.facultygetachievements);
 router.get("/user/faculty/seminars",controllers.facultygetseminars);

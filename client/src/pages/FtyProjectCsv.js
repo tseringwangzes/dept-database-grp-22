@@ -46,6 +46,9 @@ function FtyProjectCsv(){
           else if(utype==='1' || utype==='4'){
           navigate('/Admin/AdminProject');
           }
+          else if(utype==='2'){
+            navigate('/StaffHome/StaffProject');
+              }
           window.location.reload();
   
         }

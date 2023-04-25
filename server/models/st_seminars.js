@@ -15,6 +15,7 @@ const stseminar = new mongoose.Schema({
 },
     {
         collection: "staseminars",
+        timestamps: true
     }
 );
 

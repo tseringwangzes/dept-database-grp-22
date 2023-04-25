@@ -13,7 +13,7 @@ function StaffFaculty() {
   const [data, setUserData] = useState([]);
 
   const deleteRowst=async (id)=>{
-    let result= await fetch(`http://localhost:4002/user/deleteid/${id}`,{
+    let result= await fetch(`http://localhost:4002/user/achdeleteid/${id}`,{
       method:"Delete"});
      // result=await result.json()
       window.location.reload();
@@ -98,11 +98,12 @@ function StaffFaculty() {
   );
 
   const deleteRow=async (id)=>{
-    let result= await fetch(`http://localhost:4002/user/ftydeleteaward/${id}`,{
+    let result = await fetch(`http://localhost:4002/user/ftydeleteachievements/${id}`, {
       method:"Delete"});
      // result=await result.json()
       window.location.reload();
   }
+
 
 
   const [data2, setUserData2] = useState([]);

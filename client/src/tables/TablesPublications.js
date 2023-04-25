@@ -159,7 +159,7 @@ function TablesPublications({ columns, data,utype}) {
                                 >
                                     {page.map((row, i) => {
                                         prepareRow(row);
-                                        if(utype === "1"){
+                                        if(utype === "1" || utype === "2"){
                                             return (
                                                 <tr {...row.getRowProps()}>
                                                  

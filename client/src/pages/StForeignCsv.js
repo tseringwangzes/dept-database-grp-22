@@ -42,11 +42,14 @@ function StForeignCsv(){
       
         for(const entry of data){
           if(utype==='0')
-         { entry.status="pending..";}
-         else if(utype==='4' || utype==='1')
+         { entry.status="pending..";
+         entry.faculty_name=fname;}
+         else if(utype==='4' || utype==='1'|| utype==='2')
          { entry.status="verified";}
-          entry.faculty_name=fname;
-         }  //           const dateObject = new Date(results.data[0].date);
+       
+         } 
+         
+         //           const dateObject = new Date(results.data[0].date);
         // const isoDate = dateObject.toISOString();
         // results.data[0].date = isoDate;
         st_foreign_csv(data);
@@ -57,6 +60,9 @@ function StForeignCsv(){
             else if(utype==='4' || utype==='1'){
               navigate('/Admin/AdminForeign');
             }
+            else if(utype==='2'){
+              navigate('/StaffHome/StaffForeign');
+              }
             window.location.reload();
     
 

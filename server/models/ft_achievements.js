@@ -8,6 +8,7 @@ const ft_achieve = new mongoose.Schema({
 },
     {
         collection: "ft_achievements",
+        timestamps: true
     }
 );
 

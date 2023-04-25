@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 export default class FtySidebar extends Component {
     render() {
         const faculty_name = this.props.faculty_name;
-        console.log(faculty_name);             
+        //console.log(faculty_name);             
         {  
             return (
 

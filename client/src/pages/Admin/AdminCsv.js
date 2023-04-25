@@ -44,10 +44,6 @@ function StaffCsv() {
         accessor: "student_name",
       },
       {
-        Header: "Year",
-        accessor: "year",
-      },
-      {
         Header: "Date",
         accessor: "date",
       },
@@ -88,10 +84,6 @@ function StaffCsv() {
       {
         Header: "Faculty Name",
         accessor: "faculty_name",
-      },
-      {
-        Header: "Year",
-        accessor: "year",
       },
       {
         Header: "Date",

@@ -35,7 +35,8 @@ function FtyAwardCsv(){
         header: true, complete: function (results) {
           let data=results.data;
         
-      if(utype==='0')  {  for(const entry of data){
+      if(utype==='0')  { 
+         for(const entry of data){
             entry.faculty_name=email;
           }}
 
@@ -46,6 +47,9 @@ function FtyAwardCsv(){
           navigate('/faculty/Awards');}
           else if(utype==='1' || utype==='4'){
             navigate('/Admin/AdminStudent');
+          }
+          else if(utype==='2'){
+            navigate('/StaffHome/StaffStudent');
           }
           window.location.reload();
         }
