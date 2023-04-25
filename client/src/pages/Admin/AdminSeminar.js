@@ -388,7 +388,7 @@ const rows = data.map(user=>[user.faculty_name,user.award_name,user.award_reason
           <br/>
           <div className="">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={FtygeneratePDF}>Generate PDF</button>
-            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("/faculty/FtySeminars/FtySeminarCsv",{state:{utype:utype}} )} >Upload Data in Bulk</button>
+            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("/faculty/Seminars/FtySeminarCsv",{state:{utype:utype}} )} >Upload Data in Bulk</button>
 
           </div>
           <br></br>
