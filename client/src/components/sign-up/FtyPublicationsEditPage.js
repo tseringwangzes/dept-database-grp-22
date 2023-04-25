@@ -38,7 +38,7 @@ const FtyPublicationsEditPage = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { topic,date, collaboration,faculty_name } = formFields;
+        const { topic,published_date,accepted_date, collaboration,faculty_name } = formFields;
         if (topic === "") {
 
             toast.error("Enter topic Name")
@@ -88,8 +88,8 @@ const FtyPublicationsEditPage = () => {
                         />
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>published_date</label>
+                    <div className={signupStyle["form-item"]} id="published_date">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Published Date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"
                             name="published_date"
@@ -99,11 +99,11 @@ const FtyPublicationsEditPage = () => {
                         />
 
                     </div>
-                    <div className={signupStyle["form-item"]} id="date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>accepted_date</label>
+                    <div className={signupStyle["form-item"]} id="accepted_date">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Accepted Date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"
-                            name="date"
+                            name="accepted_date"
                             type="date"
                             value={formFields.accepted_date}
                             onChange={hanldeInputValueChange}
@@ -112,7 +112,7 @@ const FtyPublicationsEditPage = () => {
                     </div>
 
                     <div className={signupStyle["form-item"]} id="collaboration">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>collaboration</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Collaboration</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="collaboration with whom"
                             name="collaboration"

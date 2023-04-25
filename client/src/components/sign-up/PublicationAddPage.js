@@ -200,7 +200,7 @@ else{
                         />
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="date">
+                    <div className={signupStyle["form-item"]} id="published_date">
                         <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>published_date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"
@@ -212,7 +212,7 @@ else{
 
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="date">
+                    <div className={signupStyle["form-item"]} id="accepted_date">
                         <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>accepted_date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"
