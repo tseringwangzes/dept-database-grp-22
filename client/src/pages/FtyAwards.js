@@ -177,7 +177,7 @@ function FtyAwards() {
       doc.setFont("helvetica", "normal");
       doc.text("CSE", 72, 70);
       
-      const columns = [["Award Name", "Award Reason", "Date","Shared With","Status"]];
+      const columns = [["Award Name", "Award Reason", "Date","Shared With"]];
       const filteredData = data.filter(item => item.faculty_name === email);
   
   const rows = filteredData.map(user=>[user.award_name,user.award_reason,user.date,user.shared_with]);
