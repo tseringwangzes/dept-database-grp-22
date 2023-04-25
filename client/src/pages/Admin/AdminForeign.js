@@ -335,8 +335,8 @@ const rows = data.map(user=>[user.award_name,user.award_reason,user.date,user.sh
         <Sidebar />
         <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
         <div className="">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={generatePDF}>Generate PDF</button>
-            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("/Profile/Foreign/StForeignCsv",{state:{utype:utype}} )} >Upload Data in Bulk</button>
+            {/* <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={generatePDF}>Generate PDF</button> */}
+            <button class="p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("/Profile/Foreign/StForeignCsv",{state:{utype:utype}} )} >Upload Data in Bulk</button>
             </div>
           <br></br>
           <div className="">
@@ -347,8 +347,8 @@ const rows = data.map(user=>[user.award_name,user.award_reason,user.date,user.sh
           </div>
           <br/>
           <div className="">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={FtygeneratePDF}>Generate PDF</button>
-            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("/faculty/foreign/FtyForeignCsv",{state:{utype:utype}} )} >Upload Data in Bulk</button>
+            {/* <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={FtygeneratePDF}>Generate PDF</button> */}
+            <button class="p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("/faculty/foreign/FtyForeignCsv",{state:{utype:utype}} )} >Upload Data in Bulk</button>
 
           </div>
           <br></br>
