@@ -157,11 +157,11 @@ function Projects() {
     doc.line(10, 38, pageWidth - 10, 38);
     doc.setFontSize(12);
     doc.setFont("helvetica", "bold");
-    doc.text("AWARDS LIST", pageWidth / 2, 45, {
+    doc.text("PROJECT GRANTS LIST", pageWidth / 2, 45, {
       align: "center"
     });
     doc.setLineWidth(0.2);
-    doc.line(90, 46, pageWidth - 90, 46);
+    doc.line(83, 46, pageWidth - 83, 46);
     doc.setFont("helvetica", "bold");
     doc.text("Student Name", 20, 60);
     doc.text(":", 70, 60);
@@ -178,10 +178,10 @@ function Projects() {
     doc.setFont("helvetica", "normal");
     doc.text("PhD, CSE", 72, 70);
     
-    const columns = [["Award Name", "Award Reason", "Date","Shared With","Status"]];
+    const columns = [["Topic", "Date", "Granted Money","Description","Collaboration With","Status"]];
     const filteredData = data.filter(item => item.student_name === email);
 
-const rows = filteredData.map(user=>[user.award_name,user.award_reason,user.date,user.shared_with,user.status]);
+const rows = filteredData.map(user=>[user.topic,user.date,user.granted_money,user.description,user.collaboration,user.status]);
     doc.autoTable({
       head: columns,
       body: rows,

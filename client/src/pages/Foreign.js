@@ -180,7 +180,7 @@ function Foreign() {
         const columns = [["Topic", "Start Date", "End Date","Country","Faculty accompanied"]];
         const filteredData = data.filter(item => item.student_name === email);
     
-    const rows = filteredData.map(user=>[user.topic,user.start_date,user.end_date,user.country,user.faculty_name]);
+    const rows = filteredData.map(user=>[user.topic,user.start_date,user.end_date,user.country,user.faculty_name,user.status]);
         doc.autoTable({
           head: columns,
           body: rows,
