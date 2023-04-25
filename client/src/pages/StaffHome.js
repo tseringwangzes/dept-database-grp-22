@@ -1,26 +1,10 @@
-import React, { Component, useEffect, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import { userfunc } from '../services/Apis'
-import Table, { StatusPill } from "./Table2";
+import React, { useRef } from "react";
 import Sidebar from "../components/staffSide";
 import ReactToPrint from "react-to-print";
 import { ComponentToPrint } from "./ComponentToPrint";
+
 function StaffHome() {
-  const navigate = useNavigate();
   let componentRef = useRef();
-
-  //  console.log(data);
-
-  // return (
-  //   <div>
-  //     <ReactToPrint
-  //       trigger={() => <button>Print this out!</button>}
-  //       content={() => componentRef.current}
-  //     />
-  //     <ComponentToPrint ref={componentRef} />
-  //   </div>
-  // );
-  // };
 
   return (
     <>
@@ -35,6 +19,7 @@ function StaffHome() {
             <ReactToPrint
               trigger={() => <button>Print this out!</button>}
               content={() => componentRef.current}
+              documentTitle="BOG MEETING DATA"
             />
             {/* <div className="hidden"> */}
           <ComponentToPrint ref={componentRef} />

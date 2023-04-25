@@ -11,6 +11,7 @@ function FtyAwardCsv(){
     const navigate = useNavigate();
     const { state } = useLocation();
     const utype = state.utype;
+    const email=state.email;
 
     var file;
 
@@ -30,11 +31,16 @@ function FtyAwardCsv(){
         delimiter: ',',
         skipEmptyLines: true,
   
-        columns: ['faculty_name', 'award_name','award_reason', 'date', 'shared_with'],
+        columns: ['award_name','award_reason', 'date', 'shared_with'],
         header: true, complete: function (results) {
-  
+          let data=results.data;
+        
+      if(utype==='0')  {  for(const entry of data){
+            entry.faculty_name=email;
+          }}
+
           console.log("Finished:", results.data);
-          fty_award_csv(results.data);
+          fty_award_csv(data);
           alert("sucessfully uploaded!");
           if(utype==='0'){
           navigate('/faculty/Awards');}

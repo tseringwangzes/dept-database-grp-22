@@ -10,6 +10,9 @@ function Achievements() {
   var email = localStorage.getItem('email');
 const utype = "0";
 
+const url='http://localhost:3000/St_Achievement_Header.csv'
+
+
 const deleteRow=async (id)=>{
   let result= await fetch(`http://localhost:4002/user/achdeleteid/${id}`,{
     method:"Delete"});
@@ -98,6 +101,23 @@ const deleteRow=async (id)=>{
     []
   );
 
+
+  function uploadbulk(){
+
+const aTag=document.createElement("a");
+aTag.href=url;
+aTag.setAttribute("download","Student_Achievements");
+document.body.appendChild(aTag);
+aTag.click();
+aTag.remove();
+console.log(data[0].faculty_name)
+
+  navigate("./StAchievementCsv" ,{state:{
+               utype: utype,
+               fname: data[0].faculty_name,
+            }})
+          }
+
   function generatePDF() {
     const doc = new jsPDF();
     fetch('https://akm-img-a-in.tosshub.com/aajtak/images/story/201502/iit_ropar_650_022415062015.jpg?size=948:533')
@@ -127,7 +147,7 @@ const deleteRow=async (id)=>{
     doc.line(10, 38, pageWidth - 10, 38);
     doc.setFontSize(12);
     doc.setFont("helvetica", "bold");
-    doc.text("AWARDS LIST", pageWidth / 2, 45, {
+    doc.text("ACHIEVEMENTS LIST", pageWidth / 2, 45, {
       align: "center"
     });
     doc.setLineWidth(0.2);
@@ -148,10 +168,10 @@ const deleteRow=async (id)=>{
     doc.setFont("helvetica", "normal");
     doc.text("PhD, CSE", 72, 70);
     
-    const columns = [["Award Name", "Award Reason", "Date","Shared With","Status"]];
+    const columns = [["Achievement", "Date","Shared With","Status"]];
     const filteredData = data.filter(item => item.student_name === email);
 
-const rows = filteredData.map(user=>[user.award_name,user.award_reason,user.date,user.shared_with,user.status]);
+const rows = filteredData.map(user=>[user.achievements,user.date,user.shared_with,user.status]);
     doc.autoTable({
       head: columns,
       body: rows,
@@ -175,9 +195,7 @@ const rows = filteredData.map(user=>[user.award_name,user.award_reason,user.date
         <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
         <div className="">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={generatePDF}>Generate PDF</button>
-            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("./StAchievementCsv" ,{state:{
-               utype: utype,
-            }})} >Upload Data in Bulk</button>
+            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={uploadbulk} >Upload Data in Bulk</button>
           </div>
           <div className="">
           <br />
