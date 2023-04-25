@@ -161,7 +161,7 @@ function FtyPublications() {
       doc.setFont("helvetica", "normal");
       doc.text(email, 72, 65);
       doc.setFont("helvetica", "bold");
-      doc.text("Faculty Programme", 20, 70);
+      doc.text("Faculty Department", 20, 70);
       doc.text(": ", 70, 70);
       doc.setFont("helvetica", "normal");
       doc.text("CSE", 72, 70);
