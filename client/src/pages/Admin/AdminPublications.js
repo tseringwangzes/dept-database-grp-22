@@ -10,7 +10,6 @@ import FtyTablesPublications from "../../tables/FtyTablesPublications";
 export default function StaffStudent() {
   const navigate = useNavigate();
   const utype = "4";
-  const utype = "4";
 
   const url2='http://localhost:3000/Staff_Fty_Publication_Header.csv'
   const url='http://localhost:3000/Staff_St_Publication_Header.csv'
