@@ -10,7 +10,40 @@ import jsPDF from 'jspdf';
 
 function StaffForeign() {
   const navigate = useNavigate();
-  const utype = "1";
+  const utype = "4";
+
+  const url='http://localhost:3000/Staff_St_Foreign_Header.csv'
+  const url2='http://localhost:3000/Staff_Fty_Foreign_Header.csv'
+
+
+  
+  function uploadbulk(){
+
+    const aTag=document.createElement("a");
+    aTag.href=url;
+    aTag.setAttribute("download","Student_Foreign_Visits");
+    document.body.appendChild(aTag);
+    aTag.click();
+    aTag.remove();
+    console.log(data[0].faculty_name)
+    
+    navigate("/Profile/Foreign/StForeignCsv",{state:{utype:utype}} )
+    
+    }
+
+    function uploadbulk2(){
+
+      const aTag=document.createElement("a");
+      aTag.href=url2;
+      aTag.setAttribute("download","Faculty_Foreign_visits");
+      document.body.appendChild(aTag);
+      aTag.click();
+      aTag.remove();
+      console.log(data[0].faculty_name)
+      
+      navigate("/faculty/foreign/FtyForeignCsv",{state:{utype:utype}} )
+      
+      }
 
   const deleteRowst=async (id)=>{
     let result= await fetch(`http://localhost:4002/user/foreigndeleteid/${id}`,{
@@ -336,7 +369,7 @@ const rows = data.map(user=>[user.award_name,user.award_reason,user.date,user.sh
         <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
         <div className="">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={generatePDF}>Generate PDF</button>
-            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("/Profile/Foreign/StForeignCsv",{state:{utype:utype}} )} >Upload Data in Bulk</button>
+            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={uploadbulk} >Upload Data in Bulk</button>
             </div>
           <br></br>
           <div className="">
@@ -348,7 +381,7 @@ const rows = data.map(user=>[user.award_name,user.award_reason,user.date,user.sh
           <br/>
           <div className="">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={FtygeneratePDF}>Generate PDF</button>
-            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("/faculty/foreign/FtyForeignCsv",{state:{utype:utype}} )} >Upload Data in Bulk</button>
+            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={uploadbulk2} >Upload Data in Bulk</button>
 
           </div>
           <br></br>

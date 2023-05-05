@@ -99,6 +99,7 @@ const Register = () => {
             </div>
             
             <button className={registerStyle.btn} onClick={handleSubmit}>Sign Up</button>
+            
             {/* <p className={registerStyle.para}>Already Registered? <NavLink to="/Login">Login</NavLink> </p> */}
           </form>
         </div>

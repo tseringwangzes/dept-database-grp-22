@@ -10,7 +10,10 @@ import jsPDF from 'jspdf';
 function StaffStudent() {
   const navigate = useNavigate();
   var email = localStorage.getItem('email');
-  const utype = "1";
+  const utype = "4";
+  const url='http://localhost:3000/Staff_St_Award_Header.csv'
+  const url2='http://localhost:3000/Staff_Fty_Award_Header.csv'
+
   const [data, setUserData] = useState([]);
 
   const deleteRowst=async (id)=>{
@@ -19,6 +22,36 @@ function StaffStudent() {
      // result=await result.json()
       window.location.reload();
   }
+
+  function uploadbulk2(){
+
+    const aTag=document.createElement("a");
+    aTag.href=url2;
+    aTag.setAttribute("download","Faculty_Awards");
+    document.body.appendChild(aTag);
+    aTag.click();
+    aTag.remove();
+    console.log(data[0].faculty_name)
+    
+    navigate("/faculty/Awards/FtyAwardCsv",{state:{utype:utype}} )
+    
+    }
+
+  function uploadbulk(){
+
+const aTag=document.createElement("a");
+aTag.href=url;
+aTag.setAttribute("download","Student_Awards");
+document.body.appendChild(aTag);
+aTag.click();
+aTag.remove();
+console.log(data[0].faculty_name)
+
+ navigate("/Profile/Awards/StAwardCsv" ,{state:{
+               utype: utype,
+            }})
+
+}
 
   const userGet = async () => {
     const response = await userfunc(data);
@@ -343,9 +376,7 @@ const rows = data.map(user=>[user.faculty_name,user.award_name,user.award_reason
         <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
         <div className="">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={generatePDF}>Generate PDF</button>
-            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("/Profile/Awards/StAwardCsv" ,{state:{
-               utype: utype,
-            }})} >Upload Data in Bulk</button>
+            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={uploadbulk} >Upload Data in Bulk</button>
           </div>
           <br></br>
           <div className="">
@@ -357,7 +388,7 @@ const rows = data.map(user=>[user.faculty_name,user.award_name,user.award_reason
           <br/>
           <div className="">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={FtygeneratePDF}>Generate PDF</button>
-            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("/faculty/Awards/FtyAwardCsv",{state:{utype:utype}} )} >Upload Data in Bulk</button>
+            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={uploadbulk2} >Upload Data in Bulk</button>
 
           </div>
           <br></br>
