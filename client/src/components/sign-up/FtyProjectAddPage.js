@@ -12,7 +12,7 @@ var email = localStorage.getItem('email');
     const {state} = useLocation();
     const utype = state.utype;
     var defaultFormFields={};
-    if(utype === "1"){
+    if(utype === "1" || utype === "4"){
         defaultFormFields = {
             faculty_name:"",
             topic: "",
@@ -49,7 +49,7 @@ var email = localStorage.getItem('email');
         else {
             const response = await FtyEditProjects(formFields);
             if (response.status === 200) {
-                if(utype === "1"){
+                if(utype === "1" || utype === "4"){
                 setFormFields({
                     ...formFields, 
                     faculty_name:"",
@@ -58,7 +58,7 @@ var email = localStorage.getItem('email');
                     granted_money: "",
                     status: "",
                 });
-                navigate("/StaffHome/StaffProject")
+               
             }
             else{
                 setFormFields({
@@ -69,6 +69,15 @@ var email = localStorage.getItem('email');
                     granted_money: "",
                     status: "",
                 });
+                
+            }
+            if(utype === "1"){
+                navigate("/StaffHome/StaffProject")
+            }
+            else if(utype === "4"){
+                navigate("/Admin/AdminProject")
+            }
+            else{
                 navigate("/faculty/Projects")
             }
             }
@@ -78,7 +87,7 @@ var email = localStorage.getItem('email');
         }
     };
 
-if(utype === "1"){
+if(utype === "1" || utype === "4"){
     return (
         <body className={signupStyle.rooted}>
             <section className={signupStyle["form-container"]}>

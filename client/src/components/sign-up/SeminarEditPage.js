@@ -69,6 +69,9 @@ const utype = state.utype;
         if(utype === "1"){
           navigate("/StaffHome/StaffSeminar")
         }
+        else if(utype === "4"){
+          navigate("/Admin/AdminSeminar")
+        }
         else{
         navigate("/Profile/Seminars")
         }

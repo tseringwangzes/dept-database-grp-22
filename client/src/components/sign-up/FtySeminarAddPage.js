@@ -12,7 +12,7 @@ const FtySeminarAddPage = () => {
     const {state} = useLocation();
     const utype = state.utype;
     var defaultFormFields = {};
-    if(utype === "1"){
+    if(utype === "1" || utype === "4"){
         defaultFormFields = {
             faculty_name: "",
             title: "",
@@ -55,7 +55,7 @@ const FtySeminarAddPage = () => {
         else {
             const response = await FtyEditSeminars(formFields);
             if (response.status === 200) {
-                if(utype === "1"){
+                if(utype === "1" || utype === "4"){
                     setFormFields({
                         ...formFields, title:"",
                         faculty_name: "",
@@ -66,7 +66,6 @@ const FtySeminarAddPage = () => {
                         mode: "",
                         collaborator: ""
                     });
-                    navigate("/StaffHome/StaffSeminar")    
                 }
                 else{
                 setFormFields({
@@ -79,7 +78,16 @@ const FtySeminarAddPage = () => {
                     mode: "",
                     collaborator: ""
                 });
-                navigate("/faculty/Seminars")}
+                }
+                if(utype === "1"){
+                    navigate("/StaffHome/StaffSeminar") 
+                }
+                else if(utype === "4"){
+                    navigate("/Admin/AdminSeminar")
+                }
+                else{
+                    navigate("/faculty/Seminars")
+                }
             }
             else {
                 toast.error(response.response.data.error);
@@ -87,7 +95,7 @@ const FtySeminarAddPage = () => {
         }
     };
 
-if(utype === "1"){
+if(utype === "1" || utype === "4"){
     return (
         <body className={signupStyle.rooted}>
             <section className={signupStyle["form-container"]}>

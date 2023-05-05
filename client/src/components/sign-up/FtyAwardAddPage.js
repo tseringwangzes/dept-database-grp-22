@@ -13,7 +13,7 @@ const FtyAwardAddPage = () => {
   const navigate = useNavigate();
   const id = state.id;
   var defaultFormFields ={}
-  if(utype==="1"){
+  if(utype==="1" || utype === "4"){
     defaultFormFields={
     faculty_name:"",
     award_name: "",
@@ -53,7 +53,7 @@ const FtyAwardAddPage = () => {
       // date = isoDate;
       const response = await FtyAddAwards(formFields);
       if(response.status === 200){
-        if(utype === "1"){
+        if(utype === "1" || utype === "4"){
           setFormFields({...formFields,
             award_name: "",
             award_reason: "",
@@ -73,6 +73,9 @@ const FtyAwardAddPage = () => {
         if(utype==="1"){
           navigate("/StaffHome/StaffStudent")
         }
+        else if(utype === "4"){
+          navigate("/Admin/AdminStudent")
+        }
         else{
           navigate("/faculty/Awards")
         }
@@ -84,7 +87,7 @@ const FtyAwardAddPage = () => {
 
   };
 
-  if(utype === "1"){
+  if(utype === "1" || utype === "4"){
     return (
       <body className={signupStyle.rooted}>
         <section className={signupStyle["form-container"]}>

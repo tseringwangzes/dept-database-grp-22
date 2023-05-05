@@ -12,7 +12,7 @@ const ProjectAddPage = () => {
     const { state } = useLocation();
     const utype = state.utype;
     var defaultFormFields = {};
-    if (utype === "1") {
+    if (utype === "1" || utype === "4") {
         defaultFormFields = {
             faculty_name: "",
             student_name: "",
@@ -56,7 +56,7 @@ const ProjectAddPage = () => {
         else {
             const response = await projectEdit(formFields);
             if (response.status === 200) {
-                if(utype === "1"){
+                if(utype === "1" || utype === "4"){
                     setFormFields({
                         ...formFields,
                         faculty_name: "",
@@ -68,7 +68,7 @@ const ProjectAddPage = () => {
                         status: "Pending..",
                         collaboration: "",
                     });
-                    navigate("/StaffHome/StaffProject")
+            
                 }
                 else{
                 setFormFields({
@@ -82,7 +82,16 @@ const ProjectAddPage = () => {
                     status: "Pending..",
                     collaboration: "",
                 });
-                navigate("/Profile/Project")}
+                }
+                if(utype === "1"){
+                    navigate("/StaffHome/StaffProject")
+                }
+                else if(utype === "4"){
+                    navigate("/Admin/AdminProject")
+                }
+                else{
+                    navigate("/Profile/Project")
+                }
             }
             else {
                 toast.error(response.response.data.error);
@@ -90,7 +99,7 @@ const ProjectAddPage = () => {
         }
     };
 
-    if(utype === "1"){
+    if(utype === "1" || utype === "4"){
         return (
             <body className={signupStyle.rooted}>
                 <section className={signupStyle["form-container"]}>

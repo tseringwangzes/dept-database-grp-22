@@ -64,6 +64,9 @@ const PublicationEditPage = () => {
                 if(utype === "1"){
                     navigate("/StaffHome/StaffPublications")
                 }
+                else if(utype === "4"){
+                    navigate("/Admin/AdminPublications")
+                }
                 else{
                 navigate("/Profile/Publications")}
             }
