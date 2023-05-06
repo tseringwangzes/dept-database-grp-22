@@ -62,8 +62,8 @@ const AchievementEditPage = () => {
        if(utype === "1"){
         navigate("/StaffHome/StaffFaculty")
        }
-       else if(utype === "1"){
-        navigate("/StaffHome/StaffFaculty")
+       else if(utype === "4"){
+        navigate("/Admin/AdminFaculty")
        }
        else{
           navigate("/Profile/Achievements")

@@ -10,9 +10,9 @@ import FtyTablesProjects from "../tables/FtyTablesProjects";
 import jsPDF from 'jspdf';
 
 export default function StaffProject() {
-
+  const email = localStorage.getItem('email');
   const navigate = useNavigate();
-  const utype = "2";
+  const utype = "1";
 
   const url='http://localhost:3000/Staff_St_Project_Header.csv'
   const url2='http://localhost:3000/Staff_Fty_Project_Header.csv'

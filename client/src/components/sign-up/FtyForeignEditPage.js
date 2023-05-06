@@ -59,6 +59,9 @@ const FtyForeignEditPage = () => {
                 if(utype === "1"){
                     navigate("/StaffHome/StaffForeign")
                 }
+                else if(utype === "4"){
+                    navigate("/Admin/AdminForeign")
+                }
                 else{
                 navigate("/faculty/foreign")
                 }

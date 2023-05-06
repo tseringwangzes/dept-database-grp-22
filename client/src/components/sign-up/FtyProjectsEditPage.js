@@ -58,6 +58,9 @@ const FtyProjectsEditPage = () => {
                 if(utype === "1"){
                     navigate("/StaffHome/StaffProject")
                 }
+                else if(utype === "4"){
+                    navigate("/Admin/AdminProject")
+                }
                 else{
                 navigate("/faculty/Projects")
                 }

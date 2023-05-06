@@ -54,10 +54,10 @@ function StProjectCsv(){
         alert("sucessfully uploaded!");
         if(utype==='0'){
         navigate('/Profile/Project');}
-        else if(utype==='4' || utype==='1'){
+        else if(utype==='4'){
         navigate('/Admin/AdminProject');
           }
-          else if(utype==='2'){
+          else if(utype==='1'){
             navigate('/StaffHome/StaffProject');
               }
         window.location.reload();

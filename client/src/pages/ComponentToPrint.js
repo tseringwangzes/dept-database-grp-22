@@ -12,21 +12,25 @@ import { ft_projects } from '../services/Apis';
 import { ft_publications } from '../services/Apis';
 import { ft_seminars } from '../services/Apis';
 
-export const ComponentToPrint = React.forwardRef((props, ref) => {
+export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
+  const Date1 = new Date(startDate);
+  const Date2 = new Date(EndDate);
   const [data, setUserData] = useState([]);
   const userGet = async () => {
     const response = await userfunc(data);
     // window.location.reload();
     if (response.status === 200) {
-      setUserData(response.data)
-      console.log(response.data)
+      const filteredData = response.data
+      // .filter(item=>item.date>={startDate} && item.date<={EndDate});
+      setUserData(filteredData)
+      console.log(filteredData)
     } else {
       console.log("error for get user data")
     }
   }
   useEffect(() => {
     userGet();
-    setTimeout(() => {
+    setTimeout(() => { 
     }, 1200)
   }, [])
 
@@ -208,6 +212,19 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
     }, 1200)
   }, [])
 
+  const Filtered = data.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
+  const Filtered2 = data2.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
+  const Filtered3 = data3.filter(item=>new Date(item.published_date) >= Date1 && new Date(item.published_date)<=Date2)
+  const Filtered4 = data4.filter(item=>new Date(item.start_date) >= Date1 && new Date(item.start_date)<=Date2)
+  const Filtered5 = data5.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
+  const Filtered6 = data6.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
+  const Filtered7 = data7.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
+  const Filtered8 = data8.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
+  const Filtered9 = data9.filter(item=>new Date(item.start_date) >= Date1 && new Date(item.start_date)<=Date2)
+  const Filtered10 = data10.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
+  const Filtered11 = data11.filter(item=>new Date(item.published_date) >= Date1 && new Date(item.published_date)<=Date2)
+  const Filtered12 = data12.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
+
 
   return (
     <div ref={ref} class="border border-black p-3">
@@ -243,7 +260,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
           </tr>
         </thead>
         <tbody>
-          {data.map((item) => (
+          {Filtered.map((item) => (
             <tr key={item.faculty_name}>
               <td class="border border-black p-2"> {item.faculty_name}</td>
               <td class="border border-black p-2">{item.student_name}</td>
@@ -271,7 +288,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
           </tr>
         </thead>
         <tbody>
-          {data2.map((item) => (
+          {Filtered2.map((item) => (
             <tr key={item.faculty_name}>
               <td class="border border-black p-2"> {item.faculty_name}</td>
               <td class="border border-black p-2">{item.student_name}</td>
@@ -302,7 +319,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
           </tr>
         </thead>
         <tbody>
-          {data3.map((item) => (
+          {Filtered3.map((item) => (
             <tr key={item.faculty_name}>
               <td class="border border-black p-2"> {item.faculty_name}</td>
               <td class="border border-black p-2">{item.student_name}</td>
@@ -334,7 +351,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
           </tr>
         </thead>
         <tbody>
-          {data4.map((item) => (
+          {Filtered4.map((item) => (
             <tr key={item.faculty_name}>
               <td class="border border-black p-2"> {item.faculty_name}</td>
               <td class="border border-black p-2">{item.student_name}</td>
@@ -365,7 +382,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
           </tr>
         </thead>
         <tbody>
-          {data6.map((item) => (
+          {Filtered6.map((item) => (
             <tr key={item.faculty_name}>
               <td class="border border-black p-2"> {item.faculty_name}</td>
               <td class="border border-black p-2">{item.student_name}</td>
@@ -398,7 +415,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
           </tr>
         </thead>
         <tbody>
-          {data5.map((item) => (
+          {Filtered5.map((item) => (
             <tr key={item.faculty_name}>
               <td class="border border-black p-2"> {item.faculty_name}</td>
               <td class="border border-black p-2">{item.student_name}</td>
@@ -429,7 +446,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
           </tr>
         </thead>
         <tbody>
-          {data7.map((item) => (
+          {Filtered7.map((item) => (
             <tr key={item.faculty_name}>
               <td class="border border-black p-2"> {item.faculty_name}</td>
               <td class="border border-black p-2">{item.award_name}</td>
@@ -455,7 +472,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
           </tr>
         </thead>
         <tbody>
-          {data8.map((item) => (
+          {Filtered8.map((item) => (
             <tr key={item.faculty_name}>
               <td class="border border-black p-2"> {item.faculty_name}</td>
               <td class="border border-black p-2">{item.Achievements}</td>
@@ -482,7 +499,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
           </tr>
         </thead>
         <tbody>
-          {data9.map((item) => (
+          {Filtered9.map((item) => (
             <tr key={item.faculty_name}>
               <td class="border border-black p-2"> {item.faculty_name}</td>
               <td class="border border-black p-2">{item.topic}</td>
@@ -509,7 +526,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
           </tr>
         </thead>
         <tbody>
-          {data10.map((item) => (
+          {Filtered10.map((item) => (
             <tr key={item.faculty_name}>
               <td class="border border-black p-2"> {item.faculty_name}</td>
               <td class="border border-black p-2">{item.topic}</td>
@@ -538,7 +555,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
           </tr>
         </thead>
         <tbody>
-          {data11.map((item) => (
+          {Filtered11.map((item) => (
             <tr key={item.faculty_name}>
               <td class="border border-black p-2"> {item.faculty_name}</td>
               <td class="border border-black p-2">{item.topic}</td>
@@ -551,38 +568,6 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
           ))}
         </tbody>
       </table>
-
-      <br></br>
-      <div className="bg-indigo-100 text-center text-l font-semibold">
-      FACULTY FOREIGN VISITS
-      </div>
-      <br></br>
-      <table>
-        <thead>
-          <tr>
-            <th class="border border-black p-2">Faculty Name</th>
-            <th class="border border-black p-2">Student Name</th>
-            <th class="border border-black p-2">Topic of Meet</th>
-            <th class="border border-black p-2">Start Date</th>
-            <th class="border border-black p-2">End Date</th>
-            <th class="border border-black p-2">Country</th>
-            <th class="border border-black p-2">Faculty Accompanied</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data4.map((item) => (
-            <tr key={item.faculty_name}>
-              <td class="border border-black p-2"> {item.faculty_name}</td>
-              <td class="border border-black p-2">{item.student_name}</td>
-              <td class="border border-black p-2">{item.topic}</td>
-              <td class="border border-black p-2">{item.start_date}</td>
-              <td class="border border-black p-2">{item.end_date}</td>
-              <td class="border border-black p-2">{item.country}</td>
-              <td class="border border-black p-2">{item.faculty_name}</td>                  
-            </tr>
-          ))}
-        </tbody>
-      </table>  
       <br></br>
       <div className="bg-indigo-100 text-center text-l font-semibold">
         FACULTY WORKSHOPS/SEMINARS
@@ -602,7 +587,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
           </tr>
         </thead>
         <tbody>
-          {data12.map((item) => (
+          {Filtered12.map((item) => (
             <tr key={item.faculty_name}>
               <td class="border border-black p-2"> {item.faculty_name}</td>
               <td class="border border-black p-2">{item.type}</td>

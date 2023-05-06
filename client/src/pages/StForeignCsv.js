@@ -57,10 +57,10 @@ function StForeignCsv(){
             alert("sucessfully uploaded!");
             if(utype==='0'){
             navigate('/Profile/Foreign');}
-            else if(utype==='4' || utype==='1'){
+            else if(utype==='4'){
               navigate('/Admin/AdminForeign');
             }
-            else if(utype==='2'){
+            else if(utype==='1'){
               navigate('/StaffHome/StaffForeign');
               }
             window.location.reload();

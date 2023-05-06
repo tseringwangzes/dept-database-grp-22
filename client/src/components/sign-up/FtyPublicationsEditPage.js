@@ -14,7 +14,7 @@ const FtyPublicationsEditPage = () => {
 
 
     const defaultFormFields = {
-        faculty_name:state.faculty_name,
+        faculty_name: state.faculty_name,
         topic: state.topic,
         published_date: state.published_date,
         accepted_date: state.accepted_date,
@@ -38,7 +38,7 @@ const FtyPublicationsEditPage = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { topic,date, collaboration,faculty_name } = formFields;
+        const { topic, published_date, accepted_date, collaboration, faculty_name } = formFields;
         if (topic === "") {
 
             toast.error("Enter topic Name")
@@ -48,26 +48,27 @@ const FtyPublicationsEditPage = () => {
             const response = await FtyEditPublications(formFields);
             if (response.status === 200) {
                 setFormFields({
-                    ...formFields, 
+                    ...formFields,
                     topic: state.topic,
-                    faculty_name:state.faculty_name,
+                    faculty_name: state.faculty_name,
                     published_date: state.published_date,
                     accepted_date: state.accepted_date,
                     collaboration: state.collaboration,
                 });
-                if(utype==="1"){
+                if (utype === "1") {
                     navigate("/StaffHome/StaffPublications")
                 }
-                else{
-                navigate("/faculty/Publications")
+                else if (utype === "4") {
+                    navigate("/Admin/AdminPublications")
+                }
+                else {
+                    navigate("/faculty/Publications")
                 }
             }
             else {
                 toast.error(response.response.data.error);
             }
         }
-
-
         deleteid(id);
     };
 
@@ -88,8 +89,8 @@ const FtyPublicationsEditPage = () => {
                         />
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>published_date</label>
+                    <div className={signupStyle["form-item"]} id="published_date">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Published Date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"
                             name="published_date"
@@ -99,11 +100,11 @@ const FtyPublicationsEditPage = () => {
                         />
 
                     </div>
-                    <div className={signupStyle["form-item"]} id="date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>accepted_date</label>
+                    <div className={signupStyle["form-item"]} id="accepted_date">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Accepted Date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"
-                            name="date"
+                            name="accepted_date"
                             type="date"
                             value={formFields.accepted_date}
                             onChange={hanldeInputValueChange}
@@ -112,7 +113,7 @@ const FtyPublicationsEditPage = () => {
                     </div>
 
                     <div className={signupStyle["form-item"]} id="collaboration">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>collaboration</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Collaboration</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="collaboration with whom"
                             name="collaboration"

@@ -63,6 +63,9 @@ const utype = state.utype;
                 if(utype === "1"){
                     navigate("/StaffHome/StaffSeminar")
                 }
+                else if(utype === "4"){
+                    navigate("/Admin/AdminSeminar")
+                }
                 else{
                 navigate("/faculty/Seminars")
                 }
@@ -111,7 +114,7 @@ const utype = state.utype;
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"
                             name="date"
-                            type="text"
+                            type="date"
                             value={formFields.date}
                             onChange={hanldeInputValueChange}
                         />

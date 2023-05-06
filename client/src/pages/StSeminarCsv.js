@@ -50,10 +50,10 @@ function StSeminarCsv(){
               alert("sucessfully uploaded!");
               if(utype==='0'){
               navigate('/Profile/Seminars');}
-              else if(utype==='4' || utype==='1'){
+              else if(utype==='4'){
                 navigate('/Admin/AdminSeminar');
                 }
-                else if(utype==='2'){
+                else if(utype==='1'){
                   navigate('/StaffHome/StaffSeminar');
                 }
               window.location.reload();

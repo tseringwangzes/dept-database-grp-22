@@ -3,14 +3,43 @@ import Sidebar from "../../components/AdminSidebar";
 import { useNavigate } from "react-router-dom";
 import { st_publi } from '../../services/Apis'
 import { ft_publications } from '../../services/Apis'
-
 import Table, { StatusPill } from "../Table";
 import TablesPublications from "../../tables/TablesPublications";
 import FtyTablesPublications from "../../tables/FtyTablesPublications";
 
 export default function StaffStudent() {
   const navigate = useNavigate();
-  const utype = "1";
+  const utype = "4";
+
+  const url2='http://localhost:3000/Staff_Fty_Publication_Header.csv'
+  const url='http://localhost:3000/Staff_St_Publication_Header.csv'
+
+  function uploadbulk(){
+
+    const aTag=document.createElement("a");
+    aTag.href=url;
+    aTag.setAttribute("download","Student_Publications");
+    document.body.appendChild(aTag);
+    aTag.click();
+    aTag.remove();
+    console.log(data[0].faculty_name)
+    
+    navigate("/Profile/Publications/StPublicationCsv",{state:{utype:utype}} )
+    
+    }
+    function uploadbulk2(){
+
+      const aTag=document.createElement("a");
+      aTag.href=url2;
+      aTag.setAttribute("download","Faculty_Publications");
+      document.body.appendChild(aTag);
+      aTag.click();
+      aTag.remove();
+      console.log(data[0].faculty_name)
+      
+      navigate("/faculty/Publications/FtyPublicationCsv",{state:{utype:utype}} )
+      
+      }
 
   const [data, setUserData] = useState([]);
   const userGet = async () => {
@@ -41,8 +70,12 @@ export default function StaffStudent() {
       },
       
       {
-        Header: "Date",
-        accessor: "date",
+        Header: "Published Date",
+        accessor: "published_date",
+      },
+      {
+        Header: "Accepted Date",
+        accessor: "accepted_date",
       },
       {
         Header: "Collaborations",
@@ -69,7 +102,8 @@ export default function StaffStudent() {
                   faculty_name: original.faculty_name,
                   student_name: original.student_name,
                   topic: original.topic,
-                  date: original.date,
+                  published_date: original.published_date,
+                  accepted_date: original.accepted_date,
                   collaboration: original.collaboration,
                   no_of_students: original.no_of_students,
                   id: original._id,
@@ -281,8 +315,12 @@ const rows = data.map(user=>[user.student_name,user.faculty_name,user.award_name
       },
      
       {
-        Header: "Date",
-        accessor: "date",
+        Header: "Published Date",
+        accessor: "published_date",
+      },
+      {
+        Header: "Accepted Date",
+        accessor: "accepted_date",
       },
       {
         Header: "Collaborations",
@@ -297,7 +335,8 @@ const rows = data.map(user=>[user.student_name,user.faculty_name,user.award_name
               state: {
                 faculty_name: original.faculty_name,
                 topic: original.topic,
-                date: original.date,
+                published_date: original.published_date,
+                accepted_date: original.accepted_date,
                 collaboration: original.collaboration,
                 id: original._id,
                 utype:utype
@@ -333,7 +372,7 @@ const rows = data.map(user=>[user.student_name,user.faculty_name,user.award_name
         <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
         <div className="">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={generatePDF}>Generate PDF</button>
-            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("/Profile/Publications/StPublicationCsv",{state:{utype:utype}} )} >Upload Data in Bulk</button>
+            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={uploadbulk} >Upload Data in Bulk</button>
           </div>
           <br></br>
           <div className="">
@@ -345,7 +384,7 @@ const rows = data.map(user=>[user.student_name,user.faculty_name,user.award_name
           <br/>
           <div className="">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={FtygeneratePDF}>Generate PDF</button>
-            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={() => navigate("/faculty/Publications/FtyPublicationCsv",{state:{utype:utype}} )} >Upload Data in Bulk</button>
+            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={uploadbulk2} >Upload Data in Bulk</button>
 
 
           </div>

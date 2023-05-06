@@ -12,7 +12,7 @@ var email = localStorage.getItem('email');
     const {state} = useLocation();
     const utype = state.utype;
     var defaultFormFields = {};
-    if(utype === "1"){
+    if(utype === "1" || utype === "4"){
         defaultFormFields = {
             topic: "",
             published_date: "",
@@ -55,7 +55,7 @@ var email = localStorage.getItem('email');
         else {
             const response = await publicationEdit(formFields);
             if (response.status === 200) {
-                if(utype === "1"){
+                if(utype === "1" || utype === "4"){
                     setFormFields({
                         ...formFields,
                         topic: "",
@@ -67,7 +67,7 @@ var email = localStorage.getItem('email');
                         student_name: "",
                         status: "Pending..",
                     });
-                    navigate("/StaffHome/StaffPublications")
+                   
                 }
                 else{
                 setFormFields({
@@ -81,7 +81,16 @@ var email = localStorage.getItem('email');
                     student_name: email,
                     status: "Pending..",
                 });
-                navigate("/Profile/Publications")}
+                }
+                if(utype === "1"){
+                    navigate("/StaffHome/StaffPublications")
+                }
+                else if(utype==="4"){
+                    navigate("/Admin/AdminPublications")
+                }
+                else{
+                    navigate("/Profile/Publications")
+                }
             }
             else {
                 toast.error(response.response.data.error);
@@ -89,7 +98,7 @@ var email = localStorage.getItem('email');
         }
     };
 
-if(utype === "1"){
+if(utype === "1" || utype === "4"){
     return (
         <body className={signupStyle.rooted}>
             <section className={signupStyle["form-container"]}>
@@ -130,11 +139,11 @@ if(utype === "1"){
                         />
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Published_date</label>
+                    <div className={signupStyle["form-item"]} id="published_date">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Published date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"
-                            name="Published_date"
+                            name="published_date"
                             type="date"
                             value={formFields.Published_date}
                             onChange={hanldeInputValueChange}
@@ -142,8 +151,8 @@ if(utype === "1"){
 
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>accepted_date</label>
+                    <div className={signupStyle["form-item"]} id="accepted_date">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Accepted Date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"
                             name="accepted_date"
@@ -155,7 +164,7 @@ if(utype === "1"){
                     </div>
 
                     <div className={signupStyle["form-item"]} id="collaboration">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>collaboration</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Collaboration</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="collaboration with whom"
                             name="collaboration"
@@ -200,7 +209,7 @@ else{
                         />
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="date">
+                    <div className={signupStyle["form-item"]} id="published_date">
                         <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>published_date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"
@@ -212,7 +221,7 @@ else{
 
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="date">
+                    <div className={signupStyle["form-item"]} id="accepted_date">
                         <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>accepted_date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"

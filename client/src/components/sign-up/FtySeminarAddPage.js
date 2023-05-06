@@ -7,17 +7,16 @@ import { useNavigate } from "react-router-dom";
 
 const FtySeminarAddPage = () => {
 
-    var email = sessionStorage.getItem('email');
+    var email = localStorage.getItem('email');
     const navigate = useNavigate();
     const {state} = useLocation();
     const utype = state.utype;
     var defaultFormFields = {};
-    if(utype === "1"){
+    if(utype === "1" || utype === "4"){
         defaultFormFields = {
             faculty_name: "",
             title: "",
             type: "",
-            year: "",
             date: "",
             venue: "",
             chief_guest: "",
@@ -30,7 +29,6 @@ const FtySeminarAddPage = () => {
         faculty_name: email,
         title: "",
         type: "",
-        year: "",
         date: "",
         venue: "",
         chief_guest: "",
@@ -48,7 +46,7 @@ const FtySeminarAddPage = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { title, type, year, date, venue, chief_guest, mode, collaborator, faculty_name } = formFields;
+        const { title, type,date, venue, chief_guest, mode, collaborator, faculty_name } = formFields;
         if (type === "") {
 
             toast.error("Enter type Name")
@@ -57,33 +55,39 @@ const FtySeminarAddPage = () => {
         else {
             const response = await FtyEditSeminars(formFields);
             if (response.status === 200) {
-                if(utype === "1"){
+                if(utype === "1" || utype === "4"){
                     setFormFields({
                         ...formFields, title:"",
                         faculty_name: "",
                         type: "",
-                        year: "",
                         date: "",
                         venue: "",
                         chief_guest: "",
                         mode: "",
                         collaborator: ""
                     });
-                    navigate("/StaffHome/StaffSeminar")    
                 }
                 else{
                 setFormFields({
                     ...formFields, title:"",
                     faculty_name: email,
                     type: "",
-                    year: "",
                     date: "",
                     venue: "",
                     chief_guest: "",
                     mode: "",
                     collaborator: ""
                 });
-                navigate("/faculty/Seminars")}
+                }
+                if(utype === "1"){
+                    navigate("/StaffHome/StaffSeminar") 
+                }
+                else if(utype === "4"){
+                    navigate("/Admin/AdminSeminar")
+                }
+                else{
+                    navigate("/faculty/Seminars")
+                }
             }
             else {
                 toast.error(response.response.data.error);
@@ -91,7 +95,7 @@ const FtySeminarAddPage = () => {
         }
     };
 
-if(utype === "1"){
+if(utype === "1" || utype === "4"){
     return (
         <body className={signupStyle.rooted}>
             <section className={signupStyle["form-container"]}>
@@ -133,24 +137,12 @@ if(utype === "1"){
                         />
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="year">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Year</label>
-                        <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the Year"
-                            name="year"
-                            type="text"
-                            value={formFields.year}
-                            onChange={hanldeInputValueChange}
-                        />
-
-                    </div>
-
                     <div className={signupStyle["form-item"]} id="date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>date</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"
                             name="date"
-                            type="text"
+                            type="date"
                             value={formFields.date}
                             onChange={hanldeInputValueChange}
                         />
@@ -158,7 +150,7 @@ if(utype === "1"){
                     </div>
 
                     <div className={signupStyle["form-item"]} id="venue">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>venue</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Venue</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the venue"
                             name="venue"
@@ -170,7 +162,7 @@ if(utype === "1"){
                     </div>
 
                     <div className={signupStyle["form-item"]} id="chief_guest">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>chief_guest</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Chief Guest</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the chief_guest"
                             name="chief_guest"
@@ -182,7 +174,7 @@ if(utype === "1"){
                     </div>
 
                     <div className={signupStyle["form-item"]} id="mode">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>mode</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Mode</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the mode"
                             name="mode"
@@ -194,7 +186,7 @@ if(utype === "1"){
                     </div>
 
                     <div className={signupStyle["form-item"]} id="collaborator">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>collaborator</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Collaborator</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the collaborator"
                             name="collaborator"
@@ -244,24 +236,12 @@ else{
                         />
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="year">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Year</label>
-                        <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the Year"
-                            name="year"
-                            type="text"
-                            value={formFields.year}
-                            onChange={hanldeInputValueChange}
-                        />
-
-                    </div>
-
                     <div className={signupStyle["form-item"]} id="date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>date</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the date"
                             name="date"
-                            type="text"
+                            type="date"
                             value={formFields.date}
                             onChange={hanldeInputValueChange}
                         />
@@ -269,7 +249,7 @@ else{
                     </div>
 
                     <div className={signupStyle["form-item"]} id="venue">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>venue</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Venue</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the venue"
                             name="venue"
@@ -281,7 +261,7 @@ else{
                     </div>
 
                     <div className={signupStyle["form-item"]} id="chief_guest">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>chief_guest</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Chief Guest</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the chief_guest"
                             name="chief_guest"
@@ -293,7 +273,7 @@ else{
                     </div>
 
                     <div className={signupStyle["form-item"]} id="mode">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>mode</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Mode</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the mode"
                             name="mode"
@@ -305,7 +285,7 @@ else{
                     </div>
 
                     <div className={signupStyle["form-item"]} id="collaborator">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>collaborator</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Collaborator</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the collaborator"
                             name="collaborator"

@@ -10,10 +10,10 @@ import jsPDF from 'jspdf';
 function StaffSeminar() {
   const navigate = useNavigate();
 
-  const utype = "2";
+  const utype = "1";
   const url='http://localhost:3000/Staff_St_Seminar_Header.csv'
   const url2='http://localhost:3000/Staff_Fty_Seminar_Header.csv'
-
+  const email = localStorage.getItem('email');
   const [data, setUserData] = useState([]);
   const userGet = async () => {
     const response = await st_semi();

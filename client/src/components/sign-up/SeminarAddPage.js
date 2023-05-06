@@ -11,7 +11,7 @@ const SeminarAddPage = () => {
   const navigate = useNavigate();
   const utype = state.utype;
   var defaultFormFields = {};
-  if (utype === "1") {
+  if (utype === "1" || utype === "4") {
     defaultFormFields = {
       faculty_name: "",
       student_name: "",
@@ -59,7 +59,7 @@ const SeminarAddPage = () => {
     else {
       const response = await seminarEdit(formFields);
       if (response.status === 200) {
-        if(utype === "1"){
+        if(utype === "1" || utype === "4"){
           setFormFields({
             ...formFields,
             faculty_name: "",
@@ -73,7 +73,7 @@ const SeminarAddPage = () => {
             collaborator: "",
             status: "Pending..",
           });
-          navigate("/StaffHome/StaffSeminar")}
+          }
         else{
         setFormFields({
           ...formFields,
@@ -88,7 +88,16 @@ const SeminarAddPage = () => {
           collaborator: "",
           status: "Pending..",
         });
-        navigate("/Profile/Seminars")}
+        }
+        if(utype === "1"){
+          navigate("/StaffHome/StaffSeminar")
+        }
+        else if(utype === "4"){
+          navigate("/Admin/AdminSeminar")
+        }
+        else{
+          navigate("/Profile/Seminars")
+        }
       }
       else {
         toast.error(response.response.data.error);
@@ -97,7 +106,7 @@ const SeminarAddPage = () => {
 
   };
 
-if(utype === "1"){
+if(utype === "1" || utype === "4"){
   return (
     <body className={signupStyle.rooted}>
       <section className={signupStyle["form-container"]}>
@@ -140,7 +149,7 @@ if(utype === "1"){
           </div>
 
           <div className={signupStyle["form-item"]} id="venue">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Shared with</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Venue</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
               placeholder="venue"
               name="venue"
@@ -151,7 +160,7 @@ if(utype === "1"){
           </div>
 
           <div className={signupStyle["form-item"]} id="chief_guest">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>chief_guest</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Chief Guest</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
               placeholder="chief_guest"
               name="chief_guest"
@@ -173,7 +182,7 @@ if(utype === "1"){
           </div>
 
           <div className={signupStyle["form-item"]} id="collaborator">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>collaborator</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Collaborator</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
               placeholder="collaborator"
               name="collaborator"
@@ -231,7 +240,7 @@ else{
           </div>
 
           <div className={signupStyle['form-item']} id="type">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>type</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Type</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
               placeholder="Enter the type"
               name="type"
@@ -244,7 +253,7 @@ else{
 
 
           <div className={signupStyle["form-item"]} id="date">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>date</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Date</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
               placeholder="Enter the date"
               name="date"
@@ -256,7 +265,7 @@ else{
           </div>
 
           <div className={signupStyle["form-item"]} id="venue">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Shared with</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Venue</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
               placeholder="venue"
               name="venue"
@@ -267,7 +276,7 @@ else{
           </div>
 
           <div className={signupStyle["form-item"]} id="chief_guest">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>chief_guest</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Chief Guest</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
               placeholder="chief_guest"
               name="chief_guest"

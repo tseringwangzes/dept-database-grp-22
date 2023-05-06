@@ -11,8 +11,8 @@ import jsPDF from 'jspdf';
 
 export default function StaffStudent() {
   const navigate = useNavigate();
-  const utype = "2";
-
+  const utype = "1";
+const email = localStorage.getItem('email');
   const url2='http://localhost:3000/Staff_Fty_Publication_Header.csv'
   const url='http://localhost:3000/Staff_St_Publication_Header.csv'
 
@@ -118,6 +118,8 @@ export default function StaffStudent() {
                 state: {
                   faculty_name: original.faculty_name,
                   student_name: original.student_name,
+                  published_date:original.published_date,
+                  accepted_date:original.accepted_date,
                   topic: original.topic,
                   date: original.date,
                   collaboration: original.collaboration,
@@ -258,7 +260,8 @@ export default function StaffStudent() {
               state: {
                 faculty_name: original.faculty_name,
                 topic: original.topic,
-                date: original.date,
+                published_date: original.published_date,
+                accepted_date:original.accepted_date,
                 collaboration: original.collaboration,
                 id: original._id,
                 utype: utype

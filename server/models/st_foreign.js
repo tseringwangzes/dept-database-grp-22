@@ -7,7 +7,6 @@ const staforeign = new mongoose.Schema({
     start_date: String,
     end_date: String,
     country: String,
-    faculty_name: String,
     status: String
     
 },
