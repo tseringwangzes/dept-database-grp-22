@@ -14,7 +14,8 @@ const ft_achievements = require("../models/ft_achievements");
 const ft_seminars = require("../models/ft_seminars");
 const ft_foreign = require("../models/ft_foreign");
 const ft_publications = require("../models/ft_publications");
-const ft_projects = require("../models/ft_projects")
+const ft_projects = require("../models/ft_projects");
+const student_award = require("../models/st_award_table");
 
 const tarnsporter = nodemailer.createTransport({
     service: "gmail",
@@ -566,11 +567,47 @@ exports.st_award_csv = async (req, res) => {
     }
 };
 
+exports.studentHome = async (req, res) => {
+    var count = new Array(7);
+    var email = req.query.email;
 
+    try {
+        
+        const promises = [
+            student_award.countDocuments({ faculty_name: email }),
+            st_achievements.countDocuments({ faculty_name: email }),
+            st_for_visits.countDocuments({ faculty_name: email }),
+            st_project.countDocuments({ faculty_name: email }),
+            st_publi.countDocuments({ faculty_name: email }),
+            st_seminar.countDocuments({ faculty_name: email })
+          ];
+          
+          const results = await Promise.all(promises);
+          
+          for (let i = 0; i < results.length; i++) {
+            count[i] = results[i];
+          }
+          const doc = await users.findOne({email: email})
+          const name = doc.fname
+
+          count[6] = name;
+          //console.log(count);
+          
+          res.status(200).json(count);
+          
+        
+
+            
+        
+    } catch (error) {
+        console.log(error);   
+    }
+
+}
 
 exports.facultyHome = async(req,res) => {
 
-    var count = new Array (6);
+    var count = new Array (7);
     var email = req.query.email;
     console.log(email);
 
@@ -591,6 +628,10 @@ exports.facultyHome = async(req,res) => {
             count[i] = results[i];
           }
 
+          const doc = await users.findOne({email: email})
+          const name = doc.fname
+
+          count[6] = name;
           //console.log(count);
           
           res.status(200).json(count);
