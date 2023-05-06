@@ -53,6 +53,10 @@ export const addmorefunction = async(data)=>{
 export const ft_home = async (email) => {
     return await commonrequest("GET", `${BACKEND_URL}/user/faculty/home?email=${email}`);
   }
+
+  export const st_home = async (email) => {
+    return await commonrequest("GET", `${BACKEND_URL}/user/student/home?email=${email}`);
+  }
   
 
 export const ft_awards = async()=>{

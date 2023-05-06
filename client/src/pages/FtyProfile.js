@@ -43,9 +43,9 @@ function FtyProfile() {
       <div className="py-12">
         <div className="max-w-3xl mx-auto space-y-8">
           <div className="text-center">
-          <img className="mx-auto h-40 rounded-full" src={process.env.PUBLIC_URL + '/images/puneet.avif'} alt="Faculty"/>
+          <img className="mx-auto h-40 rounded-sm" src={process.env.PUBLIC_URL + '/images/image-1.png'} alt="student"/>
 
-            <h2 className="mt-4 text-2xl font-extrabold text-gray-900">Zeno Zoldyck</h2>
+            <h2 className="mt-4 text-2xl font-extrabold text-gray-900">{ftData[6]}</h2>
             <p className="mt-1 text-lg text-gray-600">{email}</p>
             <p className="mt-1 text-lg text-gray-600">
               <a href="https://johndoe.com" className="text-indigo-600 hover:text-indigo-500">personal-web.com</a>
@@ -83,8 +83,8 @@ function FtyProfile() {
           <div>
             <h3 className="text-lg leading-6 font-medium text-gray-900">PhD Students</h3>
             <ul className="mt-2 list-disc pl-5">
-              <li className="text-base text-gray-500">Zenitsu Agatsuma</li>
-              <li className="text-base text-gray-500">Kamado Tanjiro</li>
+              <li className="text-base text-gray-500">Syudent 1</li>
+              <li className="text-base text-gray-500">Student 2</li>
             </ul>
           </div>
           <div>
