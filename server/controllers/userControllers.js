@@ -248,10 +248,10 @@ exports.userget = async (req, res) => {
 }
 
 exports.usergetall = async (req, res) => {
-   const {email}=req.body;
- //   console.log(req.body)
+//    const email=req.body.email;
+//    console.log(email)
     try {
-        const allUser = await stdetails.find();
+        const allUser = await stdetails.find({student_name:email});
       //  console.log(allUser)
         res.status(200).json(allUser)
     } catch (error) {
@@ -487,10 +487,36 @@ exports.st_publication_csv = async (req, res) => {
 
 exports.useraddmore = async (req, res) => {
     const { award_name,award_reason,date,shared_with,status,faculty_name,student_name} = req.body;
+    const student_name2=req.body.shared_with;
+    
+    console.log(student_name2)
+    student_name2.split(',').map(async (shared_each_email)=>{  
+        console.log(shared_each_email)
+        const nshw1 = student_name2.split(shared_each_email).join("");
+        const nshw2 = nshw1 +req.body.student_name;
+        const shareduseraddmore = new stdetails({
+            award_name,award_reason,date,"shared_with":nshw2,status,faculty_name,"student_name":shared_each_email
+        });
+        console.log(shareduseraddmore);
+        const findAward = await stdetails.findOne({student_name:shared_each_email,award_name:award_name,award_reason:award_reason,date:date,shared_with:shared_with})
+        console.log(findAward);
+        if(!findAward){
+        const storeData = await useraddmore.save();
+       // res.status(200).json(storeData);
+        }
+        else{
+            res.status(400).json({error:"Data already exist"})
+        }
 
-    if (!award_name || !award_reason || !date || !shared_with || !status || !faculty_name || !student_name) {
-        res.status(400).json({ error: "Please Enter All Input Data" })
-    }
+          const storeData = await shareduseraddmore.save();
+        // res.status(200).json(storeData);
+
+    })
+
+
+    // if (!award_name || !award_reason || !date || !status || !faculty_name ) {
+    //     res.status(400).json({ error: "Please Enter All Input Data" })
+    // }
 
     try {
         //const presuer = await users.findOne({ email: email });
@@ -502,7 +528,7 @@ exports.useraddmore = async (req, res) => {
                 award_name,award_reason,date,shared_with,status,faculty_name,student_name
             });
 
-            const findAward = await stdetails.findOne({award_name:award_name,award_reason:award_reason,date:date,shared_with:shared_with})
+            const findAward = await stdetails.findOne({student_name:student_name,award_name:award_name,award_reason:award_reason,date:date,shared_with:shared_with})
             console.log(findAward);
             if(!findAward){
             const storeData = await useraddmore.save();
@@ -518,15 +544,6 @@ exports.useraddmore = async (req, res) => {
 };
 
 exports.st_award_csv = async (req, res) => {
-    
-    // const { award_name,award_reason,date,shared_with,status,faculty_name,student_name} = req.body;
-    // try {
-    //     await stdetails.insertMany(req.body);
-    //     res.status(200).json({ message: 'Data successfully inserted' });
-    // } catch ( error) {
-    //     console.error(error);
-    //     res.status(500).json({ message: 'An error occurred while inserting data' });
-    // }
 
     let data = req.body;
 

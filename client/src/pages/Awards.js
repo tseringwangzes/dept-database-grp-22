@@ -29,7 +29,7 @@ function Awards() {
     const data = {
       email:email
     }
-   // console.log(data)
+   console.log(data)
     const response = await userfunc(data);
     // window.location.reload();
     if (response.status === 200) {

@@ -9,6 +9,7 @@ const Addmorep2 = () => {
   const utype = state.utype;
   const navigate = useNavigate();
   var email = localStorage.getItem('email');
+
   var defaultFormFields = {}
   if (utype === "1" || utype === "4") {
     defaultFormFields = {
@@ -34,11 +35,168 @@ const Addmorep2 = () => {
   }
 
   const [formFields, setFormFields] = useState(defaultFormFields);
+  const [sharedformFields, setsharedFormFields] = useState(defaultFormFields);
 
   const hanldeInputValueChange = (event) => {
     var { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
+   // setsharedFormFields({ ...sharedformFields, [name]: value });
   };
+  // const sharedwith = async (form_fields)=>{
+     
+  //   form_fields.shared_with.split(',').map(async (shared_each_email)=>
+
+  //   {
+  //     let updatedvalues={
+  //       faculty_name: "2020csb1135@iitrpr.ac.in",
+  //       student_name: shared_each_email,
+  //       award_name: form_fields.award_name,
+  //       award_reason:form_fields.award_reason ,
+  //       date:form_fields.date ,
+  //       shared_with: email,
+  //       status: "Pending..",
+  //     }
+  //     console.log(shared_each_email)
+  //     setsharedFormFields(sharedformFields => ({
+  //       ...sharedformFields,
+  //       ...updatedvalues
+  //     }));
+    
+  //   setsharedFormFields({ ...sharedformFields, "student_name" : shared_each_email });
+  //       // if (utype === "1" || utype === "4") {
+  //       //   setsharedFormFields({
+  //       //     ...sharedformFields, award_name: form_fields.award_name,
+  //       //     award_reason: form_fields.award_reason,
+  //       //     date: form_fields.date,
+  //       //     shared_with: form_fields.shared_with,
+  //       //     status: "Pending",
+  //       //     faculty_name: form_fields.faculty_name,
+  //       //     student_name: shared_each_email
+  //       //   });
+  //       // }
+
+  //       // else {
+  //         // setsharedFormFields({
+  //         //   ...sharedformFields, award_name: form_fields.award_name,
+  //         //   award_reason: form_fields.award_reason,
+  //         //   date: form_fields.date,
+  //         //   shared_with: form_fields.shared_with, 
+  //         //   status: "Pending",
+  //         //   faculty_name: "2020csb1135@iitrpr.ac.in",
+  //         //   student_name: shared_each_email
+  //         // });
+  //       // }
+  //       console.log(sharedformFields.student_name)
+  //       console.log(sharedformFields.award_name)
+  //       console.log(sharedformFields.award_reason)
+  //       console.log(sharedformFields.date)
+  //       console.log(sharedformFields.shared_with)
+  //       const response = await addmorefunction(sharedformFields);
+  //       if(response.status===200){
+  //         alert("successfully added others" )
+  //         setsharedFormFields({
+  //           ...sharedformFields, award_name: "",
+  //           award_reason:  "",
+  //           date: "",
+  //           shared_with:  "", 
+  //           status: "Pending",
+  //           faculty_name: "2020csb1135@iitrpr.ac.in",
+  //           student_name:  ""
+  //         });
+
+  //       }
+  //       else{
+  //         console.log(response.response.data.error)
+  //         alert("something went wrong")
+  //       }
+        
+      
+  //   }
+    
+    
+  //   )
+  // }
+
+  const nn= async ()=> {
+
+    // const updatedvalues={
+    //   faculty_name: formFields.faculty_name,
+    //   student_name: "kk",
+    //   award_name: formFields.award_name,
+    //   award_reason: formFields.award_reason ,
+    //   date:"kk",
+    //   shared_with: "kk",
+    //   status: "Pending..",
+    // }
+     console.log(sharedformFields.student_name)
+   // console.log(shared_each_email)
+      
+   setsharedFormFields({
+    ...sharedformFields,
+    student_name: "kk",
+    date: "kk",
+    shared_with: "kk",
+  });
+
+    console.log(sharedformFields.student_name)
+    console.log(sharedformFields.award_name)
+    console.log(sharedformFields.award_reason)
+    console.log(sharedformFields.date)
+    console.log(sharedformFields.shared_with)
+
+  }
+
+  const sharedwith = async (form_fields)=>{
+     
+    for (const shared_each_email of form_fields.shared_with.split(',')) {
+      const updatedvalues={
+        faculty_name: "2020csb1135@iitrpr.ac.in",
+        student_name: shared_each_email,
+        award_name: form_fields.award_name,
+        award_reason:form_fields.award_reason ,
+        date:form_fields.date ,
+        shared_with: email,
+        status: "Pending..",
+      }
+      console.log(shared_each_email)
+        
+      setsharedFormFields(sharedformFields => ({
+        ...sharedformFields,
+        ...updatedvalues
+      }));
+      
+      console.log(sharedformFields.student_name)
+      console.log(sharedformFields.award_name)
+      console.log(sharedformFields.award_reason)
+      console.log(sharedformFields.date)
+      console.log(sharedformFields.shared_with)
+
+      const response = await addmorefunction(sharedformFields);
+
+      if(response.status===200){
+        alert("successfully added others" )
+        // setsharedFormFields({
+        //   ...sharedformFields, 
+        //   award_name: "",
+        //   award_reason:  "",
+        //   date: "",
+        //   shared_with:  "", 
+        //   status: "Pending",
+        //   faculty_name: "2020csb1135@iitrpr.ac.in",
+        //   student_name:  ""
+        // });
+  
+      }
+      else{
+        console.log(response.response.data.error)
+        alert("something went wrong")
+      }
+    }
+  }
+  
+
+
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -53,9 +211,7 @@ const Addmorep2 = () => {
     else if (date === "") {
       toast.error("Enter Award Date")
     }
-    else if (shared_with === "") {
-      toast.error("Enter Shared With")
-    }
+   
     else {
       // const dateObject = new Date(date);
       // const isoDate = dateObject.toISOString();
@@ -63,28 +219,36 @@ const Addmorep2 = () => {
       const response = await addmorefunction(formFields);
       if (response.status === 200) {
         if (utype === "1" || utype === "4") {
-          setFormFields({
-            ...formFields, award_name: "",
-            award_reason: "",
-            date: "",
-            shared_with: "",
-            status: "Pending",
-            faculty_name: "",
-            student_name: ""
-          });
-        }
+        //   setFormFields({
+        //     ...formFields, award_name: "",
+        //     award_reason: "",
+        //     date: "",
+        //     shared_with: "",
+        //     status: "Pending",
+        //     faculty_name: "",
+        //     student_name: ""
+        //   });
+        // }
 
-        else {
-          setFormFields({
-            ...formFields, award_name: "",
-            award_reason: "",
-            date: "",
-            shared_with: "",
-            status: "Pending",
-            faculty_name: "2020csb1135@iitrpr.ac.in",
-            student_name: email
-          });
-        }
+        // else {
+        //   setFormFields({
+        //     ...formFields, award_name: "",
+        //     award_reason: "",
+        //     date: "",
+        //     shared_with: "",
+        //     status: "Pending",
+        //     faculty_name: "2020csb1135@iitrpr.ac.in",
+        //     student_name: email
+        //   });
+         }
+    
+        nn()
+     
+      
+         
+         
+       
+
         if(utype==="1"){
           navigate("/StaffHome/StaffStudent")
         }
