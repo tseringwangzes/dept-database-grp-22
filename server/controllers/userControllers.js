@@ -32,9 +32,9 @@ exports.getfaculty = async (req, res) => {
     const email=req.query.email;
     console.log(email)
     try {
-        const femail = await users.findOne({email:email});
+        const femail = await users.find({email:email});
       // const allUser = await stdetails.find().sort({updatedAt: -1});;
-       console.log(femail)
+       console.log(femail.faculty_name)
        res.status(200).json(femail)
    } catch (error) {
        res.status(401).json(error)

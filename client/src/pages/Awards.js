@@ -1,6 +1,7 @@
 import React, { Fragment,Component, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { userfunc } from '../services/Apis'
+import { getfaculty } from '../services/Apis'
 import TablesAwards, { StatusPill } from "../tables/TablesAwards";
 import Sidebar from "../components/Sidebar";
 import jsPDF from 'jspdf';
@@ -41,7 +42,24 @@ function Awards() {
     setShowModaldelete(false);
 
   }
+  const [femail, setfemail] = useState("");
 
+  const getfaculty=async()=>{
+    const response=await getfaculty(email);
+    console.log(femail)
+    if(response.status===200){
+      setfemail(response.data)
+      console.log(femail)
+    }
+   else {
+    console.log("error for get user data")
+  }
+  }
+  useEffect(() => {
+    getfaculty();
+    setTimeout(() => {
+    }, 1200)
+  }, [])
 
 
   const [data, setUserData] = useState([]);
