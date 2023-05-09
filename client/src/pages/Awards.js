@@ -95,10 +95,6 @@ function Awards() {
         accessor: "award_name",
       },
       {
-        Header: "Award Reason",
-        accessor: "award_reason",
-      },
-      {
         Header: "Date",
         accessor: "date",
       },
@@ -107,8 +103,12 @@ function Awards() {
         accessor: "shared_with",
       },
       {
-        Header: "Attached Link",
-        accessor: "link",
+        Header: "Attached Link For Reference",
+        accessor: "award_link",
+      },
+      {
+        Header: "Additional Informatio  (If Any) ",
+        accessor: "additional_info",
       },
       {
         Header: "Status",
@@ -127,9 +127,10 @@ function Awards() {
                 faculty_name: original.faculty_name,
                 student_name: original.student_name,
                 award_name: original.award_name,
-                award_reason: original.award_reason,
                 date: original.date,
                 shared_with: original.shared_with,
+                award_link:original.award_link,
+                additional_info:original.additional_info,
                 id: original._id,
                 link:original.link,
                 utype: utype,
