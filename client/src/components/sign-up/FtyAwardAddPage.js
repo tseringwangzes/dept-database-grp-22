@@ -29,6 +29,7 @@ const FtyAwardAddPage = () => {
     date: "",
     shared_with: "",
     additional_info:"",
+    
   };}
 
   const [formFields, setFormFields] = useState(defaultFormFields);

@@ -15,10 +15,11 @@ const FtyForeignEditPage = () => {
 
     const defaultFormFields = {
         faculty_name:state.faculty_name,
-        topic:state.topic,
+        
         start_date: state.start_date,
         end_date: state.end_date,
         country: state.country,
+        visit_details:state.visit_details,
         
     };
 
@@ -39,10 +40,10 @@ const FtyForeignEditPage = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { topic,start_date,end_date,country,faculty_name} = formFields;
-        if (topic === "") {
+        const { start_date,end_date,country,faculty_name,visit_details} = formFields;
+        if (country === "") {
 
-            toast.error("Enter topic Name")
+            toast.error("Enter Country Name")
 
         }
         else {
@@ -51,10 +52,11 @@ const FtyForeignEditPage = () => {
                 setFormFields({
                     ...formFields, 
                     faculty_name:state.faculty_name,
-                    topic:state.topic,
+                    
                     start_date: state.start_date,
                     end_date: state.end_date,
                     country: state.country,
+                    visit_details:state.visit_details
                 });
                 if(utype === "1"){
                     navigate("/StaffHome/StaffForeign")
@@ -79,23 +81,13 @@ const FtyForeignEditPage = () => {
     return (
         <body className={signupStyle.rooted}>
             <section className={signupStyle["form-container"]}>
-                <h2 className={signupStyle["form-heading"]}>Edit Your Foreign Visits</h2>
+                <h2 className={signupStyle["form-heading"]}>Edit Your Foreign Visits Details</h2>
                 <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
 
-                <div className={signupStyle["form-item"]} id="topic">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>topic</label>
-                        <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the Topic"
-                            name="topic"
-                            type="text"
-                            value={formFields.topic}
-                            onChange={hanldeInputValueChange}
-                        />
-                    </div>
-
+              
 
                     <div className={signupStyle["form-item"]} id="start_date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>start_date</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Start date of visit</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the Start Date"
                             name="start_date"
@@ -104,9 +96,10 @@ const FtyForeignEditPage = () => {
                             onChange={hanldeInputValueChange}
                         />
                     </div>
+                  
 
                     <div className={signupStyle["form-item"]} id="end_date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>end_date</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>End date of visit</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the End Date"
                             name="end_date"
@@ -118,9 +111,9 @@ const FtyForeignEditPage = () => {
                     </div>
 
                     <div className={signupStyle["form-item"]} id="country">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>country</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Country Visited</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the date"
+                            placeholder="Enter Country name visited"
                             name="country"
                             type="text"
                             value={formFields.country}
@@ -128,6 +121,18 @@ const FtyForeignEditPage = () => {
                         />
 
                     </div>
+
+                    <div className={signupStyle["form-item"]} id="visit_details">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Visit Details</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter visit details"
+                            name="visit_details"
+                            type="text"
+                            value={formFields.visit_details}
+                            onChange={hanldeInputValueChange}
+                        />
+                    </div>
+                   
 
 
                     <br />

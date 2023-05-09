@@ -14,19 +14,21 @@ const FtyForeignAddPage = () => {
 if(utype === "1" || utype === "4"){
     defaultFormFields = {
         faculty_name:"",
-        topic:"",
+       
         start_date: "",
         end_date: "",
-        country: "",     
+        country: "",  
+        visit_details:"",   
     };
 }
 else{
     defaultFormFields = {
         faculty_name:email,
-        topic:"",
+       
         start_date: "",
         end_date: "",
-        country: "",     
+        country: "", 
+        visit_details:"",      
     };
 }
 
@@ -40,10 +42,10 @@ else{
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { topic,start_date,end_date,country,faculty_name} = formFields;
-        if (topic === "") {
+        const { start_date,end_date,country,visit_details,faculty_name} = formFields;
+        if (country === "") {
 
-            toast.error("Enter topic Name")
+            toast.error("Enter Country Name")
 
         }
         else {
@@ -53,10 +55,11 @@ else{
                     setFormFields({
                         ...formFields, 
                         faculty_name:"",
-                        topic:"",
+                        
                         start_date: "",
                         end_date: "",
                         country: "",
+                        visit_details:"",  
                     });
                                      
                 }
@@ -64,10 +67,11 @@ else{
                 setFormFields({
                     ...formFields, 
                     faculty_name:email,
-                    topic:"",
+                    
                     start_date: "",
                     end_date: "",
                     country: "",
+                    visit_details:"",  
                 });
                 }
                 if(utype === "1"){
@@ -90,7 +94,7 @@ if(utype === "1" || utype === "4"){
     return(
         <body className={signupStyle.rooted}>
         <section className={signupStyle["form-container"]}>
-            <h2 className={signupStyle["form-heading"]}>Add More Foreign Visits</h2>
+            <h2 className={signupStyle["form-heading"]}>Add More Foreign Visits Details</h2>
             <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
 
             <div className={signupStyle["form-item"]} id="faculty_name">
@@ -104,20 +108,10 @@ if(utype === "1" || utype === "4"){
                     />
                 </div>
 
-            <div className={signupStyle["form-item"]} id="topic">
-                    <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>topic</label>
-                    <input style={{ height: "30px" }} className={signupStyle.myInput}
-                        placeholder="Enter the Topic"
-                        name="topic"
-                        type="text"
-                        value={formFields.topic}
-                        onChange={hanldeInputValueChange}
-                    />
-                </div>
-
+           
 
                 <div className={signupStyle["form-item"]} id="start_date">
-                    <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>start_date</label>
+                    <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Start date of visit</label>
                     <input style={{ height: "30px" }} className={signupStyle.myInput}
                         placeholder="Enter the Start Date"
                         name="start_date"
@@ -128,7 +122,7 @@ if(utype === "1" || utype === "4"){
                 </div>
 
                 <div className={signupStyle["form-item"]} id="end_date">
-                    <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>end_date</label>
+                    <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>End date of visit</label>
                     <input style={{ height: "30px" }} className={signupStyle.myInput}
                         placeholder="Enter the End Date"
                         name="end_date"
@@ -140,7 +134,7 @@ if(utype === "1" || utype === "4"){
                 </div>
 
                 <div className={signupStyle["form-item"]} id="country">
-                    <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>country</label>
+                    <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Country Visited</label>
                     <input style={{ height: "30px" }} className={signupStyle.myInput}
                         placeholder="Enter the date"
                         name="country"
@@ -150,7 +144,16 @@ if(utype === "1" || utype === "4"){
                     />
 
                 </div>
-
+                <div className={signupStyle["form-item"]} id="visit_details">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Visit Details</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter Visit Details"
+                            name="visit_details"
+                            type="text"
+                            value={formFields.visit_details}
+                            onChange={hanldeInputValueChange}
+                        />
+                    </div>
 
                 <br />
                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style={{ marginLeft: "auto", }} onClick={handleSubmit} >Submit</button>
@@ -164,23 +167,13 @@ else{
     return (
         <body className={signupStyle.rooted}>
             <section className={signupStyle["form-container"]}>
-                <h2 className={signupStyle["form-heading"]}>Add More Foreign Visits</h2>
+                <h2 className={signupStyle["form-heading"]}>Add More Foreign Visits Details</h2>
                 <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
 
-                <div className={signupStyle["form-item"]} id="topic">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>topic</label>
-                        <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the Topic"
-                            name="topic"
-                            type="text"
-                            value={formFields.topic}
-                            onChange={hanldeInputValueChange}
-                        />
-                    </div>
-
+                
 
                     <div className={signupStyle["form-item"]} id="start_date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>start_date</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Start date of visit</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the Start Date"
                             name="start_date"
@@ -191,7 +184,7 @@ else{
                     </div>
 
                     <div className={signupStyle["form-item"]} id="end_date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>end_date</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>End date of visit</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the End Date"
                             name="end_date"
@@ -203,15 +196,25 @@ else{
                     </div>
 
                     <div className={signupStyle["form-item"]} id="country">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>country</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Country Visited</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the date"
+                            placeholder="Enter Country name visited"
                             name="country"
                             type="text"
                             value={formFields.country}
                             onChange={hanldeInputValueChange}
                         />
 
+                    </div>
+                    <div className={signupStyle["form-item"]} id="visit_details">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Visit Details</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter Visit Details"
+                            name="visit_details"
+                            type="text"
+                            value={formFields.visit_details}
+                            onChange={hanldeInputValueChange}
+                        />
                     </div>
 
 

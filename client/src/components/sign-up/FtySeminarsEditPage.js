@@ -14,14 +14,15 @@ const utype = state.utype;
 
 
     const defaultFormFields = {
-        faculty_name:state.faculty_name,
+        speaker:state.speaker,
         title:state.title,
-        type: state.type,
+        designation: state.designation,
+        institute: state.institute,
         date: state.date,
         venue: state.venue,
-        chief_guest: state.chief_guest,
-        mode: state.mode,
-        collaborator: state.collaborator
+        num_participant: state.num_participant,
+        dept: state.dept,
+        additional_info: state.additional_info
     };
 
     const [formFields, setFormFields] = useState(defaultFormFields);
@@ -41,24 +42,25 @@ const utype = state.utype;
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { title,type,date,venue,chief_guest,mode,collaborator,faculty_name} = formFields;
-        if (type === "") {
+        const { speaker,title,date,venue,dept,institute,designation,additional_info,num_participant} = formFields;
+        if (speaker === "") {
 
-            toast.error("Enter type Name")
+            toast.error("Enter the name of speaker ")
 
         }
         else {
             const response = await FtyEditSeminars(formFields);
             if (response.status === 200) {
                 setFormFields({
-                    ...formFields,title:state.title, 
-                    faculty_name:state.faculty_name,
-                    type: state.type,
+                    ...formFields,  speaker:state.speaker,
+                    title:state.title,
+                    designation: state.designation,
+                    institute: state.institute,
                     date: state.date,
                     venue: state.venue,
-                    chief_guest: state.chief_guest,
-                    mode: state.mode,
-                    collaborator: state.collaborator
+                    num_participant: state.num_participant,
+                    dept: state.dept,
+                    additional_info: state.additional_info
                 });
                 if(utype === "1"){
                     navigate("/StaffHome/StaffSeminar")
@@ -83,13 +85,25 @@ const utype = state.utype;
     return (
         <body className={signupStyle.rooted}>
             <section className={signupStyle["form-container"]}>
-                <h2 className={signupStyle["form-heading"]}>Edit Your Workshops and Seminars</h2>
+                <h2 className={signupStyle["form-heading"]}>Edit Lectures By Visiting Experts</h2>
                 <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
 
-                <div className={signupStyle["form-item"]} id="title">
+                <div className={signupStyle["form-item"]} id="faculty_name">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Speaker/Guest Name</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter the name of speaker/guest"
+                            name="speaker"
+                            type="text"
+                            value={formFields.speaker}
+                            onChange={hanldeInputValueChange}
+                        />
+
+                    </div>
+
+                    <div className={signupStyle["form-item"]} id="title">
                         <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Title</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the Title"
+                            placeholder="Enter the title of lecture"
                             name="title"
                             type="text"
                             value={formFields.title}
@@ -99,20 +113,31 @@ const utype = state.utype;
 
 
                     <div className={signupStyle["form-item"]} id="type">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Type</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Designation Of Speaker </label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the name"
-                            name="type"
+                            placeholder="Enter the designation of speaker"
+                            name="designation"
                             type="text"
-                            value={formFields.type}
+                            value={formFields.designation}
                             onChange={hanldeInputValueChange}
                         />
                     </div>
+                    <div className={signupStyle["form-item"]} id="institute">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Institute/Organisation Of Speaker</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter the Institute/Organisation Of Speaker"
+                            name="institute"
+                            type="text"
+                            value={formFields.institute}
+                            onChange={hanldeInputValueChange}
+                        />
+
+                    </div>
 
                     <div className={signupStyle["form-item"]} id="date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>date</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Date Of Visit</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the date"
+                            placeholder="Enter the date of visit"
                             name="date"
                             type="date"
                             value={formFields.date}
@@ -122,7 +147,7 @@ const utype = state.utype;
                     </div>
 
                     <div className={signupStyle["form-item"]} id="venue">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>venue</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Venue</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the venue"
                             name="venue"
@@ -133,41 +158,42 @@ const utype = state.utype;
 
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="chief_guest">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>chief_guest</label>
+                    <div className={signupStyle["form-item"]} id="num_participant">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Number Of Participants</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the chief_guest"
-                            name="chief_guest"
+                            placeholder="Enter the number of participants"
+                            name="num_participant"
                             type="text"
-                            value={formFields.chief_guest}
+                            value={formFields.num_participant}
                             onChange={hanldeInputValueChange}
                         />
 
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="mode">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>mode</label>
+                    <div className={signupStyle["form-item"]} id="dept">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Department</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the mode"
-                            name="mode"
+                            placeholder="Enter the department"
+                            name="dept"
                             type="text"
-                            value={formFields.mode}
+                            value={formFields.dept}
                             onChange={hanldeInputValueChange}
                         />
 
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="collaborator">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>collaborator</label>
+                    <div className={signupStyle["form-item"]} id="additional_info">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Additional Information</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the collaborator"
-                            name="collaborator"
+                            placeholder="Enter any additional information"
+                            name="additional_info"
                             type="text"
-                            value={formFields.collaborator}
+                            value={formFields.additional_info}
                             onChange={hanldeInputValueChange}
                         />
 
                     </div>
+
 
 
                     <br />

@@ -18,6 +18,8 @@ const ForeignAddPage = () => {
             end_date: "",
             country: "",
             faculty_name: "",
+            visit_details:"",
+            visit_link:"",
             status: "Pending..",
         };
     }
@@ -29,6 +31,8 @@ const ForeignAddPage = () => {
             end_date: "",
             country: "",
             faculty_name: "",
+            visit_details:"",
+            visit_link:"",
             status: "Pending..",
         };
     }
@@ -43,10 +47,15 @@ const ForeignAddPage = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { topic, start_date, end_date, country, faculty_name, status, student_name } = formFields;
-        if (topic === "") {
+        const { start_date, end_date, country, faculty_name, status, student_name, visit_details,visit_link} = formFields;
+        if (visit_details === "") {
 
-            toast.error("Enter topic Name")
+            toast.error("Enter Visit Details")
+
+        }
+        else if (country === "") {
+
+            toast.error("Enter Country Name")
 
         }
         else {
@@ -56,11 +65,12 @@ const ForeignAddPage = () => {
                     setFormFields({
                         ...formFields,
                         student_name: "",
-                        topic: "",
                         start_date: "",
                         end_date: "",
                         country: "",
                         faculty_name: "",
+                        visit_details:"",
+                        visit_link:"",
                         status: "Pending..",
                     });
 
@@ -69,11 +79,12 @@ const ForeignAddPage = () => {
                     setFormFields({
                         ...formFields,
                         student_name: email,
-                        topic: "",
                         start_date: "",
                         end_date: "",
                         country: "",
                         faculty_name: "",
+                        visit_details:"",
+                        visit_link:"",
                         status: "Pending..",
                     });
                 }
@@ -97,21 +108,12 @@ const ForeignAddPage = () => {
         return (
             <body className={signupStyle.rooted}>
                 <section className={signupStyle["form-container"]}>
-                    <h2 className={signupStyle["form-heading"]}>Add More Foreign Visits</h2>
+                    <h2 className={signupStyle["form-heading"]}>Add More Foreign Visits Details</h2>
                     <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
-                        <div className={signupStyle["form-item"]} id="topic">
-                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Topic</label>
-                            <input style={{ height: "30px" }} className={signupStyle.myInput}
-                                placeholder="Enter the Topic"
-                                name="topic"
-                                type="text"
-                                value={formFields.topic}
-                                onChange={hanldeInputValueChange}
-                            />
-                        </div>
+                       
 
                         <div className={signupStyle["form-item"]} id="start_date">
-                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Start Date</label>
+                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Start date of visit</label>
                             <input style={{ height: "30px" }} className={signupStyle.myInput}
                                 placeholder="Enter the Start Date"
                                 name="start_date"
@@ -122,7 +124,7 @@ const ForeignAddPage = () => {
                         </div>
 
                         <div className={signupStyle["form-item"]} id="end_date">
-                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>End Date</label>
+                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>End date of visit</label>
                             <input style={{ height: "30px" }} className={signupStyle.myInput}
                                 placeholder="Enter the End Date"
                                 name="end_date"
@@ -134,10 +136,10 @@ const ForeignAddPage = () => {
                         </div>
 
                         <div className={signupStyle["form-item"]} id="country">
-                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Country</label>
+                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Country Visited</label>
                             <input style={{ height: "30px" }} className={signupStyle.myInput}
                                 placeholder="Enter Country"
-                                name="country"
+                                name="Enter Country name visited"
                                 type="text"
                                 value={formFields.country}
                                 onChange={hanldeInputValueChange}
@@ -148,7 +150,7 @@ const ForeignAddPage = () => {
                         <div className={signupStyle["form-item"]} id="faculty_name">
                             <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Faculty Name</label>
                             <input style={{ height: "30px" }} className={signupStyle.myInput}
-                                placeholder="Enter the faculty_name"
+                                placeholder="Enter the faculty's id with whom you visit"
                                 name="faculty_name"
                                 type="text"
                                 value={formFields.faculty_name}
@@ -169,6 +171,29 @@ const ForeignAddPage = () => {
 
                         </div>
 
+                        <div className={signupStyle["form-item"]} id="visit_details">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Visit Details</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter Visit Details"
+                            name="visit_details"
+                            type="text"
+                            value={formFields.visit_details}
+                            onChange={hanldeInputValueChange}
+                        />
+                    </div>
+                    <div className={signupStyle["form-item"]} id="visit_link">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Attach Link</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Attach Link"
+                            name="visit_link"
+                            type="text"
+                            value={formFields.visit_link}
+                            onChange={hanldeInputValueChange}
+                        />
+                    </div>
+                        
+                        
+
                         <br />
                         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style={{ marginLeft: "auto", }} onClick={handleSubmit} >Submit</button>
                     </form>
@@ -181,21 +206,12 @@ const ForeignAddPage = () => {
         return (
             <body className={signupStyle.rooted}>
                 <section className={signupStyle["form-container"]}>
-                    <h2 className={signupStyle["form-heading"]}>Add More Foreign Visits</h2>
+                    <h2 className={signupStyle["form-heading"]}>Add More Foreign Visits Details</h2>
+                   
                     <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
-                        <div className={signupStyle["form-item"]} id="topic">
-                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Topic</label>
-                            <input style={{ height: "30px" }} className={signupStyle.myInput}
-                                placeholder="Enter the Topic"
-                                name="topic"
-                                type="text"
-                                value={formFields.topic}
-                                onChange={hanldeInputValueChange}
-                            />
-                        </div>
-
+                    
                         <div className={signupStyle["form-item"]} id="start_date">
-                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Start Date</label>
+                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Start date of visit</label>
                             <input style={{ height: "30px" }} className={signupStyle.myInput}
                                 placeholder="Enter the Start Date"
                                 name="start_date"
@@ -206,7 +222,7 @@ const ForeignAddPage = () => {
                         </div>
 
                         <div className={signupStyle["form-item"]} id="end_date">
-                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>End Date</label>
+                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>End date of visit</label>
                             <input style={{ height: "30px" }} className={signupStyle.myInput}
                                 placeholder="Enter the End Date"
                                 name="end_date"
@@ -218,9 +234,9 @@ const ForeignAddPage = () => {
                         </div>
 
                         <div className={signupStyle["form-item"]} id="country">
-                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Country</label>
+                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Country Visited</label>
                             <input style={{ height: "30px" }} className={signupStyle.myInput}
-                                placeholder="Enter the date"
+                                placeholder="Enter Country name visited"
                                 name="country"
                                 type="text"
                                 value={formFields.country}
@@ -232,7 +248,7 @@ const ForeignAddPage = () => {
                         <div className={signupStyle["form-item"]} id="faculty_name">
                             <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Faculty Name</label>
                             <input style={{ height: "30px" }} className={signupStyle.myInput}
-                                placeholder="Enter the faculty_name"
+                                placeholder="Enter the faculty's id with whom you visit"
                                 name="faculty_name"
                                 type="text"
                                 value={formFields.faculty_name}
@@ -240,6 +256,27 @@ const ForeignAddPage = () => {
                             />
 
                         </div>
+
+                        <div className={signupStyle["form-item"]} id="visit_details">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Visit Details</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter Visit Details"
+                            name="visit_details"
+                            type="text"
+                            value={formFields.visit_details}
+                            onChange={hanldeInputValueChange}
+                        />
+                    </div>
+                    <div className={signupStyle["form-item"]} id="visit_link">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Attach Link</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Attach the link(if any)"
+                            name="visit_link"
+                            type="text"
+                            value={formFields.visit_link}
+                            onChange={hanldeInputValueChange}
+                        />
+                    </div>
 
                         <br />
                         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style={{ marginLeft: "auto", }} onClick={handleSubmit} >Submit</button>

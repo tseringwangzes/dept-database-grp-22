@@ -18,6 +18,16 @@ export const SidebarData = [
         icon:<EmojiEventsIcon />,
         link:"/Profile/Awards"
     },
+    // {
+    //     title:"Achievements",
+    //     icon:<StarsIcon />,
+    //     link:"/Profile/Achievements"
+    // },
+    // {
+    //     title:"Workshops/Seminar Organised",
+    //     icon:<PeopleIcon />,
+    //     link:"/Profile/Seminars"
+    // },
     {
         title:"Foreign Visits",
         icon:<AirplanemodeActiveOutlinedIcon />,
