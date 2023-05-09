@@ -283,7 +283,13 @@ exports.usergetall = async (req, res) => {
         const email=req.query.email;
         console.log(email)
         try {
-             const allUser = await stdetails.find({student_name:email}).sort({updatedAt: -1});
+            var allUser
+            if(email === "admin") {
+                allUser = await stdetails.find().sort({updatedAt: -1});
+            }
+            else{
+             allUser = await stdetails.find({student_name:email}).sort({updatedAt: -1});
+            }
            // const allUser = await stdetails.find().sort({updatedAt: -1});;
           //  console.log(allUser)
             res.status(200).json(allUser)
@@ -966,16 +972,16 @@ exports.editpublication = async (req, res) => {
 };
 
 exports.editproject = async (req, res) => {
-    const {topic, date, collaboration, granted_money,description, status,faculty_name,student_name} = req.body;
+    const {title,start_date,dept,faculty_name,student_name,funding_agency,funds,ongoing,link,status} = req.body;
 
-    if (!topic || !date || !collaboration || !granted_money || !description || !status || !faculty_name || !student_name) {
+    if (!title || !start_date || !dept || !faculty_name || !student_name || !funding_agency || !funds || !ongoing || !link || !status) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
     try {            
             const editproject = new st_project({
-                topic, date, collaboration, granted_money,description, status,faculty_name,student_name
+                title,start_date,dept,faculty_name,student_name,funding_agency,funds,ongoing,link,status
             });
-            const findAward = await st_project.findOne({topic:topic, date:date, collaboration:collaboration, granted_money:granted_money,description:description})
+            const findAward = await st_project.findOne({title:title,start_date:start_date,dept:dept,faculty_name:faculty_name,student_name:student_name,funding_agency:funding_agency,funds:funds,ongoing:ongoing,link:link,status:status})
             if(!findAward){
             const storeData = await editproject.save();
             res.status(200).json(storeData);
@@ -1270,14 +1276,14 @@ exports.facultyeditpublication = async (req, res) => {
 };
 
 exports.facultyeditproject = async (req, res) => {
-    const { topic,date,granted_money,status,faculty_name} = req.body;
+    const { title,start_date,dept,faculty_name,funding_agency,funds,ongoing,link} = req.body;
 
-    if (!topic || !date || !granted_money || !status || !faculty_name) {
+    if (!title || !start_date || !dept || !faculty_name || !funding_agency || !funds || !ongoing || !link) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
     try {            
             const facultyeditproject = new ft_projects({
-                topic, date,granted_money,status,faculty_name
+                title,start_date,dept,faculty_name,funding_agency,funds,ongoing,link
             });
 
             const storeData = await facultyeditproject.save();

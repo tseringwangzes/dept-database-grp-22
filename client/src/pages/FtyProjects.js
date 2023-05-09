@@ -65,20 +65,32 @@ function FtyProjects() {
     () => [
 
       {
-        Header: " Topic",
-        accessor: "topic",
+        Header: "Project Title",
+        accessor: "title",
       },
       {
-        Header: "Date",
-        accessor: "date",
+        Header: "Project Start Date",
+        accessor: "start_date",
       },
       {
-        Header: "Granted-Money",
-        accessor: "granted_money",
+        Header: "Department",
+        accessor: "dept",
       },
       {
-        Header: "Status",
-        accessor: "status",
+        Header: "Funding Agency",
+        accessor: "funding_agency",
+      },
+      {
+        Header: "Funds granted",
+        accessor: "funds",
+      },
+      {
+        Header: "Ongoing/Completed",
+        accessor: "ongoing",
+      },
+      {
+        Header: "Project Link",
+        accessor: "link",
       },
       {
         Header: 'Edit',
@@ -88,13 +100,16 @@ function FtyProjects() {
           <div>
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() => navigate("./FtyProjectsEdit.js/"+original._id, {
               state: {
-                faculty_name:original.faculty_name,
-                topic: original.topic,
-                date: original.date,
-                granted_money: original.granted_money,
-                status:original.status,
+                title: original.title,
+                start_date: original.start_date,
+                dept:original.dept,
+                faculty_name:original.faculty_name,    
+                funding_agency: original.funding_agency,
+                funds: original.funds,    
+                ongoing: original.ongoing,
+                link: original.link,
                 id: original._id,
-                utype:utype
+                utype: utype
               }
             })}>Edit</button>
           </div>);
@@ -332,7 +347,7 @@ function FtyProjects() {
           <br />
 
           <div className="">
-            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Your Projects</h1>
+            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Your Research Projects</h1>
           </div>
           <div className="mt-4">
             <FtyTablesProjects columns={columns} data={data} utype = {utype} />

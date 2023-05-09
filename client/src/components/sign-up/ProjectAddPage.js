@@ -14,26 +14,30 @@ const ProjectAddPage = () => {
     var defaultFormFields = {};
     if (utype === "1" || utype === "4") {
         defaultFormFields = {
-            faculty_name: "",
-            student_name: "",
-            topic: "",
-            date: "",
-            granted_money: "",
-            description: "",
+            title: "",
+            start_date: "",
+            dept:"",
+            faculty_name:"",    
+            student_name:"",
+            funding_agency: "",
+            funds: "",    
+            ongoing: "",
+            link: "",
             status: "Pending..",
-            collaboration: "",
         };
     }
     else{
         defaultFormFields = {
-            faculty_name: "2020csb1136@iitrpr.ac.in",
-            student_name: email,
-            topic: "",
-            date: "",
-            granted_money: "",
-            description: "",
+            title: "",
+            start_date: "",
+            dept:"",
+            faculty_name:"",    
+            student_name:email,
+            funding_agency: "",
+            funds: "",    
+            ongoing: "",
+            link: "",
             status: "Pending..",
-            collaboration: "",
         };
     }
 
@@ -47,10 +51,10 @@ const ProjectAddPage = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { topic, date, collaboration, granted_money, description, status, faculty_name, student_name } = formFields;
-        if (topic === "") {
+        const { title,start_date,dept,faculty_name,student_name,funding_agency,funds,ongoing,link,status} = formFields;
+        if (title === "") {
 
-            toast.error("Enter topic Name")
+            toast.error("Enter title Name")
 
         }
         else {
@@ -59,28 +63,32 @@ const ProjectAddPage = () => {
                 if(utype === "1" || utype === "4"){
                     setFormFields({
                         ...formFields,
-                        faculty_name: "",
-                        student_name: "",
-                        topic: "",
-                        date: "",
-                        granted_money: "",
-                        description: "",
+                        title: "",
+                        start_date: "",
+                        dept:"",
+                        faculty_name:"",    
+                        student_name:"",
+                        funding_agency: "",
+                        funds: "",    
+                        ongoing: "",
+                        link: "",
                         status: "Pending..",
-                        collaboration: "",
                     });
             
                 }
                 else{
                 setFormFields({
                     ...formFields,
-                    faculty_name: "2020csb1136@iitrpr.ac.in",
-                    student_name: email,
-                    topic: "",
-                    date: "",
-                    granted_money: "",
-                    description: "",
+                    title: "",
+                    start_date: "",
+                    dept:"",
+                    faculty_name:"",    
+                    student_name:email,
+                    funding_agency: "",
+                    funds: "",    
+                    ongoing: "",
+                    link: "",
                     status: "Pending..",
-                    collaboration: "",
                 });
                 }
                 if(utype === "1"){
@@ -103,88 +111,108 @@ const ProjectAddPage = () => {
         return (
             <body className={signupStyle.rooted}>
                 <section className={signupStyle["form-container"]}>
-                    <h2 className={signupStyle["form-heading"]}>Add More Project Grants</h2>
+                    <h2 className={signupStyle["form-heading"]}>Add More Research Projects Details of Student</h2>
                     <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
 
+                    <div className={signupStyle["form-item"]} id="student_name">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Student Name</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter email id of student whose data you want to add"
+                            name="student_name"
+                            type="text"
+                            value={formFields.student_name}
+                            onChange={hanldeInputValueChange}
+                        />
+                    </div>
+
+                    <div className={signupStyle["form-item"]} id="title">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Project Title</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter the Project title you want to add"
+                            name="title"
+                            type="text"
+                            value={formFields.title}
+                            onChange={hanldeInputValueChange}
+                        />
+                    </div>
+                    <div className={signupStyle["form-item"]} id="start_date">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Start Date of Project</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter the start date of the project"
+                            name="start_date"
+                            type="date"
+                            value={formFields.start_date}
+                            onChange={hanldeInputValueChange}
+                        />
+
+                    </div>
+
+                    <div className={signupStyle["form-item"]} id="dept">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Department Assosciated</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter department assosciated"
+                            name="dept"
+                            type="text"
+                            value={formFields.dept}
+                            onChange={hanldeInputValueChange}
+                        />
+
+                    </div>
+    
                     <div className={signupStyle["form-item"]} id="faculty_name">
-                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Faculty Name</label>
-                            <input style={{ height: "30px" }} className={signupStyle.myInput}
-                                placeholder="Enter the Faculty Name"
-                                name="faculty_name"
-                                type="text"
-                                value={formFields.faculty_name}
-                                onChange={hanldeInputValueChange}
-                            />
-                        </div>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Faculty Name</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter email id of faculty under whom student is doing the project"
+                            name="faculty_name"
+                            type="text"
+                            value={formFields.faculty_name}
+                            onChange={hanldeInputValueChange}
+                        />
+                    </div>
+    
+                    <div className={signupStyle["form-item"]} id="funding_agency">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Funding Agency</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter the agency name who funded the project"
+                            name="funding_agency"
+                            type="text"
+                            value={formFields.funding_agency}
+                            onChange={hanldeInputValueChange}
+                        />
+                    </div>
+    
+                    <div className={signupStyle["form-item"]} id="funds">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Funds Provided</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter the amount funded by the agency"
+                            name="funds"
+                            type="text"
+                            value={formFields.funds}
+                            onChange={hanldeInputValueChange}
+                        />
+                    </div>
+    
+                    <div className={signupStyle["form-item"]} id="ongoing">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Ongoing/Completed</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter the project status, whether ongoing or completed"
+                            name="ongoing"
+                            type="text"
+                            value={formFields.ongoing}
+                            onChange={hanldeInputValueChange}
+                        />
+                    </div>
 
-                        <div className={signupStyle["form-item"]} id="student_name">
-                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Student Name</label>
-                            <input style={{ height: "30px" }} className={signupStyle.myInput}
-                                placeholder="Enter the Student Name"
-                                name="student_name"
-                                type="text"
-                                value={formFields.student_name}
-                                onChange={hanldeInputValueChange}
-                            />
-                        </div>
-
-
-                        <div className={signupStyle["form-item"]} id="topic">
-                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Topic</label>
-                            <input style={{ height: "30px" }} className={signupStyle.myInput}
-                                placeholder="Enter the topic"
-                                name="topic"
-                                type="text"
-                                value={formFields.topic}
-                                onChange={hanldeInputValueChange}
-                            />
-                        </div>
-    
-                        <div className={signupStyle["form-item"]} id="date">
-                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>date</label>
-                            <input style={{ height: "30px" }} className={signupStyle.myInput}
-                                placeholder="Enter the date"
-                                name="date"
-                                type="date"
-                                value={formFields.date}
-                                onChange={hanldeInputValueChange}
-                            />
-    
-                        </div>
-    
-                        <div className={signupStyle["form-item"]} id="collaboration">
-                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>collaboration</label>
-                            <input style={{ height: "30px" }} className={signupStyle.myInput}
-                                placeholder="Enter collaboration with"
-                                name="collaboration"
-                                type="text"
-                                value={formFields.collaboration}
-                                onChange={hanldeInputValueChange}
-                            />
-    
-                        </div>
-    
-                        <div className={signupStyle["form-item"]} id="granted_money">
-                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>granted_money</label>
-                            <input style={{ height: "30px" }} className={signupStyle.myInput}
-                                placeholder="granted_money"
-                                name="granted_money"
-                                type="text"
-                                value={formFields.granted_money}
-                                onChange={hanldeInputValueChange}
-                            />
-                        </div>
-    
-                        <div className={signupStyle["form-item"]} id="description">
-                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>description</label>
-                            <input style={{ height: "30px" }} className={signupStyle.myInput}
-                                placeholder="description"
-                                name="description"
-                                type="text"
-                                value={formFields.description}
-                                onChange={hanldeInputValueChange}
-                            />
-                        </div>
+                    <div className={signupStyle["form-item"]} id="link">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Project Link</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter the project link if any, else leave it blank"
+                            name="link"
+                            type="text"
+                            value={formFields.link}
+                            onChange={hanldeInputValueChange}
+                        />
+                    </div>
     
                         <br />
                         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style={{ marginLeft: "auto", }} onClick={handleSubmit} >Submit</button>
@@ -199,61 +227,94 @@ const ProjectAddPage = () => {
     return (
         <body className={signupStyle.rooted}>
             <section className={signupStyle["form-container"]}>
-                <h2 className={signupStyle["form-heading"]}>Add More Project Grants</h2>
+                <h2 className={signupStyle["form-heading"]}>Add More Research Projects</h2>
                 <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
-                    <div className={signupStyle["form-item"]} id="topic">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Topic</label>
+                <div className={signupStyle["form-item"]} id="title">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Project Title</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the topic"
-                            name="topic"
+                            placeholder="Enter the Project title you want to add"
+                            name="title"
                             type="text"
-                            value={formFields.topic}
+                            value={formFields.title}
                             onChange={hanldeInputValueChange}
                         />
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>date</label>
+                    <div className={signupStyle["form-item"]} id="start_date">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Start Date of Project</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the date"
-                            name="date"
+                            placeholder="Enter the start date of the project"
+                            name="start_date"
                             type="date"
-                            value={formFields.date}
+                            value={formFields.start_date}
                             onChange={hanldeInputValueChange}
                         />
 
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="collaboration">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>collaboration</label>
+                    <div className={signupStyle["form-item"]} id="dept">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Department Assosciated</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter collaboration with"
-                            name="collaboration"
+                            placeholder="Enter department assosciated"
+                            name="dept"
                             type="text"
-                            value={formFields.collaboration}
+                            value={formFields.dept}
                             onChange={hanldeInputValueChange}
                         />
 
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="granted_money">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>granted_money</label>
+                    <div className={signupStyle["form-item"]} id="faculty_name">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Faculty Name</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="granted_money"
-                            name="granted_money"
+                            placeholder="Enter email id of faculty under whom you are doing the project"
+                            name="faculty_name"
                             type="text"
-                            value={formFields.granted_money}
+                            value={formFields.faculty_name}
                             onChange={hanldeInputValueChange}
                         />
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="description">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>description</label>
+                    <div className={signupStyle["form-item"]} id="funding_agency">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Funding Agency</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="description"
-                            name="description"
+                            placeholder="Enter the agency name who funded the project"
+                            name="funding_agency"
                             type="text"
-                            value={formFields.description}
+                            value={formFields.funding_agency}
+                            onChange={hanldeInputValueChange}
+                        />
+                    </div>
+
+                    <div className={signupStyle["form-item"]} id="funds">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Funds Provided</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter the amount funded by the agency"
+                            name="funds"
+                            type="text"
+                            value={formFields.funds}
+                            onChange={hanldeInputValueChange}
+                        />
+                    </div>
+
+                    <div className={signupStyle["form-item"]} id="ongoing">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Ongoing/Completed</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter the project status, whether ongoing or completed"
+                            name="ongoing"
+                            type="text"
+                            value={formFields.ongoing}
+                            onChange={hanldeInputValueChange}
+                        />
+                    </div>
+
+                    <div className={signupStyle["form-item"]} id="link">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Project Link</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter the project link if any, else leave it blank"
+                            name="link"
+                            type="text"
+                            value={formFields.link}
                             onChange={hanldeInputValueChange}
                         />
                     </div>
