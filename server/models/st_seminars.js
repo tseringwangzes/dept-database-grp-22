@@ -10,6 +10,7 @@ const stseminar = new mongoose.Schema({
     chief_guest: String,
     mode: String,
     collaborator: String,
+    link: String,
     status: String,
     
 },

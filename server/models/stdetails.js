@@ -7,6 +7,7 @@ const stschema = new mongoose.Schema({
     award_reason: String,
     date: String,
     shared_with: String,
+    link: String,
     status: String,
     
 },

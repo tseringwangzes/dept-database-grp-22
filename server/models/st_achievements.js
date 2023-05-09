@@ -6,6 +6,7 @@ const stachieve = new mongoose.Schema({
     achievements: String,
     date: String,
     shared_with: String,
+    link: String,
     status: String,
     
 },
