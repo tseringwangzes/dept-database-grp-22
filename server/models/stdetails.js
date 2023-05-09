@@ -7,8 +7,9 @@ const stschema = new mongoose.Schema({
     date: String,
     shared_with: String,
     award_link: String,
-    additional_info: String,
-    status: String,    
+    additional_info:String,
+    status: String,
+    
 },
     {
         collection: "phdstudents",
