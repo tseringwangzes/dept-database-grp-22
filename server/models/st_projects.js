@@ -9,6 +9,7 @@ const stprojects = new mongoose.Schema({
     description: String,
     status: String,
     collaboration:String,
+    link: String,
     
 },
     {

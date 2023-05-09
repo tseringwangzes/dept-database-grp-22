@@ -1,6 +1,7 @@
 import React, { Fragment,Component, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { userfunc } from '../services/Apis'
+import { getfaculty } from '../services/Apis'
 import TablesAwards, { StatusPill } from "../tables/TablesAwards";
 import Sidebar from "../components/Sidebar";
 import jsPDF from 'jspdf';
@@ -41,7 +42,24 @@ function Awards() {
     setShowModaldelete(false);
 
   }
+  const [femail, setfemail] = useState("");
 
+  const getfaculty=async()=>{
+    const response=await getfaculty(email);
+    console.log(femail)
+    if(response.status===200){
+      setfemail(response.data)
+      console.log(femail)
+    }
+   else {
+    console.log("error for get user data")
+  }
+  }
+  useEffect(() => {
+    getfaculty();
+    setTimeout(() => {
+    }, 1200)
+  }, [])
 
 
   const [data, setUserData] = useState([]);
@@ -89,6 +107,10 @@ function Awards() {
         accessor: "shared_with",
       },
       {
+        Header: "Attached Link",
+        accessor: "link",
+      },
+      {
         Header: "Status",
         accessor: "status",
         Cell: StatusPill,
@@ -109,6 +131,7 @@ function Awards() {
                 date: original.date,
                 shared_with: original.shared_with,
                 id: original._id,
+                link:original.link,
                 utype: utype,
               }
             })}>Edit</button>
@@ -252,9 +275,6 @@ const rows = filteredData.map(user=>[user.award_name,user.award_reason,user.date
              <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={ () => setShowModal(true)} >Upload Data in Bulk</button>
           </div>
 
-
-
-
           {showModal ? (
                 <>
                     <div className="fixed inset-0 z-10 overflow-y-auto">
@@ -273,12 +293,12 @@ const rows = filteredData.map(user=>[user.award_name,user.award_reason,user.date
                                         </p>
                                         <div className="items-center gap-4 mt-3 sm:flex">
                                             <button
-                                                className="w-full mt-2 p-1.5 flex-1 text-white bg-blue-600 rounded-md outline-none ring-offset-2 ring-red-600 focus:ring-2"
+                                                className="w-full mt-2 p-1.5 flex-1 text-white bg-blue-600 rounded-md outline-none ring-offset-2 ring-blue-600 focus:ring-2"
                                                 onClick={uploadbulk2}  >
                                                 Not Now
                                             </button>
                                             <button
-                                                className="w-full mt-2 p-1.5 flex-1 text-white  bg-green-600 rounded-md outline-none border ring-offset-2 ring-indigo-600 focus:ring-2"
+                                                className="w-full mt-2 p-1.5 flex-1 text-white  bg-green-600 rounded-md outline-none border ring-offset-2 ring-green-600 focus:ring-2"
                                                 onClick={ uploadbulk }  >
                                                 Download
                                             </button>

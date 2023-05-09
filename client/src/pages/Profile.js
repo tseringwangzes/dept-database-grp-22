@@ -14,12 +14,7 @@ function FtyProfile() {
     //const [data, setData] = useState(null);
     const [stData, setData] = useState([0]);
     const [prompt, setShowPrompt] = useState(false);
-    const [userDetails, setUserDetails] = useState({
-      link: "",
-      subjects: [],
-      interest: "",
-      background: ""
-    });
+    
     //const [link, setLink] = useState("");
     
     var email = localStorage.getItem('email');
@@ -30,8 +25,18 @@ function FtyProfile() {
       e.preventDefault();
       setShowPrompt(true);
     }
-    const handlePromptClose = () => {
+    const handlePromptClose = (upDatedLinkText) => {
       setShowPrompt(false);
+      
+      if (upDatedLinkText !== 'cancel') {
+        setData((prevState) => {
+          const updatedData = [...prevState]; // Create a copy of the array
+          updatedData[7] = upDatedLinkText; // Modify the desired element
+          return updatedData; // Set the updated array using setData
+        });
+      }
+      
+
     };
     
 
@@ -44,7 +49,7 @@ function FtyProfile() {
           setData(response.data)
           //console.log(response.data);
           //console.log(ftData);
-          console.log('react');
+         // console.log('react');
         } catch (error) {
           console.error(error);
         }
@@ -60,7 +65,7 @@ function FtyProfile() {
     return (
         <>
         {
-               prompt && <FormDialog handleClose={handlePromptClose} linkText={stData[7]}/>
+               prompt && <FormDialog handleClose={handlePromptClose} linkText={stData[7]} emailID={email}/>
         }
             
             <Sidebar student_name = {email}/>\           

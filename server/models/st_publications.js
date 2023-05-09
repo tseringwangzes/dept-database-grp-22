@@ -9,6 +9,7 @@ const stpublica = new mongoose.Schema({
     collaboration: String,
     no_of_students: String,
     status: String,
+    link: String,
     
 },
     {

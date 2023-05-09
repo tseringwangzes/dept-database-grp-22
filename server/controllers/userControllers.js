@@ -17,6 +17,7 @@ const ft_publications = require("../models/ft_publications");
 const ft_projects = require("../models/ft_projects");
 const student_award = require("../models/st_award_table");
 const personalDetails = require("../models/stu_personal_details");
+const ftDetails = require("../models/ft_personal_details")
 
 
 const tarnsporter = nodemailer.createTransport({
@@ -32,9 +33,9 @@ exports.getfaculty = async (req, res) => {
     const email=req.query.email;
     console.log(email)
     try {
-        const femail = await users.findOne({email:email});
+        const femail = await users.find({email:email});
       // const allUser = await stdetails.find().sort({updatedAt: -1});;
-       console.log(femail)
+       console.log(femail.faculty_name)
        res.status(200).json(femail)
    } catch (error) {
        res.status(401).json(error)
@@ -535,7 +536,7 @@ exports.useraddmore = async (req, res) => {
         //  console.log(femail)
             console.log(shared_each_email)
             const nshw1 = student_name2.split(shared_each_email).join("");
-            const nshw2 = nshw1 + req.body.student_name;
+            const nshw2 = nshw1 + "," + req.body.student_name;
             const shareduseraddmore = new stdetails({
                 award_name,award_reason,date,"shared_with":nshw2,status,faculty_name,"student_name":shared_each_email
             });
@@ -682,6 +683,10 @@ exports.homePost = async(req,res) => {
         var myMsg = req.body.msg
         await personalDetails.findOneAndUpdate({email_id: myEmail},{education: myMsg});
         res.status(200).json({ message: 'Items Added Successfully' });
+     } else if (type === 'Link') {
+        var myMsg = req.body.edit
+        await personalDetails.findOneAndUpdate({email_id: myEmail},{webLink: myMsg});
+        res.status(200).json({ message: 'Items Added Successfully' });
      }
 
 
@@ -691,10 +696,50 @@ exports.homePost = async(req,res) => {
    }
 }
 
+exports.ftHomePost = async(req,res) => {
+
+    const type = req.body.type;
+    const myEmail = req.body.email
+    console.log(req.body);
+
+   try {
+     if (type === 'List') {
+ 
+         var myList = req.body.subList
+         const document = await ftDetails.findOneAndUpdate({email_id: myEmail},{studentsUnder: myList});
+         //console.log(document);
+         res.status(200).json({ message: 'Items Added Successfully' });
+ 
+     } else if (type === 'Research') {
+        var myMsg = req.body.msg
+        await ftDetails.findOneAndUpdate({email_id: myEmail},{research: myMsg});
+        res.status(200).json({ message: 'Items Added Successfully' });
+
+     } else if (type === 'Education') {
+
+
+        var myMsg = req.body.msg
+        await ftDetails.findOneAndUpdate({email_id: myEmail},{education: myMsg});
+        res.status(200).json({ message: 'Items Added Successfully' });
+     } else if (type === 'Link') {
+        var myMsg = req.body.edit
+        await ftDetails.findOneAndUpdate({email_id: myEmail},{webLink: myMsg});
+        res.status(200).json({ message: 'Items Added Successfully' });
+     }
+
+
+   } catch (error) {
+    console.log(error);
+    res.status(400).json(error)
+   }
+
+
+}
+
 
 exports.facultyHome = async(req,res) => {
 
-    var count = new Array (7);
+    var count = new Array (12);
     var email = req.query.email;
     console.log(email);
 
@@ -720,6 +765,21 @@ exports.facultyHome = async(req,res) => {
 
           count[6] = name;
           //console.log(count);
+
+          const temp = await ftDetails.findOne({email_id: email})
+
+          if (temp) {
+            count[7] = temp.webLink
+            count[8] = temp.studentsUnder
+            count[9] = temp.research
+            count[10] = temp.education
+          }
+
+        const det = await ftDetails.findOneAndUpdate(
+            { email_id: email },
+            { email_id: email },
+            { upsert: true, new: true }
+        );
           
           res.status(200).json(count);
           
