@@ -652,6 +652,10 @@ exports.homePost = async(req,res) => {
         var myMsg = req.body.msg
         await personalDetails.findOneAndUpdate({email_id: myEmail},{education: myMsg});
         res.status(200).json({ message: 'Items Added Successfully' });
+     } else if (type === 'Link') {
+        var myMsg = req.body.edit
+        await personalDetails.findOneAndUpdate({email_id: myEmail},{webLink: myMsg});
+        res.status(200).json({ message: 'Items Added Successfully' });
      }
 
 

@@ -30,8 +30,18 @@ function FtyProfile() {
       e.preventDefault();
       setShowPrompt(true);
     }
-    const handlePromptClose = () => {
+    const handlePromptClose = (upDatedLinkText) => {
       setShowPrompt(false);
+      
+      if (upDatedLinkText !== 'cancel') {
+        setData((prevState) => {
+          const updatedData = [...prevState]; // Create a copy of the array
+          updatedData[7] = upDatedLinkText; // Modify the desired element
+          return updatedData; // Set the updated array using setData
+        });
+      }
+      
+
     };
     
 
@@ -60,7 +70,7 @@ function FtyProfile() {
     return (
         <>
         {
-               prompt && <FormDialog handleClose={handlePromptClose} linkText={stData[7]}/>
+               prompt && <FormDialog handleClose={handlePromptClose} linkText={stData[7]} emailID={email}/>
         }
             
             <Sidebar student_name = {email}/>\           
