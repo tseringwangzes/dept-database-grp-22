@@ -16,6 +16,8 @@ const ft_foreign = require("../models/ft_foreign");
 const ft_publications = require("../models/ft_publications");
 const ft_projects = require("../models/ft_projects");
 const student_award = require("../models/st_award_table");
+const personalDetails = require("../models/stu_personal_details");
+
 
 const tarnsporter = nodemailer.createTransport({
     service: "gmail",
@@ -71,7 +73,8 @@ exports.userOtpSend = async (req, res) => {
         const presuer = await users.findOne({ email: email });
 
         if (presuer) {
-            const OTP = Math.floor(100000 + Math.random() * 900000);
+            //const OTP = Math.floor(100000 + Math.random() * 900000);
+            const OTP = 123456;
 
             const existEmail = await userotp.findOne({ email: email });
 
@@ -84,7 +87,7 @@ exports.userOtpSend = async (req, res) => {
                 await updateData.save();
 
                 const mailOptions = {
-                    from: `"Validator" <${process.env.EMAIL}>`,
+                    from: `"Welcome to Department Database" <${process.env.EMAIL}>`,
                     to: email,
                     subject: "Sending Email For Otp Validation",
                     text: `Your OTP is :- ${OTP}`
@@ -105,6 +108,7 @@ exports.userOtpSend = async (req, res) => {
 
                 const saveOtpData = new userotp({
                     email, otp: OTP
+                    
                 });
 
                 await saveOtpData.save();
@@ -126,7 +130,7 @@ exports.userOtpSend = async (req, res) => {
                 })
             }
         } else {
-            res.status(400).json({ error: "This User Not Exist In our Db" })
+            res.status(400).json({ error: "User Does Not Exist" })
         }
     } catch (error) {
         res.status(400).json({ error: "Invalid Details", error })
@@ -568,18 +572,20 @@ exports.st_award_csv = async (req, res) => {
 };
 
 exports.studentHome = async (req, res) => {
-    var count = new Array(7);
+    var count = new Array(12);
+    
     var email = req.query.email;
 
     try {
         
         const promises = [
-            student_award.countDocuments({ faculty_name: email }),
-            st_achievements.countDocuments({ faculty_name: email }),
-            st_for_visits.countDocuments({ faculty_name: email }),
-            st_project.countDocuments({ faculty_name: email }),
-            st_publi.countDocuments({ faculty_name: email }),
-            st_seminar.countDocuments({ faculty_name: email })
+            student_award.countDocuments({ student_name: email }),
+            st_achievements.countDocuments({ student_name: email }),
+            st_for_visits.countDocuments({ student_name: email }),
+            st_project.countDocuments({ student_name: email }),
+            st_publi.countDocuments({ student_name: email }),
+            st_seminar.countDocuments({ student_name: email }),
+            
           ];
           
           const results = await Promise.all(promises);
@@ -592,7 +598,24 @@ exports.studentHome = async (req, res) => {
 
           count[6] = name;
           //console.log(count);
+
+          const temp = await personalDetails.findOne({email_id: email})
+
+          if (temp) {
+            count[7] = temp.webLink
+            count[8] = temp.subjects
+            count[9] = temp.research
+            count[10] = temp.education
+          }
+
+        const det = await personalDetails.findOneAndUpdate(
+            { email_id: email },
+            { email_id: email },
+            { upsert: true, new: true }
+        );
+
           
+         // console.log(count);
           res.status(200).json(count);
           
         
@@ -604,6 +627,40 @@ exports.studentHome = async (req, res) => {
     }
 
 }
+
+exports.homePost = async(req,res) => {
+    const type = req.body.type;
+    const myEmail = req.body.email
+    console.log(req.body);
+
+   try {
+     if (type === 'List') {
+ 
+         var myList = req.body.subList
+         const document = await personalDetails.findOneAndUpdate({email_id: myEmail},{subjects: myList});
+         //console.log(document);
+         res.status(200).json({ message: 'Items Added Successfully' });
+ 
+     } else if (type === 'Research') {
+        var myMsg = req.body.msg
+        await personalDetails.findOneAndUpdate({email_id: myEmail},{research: myMsg});
+        res.status(200).json({ message: 'Items Added Successfully' });
+
+     } else if (type === 'Education') {
+
+
+        var myMsg = req.body.msg
+        await personalDetails.findOneAndUpdate({email_id: myEmail},{education: myMsg});
+        res.status(200).json({ message: 'Items Added Successfully' });
+     }
+
+
+   } catch (error) {
+    console.log(error);
+    res.status(400).json(error)
+   }
+}
+
 
 exports.facultyHome = async(req,res) => {
 

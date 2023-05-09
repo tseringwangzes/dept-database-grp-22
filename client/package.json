@@ -10,6 +10,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@heroicons/react": "^2.0.17",
     "@material-tailwind/react": "^1.4.2",
     "@mui/icons-material": "^5.11.9",
     "@mui/material": "^5.11.9",
