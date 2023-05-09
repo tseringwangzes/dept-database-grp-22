@@ -229,6 +229,7 @@ exports.userApprovalSend = async (req, res) => {
 
 exports.userLogin = async (req, res) => {
     const { email, otp,type } = req.body;
+    console.log(req.body.otp)
 
     if (!otp || !email) {
         res.status(400).json({ error: "Please Enter Your OTP and email" })
@@ -518,10 +519,10 @@ exports.st_publication_csv = async (req, res) => {
 
 
 exports.useraddmore = async (req, res) => {
-    const { award_name,award_reason,date,shared_with,status,faculty_name,student_name} = req.body;
+    const { award_name,date,shared_with,award_link,additional_info,status,faculty_name,student_name} = req.body;
    
 
-    if (!award_name || !award_reason || !date || !status || !faculty_name ) {
+    if (!award_name || !date || !status || !faculty_name ) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
 
@@ -538,11 +539,11 @@ exports.useraddmore = async (req, res) => {
             const nshw1 = student_name2.split(shared_each_email).join("");
             const nshw2 = nshw1 + "," + req.body.student_name;
             const shareduseraddmore = new stdetails({
-                award_name,award_reason,date,"shared_with":nshw2,status,faculty_name,"student_name":shared_each_email
+                award_name,date,"shared_with":nshw2,status,faculty_name,"student_name":shared_each_email,award_link,additional_info
             });
             console.log(shareduseraddmore);
            
-            const findAward = await stdetails.findOne({student_name:shared_each_email,award_name:award_name,award_reason:award_reason,date:date})
+            const findAward = await stdetails.findOne({student_name:shared_each_email,award_name:award_name,date:date,award_link:award_link,additional_info:additional_info})
             console.log(findAward);
             if(!findAward){
             const storeData = await shareduseraddmore.save();
@@ -561,10 +562,10 @@ exports.useraddmore = async (req, res) => {
             // const femail = await users.findOne({email:student_name});
             // console.log(femail)
             const useraddmore = new stdetails({
-                award_name,award_reason,date,shared_with,status,faculty_name,student_name
+                award_name,date,shared_with,status,faculty_name,student_name,award_link,additional_info
             });
 
-            const findAward = await stdetails.findOne({student_name:student_name,award_name:award_name,award_reason:award_reason,date:date,shared_with:shared_with})
+            const findAward = await stdetails.findOne({student_name:student_name,award_name:award_name,date:date,shared_with:shared_with,award_link:award_link,additional_info:additional_info})
             console.log(findAward);
             if(!findAward){
             const storeData = await useraddmore.save();
