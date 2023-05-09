@@ -218,8 +218,18 @@ const rows = filteredData.map(user=>[user.topic,user.date,user.granted_money,use
       body: rows,
       startY: 80,
     });
-    doc.save('my-document.pdf');
-
+    //doc.save('my-document.pdf');
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+    const formattedMonth = month < 10 ? `0${month}` : month;
+    const formattedDay = day < 10 ? `0${day}` : day;
+    const formattedDate = `${formattedDay}-${formattedMonth}-${year}`;
+  
+    // save PDF with formatted date in filename
+    const filename = `${formattedDate}-ProjectGrants.pdf`;
+    doc.save(filename);
     // add image to PDF here
   });
   }

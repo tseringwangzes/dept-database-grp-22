@@ -83,7 +83,7 @@ const ProjectsEditPage = () => {
     return (
         <body className={signupStyle.rooted}>
             <section className={signupStyle["form-container"]}>
-                <h2 className={signupStyle["form-heading"]}>Edit</h2>
+                <h2 className={signupStyle["form-heading"]}>Edit Your Project Grants</h2>
                 <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
                     <div className={signupStyle["form-item"]} id="topic">
                         <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Topic</label>

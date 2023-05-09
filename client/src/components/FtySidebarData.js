@@ -16,23 +16,23 @@ export const FtySidebarData = [
         fname:"",
     },
     {
-        title:"Awards",
+        title:"Awards/Achievements",
         icon:<EmojiEventsIcon />,
         link:"/faculty/Awards",
         fname:"",
     },
-    // {
-    //     title:"Achievements",
-    //     icon:<StarsIcon />,
-    //     link:"/faculty/Achievements",
-    //     fname:""
-    // },
+   /* {
+        title:"Achievements",
+        icon:<StarsIcon />,
+        link:"/faculty/Achievements",
+        fname:""
+    },
     {
-        title:"Lecture By Visiting Experts",
+        title:"Workshops/Seminar Organised",
         icon:<PeopleIcon />,
         link:"/faculty/Seminars",
         fname:""
-    },
+    },*/
     {
         title:"Foreign Visits",
         icon:<AirplanemodeActiveOutlinedIcon />,

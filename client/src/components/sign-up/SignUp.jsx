@@ -20,6 +20,7 @@ const SignUp = () => {
     student_name:state.student_name,
     award_name: state.award_name,
     date: state.date,
+    additional_info:state.additional_info,
     shared_with: state.shared_with,
     award_link: state.award_link,
     additional_info:state.additional_info,

@@ -851,14 +851,14 @@ exports.facultygetprojects = async(req,res)=>{
 }
 
 exports.facultyaddawards = async (req, res) => {
-    const { award_name,award_reason,date,shared_with,faculty_name} = req.body;
+    const { award_name,award_reason,date,shared_with,faculty_name,additional_info} = req.body;
 
-    if (!award_name || !award_reason || !date || !shared_with || !faculty_name) {
+    if (!award_name || !date || !shared_with || !faculty_name || !additional_info) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
     try {            
             const facultyaddawards = new ft_awards({
-                award_name,award_reason,date,shared_with,faculty_name
+                award_name,award_reason,date,shared_with,faculty_name,additional_info
             });
 
             const storeData = await facultyaddawards.save();
@@ -992,17 +992,16 @@ exports.editproject = async (req, res) => {
 
 
 exports.facultyeditachievements = async (req, res) => {
-    const { Achievements,date,shared_with,faculty_name} = req.body;
-
-    if (!Achievements || !date || !shared_with || !faculty_name) {
+    const { Achievements,date,shared_with,faculty_name,additional_info} = req.body;
+    if (!Achievements || !date || !shared_with || !faculty_name || !additional_info) {
         res.status(400).json({ error: "Please Enter All Input Data" })
         return;
     }
     try {            
             const facultyeditachievements = new ft_achievements({
-                Achievements,date,shared_with,faculty_name
+                Achievements,date,shared_with,faculty_name,additional_info
             });
-            const findAward = await ft_achievements.findOne({Achievements:Achievements,date:date,shared_with:shared_with})
+            const findAward = await ft_achievements.findOne({Achievements:Achievements,date:date,shared_with:shared_with,additional_info:additional_info})
             if(!findAward){
             const storeData = await facultyeditachievements.save();
             res.status(200).json(storeData);
@@ -1018,6 +1017,7 @@ exports.facultyeditachievements = async (req, res) => {
     }
 
 };
+
 
 exports.facultyeditseminars = async (req, res) => {
     const { title,speaker,date,venue,dept,designation,institute,additional_info,num_participant} = req.body;
