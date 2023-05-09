@@ -91,7 +91,7 @@ if(utype === "1" || utype === "4"){
     return (
         <body className={signupStyle.rooted}>
             <section className={signupStyle["form-container"]}>
-                <h2 className={signupStyle["form-heading"]}>Add Project Grants</h2>
+                <h2 className={signupStyle["form-heading"]}> Add More Project Grants</h2>
                 <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
 
                 <div className={signupStyle["form-item"]} id="faculty_name">
@@ -165,7 +165,7 @@ else{
     return (
         <body className={signupStyle.rooted}>
             <section className={signupStyle["form-container"]}>
-                <h2 className={signupStyle["form-heading"]}>Add Project Grants</h2>
+                <h2 className={signupStyle["form-heading"]}>Add More Project Grants</h2>
                 <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
                     <div className={signupStyle["form-item"]} id="topic">
                         <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>topic</label>

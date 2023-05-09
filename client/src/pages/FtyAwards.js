@@ -57,16 +57,16 @@ function FtyAwards() {
         accessor: "award_name",
       },
       {
-        Header: "Award Reason",
-        accessor: "award_reason",
-      },
-      {
         Header: "Date",
         accessor: "date",
       },
       {
         Header: "Shared With",
         accessor: "shared_with",
+      },
+      {
+        Header:"Additional information(if any)",
+        accessor:"additional_info",
       },
       {
         Header: 'Edit',
@@ -77,9 +77,9 @@ function FtyAwards() {
               state: {
                 faculty_name:original.faculty_name,
                 award_name: original.award_name,
-                award_reason: original.award_reason,
                 date: original.date,
                 shared_with: original.shared_with,
+                additional_info: original.additional_info,
                 id: original._id,
                 utype:utype,
               }
@@ -186,7 +186,19 @@ function FtyAwards() {
         body: rows,
         startY: 80,
       });
-      doc.save('my-document.pdf');
+    //  doc.save('my-document.pdf');
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+    const formattedMonth = month < 10 ? `0${month}` : month;
+    const formattedDay = day < 10 ? `0${day}` : day;
+    const formattedDate = `${formattedDay}-${formattedMonth}-${year}`;
+  
+    // save PDF with formatted date in filename
+    const filename = `${formattedDate}_${email}_Awards.pdf`;
+    doc.save(filename);
+ 
       // add image to PDF here
     });
     }

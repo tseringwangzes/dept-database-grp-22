@@ -83,7 +83,7 @@ const utype = state.utype;
     return (
         <body className={signupStyle.rooted}>
             <section className={signupStyle["form-container"]}>
-                <h2 className={signupStyle["form-heading"]}>Edit</h2>
+                <h2 className={signupStyle["form-heading"]}>Edit Your Workshops and Seminars</h2>
                 <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
 
                 <div className={signupStyle["form-item"]} id="title">

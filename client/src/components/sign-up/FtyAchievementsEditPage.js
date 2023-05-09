@@ -20,6 +20,7 @@ const FtyAchievementsEditPage = () => {
         Achievements: state.Achievements,
         date: state.date,
         shared_with: state.shared_with,
+        additional_info:state.additional_info,
     };
 
     const [formFields, setFormFields] = useState(defaultFormFields);
@@ -39,11 +40,9 @@ const FtyAchievementsEditPage = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { Achievements,date, shared_with,faculty_name } = formFields;
+        const { Achievements,date, shared_with,faculty_name,additional_info } = formFields;
         if (Achievements === "") {
-
             toast.error("Enter Achievement Name")
-
         }
         else {
             const response = await FtyEditAchievements(formFields);
@@ -54,6 +53,7 @@ const FtyAchievementsEditPage = () => {
                     date: state.date,
                     shared_with: state.shared_with,
                     faculty_name:state.faculty_name,
+                    additional_info:state.additional_info,
                 });
                 if(utype === "1"){
                     navigate("/StaffHome/StaffFaculty")
@@ -78,7 +78,7 @@ const FtyAchievementsEditPage = () => {
     return (
         <body className={signupStyle.rooted}>
             <section className={signupStyle["form-container"]}>
-                <h2 className={signupStyle["form-heading"]}>Edit</h2>
+                <h2 className={signupStyle["form-heading"]}>Edit Your Achievements</h2>
                 <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
                     <div className={signupStyle["form-item"]} id="Achievements">
                         <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Achievement</label>
@@ -110,6 +110,16 @@ const FtyAchievementsEditPage = () => {
                             name="shared_with"
                             type="text"
                             value={formFields.shared_with}
+                            onChange={hanldeInputValueChange}
+                        />
+                    </div>
+                    <div className={signupStyle["form-item"]} id="additional_info">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Additional Information (if any)</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Edit the additional information (if you want)"
+                            name="additional_info"
+                            type="text"
+                            value={formFields.additional_info}
                             onChange={hanldeInputValueChange}
                         />
                     </div>
