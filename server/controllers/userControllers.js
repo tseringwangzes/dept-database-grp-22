@@ -992,16 +992,16 @@ exports.editproject = async (req, res) => {
 
 
 exports.facultyeditachievements = async (req, res) => {
-    const { Achievements,date,shared_with,faculty_name,additional_info} = req.body;
-    if (!Achievements || !date || !shared_with || !faculty_name || !additional_info) {
+    const { title,date,dept,faculty_name,additional_info,institute} = req.body;
+    if (!title || !date || !dept || !faculty_name || !institute) {
         res.status(400).json({ error: "Please Enter All Input Data" })
         return;
     }
     try {            
             const facultyeditachievements = new ft_achievements({
-                Achievements,date,shared_with,faculty_name,additional_info
+                title,date,dept,faculty_name,additional_info,institute
             });
-            const findAward = await ft_achievements.findOne({Achievements:Achievements,date:date,shared_with:shared_with,additional_info:additional_info})
+            const findAward = await ft_achievements.findOne({title:title,date:date,dept:dept,additional_info:additional_info,institute:institute})
             if(!findAward){
             const storeData = await facultyeditachievements.save();
             res.status(200).json(storeData);

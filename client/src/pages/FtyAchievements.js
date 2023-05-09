@@ -95,17 +95,25 @@ function FtyAchievements() {
   const columns = React.useMemo(
     () => [
 
+      // {
+      //   Header: " Name",
+      //   accessor: "faculty_name",
+      // },
       {
-        Header: " Achievements",
-        accessor: "Achievements",
+        Header: "Lecture Title",
+        accessor: "title",
+      },
+      {
+        Header: "Institute Where Lecture Was Given",
+        accessor: "institute",
+      },
+      {
+        Header: "Department",
+        accessor: "dept",
       },
       {
         Header: "Date",
         accessor: "date",
-      },
-      {
-        Header: "Shared With",
-        accessor: "shared_with",
       },
       {
         Header:"Additional information(if any)",
@@ -120,11 +128,12 @@ return(
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() => navigate("./FtyAchievementsEdit.js/"+original._id, {
               state: {
                 faculty_name:original.faculty_name,
-                Achievements: original.Achievements,
+                title: original.title,
                 date: original.date,
-                shared_with: original.shared_with,
+                dept: original.dept,
                 id:original._id,
                 additional_info:original.additional_info,
+                institute: original.institute,
                 utype:utype
               }
             })}>Edit</button>
@@ -337,7 +346,7 @@ const rows = filteredData.map(user=>[user.Achievements,user.date,user.shared_wit
           <br />
       
           <div className="">
-            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Your Achievements</h1>
+            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Lectures Given By You</h1>
           </div>
           <div className="mt-4">
             <FtyTablesAchievements columns={columns} data={data} utype={utype} />
