@@ -21,6 +21,15 @@ const userSchema = new mongoose.Schema({
             }
         }
     },
+//    faculty_email: {
+//         type: String,
+//         required: true,
+//         validate(value) {
+//             if (!validator.isEmail(value)) {
+//                 throw new Error("Not Valid Email")
+//             }
+//         }
+//     },
     // password: {
     //     type: String,
     //     required: true,

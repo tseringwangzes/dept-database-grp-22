@@ -21,8 +21,11 @@ export const userVerify = async(data)=>{
 export const usergetfunc = async()=>{
     return await commonrequest("GET",`${BACKEND_URL}/user/details`,"");
 }
-export const userfunc = async(data)=>{
-    return await commonrequest("GET",`${BACKEND_URL}/user/getall`,data);
+export const userfunc = async(email)=>{
+    return await commonrequest("GET",`${BACKEND_URL}/user/getall?email=${email}`);
+}
+export const getfaculty = async(email)=>{
+    return await commonrequest("GET",`${BACKEND_URL}/user/getfaculty?email=${email}`);
 }
 export const st_ach = async()=>{
     return await commonrequest("GET",`${BACKEND_URL}/user/stachievem`,"");
