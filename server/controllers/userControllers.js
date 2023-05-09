@@ -894,16 +894,16 @@ exports.editachievements = async (req, res) => {
 };
 
 exports.editforeign = async (req, res) => {
-    const { topic,start_date,end_date,country,status,faculty_name,student_name} = req.body;
+    const { start_date,end_date,country,visit_details, visit_link, status,faculty_name,student_name} = req.body;
 
-    if (!topic || !start_date || !end_date || !country || !status || !faculty_name|| !student_name) {
+    if ( !start_date || !end_date || !country || !visit_details || !visit_link || !status || !faculty_name|| !student_name) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
     try {            
             const editforeign = new st_for_visits({
-                topic,start_date,end_date,country,status,faculty_name,student_name
+                start_date,end_date,country,visit_details,visit_link,status,faculty_name,student_name
             });
-            const findforeign = await st_for_visits.findOne({topic:topic,start_date:start_date,end_date:end_date,country:country})
+            const findforeign = await st_for_visits.findOne({start_date:start_date,end_date:end_date,country:country,visit_details:visit_details, visit_link:visit_link})
             if(!findforeign){
             const storeData = await editforeign.save();
             res.status(200).json(storeData);
@@ -1039,16 +1039,16 @@ exports.facultyeditseminars = async (req, res) => {
 };
 
 exports.facultyeditforeign = async (req, res) => {
-    const { topic,start_date,end_date,country,faculty_name} = req.body;
+    const { start_date,end_date,country,visit_details,faculty_name} = req.body;
 
-    if (!topic||!start_date || !end_date || !country || !faculty_name) {
+    if (!start_date || !end_date || !country || !visit_details|| !faculty_name) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
     try {            
             const facultyeditforeign = new ft_foreign({
-                topic,start_date,end_date,country,faculty_name
+                start_date,end_date,country,faculty_name,visit_details
             });
-            const findAward = await ft_foreign.findOne({topic:topic,start_date:start_date,end_date:end_date,country:country,faculty_name:faculty_name})
+            const findAward = await ft_foreign.findOne({start_date:start_date,end_date:end_date,country:country,faculty_name:faculty_name,visit_details:visit_details})
             if(!findAward){
             const storeData = await facultyeditforeign.save();
             res.status(200).json(storeData);

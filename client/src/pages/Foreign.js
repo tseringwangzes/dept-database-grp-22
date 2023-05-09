@@ -79,13 +79,18 @@ function Foreign() {
                 Header: "Faculty-Name",
                 accessor: "faculty_name",
             },
-            {
-                Header: "Attached Link",
-                accessor: "visit_link",
-              },
+           
             {
                 Header: "Details Of Visit",
                 accessor: "visit_details",
+            },
+            {
+                Header: "Attached Link",
+                accessor: "visit_link",
+            },
+            {
+                Header: "Status",
+                accessor: "status",
                 Cell: StatusPill,
             },
             {
@@ -101,8 +106,10 @@ function Foreign() {
                                 country: original.country,
                                 faculty_name: original.faculty_name,                               
                                 id:original._id,
-                                visit_link:original.visit_link,
                                 visit_details: original.visit_details,
+                                visit_link:original.visit_link,
+                                
+                                status: original.status,
                                 utype:utype
                             }
                         })}>Edit</button>

@@ -62,10 +62,7 @@ function FtyForeign() {
     const columns = React.useMemo(
         () => [
 
-            {
-                Header: " Topic",
-                accessor: "topic",
-            },
+           
             {
                 Header: "Start-Date",
                 accessor: "start_date",
@@ -79,6 +76,10 @@ function FtyForeign() {
                 accessor: "country",
             },
             {
+                Header: "Visit Details",
+                accessor: "visit_details",
+            },
+            {
                 Header: 'Edit',
                 Cell: props => {
                     const { original } = props.cell.row;
@@ -87,10 +88,11 @@ function FtyForeign() {
                       <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() => navigate("./FtyForeignEdit.js/" + original._id, {
                         state: {
                             faculty_name:original.faculty_name,
-                          topic:original.topic,
+                         
                           start_date: original.start_date,
                           end_date: original.end_date,
                           country: original.country,
+                          visit_details:original.visit_details,
                           id: original._id,
                           utype:utype
                         }
