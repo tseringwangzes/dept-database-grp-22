@@ -7,7 +7,7 @@ function FtyProfile() {
   
 
     //const [data, setData] = useState(null);
-    const [ftData, setData] = useState("");
+    const [ftData, setData] = useState([]);
     var email = localStorage.getItem('email');
     console.log(email);
     //console.log('hllo');
