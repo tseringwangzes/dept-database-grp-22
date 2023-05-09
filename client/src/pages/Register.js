@@ -10,6 +10,7 @@ const Register = () => {
   const [inputdata,setInputdata] = useState({
     fname:"",
     email:"",
+    faculty_email:"",
     password:""
   });
 
@@ -51,7 +52,7 @@ const Register = () => {
       
       if(response.status === 200){
 
-        setInputdata({...inputdata,fname:"",email:"",password:""});
+        setInputdata({...inputdata,fname:"",email:"",faculty_email:"",password:""});
 
         if (currentPath === '/register')navigate("/");
         else navigate ('/Admin');
@@ -82,6 +83,10 @@ const Register = () => {
             <div className={registerStyle.form_input}>
               <label className = {registerStyle.myLabel} htmlFor="email">Email</label>
               <input className = {registerStyle.myData} type="email" name="email" id=""  onChange={handleChange}  placeholder='Enter User Email Address' />
+            </div>
+            <div className={registerStyle.form_input}>
+              <label className = {registerStyle.myLabel} htmlFor="email">Your Faculty Email</label>
+              <input className = {registerStyle.myData} type="email" name="email" id=""  onChange={handleChange}  placeholder='Enter Your Faculty Email' />
             </div>
             {/* <div className={registerStyle.form_input}>
               <label className = {registerStyle.myLabel} htmlFor="password">Password</label>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import signupStyle from "../../pages/Home.module.css";
 import { ToastContainer, toast } from "react-toastify";
-import { addmorefunction } from "../../services/Apis";
+import { addmorefunction,getfaculty } from "../../services/Apis";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 const Addmorep2 = () => {
@@ -9,6 +9,24 @@ const Addmorep2 = () => {
   const utype = state.utype;
   const navigate = useNavigate();
   var email = localStorage.getItem('email');
+
+  // const [femail, setfemail] = useState();
+
+  // const getfaculty = async () => {
+   
+  //   const response = await getfaculty(email);
+  //   // window.location.reload();
+  //   if (response.status === 200) {
+  //     setfemail(response.data.faculty_name)
+  //    // console.log(response.data)
+  //   } else {
+  //     console.log("error for get user data")
+  //   }
+  // }
+  // useEffect(() => {
+  //   getfaculty();
+   
+  // },[])
 
   var defaultFormFields = {}
   if (utype === "1" || utype === "4") {
@@ -24,7 +42,7 @@ const Addmorep2 = () => {
   }
   else {
     defaultFormFields = {
-      faculty_name: "2020csb1135@iitrpr.ac.in",
+      faculty_name: "femail",
       student_name: email,
       award_name: "",
       award_reason: "",
@@ -33,173 +51,19 @@ const Addmorep2 = () => {
       status: "Pending..",
     };
   }
+ 
 
   const [formFields, setFormFields] = useState(defaultFormFields);
-  const [sharedformFields, setsharedFormFields] = useState(defaultFormFields);
 
   const hanldeInputValueChange = (event) => {
     var { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
-   // setsharedFormFields({ ...sharedformFields, [name]: value });
   };
-  // const sharedwith = async (form_fields)=>{
-     
-  //   form_fields.shared_with.split(',').map(async (shared_each_email)=>
-
-  //   {
-  //     let updatedvalues={
-  //       faculty_name: "2020csb1135@iitrpr.ac.in",
-  //       student_name: shared_each_email,
-  //       award_name: form_fields.award_name,
-  //       award_reason:form_fields.award_reason ,
-  //       date:form_fields.date ,
-  //       shared_with: email,
-  //       status: "Pending..",
-  //     }
-  //     console.log(shared_each_email)
-  //     setsharedFormFields(sharedformFields => ({
-  //       ...sharedformFields,
-  //       ...updatedvalues
-  //     }));
-    
-  //   setsharedFormFields({ ...sharedformFields, "student_name" : shared_each_email });
-  //       // if (utype === "1" || utype === "4") {
-  //       //   setsharedFormFields({
-  //       //     ...sharedformFields, award_name: form_fields.award_name,
-  //       //     award_reason: form_fields.award_reason,
-  //       //     date: form_fields.date,
-  //       //     shared_with: form_fields.shared_with,
-  //       //     status: "Pending",
-  //       //     faculty_name: form_fields.faculty_name,
-  //       //     student_name: shared_each_email
-  //       //   });
-  //       // }
-
-  //       // else {
-  //         // setsharedFormFields({
-  //         //   ...sharedformFields, award_name: form_fields.award_name,
-  //         //   award_reason: form_fields.award_reason,
-  //         //   date: form_fields.date,
-  //         //   shared_with: form_fields.shared_with, 
-  //         //   status: "Pending",
-  //         //   faculty_name: "2020csb1135@iitrpr.ac.in",
-  //         //   student_name: shared_each_email
-  //         // });
-  //       // }
-  //       console.log(sharedformFields.student_name)
-  //       console.log(sharedformFields.award_name)
-  //       console.log(sharedformFields.award_reason)
-  //       console.log(sharedformFields.date)
-  //       console.log(sharedformFields.shared_with)
-  //       const response = await addmorefunction(sharedformFields);
-  //       if(response.status===200){
-  //         alert("successfully added others" )
-  //         setsharedFormFields({
-  //           ...sharedformFields, award_name: "",
-  //           award_reason:  "",
-  //           date: "",
-  //           shared_with:  "", 
-  //           status: "Pending",
-  //           faculty_name: "2020csb1135@iitrpr.ac.in",
-  //           student_name:  ""
-  //         });
-
-  //       }
-  //       else{
-  //         console.log(response.response.data.error)
-  //         alert("something went wrong")
-  //       }
-        
-      
-  //   }
-    
-    
-  //   )
-  // }
-
-  const nn= async ()=> {
-
-    // const updatedvalues={
-    //   faculty_name: formFields.faculty_name,
-    //   student_name: "kk",
-    //   award_name: formFields.award_name,
-    //   award_reason: formFields.award_reason ,
-    //   date:"kk",
-    //   shared_with: "kk",
-    //   status: "Pending..",
-    // }
-     console.log(sharedformFields.student_name)
-   // console.log(shared_each_email)
-      
-   setsharedFormFields({
-    ...sharedformFields,
-    student_name: "kk",
-    date: "kk",
-    shared_with: "kk",
-  });
-
-    console.log(sharedformFields.student_name)
-    console.log(sharedformFields.award_name)
-    console.log(sharedformFields.award_reason)
-    console.log(sharedformFields.date)
-    console.log(sharedformFields.shared_with)
-
-  }
-
-  const sharedwith = async (form_fields)=>{
-     
-    for (const shared_each_email of form_fields.shared_with.split(',')) {
-      const updatedvalues={
-        faculty_name: "2020csb1135@iitrpr.ac.in",
-        student_name: shared_each_email,
-        award_name: form_fields.award_name,
-        award_reason:form_fields.award_reason ,
-        date:form_fields.date ,
-        shared_with: email,
-        status: "Pending..",
-      }
-      console.log(shared_each_email)
-        
-      setsharedFormFields(sharedformFields => ({
-        ...sharedformFields,
-        ...updatedvalues
-      }));
-      
-      console.log(sharedformFields.student_name)
-      console.log(sharedformFields.award_name)
-      console.log(sharedformFields.award_reason)
-      console.log(sharedformFields.date)
-      console.log(sharedformFields.shared_with)
-
-      const response = await addmorefunction(sharedformFields);
-
-      if(response.status===200){
-        alert("successfully added others" )
-        // setsharedFormFields({
-        //   ...sharedformFields, 
-        //   award_name: "",
-        //   award_reason:  "",
-        //   date: "",
-        //   shared_with:  "", 
-        //   status: "Pending",
-        //   faculty_name: "2020csb1135@iitrpr.ac.in",
-        //   student_name:  ""
-        // });
-  
-      }
-      else{
-        console.log(response.response.data.error)
-        alert("something went wrong")
-      }
-    }
-  }
-  
-
-
-
+  //console.log(femail)
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log(formFields)
 
     var { award_name, award_reason,date, shared_with, status, faculty_name, student_name } = formFields;
     if (award_name === "") {
@@ -219,30 +83,30 @@ const Addmorep2 = () => {
       const response = await addmorefunction(formFields);
       if (response.status === 200) {
         if (utype === "1" || utype === "4") {
-        //   setFormFields({
-        //     ...formFields, award_name: "",
-        //     award_reason: "",
-        //     date: "",
-        //     shared_with: "",
-        //     status: "Pending",
-        //     faculty_name: "",
-        //     student_name: ""
-        //   });
-        // }
+          setFormFields({
+            ...formFields, award_name: "",
+            award_reason: "",
+            date: "",
+            shared_with: "",
+            status: "Pending",
+            faculty_name: "",
+            student_name: ""
+          });
+        }
 
-        // else {
-        //   setFormFields({
-        //     ...formFields, award_name: "",
-        //     award_reason: "",
-        //     date: "",
-        //     shared_with: "",
-        //     status: "Pending",
-        //     faculty_name: "2020csb1135@iitrpr.ac.in",
-        //     student_name: email
-        //   });
+        else {
+          setFormFields({
+            ...formFields, award_name: "",
+            award_reason: "",
+            date: "",
+            shared_with: "",
+            status: "Pending",
+            faculty_name: "2020csb1135@iitrpr.ac.in",
+            student_name: email
+          });
          }
     
-        nn()
+    
      
       
          

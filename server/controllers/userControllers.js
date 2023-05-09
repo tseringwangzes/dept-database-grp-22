@@ -28,6 +28,19 @@ const tarnsporter = nodemailer.createTransport({
 
 })
 
+exports.getfaculty = async (req, res) => {
+    const email=req.query.email;
+    console.log(email)
+    try {
+        const femail = await users.findOne({email:email});
+      // const allUser = await stdetails.find().sort({updatedAt: -1});;
+       console.log(femail)
+       res.status(200).json(femail)
+   } catch (error) {
+       res.status(401).json(error)
+   }
+}
+
 
 
 exports.userregister = async (req, res) => {
@@ -252,17 +265,30 @@ exports.userget = async (req, res) => {
     }
 }
 
-exports.usergetall = async (req, res) => {
-//    const email=req.body.email;
+// exports.usergetall = async (req, res) => {
+//    const email=req.query.email;
 //    console.log(email)
-    try {
-        const allUser = await stdetails.find({student_name:email});
-      //  console.log(allUser)
-        res.status(200).json(allUser)
-    } catch (error) {
-        res.status(401).json(error)
+//     try {
+//         const allUser = await stdetails.find({student_name:email});
+       
+//       //  console.log(allUser)
+//         res.status(200).json(allUser)
+//     } catch (error) {
+//         res.status(401).json(error)
+//     }
+// }
+exports.usergetall = async (req, res) => {
+        const email=req.query.email;
+        console.log(email)
+        try {
+             const allUser = await stdetails.find({student_name:email}).sort({updatedAt: -1});
+           // const allUser = await stdetails.find().sort({updatedAt: -1});;
+          //  console.log(allUser)
+            res.status(200).json(allUser)
+        } catch (error) {
+            res.status(401).json(error)
+        }
     }
-}
 
 exports.stachievem = async (req, res) => {
     try {
@@ -492,43 +518,47 @@ exports.st_publication_csv = async (req, res) => {
 
 exports.useraddmore = async (req, res) => {
     const { award_name,award_reason,date,shared_with,status,faculty_name,student_name} = req.body;
+   
+
+    if (!award_name || !award_reason || !date || !status || !faculty_name ) {
+        res.status(400).json({ error: "Please Enter All Input Data" })
+    }
+
+    if(req.body.shared_with!==""){
+        console.log("not null")
     const student_name2=req.body.shared_with;
     
     console.log(student_name2)
-    student_name2.split(',').map(async (shared_each_email)=>{  
-        console.log(shared_each_email)
-        const nshw1 = student_name2.split(shared_each_email).join("");
-        const nshw2 = nshw1 +req.body.student_name;
-        const shareduseraddmore = new stdetails({
-            award_name,award_reason,date,"shared_with":nshw2,status,faculty_name,"student_name":shared_each_email
-        });
-        console.log(shareduseraddmore);
-        const findAward = await stdetails.findOne({student_name:shared_each_email,award_name:award_name,award_reason:award_reason,date:date,shared_with:shared_with})
-        console.log(findAward);
-        if(!findAward){
-        const storeData = await useraddmore.save();
-       // res.status(200).json(storeData);
-        }
-        else{
-            res.status(400).json({error:"Data already exist"})
-        }
+    student_name2.split(',').map(async (shared_each_email)=>{ 
 
-          const storeData = await shareduseraddmore.save();
-        // res.status(200).json(storeData);
+        // const femail = await users.findOne({email:shared_each_email});
+        //  console.log(femail)
+            console.log(shared_each_email)
+            const nshw1 = student_name2.split(shared_each_email).join("");
+            const nshw2 = nshw1 + "," + req.body.student_name;
+            const shareduseraddmore = new stdetails({
+                award_name,award_reason,date,"shared_with":nshw2,status,faculty_name,"student_name":shared_each_email
+            });
+            console.log(shareduseraddmore);
+           
+            const findAward = await stdetails.findOne({student_name:shared_each_email,award_name:award_name,award_reason:award_reason,date:date})
+            console.log(findAward);
+            if(!findAward){
+            const storeData = await shareduseraddmore.save();
+           
+            }
+          
+    
+       
+    }) }
 
-    })
 
-
-    // if (!award_name || !award_reason || !date || !status || !faculty_name ) {
-    //     res.status(400).json({ error: "Please Enter All Input Data" })
-    // }
+   
 
     try {
-        //const presuer = await users.findOne({ email: email });
-
-        // if (presuer) {
-        //     res.status(400).json({ error: "This User Already exist in our db" })
-        // } else {
+      
+            // const femail = await users.findOne({email:student_name});
+            // console.log(femail)
             const useraddmore = new stdetails({
                 award_name,award_reason,date,shared_with,status,faculty_name,student_name
             });
