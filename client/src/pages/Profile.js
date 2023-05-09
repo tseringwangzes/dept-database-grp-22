@@ -14,12 +14,7 @@ function FtyProfile() {
     //const [data, setData] = useState(null);
     const [stData, setData] = useState([0]);
     const [prompt, setShowPrompt] = useState(false);
-    const [userDetails, setUserDetails] = useState({
-      link: "",
-      subjects: [],
-      interest: "",
-      background: ""
-    });
+    
     //const [link, setLink] = useState("");
     
     var email = localStorage.getItem('email');
@@ -54,7 +49,7 @@ function FtyProfile() {
           setData(response.data)
           //console.log(response.data);
           //console.log(ftData);
-          console.log('react');
+         // console.log('react');
         } catch (error) {
           console.error(error);
         }

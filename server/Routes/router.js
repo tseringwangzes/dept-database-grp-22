@@ -35,6 +35,7 @@ var upload=multer({storage:storage});
 // Routes
 router.get("/user/student/home", controllers.studentHome)
 router.post("/user/student/home_post", controllers.homePost);
+router.post("/user/faculty/home_post", controllers.ftHomePost)
 router.post("/user/register", controllers.userregister);
 router.post("/user/getfaculty", controllers.getfaculty);
 router.post("/user/sendotp", controllers.userOtpSend);

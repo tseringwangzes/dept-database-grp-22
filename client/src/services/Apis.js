@@ -57,6 +57,10 @@ export const ft_home = async (email) => {
     return await commonrequest("GET", `${BACKEND_URL}/user/faculty/home?email=${email}`);
   }
 
+  export const ft_home_post = async (data) => {
+    return await commonrequest("POST", `${BACKEND_URL}/user/faculty/home_post`, data);
+  }
+
   export const st_home = async (email) => {
     return await commonrequest("GET", `${BACKEND_URL}/user/student/home?email=${email}`);
   }
