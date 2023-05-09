@@ -1,14 +1,15 @@
 const mongoose = require("mongoose");
 
 const ftschema = new mongoose.Schema({
-    faculty_name:String,
-    type: String,
+    speaker: String,
     title: String,
-    date: String,
+    designation: String,
+    institute: String,
     venue: String,
-    chief_guest: String,
-    mode: String,
-    collaborator: String,
+    num_participant: String,
+    date: String,
+    dept: String,
+    additional_info: String,
 },
     {
         collection: "ft_seminars",

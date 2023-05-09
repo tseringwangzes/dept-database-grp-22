@@ -67,15 +67,23 @@ function FtySeminars() {
     () => [
 
       {
+        Header: " Name of Speaker/Chief Guest",
+        accessor: "speaker",
+      },
+      {
         Header: " Title",
         accessor: "title",
       },
       {
-        Header: " Type",
-        accessor: "type",
+        Header: "Designation of speaker",
+        accessor: "designation",
       },
       {
-        Header: "Date",
+        Header: "Institute/Organisation of speaker",
+        accessor: "institute",
+      },
+      {
+        Header: "Date of visit",
         accessor: "date",
       },
       {
@@ -83,16 +91,16 @@ function FtySeminars() {
         accessor: "venue",
       },
       {
-        Header: "Chief_guest",
-        accessor: "chief_guest",
+        Header: "Number of Participants",
+        accessor: "num_participant",
       },
       {
-        Header: "Mode",
-        accessor: "mode",
+        Header: "Department",
+        accessor: "dept",
       },
       {
-        Header: "Collaborator",
-        accessor: "collaborator",
+        Header: "Additional Information",
+        accessor: "additional_info",
       },
       {
         Header: 'Edit',
@@ -102,14 +110,15 @@ function FtySeminars() {
           return (<div>
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() => navigate("./FtySeminarsEdit.js/" + origin._id, {
               state: {
-                faculty_name:original.faculty_name,
+                speaker:original.speaker,
                 title:original.title,
-                type: original.type,
+                designation: original.designation,
                 date: original.date,
                 venue: original.venue,
-                chief_guest: original.chief_guest,
-                mode: original.mode,
-                collaborator: original.collaborator,
+                institute: original.institute,
+                dept: original.dept,
+                additional_info: original.additional_info,
+                num_participant:original.num_participant,
                 id: original._id,
                 utype:utype
               }
@@ -146,7 +155,7 @@ function FtySeminars() {
 
     const aTag=document.createElement("a");
     aTag.href=url;
-    aTag.setAttribute("download","Sample_Faculty_Seminars");
+    aTag.setAttribute("download","Sample_Expert_Visits_Seminars");
     document.body.appendChild(aTag);
     aTag.click();
     aTag.remove();
@@ -338,7 +347,7 @@ const rows = filteredData.map(user=>[user.type,user.title,user.date,user.venue,u
 
           <br />
           <div className="">
-            <h1 className="text-center bg-indigo-100  text-xl font-semibold">Your Workshops and Seminars</h1>
+            <h1 className="text-center bg-indigo-100  text-xl font-semibold">Lectures By Visiting Experts</h1>
           </div>
           <div className="mt-4">
             <FtyTablesSeminars columns={columns} data={data} utype={utype}/>

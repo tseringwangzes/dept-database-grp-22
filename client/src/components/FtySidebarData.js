@@ -21,14 +21,14 @@ export const FtySidebarData = [
         link:"/faculty/Awards",
         fname:"",
     },
+    // {
+    //     title:"Achievements",
+    //     icon:<StarsIcon />,
+    //     link:"/faculty/Achievements",
+    //     fname:""
+    // },
     {
-        title:"Achievements",
-        icon:<StarsIcon />,
-        link:"/faculty/Achievements",
-        fname:""
-    },
-    {
-        title:"Workshops/Seminar Organised",
+        title:"Lecture By Visiting Experts",
         icon:<PeopleIcon />,
         link:"/faculty/Seminars",
         fname:""
