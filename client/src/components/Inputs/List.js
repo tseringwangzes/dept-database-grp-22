@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { PlusIcon, XMarkIcon } from '@heroicons/react/20/solid';
 import { ToastContainer, toast } from 'react-toastify';
-import { st_home_post } from '../../services/Apis';
+import { st_home_post, ft_home_post } from '../../services/Apis';
 
 const InputableList = (props) => {
   const [items, setItems] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [check, setCheck] = useState(true);
-
+  var res, resRe;
   
   useEffect(() => {
     setItems(props.list || []);
@@ -33,13 +33,17 @@ const InputableList = (props) => {
         subList: newList,
         type: 'List'
       }
-
-      const res = await st_home_post(myList);
+      if (props.userType === 'F') {
+        res = await ft_home_post(myList);
+      } else {
+        res = await st_home_post(myList);
+      }
+     
 
       if (res.status !== 200) {
-        toast.error('Error While Adding New Subject...')
+        toast.error('Error While Adding New Item...')
       } else if (res.status === 200) {
-        toast.success('Subject Added!')
+        toast.success('Data Added!')
       }
 
 
@@ -59,15 +63,21 @@ const InputableList = (props) => {
     }
 
     try {
-      const resRe = await st_home_post(myListRe);
-      if (resRe.status === 200) {
-        toast.success('Subject Removed')
+
+      if ( props.userType === 'F') {
+        resRe = await ft_home_post(myListRe);
       } else {
-        toast.error('Server Error')
+        resRe = await st_home_post(myListRe);
+      }
+      
+      if (resRe.status === 200) {
+        toast.success('List Item Removed')
+      } else {
+        toast.error('Error While Removing Item')
       }
     } catch (error) {
       console.log(error);
-      toast.error('Error Encountered!')
+      toast.error('Server Erro!')
     }
 
 

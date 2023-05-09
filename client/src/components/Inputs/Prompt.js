@@ -6,14 +6,14 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { st_home_post } from '../../services/Apis';
+import { st_home_post,ft_home_post } from '../../services/Apis';
 import { ToastContainer, toast } from 'react-toastify';
 
 
 
 export default function FormDialog(props) {
   const [linkText, setLinkText] = useState(props.linkText || '');
-
+  var res;
   const handleInputChange = (event) => {
     setLinkText(event.target.value);
   };
@@ -25,8 +25,14 @@ export default function FormDialog(props) {
         edit: linkText,
         type: 'Link'
     }
-    const res = await st_home_post(myLink);
 
+    if (props.userType === 'F') {
+      res = await ft_home_post(myLink)
+    } else {
+      res = await st_home_post(myLink);
+
+    }
+    
     if (res.status === 200) {
         console.log('Link Updated');
         toast.success('Link Updated')
