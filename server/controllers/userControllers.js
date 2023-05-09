@@ -1020,14 +1020,14 @@ exports.facultyeditachievements = async (req, res) => {
 
 
 exports.facultyeditseminars = async (req, res) => {
-    const { title,type,date,venue,chief_guest,mode,collaborator,faculty_name} = req.body;
+    const { title,speaker,date,venue,dept,designation,institute,additional_info,num_participant} = req.body;
 
-    if (!title||!type || !date || !venue || !chief_guest || !mode || !collaborator || !faculty_name) {
+    if (!title||!speaker || !date || !venue || !dept || !designation || !institute || !num_participant) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
     try {            
             const facultyeditseminars = new ft_seminars({
-                title,type,date,venue,chief_guest,mode,collaborator,faculty_name
+                title,speaker,date,venue,dept,designation,institute,additional_info,num_participant
             });
 
             const storeData = await facultyeditseminars.save();
