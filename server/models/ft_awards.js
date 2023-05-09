@@ -3,11 +3,10 @@ const mongoose = require("mongoose");
 const ftschema = new mongoose.Schema({
     faculty_name:String,
     award_name: String,
-    award_reason: String,
     date: String,
     shared_with: String,
-    created_At: Date
-    
+    created_At: Date,
+    additional_info:String,
 },
     {   
         timestamps: true,

@@ -19,8 +19,8 @@ const SignUp = () => {
     faculty_name:state.faculty_name,
     student_name:state.student_name,
     award_name: state.award_name,
-    award_reason: state.award_reason,
     date: state.date,
+    additional_info:state.additional_info,
     shared_with: state.shared_with,
     status: "Pending..",
   };

@@ -58,16 +58,20 @@ function StaffStudent() {
         accessor: "award_name",
       },
       {
-        Header: "Award Reason",
-        accessor: "award_reason",
-      },
-      {
         Header: "Date",
         accessor: "date",
       },
       {
         Header: "Shared With",
         accessor: "shared_with",
+      },
+      {
+        Header: "Attached Link for reference",
+        accessor: "award_link",
+      },
+      {
+        Header: "Additional Information (if any)",
+        accessor: "additional_info",
       },
       {
         Header: "Status",
@@ -85,9 +89,10 @@ function StaffStudent() {
                 faculty_name: original.faculty_name,
                 student_name: original.student_name,
                 award_name: original.award_name,
-                award_reason: original.award_reason,
                 date: original.date,
                 shared_with: original.shared_with,
+                award_link: original.award_link,
+                additional_info:original.additional_info,
                 id: original._id,
                 utype: utype
               }
@@ -143,16 +148,16 @@ function StaffStudent() {
         accessor: "award_name",
       },
       {
-        Header: "Award Reason",
-        accessor: "award_reason",
-      },
-      {
         Header: "Date",
         accessor: "date",
       },
       {
         Header: "Shared With",
         accessor: "shared_with",
+      },
+      {
+        Header: "Additional Information(if any)",
+        accessor: "additional_info",
       },
       {
         Header: 'Edit',
@@ -163,9 +168,9 @@ function StaffStudent() {
               state: {
                 faculty_name: original.faculty_name,
                 award_name: original.award_name,
-                award_reason: original.award_reason,
                 date: original.date,
                 shared_with: original.shared_with,
+                additional_info:original.additional_info,
                 id: original._id,
                 utype: utype
               }
