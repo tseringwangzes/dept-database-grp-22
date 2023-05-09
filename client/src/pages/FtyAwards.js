@@ -74,7 +74,7 @@ function FtyAwards() {
     () => [
 
       {
-        Header: "Award Name",
+        Header: "Award/Achievement Name",
         accessor: "award_name",
       },
       {
@@ -346,7 +346,7 @@ function FtyAwards() {
 
           <br></br>
           <div className="">
-            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Your Awards</h1>
+            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Your Awards/Achievements</h1>
           </div>
           <div className="mt-4">
          

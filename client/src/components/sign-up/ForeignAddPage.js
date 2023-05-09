@@ -14,7 +14,6 @@ const ForeignAddPage = () => {
     if (utype === "1" || utype === "4") {
         defaultFormFields = {
             student_name: "",
-            topic: "",
             start_date: "",
             end_date: "",
             country: "",

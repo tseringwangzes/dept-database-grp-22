@@ -64,10 +64,6 @@ function Foreign() {
         () => [
 
             {
-                Header: " Topic",
-                accessor: "topic",
-            },
-            {
                 Header: "Start-Date",
                 accessor: "start_date",
             },
@@ -85,11 +81,11 @@ function Foreign() {
             },
             {
                 Header: "Attached Link",
-                accessor: "link",
+                accessor: "visit_link",
               },
             {
-                Header: "Status",
-                accessor: "status",
+                Header: "Details Of Visit",
+                accessor: "visit_details",
                 Cell: StatusPill,
             },
             {
@@ -100,14 +96,13 @@ function Foreign() {
                         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() => navigate("./ForeignEdit.js/" + original._id, {
                             state: {
                                 student_name:original.student_name,
-                                topic: original.topic,
                                 start_date: original.start_date,
                                 end_date: original.end_date,
                                 country: original.country,
-                                faculty_name: original.faculty_name,
-                                status: original.status,
+                                faculty_name: original.faculty_name,                               
                                 id:original._id,
-                                link:original.link,
+                                visit_link:original.visit_link,
+                                visit_details: original.visit_details,
                                 utype:utype
                             }
                         })}>Edit</button>

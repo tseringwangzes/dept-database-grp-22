@@ -78,10 +78,10 @@ const navigate = useNavigate();
   return (
     <body className={signupStyle.rooted}>
       <section className={signupStyle["form-container"]}>
-        <h2 className={signupStyle["form-heading"]}>Edit Award Details</h2>
+        <h2 className={signupStyle["form-heading"]}>Edit Award/Achievement Details</h2>
         <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
           <div className={signupStyle["form-item"]} id="award_name">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Award Name</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Award/Achievement Name</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
               placeholder="Enter the name"
               name="award_name"

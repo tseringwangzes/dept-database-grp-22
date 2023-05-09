@@ -16,12 +16,12 @@ export const FtySidebarData = [
         fname:"",
     },
     {
-        title:"Awards",
+        title:"Awards/Achievements",
         icon:<EmojiEventsIcon />,
         link:"/faculty/Awards",
         fname:"",
     },
-    {
+   /* {
         title:"Achievements",
         icon:<StarsIcon />,
         link:"/faculty/Achievements",
@@ -32,7 +32,7 @@ export const FtySidebarData = [
         icon:<PeopleIcon />,
         link:"/faculty/Seminars",
         fname:""
-    },
+    },*/
     {
         title:"Foreign Visits",
         icon:<AirplanemodeActiveOutlinedIcon />,
