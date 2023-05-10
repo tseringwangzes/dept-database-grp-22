@@ -13,6 +13,7 @@ const stschema = new mongoose.Schema({
 },
     {
         collection: "phdstudents",
+        timestamps: true
     }
 );
 
