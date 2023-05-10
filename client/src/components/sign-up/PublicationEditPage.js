@@ -14,14 +14,21 @@ const PublicationEditPage = () => {
 
 
     const defaultFormFields = {
-        topic: state.topic,
-        published_date: state.published_date,
-        accepted_date: state.accepted_date,
-        collaboration: state.collaboration,
-        no_of_students: state.no_of_students,
+        title:state.title,
+        author:state.author,
+        type:state.type,
+        title_publish:state.title_publish,
+        patent_no:state.patent_no,
+        accepted_date:state.accepted_date,
+        published_date:state.published_date,
+        assignee:state.assignee,
+        impact_factor:state.impact_factor,
+        additional_info:state.additional_info,
+        link:state.link,
+        status: "Pending..",
         faculty_name: state.faculty_name,
         student_name: state.student_name,
-        status: "Pending..",
+        
     };
 
     const [formFields, setFormFields] = useState(defaultFormFields);
@@ -41,8 +48,8 @@ const PublicationEditPage = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { topic, published_date,accepted_date, collaboration, no_of_students, status, faculty_name, student_name } = formFields;
-        if (topic === "") {
+        const { title,author,type,title_publish,patent_no,accepted_date,published_date,assignee,impact_factor,additional_info,link, status, faculty_name, student_name } = formFields;
+        if (title === "") {
 
             toast.error("Enter topic Name")
 
@@ -52,11 +59,17 @@ const PublicationEditPage = () => {
             if (response.status === 200) {
                 setFormFields({
                     ...formFields,
-                    topic: state.topic,
-                    published_date: state.published_date,
-                    accepted_date: state.accepted_date,
-                    collaboration: state.collaboration,
-                    no_of_students: state.no_of_students,
+                    title:state.title,
+                    author:state.author,
+                    type:state.type,
+                    title_publish:state.title_publish,
+                    patent_no:state.patent_no,
+                    accepted_date:state.accepted_date,
+                    published_date:state.published_date,
+                    assignee:state.assignee,
+                    impact_factor:state.impact_factor,
+                    additional_info:state.additional_info,
+                    link:state.link,
                     status: "Pending..",
                     faculty_name: state.faculty_name,
                     student_name: state.student_name
@@ -85,32 +98,67 @@ const PublicationEditPage = () => {
             <section className={signupStyle["form-container"]}>
                 <h2 className={signupStyle["form-heading"]}>Edit Your Publication and Patents </h2>
                 <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
-                    <div className={signupStyle["form-item"]} id="topic">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Topic</label>
+
+
+                <div className={signupStyle["form-item"]} id="title">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Title of Articles/Publications/Patents</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the topic"
-                            name="topic"
+                            placeholder="Enter the Title of Article/Publication/Patents"
+                            name="title"
                             type="text"
-                            value={formFields.topic}
+                            value={formFields.title}
                             onChange={hanldeInputValueChange}
                         />
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="published_date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Published Date</label>
+                    <div className={signupStyle["form-item"]} id="author">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Authors</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the date"
-                            name="published_date"
-                            type="date"
-                            value={formFields.published_date}
+                            placeholder="Enter the Authors name"
+                            name="author"
+                            type="text"
+                            value={formFields.author}
                             onChange={hanldeInputValueChange}
                         />
-
                     </div>
+
+                    <div className={signupStyle["form-item"]} id="type">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Publications/Journals/Patents</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter the Publications/Journals/Patents"
+                            name="type"
+                            type="text"
+                            value={formFields.type}
+                            onChange={hanldeInputValueChange}
+                        />
+                    </div>
+
+                    <div className={signupStyle["form-item"]} id="title_publish">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Title of Journal</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter the title of Journal"
+                            name="title_publish"
+                            type="text"
+                            value={formFields.title_publish}
+                            onChange={hanldeInputValueChange}
+                        />
+                    </div>
+
+                    <div className={signupStyle["form-item"]} id="patent_no">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Volume/Issue/Patent No.</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter the Volume/Issue/Patent No."
+                            name="patent_no"
+                            type="text"
+                            value={formFields.patent_no}
+                            onChange={hanldeInputValueChange}
+                        />
+                    </div>
+
                     <div className={signupStyle["form-item"]} id="accepted_date">
                         <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Accepted Date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the date"
+                            placeholder="Enter the Accepted date"
                             name="accepted_date"
                             type="date"
                             value={formFields.accepted_date}
@@ -119,27 +167,64 @@ const PublicationEditPage = () => {
 
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="collaboration">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>collaboration</label>
+                    <div className={signupStyle["form-item"]} id="published_date">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Published Date</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="collaboration with whom"
-                            name="collaboration"
+                            placeholder="Enter the Published date"
+                            name="published_date"
+                            type="date"
+                            value={formFields.published_date}
+                            onChange={hanldeInputValueChange}
+                        />
+
+                    </div>
+
+
+                   
+                    <div className={signupStyle["form-item"]} id="assignee">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>DOI/ISBN/Assignee</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter the DOI/ISBN/Assignee"
+                            name="assignee"
                             type="text"
-                            value={formFields.collaboration}
+                            value={formFields.assignee}
                             onChange={hanldeInputValueChange}
                         />
                     </div>
 
-                    <div className={signupStyle["form-item"]} id="no_of_students">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>no of students</label>
+                    <div className={signupStyle["form-item"]} id="impact_factor">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Impact Factor</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="no_of_students with whom"
-                            name="no_of_students"
+                            placeholder="Enter the Impact Factor"
+                            name="impact_factor"
                             type="text"
-                            value={formFields.no_of_students}
+                            value={formFields.impact_factor}
                             onChange={hanldeInputValueChange}
                         />
                     </div>
+
+                    <div className={signupStyle["form-item"]} id="additional_info">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Additional Information</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Enter the Additional Information(if any)"
+                            name="additional_info"
+                            type="text"
+                            value={formFields.additional_info}
+                            onChange={hanldeInputValueChange}
+                        />
+                    </div>
+
+                    <div className={signupStyle["form-item"]} id="link">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Attached Link</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Attach the link for reference"
+                            name="link"
+                            type="text"
+                            value={formFields.link}
+                            onChange={hanldeInputValueChange}
+                        />
+                    </div>
+
                     <br />
                     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style={{ marginLeft: "auto", }} onClick={handleSubmit} >Submit</button>
                 </form>

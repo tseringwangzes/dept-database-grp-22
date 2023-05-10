@@ -6,6 +6,7 @@ import TablesAwards, { StatusPill } from "../tables/TablesAwards";
 import Sidebar from "../components/Sidebar";
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import {st_home} from '../services/Apis';
 
 
 function Awards() {
@@ -16,9 +17,29 @@ function Awards() {
   const [showModal, setShowModal] = useState(false);
   const [showModaldelete, setShowModaldelete] = useState(false);
   const [did, setdid] = useState("");
+  const [stData, setData] = useState([]);
 
   const url='http://localhost:3000/St_Award_Header.csv'
 
+  useEffect(() => {
+    const fetchData = async (e) => {
+      try {
+        
+        const response = await st_home(email);
+        
+        setData(response.data)
+        //console.log(response.data);
+        //console.log(ftData);
+       // console.log('react');
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    if (email) {
+      fetchData();
+    }
+    fetchData();
+  }, [email]);
 
   const deleteRow=async (id)=>{
     setShowModaldelete(true);
@@ -63,20 +84,12 @@ function Awards() {
 
 
   const [data, setUserData] = useState([]);
-
+  let sortedData = data;
   const userGet = async () => {
-    // const data = {
-    //   email:email
-    // }
-    // // const data = {
-    // //   email:email
-    // // }
-  // console.log(data)
     const response = await userfunc(email);
-    // window.location.reload();
     if (response.status === 200) {
       setUserData(response.data)
-     // console.log(response.data)
+      sortedData = data.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
     } else {
       console.log("error for get user data")
     }
@@ -212,12 +225,12 @@ console.log(data[0].faculty_name)
     doc.setFontSize(14);
     doc.setFont("helvetica", "normal");
     doc.text("Rupnagar,Punjab-140001", pageWidth / 2, 22, { align: "center" });
-    doc.text("Tele:+91-1881-235101, email:cs@iitrpr.ac.in", pageWidth / 2, 28, { align: "center" });
+    doc.text("Tele:+91-1881-242123, email:office-cse-1@iitrpr.ac.in", pageWidth / 2, 28, { align: "center" });
     doc.setLineWidth(0.5);
     doc.line(10, 38, pageWidth - 10, 38);
     doc.setFontSize(12);
     doc.setFont("helvetica", "bold");
-    doc.text("AWARDS LIST", pageWidth / 2, 45, {
+    doc.text("AWARDS/ACHIEVEMENTS LIST", pageWidth / 2, 45, {
       align: "center"
     });
     doc.setLineWidth(0.2);
@@ -226,7 +239,7 @@ console.log(data[0].faculty_name)
     doc.text("Student Name", 20, 60);
     doc.text(":", 70, 60);
     doc.setFont("helvetica", "normal");
-    doc.text("Vishwas Rathi", 72, 60);
+    doc.text(stData[6], 72, 60);
     doc.setFont("helvetica", "bold");
     doc.text("Student Email", 20, 65);
     doc.text(": ", 70, 65);
@@ -238,10 +251,9 @@ console.log(data[0].faculty_name)
     doc.setFont("helvetica", "normal");
     doc.text("PhD, CSE", 72, 70);
     
-    const columns = [["Award Name", "Award Reason", "Date","Shared With","Status"]];
+    const columns = [["Award Name", "Date", "Shared With","Additional Information","Status"]];
     const filteredData = data.filter(item => item.student_name === email);
-
-const rows = filteredData.map(user=>[user.award_name,user.award_reason,user.date,user.shared_with,user.status]);
+    const rows = filteredData.map(user=>[user.award_name,user.date,user.shared_with,user.additional_info,user.status]);
     doc.autoTable({
       head: columns,
       body: rows,

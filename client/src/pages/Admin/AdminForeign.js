@@ -54,7 +54,7 @@ function StaffForeign() {
 
   const [data, setUserData] = useState([]);
   const userGet = async () => {
-    const response = await stforvisits();
+    const response = await stforvisits("admin");
     if (response.status === 200) {
       setUserData(response.data)
       console.log(response.data)
@@ -214,8 +214,8 @@ const rows = data.map(user=>[user.award_name,user.award_reason,user.date,user.sh
         accessor: "student_name"
       },
       {
-        Header: " Topic",
-        accessor: "topic",
+        Header: "Faculty-Name",
+        accessor: "faculty_name",
       },
       {
         Header: "Start-Date",
@@ -229,10 +229,16 @@ const rows = data.map(user=>[user.award_name,user.award_reason,user.date,user.sh
         Header: "Country",
         accessor: "country",
       },
+     
       {
-        Header: "Faculty-Name",
-        accessor: "faculty_name",
-      },
+       Header: "Details Of Visit",
+       accessor: "visit_details",
+       
+   },
+   {
+       Header: "Attached Link",
+       accessor: "visit_link",
+   },
       {
         Header: "Status",
         accessor: "status",
@@ -246,14 +252,16 @@ const rows = data.map(user=>[user.award_name,user.award_reason,user.date,user.sh
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() => navigate("./ForeignEdit.js/" + original._id, {
               state: {
                 student_name: original.student_name,
-                topic: original.topic,
-                start_date: original.start_date,
-                end_date: original.end_date,
-                country: original.country,
-                faculty_name: original.faculty_name,
-                status: original.status,
-                id: original._id,
-                utype:utype
+                 
+                 start_date: original.start_date,
+                 end_date: original.end_date,
+                 country: original.country,
+                 faculty_name: original.faculty_name,
+                 status: original.status,
+                 id: original._id,
+                 visit_details: original.visit_details,
+                 visit_link:original.visit_link,
+                 utype:utype
               }
             })}>Edit</button>
           </div>);
@@ -279,7 +287,7 @@ const rows = data.map(user=>[user.award_name,user.award_reason,user.date,user.sh
 
   const [data2, setUserData2] = useState([]);
   const userGet2 = async () => {
-    const response = await ft_foreign();
+    const response = await ft_foreign("admin");
     if (response.status === 200) {
       setUserData2(response.data)
       console.log(response.data)
@@ -310,10 +318,6 @@ const rows = data.map(user=>[user.award_name,user.award_reason,user.date,user.sh
         accessor: "faculty_name",
       },
       {
-        Header: " Topic",
-        accessor: "topic",
-      },
-      {
         Header: "Start-Date",
         accessor: "start_date",
       },
@@ -326,6 +330,10 @@ const rows = data.map(user=>[user.award_name,user.award_reason,user.date,user.sh
         accessor: "country",
       },
       {
+       Header: "Details of Visit",
+       accessor: "visit_details",
+   },
+      {
         Header: 'Edit',
         Cell: props => {
           const { original } = props.cell.row;
@@ -334,12 +342,12 @@ const rows = data.map(user=>[user.award_name,user.award_reason,user.date,user.sh
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() => navigate("./FtyForeignEdit.js/" + original._id, {
               state: {
                 faculty_name: original.faculty_name,
-                topic: original.topic,
-                start_date: original.start_date,
-                end_date: original.end_date,
-                country: original.country,
-                id: original._id,
-                utype: utype
+                 start_date: original.start_date,
+                 end_date: original.end_date,
+                 country: original.country,
+                 visit_details:original.visit_details,
+                 id: original._id,
+                 utype: utype
               }
             })}>Edit</button>
           </div>);

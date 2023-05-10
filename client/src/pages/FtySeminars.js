@@ -45,10 +45,7 @@ function FtySeminars() {
 
   const [data, setUserData] = useState([]);
   const userGet = async () => {
-    const data = {
-      email:email
-    }
-    const response = await ft_seminars(data);
+    const response = await ft_seminars(email);
     if (response.status === 200) {
       setUserData(response.data)
       console.log(response.data)
@@ -194,12 +191,12 @@ function FtySeminars() {
     doc.setFontSize(14);
     doc.setFont("helvetica", "normal");
     doc.text("Rupnagar,Punjab-140001", pageWidth / 2, 22, { align: "center" });
-    doc.text("Tele:+91-1881-235101, email:cs@iitrpr.ac.in", pageWidth / 2, 28, { align: "center" });
+    doc.text("Tele:+91-1881-242123, email:office-cse-1@iitrpr.ac.in", pageWidth / 2, 28, { align: "center" });
     doc.setLineWidth(0.5);
     doc.line(10, 38, pageWidth - 10, 38);
     doc.setFontSize(12);
     doc.setFont("helvetica", "bold");
-    doc.text("WORKSHOPS/SEMINARS ORGANIZED LIST", pageWidth / 2, 45, {
+    doc.text("LECTURES BY VISITING EXPERTS", pageWidth / 2, 45, {
       align: "center"
     });
     doc.setLineWidth(0.2);
@@ -220,10 +217,9 @@ function FtySeminars() {
     doc.setFont("helvetica", "normal");
     doc.text("CSE", 72, 70);
     
-    const columns = [["Type", "Title", "Date","Venue","Chief Guest","Mode","Collaborator"]];
-    const filteredData = data.filter(item => item.faculty_name === email);
-
-const rows = filteredData.map(user=>[user.type,user.title,user.date,user.venue,user.chief_guest,user.mode,user.collaborator]);
+    const columns = [["Speaker Name", "Lecture Title", "Speaker Designation","Lecture Date","Lecture Venue","Institute/Organization of Speaker","Department","Number of Participants","Additional Information"]];
+    // const filteredData = data.filter(item => item.faculty_name === email);
+const rows = data.map(user=>[user.speaker,user.title,user.designation,user.date,user.venue,user.institute,user.dept,user.num_participant,user.additional_info]);
     doc.autoTable({
       head: columns,
       body: rows,
@@ -239,7 +235,7 @@ const rows = filteredData.map(user=>[user.type,user.title,user.date,user.venue,u
    const formattedDate = `${formattedDay}-${formattedMonth}-${year}`;
  
    // save PDF with formatted date in filename
-   const filename = `${formattedDate}-Workshops/Seminars.pdf`;
+   const filename = `${formattedDate}-LecturesByExperts.pdf`;
    doc.save(filename);
 
     // add image to PDF here

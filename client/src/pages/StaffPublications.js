@@ -61,7 +61,7 @@ const email = localStorage.getItem('email');
 
   const [data, setUserData] = useState([]);
   const userGet = async () => {
-    const response = await st_publi();
+    const response = await st_publi("admin");
     if (response.status === 200) {
       setUserData(response.data)
       console.log(response.data)
@@ -79,28 +79,59 @@ const email = localStorage.getItem('email');
   const columns = React.useMemo(
     () => [
       {
-        Header: " Student Name",
+        Header: " Student Email Id",
         accessor: "student_name",
       },
+
       {
-        Header: " Topic",
-        accessor: "topic",
+        Header: "Faculty Email Id",
+        accessor: "faculty_name",
       },
       {
-        Header: "Published Date",
-        accessor: "published_date",
-      },,
+        Header: "Title of Articles/Publications/Patents",
+        accessor: "title",
+      },
+      {
+        Header: "Authors",
+        accessor: "author",
+      },
+      {
+        Header: "Publications/Journals/Patents",
+        accessor: "type",
+      },
+      {
+        Header: "Title of Journal",
+        accessor: "title_publish",
+      },
+      {
+        Header: "Volume/Issue/Patent No.",
+        accessor: "patent_no",
+      },
       {
         Header: "Accepted Date",
         accessor: "accepted_date",
       },
+     
       {
-        Header: "Collaborations",
-        accessor: "collaboration",
+        Header: "Publish Date",
+        accessor: "published_date",
+       
       },
       {
-        Header: "Number-of-students",
-        accessor: "no_of_students",
+        Header: "DOI/ISBN/Assignee",
+        accessor: "assignee",
+      },
+      {
+        Header: "Impact Factor",
+        accessor: "impact_factor",
+      },
+      {
+        Header: "Additional Information",
+        accessor: "additional_info",
+      },
+      {
+        Header: "Attached Link",
+        accessor: "link",
       },
       {
         Header: "Status",
@@ -118,12 +149,17 @@ const email = localStorage.getItem('email');
                 state: {
                   faculty_name: original.faculty_name,
                   student_name: original.student_name,
-                  published_date:original.published_date,
+                  title:original.title,
+                  author:original.author,
+                  type:original.type,
+                  title_publish:original.title_publish,
+                  patent_no:original.patent_no,
                   accepted_date:original.accepted_date,
-                  topic: original.topic,
-                  date: original.date,
-                  collaboration: original.collaboration,
-                  no_of_students: original.no_of_students,
+                  published_date:original.published_date,
+                  assignee:original.assignee,
+                  impact_factor:original.impact_factor,
+                  additional_info:original.additional_info,
+                  link:original.link,
                   id: original._id,
                   utype: utype
                 }
@@ -214,7 +250,7 @@ const email = localStorage.getItem('email');
 
   const [data2, setUserData2] = useState([]);
   const userGet2 = async () => {
-    const response = await ft_publications();
+    const response = await ft_publications("admin");
     if (response.status === 200) {
       setUserData2(response.data)
       console.log(response.data)
@@ -232,24 +268,54 @@ const email = localStorage.getItem('email');
   const columns2 = React.useMemo(
     () => [
       {
-        Header: "Faculty Name",
+        Header: "Faculty Email Id",
         accessor: "faculty_name",
       },
       {
-        Header: " Topic",
-        accessor: "topic",
+        Header: "Title of Articles/Publications/Patents",
+        accessor: "title",
       },
       {
-        Header: "Published Date",
-        accessor: "published_date",
-      },,
+        Header: "Authors",
+        accessor: "author",
+      },
+      {
+        Header: "Publications/Journals/Patents",
+        accessor: "type",
+      },
+      {
+        Header: "Title of Journal",
+        accessor: "title_publish",
+      },
+      {
+        Header: "Volume/Issue/Patent No.",
+        accessor: "patent_no",
+      },
       {
         Header: "Accepted Date",
         accessor: "accepted_date",
       },
+     
       {
-        Header: "Collaborations",
-        accessor: "collaboration",
+        Header: "Published Date",
+        accessor: "published_date",
+       
+      },
+      {
+        Header: "DOI/ISBN/Assignee",
+        accessor: "assignee",
+      },
+      {
+        Header: "Impact Factor",
+        accessor: "impact_factor",
+      },
+      {
+        Header: "Additional Information",
+        accessor: "additional_info",
+      },
+      {
+        Header: "Attached Link",
+        accessor: "link",
       },
       {
         Header: 'Edit',
@@ -259,10 +325,17 @@ const email = localStorage.getItem('email');
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() => navigate("./FtyPublicationsEdit.js/" + original._id, {
               state: {
                 faculty_name: original.faculty_name,
-                topic: original.topic,
-                published_date: original.published_date,
+                title:original.title,
+                author:original.author,
+                type:original.type,
+                title_publish:original.title_publish,
+                patent_no:original.patent_no,
                 accepted_date:original.accepted_date,
-                collaboration: original.collaboration,
+                published_date:original.published_date,
+                assignee:original.assignee,
+                impact_factor:original.impact_factor,
+                additional_info:original.additional_info,
+                link:original.link,
                 id: original._id,
                 utype: utype
               }
@@ -363,7 +436,7 @@ const email = localStorage.getItem('email');
           </div>
           <br></br>
           <div className="">
-            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Student Publications</h1>
+            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Student Publications/Patents/Journals</h1>
           </div>
           <div className="mt-4">
             <TablesPublications columns={columns} data={data} utype={utype} />
@@ -376,7 +449,7 @@ const email = localStorage.getItem('email');
           </div>
           <br></br>
           <div className="">
-            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Faculty Publications</h1>
+            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Faculty Publications/Patents/Journals</h1>
           </div>
           <div className="mt-4">
             <FtyTablesPublications columns={columns2} data={data2} utype={utype} />

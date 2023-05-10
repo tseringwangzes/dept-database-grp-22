@@ -131,7 +131,7 @@ const FtyAwardAddPage = () => {
             </div>
   
             <div className={signupStyle["form-item"]} id="shared_with">
-              <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Shared with</label>
+              <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Award/Achievement Shared with</label>
               <input style={{ height: "30px" }} className={signupStyle.myInput}
                 placeholder="Enter the comma separated email id's of other faculty members who share this award/achievement"
                 name="shared_with"

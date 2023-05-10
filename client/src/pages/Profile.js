@@ -92,16 +92,12 @@ function FtyProfile() {
               <h3 className="text-lg leading-6 font-medium text-gray-900">Student Statistics</h3>
                 <dl className="mt-2 grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
                   <div className="border-t-2 border-gray-300 pt-6 w-auto">
-                    <dt className="text-base font-medium text-gray-500">Number of Awards</dt>
+                    <dt className="text-base font-medium text-gray-500">Awards/Achievements</dt>
                     <dd className="mt-1 text-3xl font-extrabold text-gray-900">{stData[0]}</dd>
                   </div>
                   <div className="border-t-2 border-gray-300 pt-6 w-auto">
-                    <dt className="text-base font-medium text-gray-500">Project Grants</dt>
+                    <dt className="text-base font-medium text-gray-500">Research Project</dt>
                     <dd className="mt-1 text-3xl font-extrabold text-gray-900">{stData[3]}</dd>
-                  </div>
-                  <div className="border-t-2 border-gray-300 pt-6 w-auto">
-                    <dt className="text-base font-medium text-gray-500">Achievements</dt>
-                    <dd className="mt-1 text-3xl font-extrabold text-gray-900">{stData[1]}</dd>
                   </div>
                   <div className="border-t-2 border-gray-300 pt-6 w-auto">
                     <dt className="text-base font-medium text-gray-500">Foreign Visits</dt>
@@ -111,10 +107,7 @@ function FtyProfile() {
                     <dt className="text-base font-medium text-gray-500">Patents/Publications</dt>
                     <dd className="mt-1 text-3xl font-extrabold text-gray-900">{stData[4]}</dd>
                   </div>
-                  <div className="border-t-2 border-gray-300 pt-6 w-auto">
-                    <dt className="text-base font-medium text-gray-500">Seminars</dt>
-                    <dd className="mt-1 text-3xl font-extrabold text-gray-900">{stData[5]}</dd>
-                  </div>
+                  
                 </dl>
               </div>
               <div>

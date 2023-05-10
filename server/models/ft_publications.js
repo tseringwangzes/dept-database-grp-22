@@ -2,10 +2,18 @@ const mongoose = require("mongoose");
 
 const ftpublications = new mongoose.Schema({
     faculty_name:String,
-    topic: String,
+    title: String,
+    author: String,
+    type: String,
+    title_publish:String,
+    patent_no:String,
+    accepted_date: String,
     published_date: String,
-    accepted_date:String,
-    collaboration: String,
+    assignee: String,
+    impact_factor: String,
+    additional_info: String,
+    link: String,
+   
     
 },
     {
@@ -16,3 +24,11 @@ const ftpublications = new mongoose.Schema({
 
 const ft_publications = mongoose.model("ft_publications", ftpublications);
 module.exports = ft_publications;
+
+/*
+ topic: String,
+    published_date: String,
+    accepted_date:String,
+    collaboration: String,
+
+ */
