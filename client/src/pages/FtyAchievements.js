@@ -47,9 +47,6 @@ function FtyAchievements() {
   const utype = "0";
   const [data, setUserData] = useState([]);
   const userGet = async () => {
-    const data = {
-      email:email
-    }
     const response = await ft_achievements(email);
     if (response.status === 200) {
       setUserData(response.data)
@@ -149,8 +146,6 @@ return(
 
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() =>deleteRow(original._id)}>Delete</button>
           </div>);
-
-
         }
       }
     ],

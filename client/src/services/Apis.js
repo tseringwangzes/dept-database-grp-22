@@ -82,8 +82,8 @@ export const ft_achievements = async(email)=>{
     return await commonrequest("GET",`${BACKEND_URL}/user/faculty/achievements?email=${email}`);
 }
 
-export const ft_seminars = async()=>{
-    return await commonrequest("GET",`${BACKEND_URL}/user/faculty/seminars`,"");
+export const ft_seminars = async(email)=>{
+    return await commonrequest("GET",`${BACKEND_URL}/user/faculty/seminars?email=${email}`);
 }
 
 export const ft_foreign = async(email)=>{

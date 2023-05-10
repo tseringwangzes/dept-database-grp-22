@@ -45,10 +45,7 @@ function FtySeminars() {
 
   const [data, setUserData] = useState([]);
   const userGet = async () => {
-    const data = {
-      email:email
-    }
-    const response = await ft_seminars(data);
+    const response = await ft_seminars(email);
     if (response.status === 200) {
       setUserData(response.data)
       console.log(response.data)
