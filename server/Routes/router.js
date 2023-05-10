@@ -17,6 +17,7 @@ const st_foreign = require("../models/st_foreign");
 const st_seminar = require("../models/st_seminars");
 const st_publications = require("../models/st_publications");
 const st_projects = require("../models/st_projects");
+const dept_info = require("../models/Dept_info");
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(express.static(path.resolve(__dirname, 'public')));
 
@@ -36,6 +37,11 @@ var upload=multer({storage:storage});
 router.get("/user/student/home", controllers.studentHome)
 router.post("/user/student/home_post", controllers.homePost);
 router.post("/user/faculty/home_post", controllers.ftHomePost)
+router.post("/user/deptprogram", controllers.deptprogram)
+router.post("/user/deptall", controllers.deptall)
+
+router.get("/user/deptgetallinfo", controllers.deptgetall)
+
 router.post("/user/register", controllers.userregister);
 router.post("/user/getfaculty", controllers.getfaculty);
 router.post("/user/sendotp", controllers.userOtpSend);
@@ -72,9 +78,15 @@ router.post("/user/fty_project_csv", controllers.fty_project_csv);
 
 router.post("/user/insert_csv", controllers.insert_csv);
 router.post("/user/adddata",controllers.useraddmore);
+router.post("/user/editdeptinfo",controllers.editdeptinfo);
 
 router.delete("/user/deleteid/:id",async (req,resp)=>{
     const result = await stdetails.deleteOne({_id:req.params.id});
+    resp.send(result);
+});
+
+router.delete("/user/deleteolddeptinfo/:id",async (req,resp)=>{
+    const result = await dept_info.deleteOne({_id:req.params.id});
     resp.send(result);
 });
 

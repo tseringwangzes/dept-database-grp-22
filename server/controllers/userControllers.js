@@ -17,7 +17,8 @@ const ft_publications = require("../models/ft_publications");
 const ft_projects = require("../models/ft_projects");
 const student_award = require("../models/st_award_table");
 const personalDetails = require("../models/stu_personal_details");
-const ftDetails = require("../models/ft_personal_details")
+const ftDetails = require("../models/ft_personal_details");
+const dept_info = require("../models/Dept_info");
 
 
 const tarnsporter = nodemailer.createTransport({
@@ -298,6 +299,20 @@ exports.usergetall = async (req, res) => {
         }
     }
 
+exports.deptgetall = async (req, res) => {
+     console.log("hi")
+        try {
+            const allUser = await dept_info.find();
+            
+           // const allUser = await stdetails.find().sort({updatedAt: -1});;
+            console.log(allUser)
+            res.status(200).json(allUser)
+        } catch (error) {
+            res.status(401).json(error)
+            console.log(error)
+        }
+    }
+
 exports.stachievem = async (req, res) => {
     try {
         const allUser = await st_achievements.find().sort({updatedAt: -1});
@@ -524,6 +539,42 @@ exports.st_publication_csv = async (req, res) => {
 };
 
 
+
+
+
+exports.editdeptinfo = async (req, res) => {
+  
+const  {programs_offered,
+    st_num_btech,
+    st_num_mtech,
+    st_num_ms,
+    st_num_phd,
+    hod,
+    ft_num,
+    staff_postdoc,
+    staff_tech,
+    staff_admin,
+    thrust,}=req.body;
+    const data=req.body;
+    try {
+        const newdeptinfo = new dept_info(data);
+        console.log(newdeptinfo);
+       
+      
+        const storeData = await newdeptinfo.save();
+        res.status(200).json(storeData);
+        
+    } catch (error) {
+        res.status(400).json({ error: "Invalid Details", error })
+
+    }
+      
+          
+    
+       
+ }
+
+
 exports.useraddmore = async (req, res) => {
     const { award_name,date,shared_with,award_link,additional_info,status,faculty_name,student_name} = req.body;
    
@@ -703,6 +754,31 @@ exports.homePost = async(req,res) => {
    }
 }
 
+exports.deptprogram = async(req,res) => {
+
+    const type = req.body.type;
+  
+
+   try {
+     if (type === 'List') {
+ 
+         var myList = req.body.subList
+         const document = await dept_info.updateOne({programs_offered: myList});
+         //console.log(document);
+         res.status(200).json({ message: 'Items Added Successfully' });
+ 
+     }
+
+
+   } catch (error) {
+    console.log(error);
+    res.status(400).json(error)
+   }
+
+
+}
+
+
 exports.ftHomePost = async(req,res) => {
 
     const type = req.body.type;
@@ -743,6 +819,33 @@ exports.ftHomePost = async(req,res) => {
 
 }
 
+
+exports.deptall = async(req,res) => {
+
+    var count = new Array (12);
+  
+    try {
+        
+
+          const temp = await dept_info.findOne({email_id: email})
+
+          if (temp) {
+           
+            count[8] = temp.program_offered
+         
+          }
+
+          
+          res.status(200).json(count);
+          
+        
+
+            
+        
+    } catch (error) {
+        console.log(error);   
+    }
+}
 
 exports.facultyHome = async(req,res) => {
 
