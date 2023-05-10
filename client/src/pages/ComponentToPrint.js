@@ -12,9 +12,9 @@ import { ft_projects } from '../services/Apis';
 import { ft_publications } from '../services/Apis';
 import { ft_seminars } from '../services/Apis';
 
-export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
+export const ComponentToPrint = React.forwardRef(({startDate,endDate}, ref) => {
   const Date1 = new Date(startDate);
-  const Date2 = new Date(EndDate);
+  const Date2 = new Date(endDate);
   const email = "admin"
 
 

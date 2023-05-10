@@ -33,7 +33,7 @@ export const SidebarData = [
     {
         title:"Lectures/Workshops",
         icon:<Groups2Icon />,
-        link:"/StaffHome/StaffDepartment"
+        link:"/StaffHome/StaffSeminar"
     },
     {
         title:"Publications/Patents/Journals",
