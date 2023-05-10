@@ -54,7 +54,7 @@ console.log(data[0].faculty_name)
 }
 
   const userGet = async () => {
-    const response = await userfunc(data);
+    const response = await userfunc("admin");
     if (response.status === 200) {
       setUserData(response.data)
       console.log(response.data)
@@ -72,16 +72,17 @@ console.log(data[0].faculty_name)
   const columns = React.useMemo(
     () => [
       {
-        Header: "Student Name",
+        Header: "Student Email Id",
         accessor: "student_name",
       },
       {
-        Header: "Award Name",
-        accessor: "award_name",
+        Header: "Faculty Email Id",
+        accessor: "faculty_name",
       },
+
       {
-        Header: "Award Reason",
-        accessor: "award_reason",
+        Header: "Award/Achievements Name",
+        accessor: "award_name",
       },
       {
         Header: "Date",
@@ -92,9 +93,12 @@ console.log(data[0].faculty_name)
         accessor: "shared_with",
       },
       {
-        Header: "Status",
-        accessor: "status",
-        Cell: StatusPill,
+        Header: "Attached Link for reference",
+        accessor: "award_link",
+      },
+      {
+        Header: "Additional Information (if any)",
+        accessor: "additional_info",
       },
       {
         Header: 'Edit',
@@ -104,14 +108,15 @@ console.log(data[0].faculty_name)
 
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() => navigate("./Home.js/" + original._id, {
               state: {
-                faculty_name:original.faculty_name,
-                student_name:original.student_name,
+                faculty_name: original.faculty_name,
+                student_name: original.student_name,
                 award_name: original.award_name,
-                award_reason: original.award_reason,
                 date: original.date,
                 shared_with: original.shared_with,
+                award_link: original.award_link,
+                additional_info:original.additional_info,
                 id: original._id,
-                utype:utype
+                utype: utype
               }
             })}>Edit</button>
           </div>);
@@ -144,7 +149,7 @@ console.log(data[0].faculty_name)
 
   const [data2, setUserData2] = useState([]);
   const userGet2 = async () => {
-    const response = await ft_awards();
+    const response = await ft_awards("admin");
     if (response.status === 200) {
       setUserData2(response.data)
       console.log(response.data)
@@ -163,16 +168,12 @@ console.log(data[0].faculty_name)
     () => [
     
       {
-        Header:"Faculty Name",
-        accessor:"faculty_name",
+        Header: "Faculty Email Id",
+        accessor: "faculty_name",
       },
       {
-        Header: "Award Name",
+        Header: "Award/Achievement Name",
         accessor: "award_name",
-      },
-      {
-        Header: "Award Reason",
-        accessor: "award_reason",
       },
       {
         Header: "Date",
@@ -183,19 +184,23 @@ console.log(data[0].faculty_name)
         accessor: "shared_with",
       },
       {
+        Header: "Additional Information(if any)",
+        accessor: "additional_info",
+      },
+      {
         Header: 'Edit',
         Cell: props => {
           const { original } = props.cell.row;
           return (<div>
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() => navigate("./FtyAwardsEdit.js/" + original._id, {
               state: {
-                faculty_name:original.faculty_name,
+                faculty_name: original.faculty_name,
                 award_name: original.award_name,
-                award_reason: original.award_reason,
                 date: original.date,
                 shared_with: original.shared_with,
+                additional_info:original.additional_info,
                 id: original._id,
-                utype:utype
+                utype: utype
               }
             })}>Edit</button>
           </div>);
@@ -380,7 +385,7 @@ const rows = data.map(user=>[user.faculty_name,user.award_name,user.award_reason
           </div>
           <br></br>
           <div className="">
-            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Student Awards</h1>
+            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Student Awards/Achievements</h1>
           </div>
           <div className="mt-4">
             <TablesAwards columns={columns} data={data} utype={utype}/>
@@ -393,7 +398,7 @@ const rows = data.map(user=>[user.faculty_name,user.award_name,user.award_reason
           </div>
           <br></br>
           <div className="">
-            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Faculty Awards</h1>
+            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Faculty Awards/Achievements</h1>
           </div>
           <div className="mt-4">
             <FtyTablesAwards columns={columns2} data={data2} utype={utype}/>

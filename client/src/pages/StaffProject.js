@@ -10,7 +10,7 @@ import FtyTablesProjects from "../tables/FtyTablesProjects";
 import jsPDF from 'jspdf';
 
 export default function StaffProject() {
-  const email = localStorage.getItem('email');
+  const email = "admin";
   const navigate = useNavigate();
   const utype = "1";
 
@@ -20,7 +20,7 @@ export default function StaffProject() {
 
   const [data, setUserData] = useState([]);
   const userGet = async () => {
-    const response = await stproj();
+    const response = await stproj(email);
     if (response.status === 200) {
       setUserData(response.data)
       console.log(response.data)
@@ -166,7 +166,7 @@ export default function StaffProject() {
 
   const [data2, setUserData2] = useState([]);
   const userGet2 = async () => {
-    const response = await ft_projects();
+    const response = await ft_projects(email);
     if (response.status === 200) {
       setUserData2(response.data)
       console.log(response.data)
@@ -422,12 +422,3 @@ const rows = data2.map(user=>[user.faculty_name,user.topic,user.date,user.grante
     </>
   );
 }
-
-
-
-
-
-
-
-
-

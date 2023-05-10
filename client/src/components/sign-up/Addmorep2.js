@@ -112,18 +112,7 @@ if(utype === "1" || utype === "4")
         <h2 className={signupStyle["form-heading"]}>Add More Award/Achievement Details of Students</h2>
         <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
 
-        <div className={signupStyle["form-item"]} id="faculty_name">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Faculty Email id</label>
-            <input style={{ height: "30px" }} className={signupStyle.myInput}
-              placeholder="Enter Faculty email id"
-              name="faculty_name"
-              type="text"
-              value={formFields.faculty_name}
-              onChange={hanldeInputValueChange}
-            />
-          </div>
-
-          <div className={signupStyle["form-item"]} id="student_name">
+        <div className={signupStyle["form-item"]} id="student_name">
             <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Student Email Id</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
               placeholder="Enter student email id"
@@ -134,6 +123,16 @@ if(utype === "1" || utype === "4")
             />
           </div>
 
+        <div className={signupStyle["form-item"]} id="faculty_name">
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Faculty Email id</label>
+            <input style={{ height: "30px" }} className={signupStyle.myInput}
+              placeholder="Enter Faculty email id"
+              name="faculty_name"
+              type="text"
+              value={formFields.faculty_name}
+              onChange={hanldeInputValueChange}
+            />
+          </div>
 
           <div className={signupStyle["form-item"]} id="award_name">
             <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Award/Achievement Name</label>

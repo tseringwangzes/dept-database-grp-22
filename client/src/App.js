@@ -68,6 +68,8 @@ import FtySeminarCsv from './pages/FtySeminarCsv';
 import FtyPublicationCsv from './pages/FtyPublicationCsv';
 import FtyForeignCsv from './pages/FtyForeignCsv';
 import FtyProjectCsv from './pages/FtyProjectCsv';
+import StaffDeptInfo from './pages/Staff_dept_info';
+import Editdept1 from './pages/Editdept1'
 
 import Admin from './pages/Admin';
 import AdminCsv from './pages/Admin/AdminCsv';
@@ -113,6 +115,8 @@ function App() {
         <Route path='/StaffHome/StaffPublications' element={<StaffPublications />} />
         <Route path='/StaffHome/StaffSeminar' element={<StaffSeminar />} />
         <Route path='/StaffHome/StaffReminder' element={<StaffReminder />} />
+        <Route path='/StaffHome/StaffDeptInfo' element={<StaffDeptInfo />} />
+        <Route path='/StaffHome/StaffDeptInfo/Editdept1' element={<Editdept1 />} />
 
 
         <Route path='/StaffHome/StaffStudent/Addmore.js' element={<Addmore />} />
@@ -126,8 +130,8 @@ function App() {
         <Route path='/StaffHome/StaffFaculty/FtyAchievementAdd.js' element={<FtyAchievementAdd />} />
 
         <Route path='/StaffHome/StaffSeminar/SeminarsEdit.js/:id' element={<SeminarEdit />} />
-        <Route path='/StaffHome/StaffSeminar/SeminarAdd.js' element={<SeminarAdd />} />
-        <Route path='/StaffHome/StaffSeminar/FtySeminarsEdit.js/:id' element={<FtySeminarsEdit />} />
+        <Route path='/StaffHome/StaffSeminar/SeminarAdd.js' element={<SeminarAdd />} /> 
+        <Route path='/StaffHome/StaffSeminar/FtyAchievementsEdit.js/:id' element={<FtyAchievementsEdit />} />
         <Route path='/StaffHome/StaffSeminar/FtySeminarAdd.js' element={<FtySeminarAdd />} />
 
         <Route path='/StaffHome/StaffForeign/ForeignEdit.js/:id' element={<ForeignEdit />} />
@@ -141,7 +145,7 @@ function App() {
         <Route path='/StaffHome/StaffPublications/PublicationAdd.js' element={<PublicationAdd />} />
         <Route path='/StaffHome/StaffPublications/FtyPublicationAdd.js' element={<FtyPublicationAdd />} />
 
-
+      {/* <Route path='/StaffHome/Staff' */}
 
         <Route path='/StaffHome/StaffProject/ProjectsEdit.js/:id' element={<ProjectEdit />} />
         <Route path='/StaffHome/StaffProject/FtyProjectsEdit.js/:id' element={<FtyProjectsEdit />} />

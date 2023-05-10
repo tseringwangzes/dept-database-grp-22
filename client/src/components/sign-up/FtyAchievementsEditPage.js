@@ -58,7 +58,7 @@ const FtyAchievementsEditPage = () => {
                     additional_info:state.additional_info,
                 });
                 if(utype === "1"){
-                    navigate("/StaffHome/StaffFaculty")
+                    navigate("/StaffHome/StaffSeminar")
                 }
                 else if(utype === "4"){
                     navigate("/Admin/AdminFaculty")

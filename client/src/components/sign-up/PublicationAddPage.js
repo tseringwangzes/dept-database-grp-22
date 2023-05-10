@@ -130,7 +130,7 @@ if(utype === "1" || utype === "4"){
                 <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
 
                 <div className={signupStyle["form-item"]} id="student_name">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Student Name</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Student Email Id</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the Student Name"
                             name="student_name"
@@ -141,7 +141,7 @@ if(utype === "1" || utype === "4"){
                     </div>
 
                     <div className={signupStyle["form-item"]} id="faculty_name">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Faculty Name</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Faculty Email Id</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the Faculty Name"
                             name="faculty_name"

@@ -34,7 +34,7 @@
 
    const [data, setUserData] = useState([]);
    const userGet = async () => {
-     const response = await stforvisits();
+     const response = await stforvisits("admin");
      if (response.status === 200) {
        setUserData(response.data)
        console.log(response.data)
@@ -52,9 +52,13 @@
    const columns = React.useMemo(
      () => [
        {
-         Header: "Student Name",
+         Header: "Student Email Id",
          accessor: "student_name"
        },
+       {
+        Header: "Faculty Email Id",
+        accessor: "faculty_name",
+      },
        {
          Header: "Start-Date",
          accessor: "start_date",
@@ -66,10 +70,6 @@
        {
          Header: "Country",
          accessor: "country",
-       },
-       {
-         Header: "Faculty-Name",
-         accessor: "faculty_name",
        },
        {
         Header: "Details Of Visit",
@@ -143,7 +143,7 @@
 
        const aTag=document.createElement("a");
        aTag.href=url2;
-       aTag.setAttribute("download","Faculty_Foreign_visits");
+       aTag.setAttribute("download","Sample_Faculty_Foreign_visits");
        document.body.appendChild(aTag);
        aTag.click();
        aTag.remove();
@@ -219,7 +219,7 @@
    }
    const [data2, setUserData2] = useState([]);
    const userGet2 = async () => {
-     const response = await ft_foreign();
+     const response = await ft_foreign("admin");
      if (response.status === 200) {
        setUserData2(response.data)
        console.log(response.data)
@@ -238,7 +238,7 @@
      () => [
 
        {
-         Header: " Faculty Name",
+         Header: " Faculty Email Id",
          accessor: "faculty_name",
        },
        {

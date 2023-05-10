@@ -45,10 +45,10 @@ function FtyProjectCsv(){
           alert("sucessfully uploaded!");
           if(utype==='0'){
           navigate('/faculty/Projects');}
-          else if(utype==='1' || utype==='4'){
+          else if(utype==='4'){
           navigate('/Admin/AdminProject');
           }
-          else if(utype==='2'){
+          else if(utype==='1'){
             navigate('/StaffHome/StaffProject');
               }
           window.location.reload();

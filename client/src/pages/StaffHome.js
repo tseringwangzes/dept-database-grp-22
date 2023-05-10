@@ -7,7 +7,7 @@ import { useState } from "react";
 function StaffHome() {
   let componentRef = useRef();
   const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [EndDate, setEndDate] = useState("");
 
   var handleStartDateChange = (event) => {
     setStartDate(event.target.value);
@@ -70,28 +70,32 @@ function StaffHome() {
         <Sidebar />
         <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
           <div className="mt-4">
-            Choose Start Date
-            <input
-              type="date"
-              value={startDate}
-              onChange={handleStartDateChange}
-              className="ml-2 rounded-md px-4 py-2 border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
-            <br />
-            <br />
-            Choose End Date
-            <input
-              type="date"
-              value={endDate}
-              onChange={handleEndDateChange}
-              className="ml-2 rounded-md px-4 py-2 border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
+            Choose Start Date 
+          {/* </div> */}
+
+         <input
+            type="date"
+            value={startDate}
+            onChange={handleStartDateChange}
+            className="ml-2 rounded-md px-4 py-2 border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        <br></br>
+        <br></br>
+       Choose End Date
+          <input
+            type="date"
+            value={EndDate}
+            onChange={handleEndDateChange}
+            className="ml-2 rounded-md px-4 py-2 border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+          
+          {/* <div className="mt-4"> */}
             <ReactToPrint
               trigger={() => <button>Print this out!</button>}
               content={() => componentRef.current}
               documentTitle="BOG MEETING DATA"
             />
-            <ComponentToPrint ref={componentRef} startDate={startDate} endDate={endDate} />
+            <ComponentToPrint ref={componentRef} startDate={startDate} endDate={EndDate} />
             <button onClick={handleDownloadPDFToDOC}>
               Convert and Download as DOC
             </button>

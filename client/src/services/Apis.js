@@ -24,6 +24,13 @@ export const usergetfunc = async()=>{
 export const userfunc = async(email)=>{
     return await commonrequest("GET",`${BACKEND_URL}/user/getall?email=${email}`);
 }
+export const deptgetallinfo = async()=>{
+    return await commonrequest("GET",`${BACKEND_URL}/user/deptgetallinfo`);
+}
+
+export const editdeptinfo = async(data)=>{
+    return await commonrequest("POST",`${BACKEND_URL}/user/editdeptinfo`,data)
+}
 export const getfaculty = async(email)=>{
     return await commonrequest("GET",`${BACKEND_URL}/user/getfaculty?email=${email}`);
 }
@@ -56,6 +63,13 @@ export const addmorefunction = async(data)=>{
 export const ft_home = async (email) => {
     return await commonrequest("GET", `${BACKEND_URL}/user/faculty/home?email=${email}`);
   }
+  export const deptprogram = async (email) => {
+    return await commonrequest("GET", `${BACKEND_URL}/user/deptprogram?email=${email}`);
+  }
+  export const deptall = async () => {
+    return await commonrequest("GET", `${BACKEND_URL}/user/deptall`);
+  }
+
 
   export const ft_home_post = async (data) => {
     return await commonrequest("POST", `${BACKEND_URL}/user/faculty/home_post`, data);

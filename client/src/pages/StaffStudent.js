@@ -33,7 +33,7 @@ function StaffStudent() {
 
 
   const userGet = async () => {
-    const response = await userfunc(admin);
+    const response = await userfunc("admin");
     if (response.status === 200) {
       setUserData(response.data)
       console.log(response.data)
@@ -51,8 +51,12 @@ function StaffStudent() {
   const columns = React.useMemo(
     () => [
       {
-        Header: "Student Name",
+        Header: "Student Email Id",
         accessor: "student_name",
+      },
+      {
+        Header: "Faculty Email Id",
+        accessor: "faculty_name",
       },
       {
         Header: "Award/Achievements Name",
@@ -122,7 +126,7 @@ function StaffStudent() {
 
   const [data2, setUserData2] = useState([]);
   const userGet2 = async () => {
-    const response = await ft_awards();
+    const response = await ft_awards("admin");
     if (response.status === 200) {
       setUserData2(response.data)
       console.log(response.data)
@@ -141,7 +145,7 @@ function StaffStudent() {
     () => [
 
       {
-        Header: "Faculty Name",
+        Header: "Faculty Email Id",
         accessor: "faculty_name",
       },
       {
