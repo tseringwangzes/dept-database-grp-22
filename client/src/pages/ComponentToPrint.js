@@ -12,9 +12,10 @@ import { ft_projects } from '../services/Apis';
 import { ft_publications } from '../services/Apis';
 import { ft_seminars } from '../services/Apis';
 
-export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
+export const ComponentToPrint = React.forwardRef(({startDate,endDate}, ref) => {
+  console.log(`Chosen start date: ${startDate}\nChosen end date: ${endDate}`);
   const Date1 = new Date(startDate);
-  const Date2 = new Date(EndDate);
+  const Date2 = new Date(endDate);
   const email = "admin"
 
 
@@ -151,21 +152,21 @@ export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
   //   }, 1200)
   // }, [])
 
-  // const [data9, setUserData9] = useState([]);
-  // const userGet9 = async () => {
-  //     const response = await ft_foreign();
-  //     if (response.status === 200) {
-  //         setUserData9(response.data)
-  //         console.log(response.data)
-  //     } else {
-  //         console.log("error for get user data")
-  //     }
-  // }
-  // useEffect(() => {
-  //     userGet9();
-  //     setTimeout(() => {
-  //     }, 1200)
-  // }, [])
+  const [data9, setUserData9] = useState([]);
+   const userGet9 = async () => {
+      const response = await ft_foreign();
+      if (response.status === 200) {
+          setUserData9(response.data)
+           console.log(response.data)
+       } else {
+          console.log("error for get user data")
+      }
+  }
+   useEffect(() => {
+     userGet9();
+     setTimeout(() => {
+     }, 1200)
+  }, [])
 
   // const [data10, setUserData10] = useState([]);
   // const userGet10 = async () => {
@@ -223,7 +224,7 @@ export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
   // const Filtered6 = data6.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
   // const Filtered7 = data7.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
   // const Filtered8 = data8.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
-  // const Filtered9 = data9.filter(item=>new Date(item.start_date) >= Date1 && new Date(item.start_date)<=Date2)
+   const Filtered9 = data9.filter(item=>new Date(item.start_date) >= Date1 && new Date(item.start_date)<=Date2)
   // const Filtered10 = data10.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
   // const Filtered11 = data11.filter(item=>new Date(item.published_date) >= Date1 && new Date(item.published_date)<=Date2)
   // const Filtered12 = data12.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
@@ -239,7 +240,7 @@ export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
         Rupnagar,Punjab
       </div>
       <div className="text-center text-xl font-semibold">
-        Tele:+91-1881-235101, email:cs@iitrpr.ac.in
+        Tele:+91-1881-242123, email:office-cse-1@iitrpr.ac.in
       </div>
       <hr className="w-4/5 border-black mx-auto align-center" />
       <div className="bg-indigo-100 text-center text-l font-semibold">
@@ -247,7 +248,7 @@ export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
       </div>
       <br></br>
       <div className="bg-indigo-100 text-center text-l font-semibold">
-        Fy Awards and Honors
+        Faculty Awards and Honors
       </div>
       <br></br>
       {/* <TableStudentAwards data={data} columns={columns}/> */}
@@ -362,7 +363,8 @@ export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
           ))}
         </tbody>
       </table>  
-      <br></br>    
+      <br></br>   
+      <h6>This Data is from - {startDate} to {endDate}</h6> 
     </div>
   );
 });

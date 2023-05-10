@@ -7,6 +7,7 @@ import Otp from './pages/Otp';
 import Error from './pages/Error';
 import Headers from './components/Headers';
 import Headers1 from './components/Headers1';
+import Fac_Combined from './pages/FacCombined';
 
 import { Routes, Route } from "react-router-dom"
 import Awards from './pages/Awards';
@@ -164,6 +165,7 @@ function App() {
         <Route path='/faculty/foreign' element={<FtyForeign />} />
         <Route path='/faculty/Publications' element={<FtyPublications />} />
         <Route path='/faculty/Projects' element={<FtyProjects />} />
+        <Route path='/faculty/Fac_Combined' element={<Fac_Combined />} />
         <Route path='/faculty/Awards/FtyAwardsEdit.js/:id' element={<FtyAwardsEdit />} />
         <Route path='/faculty/Achievements/FtyAchievementsEdit.js/:id' element={<FtyAchievementsEdit />} />
         <Route path='/faculty/Seminars/FtySeminarsEdit.js/:id' element={<FtySeminarsEdit />} />

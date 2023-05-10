@@ -1,0 +1,105 @@
+import React, { useRef } from "react";
+import FtySidebar from "../components/FtySidebar";
+import ReactToPrint from "react-to-print";
+import { ComponentToPrint } from "./FacultyPdf";
+import { useState } from "react";
+
+function Fac_Combined() {
+  let componentRef = useRef();
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+
+  var handleStartDateChange = (event) => {
+    setStartDate(event.target.value);
+  };
+
+  var handleEndDateChange = (event) => {
+    setEndDate(event.target.value);
+  };
+
+  var handleDownloadPDFToDOC = async () => {
+    try {
+      const conversionResponse = await fetch(
+        `https://api.cloudconvert.com/v2/convert`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer YOUR_CLOUDCONVERT_API_KEY",
+          },
+          body: JSON.stringify({
+            inputformat: "pdf",
+            outputformat: "doc",
+            input: "upload",
+            file: "YOUR_PDF_FILE_URL",
+          }),
+        }
+      );
+
+      const conversionData = await conversionResponse.json();
+
+      if (conversionData.id) {
+        const downloadResponse = await fetch(
+          `https://api.cloudconvert.com/v2/convert/${conversionData.id}/download`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: "Bearer YOUR_CLOUDCONVERT_API_KEY",
+            },
+          }
+        );
+
+        const blob = await downloadResponse.blob();
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "converted_file.doc";
+        link.click();
+        URL.revokeObjectURL(url);
+      } else {
+        console.error("Error converting PDF to DOC:", conversionData.error);
+      }
+    } catch (error) {
+      console.error("Error converting PDF to DOC:", error);
+    }
+  };
+
+  return (
+    <>
+      <div className="absolute right-0 w-3/4 bg-gray-100 text-gray-900">
+        <FtySidebar />
+        <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+          <div className="mt-4">
+            Choose Start Date
+            <input
+              type="date"
+              value={startDate}
+              onChange={handleStartDateChange}
+              className="ml-2 rounded-md px-4 py-2 border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+            <br />
+            <br />
+            Choose End Date
+            <input
+              type="date"
+              value={endDate}
+              onChange={handleEndDateChange}
+              className="ml-2 rounded-md px-4 py-2 border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+            <ReactToPrint
+              trigger={() => <button>Print this out!</button>}
+              content={() => componentRef.current}
+              documentTitle="BOG MEETING DATA"
+            />
+            <ComponentToPrint ref={componentRef} startDate={startDate} endDate={endDate} />
+            <button onClick={handleDownloadPDFToDOC}>
+              Convert and Download as DOC
+            </button>
+          </div>
+        </main>
+      </div>
+    </>
+  );
+}
+
+export default Fac_Combined;
