@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import { useLocation } from "react-router-dom";
 import Sidebar2 from "../components/staffSide";
+import Sidebar3 from "../components/AdminSidebar";
 
 
 function StAwardCsv(){
@@ -13,6 +14,7 @@ function StAwardCsv(){
   const { state } = useLocation();
   const utype = state.utype;
   const fname=state.fname;
+  const email = state.email;
   var file;
 
     const handleSubmit = async (event) => {
@@ -31,7 +33,7 @@ function StAwardCsv(){
         delimiter: ',',
         skipEmptyLines: true,
   
-        columns: ['student_name','award_reason', 'award_name','date', 'shared_with', ],
+        columns: ['Student_name','award_name', 'date', 'shared_with', 'award_link','additional_info'],
         header: true, complete: function (results) {
           let data=results.data;
   
@@ -39,7 +41,10 @@ function StAwardCsv(){
    for(const entry of data){
     if(utype==='0')
    { entry.status="pending..";
-   entry.faculty_name=fname;}
+   entry.faculty_name=fname;
+   entry.student_name=email;
+   console.log(entry.student_name)
+  }
    else if(utype==='4' || utype==='1' || utype==='2')
    { entry.status="verified";}
    
@@ -69,22 +74,9 @@ function StAwardCsv(){
       () => [
   
         {
-          Header: "Student Name",
-          accessor: "student_name",
-        },
-        {
-          Header: "Faculty Name",
-          accessor: "faculty_name",
-        },
-        {
-          Header: "Award Reason",
-          accessor: "award_reason",
-        },
-        {
-          Header: "Award Name",
+          Header: "Award/Achievement Name",
           accessor: "award_name",
         },
-        
         {
           Header: "Date",
           accessor: "date",
@@ -92,6 +84,14 @@ function StAwardCsv(){
         {
           Header: "Shared With",
           accessor: "shared_with",
+        },
+        {
+          Header: "Attached Link For Reference",
+          accessor: "award_link",
+        },
+        {
+          Header: "Additional Informatio  (If Any) ",
+          accessor: "additional_info",
         },
       
       ],
@@ -177,10 +177,43 @@ function StAwardCsv(){
 
   ); 
 }
-else if(utype==='4')
-{
+else if(utype==='4'){
+  
+  return (
+    <>
 
-}
+      <div className=" absolute right-0  w-3/4 bg-gray-100 text-gray-900">
+        <Sidebar3/>
+        <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+          <div className="">
+
+
+            <h1 className="text-xl font-semibold">SELECT A FILE OF GIVEN FORMAT FOR STUDENT DATA</h1> <br />
+
+<div class="flex flex-row ...">
+            <input  class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-2 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 "
+              type="file"
+              accept=".csv,.xlsx,.xls"
+              onChange={handleSubmit}
+            /> <br />
+
+<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full " onClick={handleClick}>submit</button>
+
+</div>
+
+
+          </div>
+
+          <Table columns={columns} data={data} />
+          
+
+
+        </main>
+      </div>
+     
+    </>
+
+  );  }
 
 }
 export default StAwardCsv;

@@ -77,7 +77,7 @@ function FtyAchievements() {
 
     const aTag=document.createElement("a");
     aTag.href=url;
-    aTag.setAttribute("download","Sample_Faculty_Achievements");
+    aTag.setAttribute("download","Sample_Invited_Lectures");
     document.body.appendChild(aTag);
     aTag.click();
     aTag.remove();

@@ -146,6 +146,7 @@ function Projects() {
       state: {
         utype: utype,
         fname: data[0].faculty_name,
+        email:email
 
       }
     })

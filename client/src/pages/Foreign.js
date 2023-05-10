@@ -108,7 +108,6 @@ function Foreign() {
                                 id:original._id,
                                 visit_details: original.visit_details,
                                 visit_link:original.visit_link,
-                                
                                 status: original.status,
                                 utype:utype
                             }
@@ -137,6 +136,7 @@ function Foreign() {
         navigate("./StForeignCsv" ,{state:{
             utype: utype,
             fname: data[0].faculty_name,
+            email: email,
          }})
        }
 

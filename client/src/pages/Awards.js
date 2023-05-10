@@ -162,6 +162,7 @@ function Awards() {
   navigate("./StAwardCsv" ,{state:{
     utype: utype,
     fname: data[0].faculty_name,
+    email: email,
  }})
  }
 
