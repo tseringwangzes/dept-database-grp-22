@@ -17,7 +17,8 @@ const ft_publications = require("../models/ft_publications");
 const ft_projects = require("../models/ft_projects");
 const student_award = require("../models/st_award_table");
 const personalDetails = require("../models/stu_personal_details");
-const ftDetails = require("../models/ft_personal_details")
+const ftDetails = require("../models/ft_personal_details");
+const dept_info = require("../models/Dept_info");
 
 
 const tarnsporter = nodemailer.createTransport({
@@ -299,6 +300,20 @@ exports.usergetall = async (req, res) => {
     }
 }
 
+exports.deptgetall = async (req, res) => {
+     console.log("hi")
+        try {
+            const allUser = await dept_info.find();
+            
+           // const allUser = await stdetails.find().sort({updatedAt: -1});;
+            console.log(allUser)
+            res.status(200).json(allUser)
+        } catch (error) {
+            res.status(401).json(error)
+            console.log(error)
+        }
+    }
+
 exports.stachievem = async (req, res) => {
     try {
         const allUser = await st_achievements.find().sort({ updatedAt: -1 });
@@ -544,6 +559,42 @@ exports.st_publication_csv = async (req, res) => {
     }
 
 };
+
+
+
+
+
+exports.editdeptinfo = async (req, res) => {
+  
+const  {programs_offered,
+    st_num_btech,
+    st_num_mtech,
+    st_num_ms,
+    st_num_phd,
+    hod,
+    ft_num,
+    staff_postdoc,
+    staff_tech,
+    staff_admin,
+    thrust,}=req.body;
+    const data=req.body;
+    try {
+        const newdeptinfo = new dept_info(data);
+        console.log(newdeptinfo);
+       
+      
+        const storeData = await newdeptinfo.save();
+        res.status(200).json(storeData);
+        
+    } catch (error) {
+        res.status(400).json({ error: "Invalid Details", error })
+
+    }
+      
+          
+    
+       
+ }
 
 
 exports.useraddmore = async (req, res) => {

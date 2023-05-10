@@ -18,12 +18,17 @@ export const SidebarData = [
     {
         title:"Department Information",
         icon:<FontAwesomeIcon icon={faHome} />,
-        link:"/StaffHome/StaffDepartment"
+        link:"StaffHome/StaffDeptInfo"
     },
     {
         title:"Awards/Achievements",
         icon:<EmojiEventsIcon />,
         link:"/StaffHome/StaffStudent"
+    },
+    {
+        title:"Lecture By Visiting Experts",
+        icon:<PeopleIcon />,
+        link:"/StaffHome/Seminars",
     },
     {
         title:"Foreign Visits",

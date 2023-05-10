@@ -143,7 +143,7 @@
 
        const aTag=document.createElement("a");
        aTag.href=url2;
-       aTag.setAttribute("download","Faculty_Foreign_visits");
+       aTag.setAttribute("download","Sample_Faculty_Foreign_visits");
        document.body.appendChild(aTag);
        aTag.click();
        aTag.remove();
