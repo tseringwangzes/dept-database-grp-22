@@ -155,7 +155,7 @@ function FtySeminars() {
 
     const aTag=document.createElement("a");
     aTag.href=url;
-    aTag.setAttribute("download","Sample_Expert_Visits_Seminars");
+    aTag.setAttribute("download","Sample_Expert_Visits");
     document.body.appendChild(aTag);
     aTag.click();
     aTag.remove();

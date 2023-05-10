@@ -431,7 +431,7 @@ exports.st_project_csv = async (req, res) => {
 
     for (const entry of data) {
         try {
-            // console.log(entry);
+            console.log(entry);
             const existingEntry = await st_project.findOne(entry);
             //console.log(existingEntry);
             if (existingEntry === null) {
@@ -495,7 +495,7 @@ exports.st_foreign_csv = async (req, res) => {
 
     for (const entry of data) {
         try {
-            // console.log(entry);
+            console.log(entry);
             const existingEntry = await st_for_visits.findOne(entry);
             //console.log(existingEntry);
             if (existingEntry === null) {
@@ -615,7 +615,7 @@ exports.st_award_csv = async (req, res) => {
     for (const entry of data) {
         try {
 
-            console.log(entry.status);
+            //console.log(entry.status);
             const existingEntry = await stdetails.findOne(entry);
             //console.log(existingEntry);
             if (existingEntry === null) {
@@ -691,7 +691,7 @@ exports.studentHome = async (req, res) => {
 exports.homePost = async (req, res) => {
     const type = req.body.type;
     const myEmail = req.body.email
-    console.log(req.body);
+    //console.log(req.body);
 
     try {
         if (type === 'List') {
@@ -1173,7 +1173,7 @@ exports.fty_award_csv = async (req, res) => {
 
     for (const entry of data) {
         try {
-            // console.log(entry);
+            //console.log(entry);
             const existingEntry = await ft_awards.findOne(entry);
             //console.log(existingEntry);
             if (existingEntry === null) {
@@ -1259,7 +1259,7 @@ exports.fty_seminar_csv = async (req, res) => {
 
     for (const entry of data) {
         try {
-            // console.log(entry);
+            console.log(entry);
             const existingEntry = await ft_seminars.findOne(entry);
             //console.log(existingEntry);
             if (existingEntry === null) {

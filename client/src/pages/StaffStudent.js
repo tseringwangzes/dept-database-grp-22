@@ -201,7 +201,7 @@ function StaffStudent() {
 
     const aTag=document.createElement("a");
     aTag.href=url2;
-    aTag.setAttribute("download","Faculty_Awards");
+    aTag.setAttribute("download","Sample_Faculty_Awards");
     document.body.appendChild(aTag);
     aTag.click();
     aTag.remove();
@@ -215,7 +215,7 @@ function StaffStudent() {
 
 const aTag=document.createElement("a");
 aTag.href=url;
-aTag.setAttribute("download","Student_Awards");
+aTag.setAttribute("download","Sample_Student_Awards");
 document.body.appendChild(aTag);
 aTag.click();
 aTag.remove();

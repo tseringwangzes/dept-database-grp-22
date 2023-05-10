@@ -10,10 +10,10 @@
 
  function StaffForeign() {
    const navigate = useNavigate();
-   const utype = "2";
+   const utype = "1";
 
-     const url='http:localhost:3000/Staff_St_Foreign_Header.csv'
-     const url2='http:localhost:3000/Staff_Fty_Foreign_Header.csv'
+     const url='http://localhost:3000/Staff_St_Foreign_Header.csv'
+     const url2='http://localhost:3000/Staff_Fty_Foreign_Header.csv'
 
   
    const deleteRowst=async (id)=>{
@@ -129,7 +129,7 @@
 
      const aTag=document.createElement("a");
      aTag.href=url;
-     aTag.setAttribute("download","Student_Foreign_Visits");
+     aTag.setAttribute("download","Sample_Student_Foreign_Visits");
      document.body.appendChild(aTag);
      aTag.click();
      aTag.remove();
