@@ -4,6 +4,8 @@ import { st_ach } from '../services/Apis'
 import TablesAchievements, { StatusPill } from "../tables/TablesAchievements";
 import Sidebar from "../components/Sidebar";
 import jsPDF from 'jspdf';
+import {st_home} from '../services/Apis';
+
 
 function Achievements() {
   const navigate = useNavigate();
@@ -12,9 +14,33 @@ const utype = "0";
   const [showModal, setShowModal] = useState(false);
   const [showModaldelete, setShowModaldelete] = useState(false);
     const [did, setdid] = useState("");
+    const [stData, setData] = useState([]);
+
+    useEffect(() => {
+      const fetchData = async (e) => {
+        try {
+          
+          const response = await st_home(email);
+          
+          setData(response.data)
+          //console.log(response.data);
+          //console.log(ftData);
+         // console.log('react');
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      if (email) {
+        fetchData();
+      }
+      fetchData();
+    }, [email]);
 
 
 const url='http://localhost:3000/St_Achievement_Header.csv'
+const getName = async (e) => {
+
+}
 
 
 const deleteRow=async (id)=>{
@@ -150,6 +176,7 @@ console.log(data[0].faculty_name)
           }
 
   function generatePDF() {
+
     const doc = new jsPDF();
     fetch('https://akm-img-a-in.tosshub.com/aajtak/images/story/201502/iit_ropar_650_022415062015.jpg?size=948:533')
   .then(response => response.blob())
@@ -187,7 +214,7 @@ console.log(data[0].faculty_name)
     doc.text("Student Name", 20, 60);
     doc.text(":", 70, 60);
     doc.setFont("helvetica", "normal");
-    doc.text("Vishwas Rathi", 72, 60);
+    doc.text(stData[6], 72, 60);
     doc.setFont("helvetica", "bold");
     doc.text("Student Email", 20, 65);
     doc.text(": ", 70, 65);

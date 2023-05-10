@@ -101,10 +101,10 @@ exports.userOtpSend = async (req, res) => {
                 await updateData.save();
 
                 const mailOptions = {
-                    from: `"Welcome to Department Database" <${process.env.EMAIL}>`,
+                    from: `"Department Database" <${process.env.EMAIL}>`,
                     to: email,
-                    subject: "Sending Email For Otp Validation",
-                    text: `Your OTP is :- ${OTP}`
+                    subject: "Welcome to Department Database",
+                    text: `OTP to login:- ${OTP}`
                 }
 
 
@@ -127,11 +127,12 @@ exports.userOtpSend = async (req, res) => {
 
                 await saveOtpData.save();
                 const mailOptions = {
-                    from: process.env.EMAIL,
+                    from: `"Department Database" <${process.env.EMAIL}>`,
                     to: email,
-                    subject: "Sending Email For Otp Validation",
-                    text: `OTP:- ${OTP}`
+                    subject: "Welcome to Department Database",
+                    text: `OTP to login:- ${OTP}`
                 }
+
 
                 tarnsporter.sendMail(mailOptions, (error, info) => {
                     if (error) {
@@ -170,7 +171,7 @@ exports.userApprovalSend = async (req, res) => {
             const myText = "Your Data Approved by faculty Advisor";
             if (existEmail) {
                 const mailOptions = {
-                    from: process.env.EMAIL,
+                    from: `"Department Database" <${process.env.EMAIL}>`,
                     to: email,
                     subject: "Approval Done!",
                     text: myText
@@ -1345,7 +1346,7 @@ exports.send_mail = async (req, res) => {
     allUsers.forEach(user => {
         const userEmail = user.email;
         const mailOptions = {
-            from: `"Office Staff" <${process.env.EMAIL}>`,            
+            from: `"Office Staff [Department Database]" <${process.env.EMAIL}>`,            
             to: userEmail,
             subject: emailSubject,
             text: emailContent
