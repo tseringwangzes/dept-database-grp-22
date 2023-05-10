@@ -46,7 +46,7 @@ function FtyProjects() {
     const data = {
       email:email
     }
-    const response = await ft_projects();
+    const response = await ft_projects(email);
     if (response.status === 200) {
       setUserData(response.data)
       console.log(response.data)
@@ -189,7 +189,7 @@ function FtyProjects() {
       doc.line(10, 38, pageWidth - 10, 38);
       doc.setFontSize(12);
       doc.setFont("helvetica", "bold");
-      doc.text("PROJECT GRANTS LIST", pageWidth / 2, 45, {
+      doc.text("RESEARCH PROJECTS LIST", pageWidth / 2, 45, {
         align: "center"
       });
       doc.setLineWidth(0.2);
@@ -208,12 +208,10 @@ function FtyProjects() {
       doc.text("Faculty Department", 20, 70);
       doc.text(": ", 70, 70);
       doc.setFont("helvetica", "normal");
-      doc.text("CSE", 72, 70);
-      
-      const columns = [["Topic", "Date", "Granted Money","Description"]];
+      doc.text("CSE", 72, 70);     
+      const columns = [["Project Title", "Project Start Date", "Department","Funding Agency","Funds granted","Ongoing/Completed"]];
       const filteredData = data.filter(item => item.faculty_name === email);
-  
-  const rows = filteredData.map(user=>[user.topic,user.date,user.granted_money,user.status]);
+  const rows = filteredData.map(user=>[user.title,user.start_date,user.dept,user.funding_agency,user.funds,user.ongoing]);
       doc.autoTable({
         head: columns,
         body: rows,
@@ -229,7 +227,7 @@ function FtyProjects() {
     const formattedDate = `${formattedDay}-${formattedMonth}-${year}`;
   
     // save PDF with formatted date in filename
-    const filename = `${formattedDate}-ProjectGrants.pdf`;
+    const filename = `${formattedDate}-${email}-ProjectGrants.pdf`;
     doc.save(filename);
       // add image to PDF here
     });

@@ -178,7 +178,7 @@ console.log(data[0].faculty_name)
     doc.line(10, 38, pageWidth - 10, 38);
     doc.setFontSize(12);
     doc.setFont("helvetica", "bold");
-    doc.text("ACHIEVEMENTS LIST", pageWidth / 2, 45, {
+    doc.text("STUDENTS ACHIEVEMENTS LIST", pageWidth / 2, 45, {
       align: "center"
     });
     doc.setLineWidth(0.2);

@@ -46,7 +46,7 @@ function FtyPublications() {
     const data = {
       email:email
     }
-    const response = await ft_publications();
+    const response = await ft_publications(email);
     if (response.status === 200) {
       setUserData(response.data)
       console.log(response.data)

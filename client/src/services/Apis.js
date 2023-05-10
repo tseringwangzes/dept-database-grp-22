@@ -34,15 +34,15 @@ export const st_semi = async()=>{
     return await commonrequest("GET",`${BACKEND_URL}/user/stsemi`,"");
 }
 
-export const st_publi = async()=>{
-    return await commonrequest("GET",`${BACKEND_URL}/user/stpubli`,"");
+export const st_publi = async(email)=>{
+    return await commonrequest("GET",`${BACKEND_URL}/user/stpubli?email=${email}`);
 }
 
-export const stforvisits = async()=>{
-    return await commonrequest("GET",`${BACKEND_URL}/user/stforvisits`,"");
+export const stforvisits = async(email)=>{
+    return await commonrequest("GET",`${BACKEND_URL}/user/stforvisits?email=${email}`);
 }
-export const stproj = async()=>{
-    return await commonrequest("GET",`${BACKEND_URL}/user/stproj`,"");
+export const stproj = async(email)=>{
+    return await commonrequest("GET",`${BACKEND_URL}/user/stproj?email=${email}`);
 }
 
 export const st_award_csv = async(data)=>{
@@ -74,28 +74,28 @@ export const ft_home = async (email) => {
 //   }
   
 
-export const ft_awards = async()=>{
-    return await commonrequest("GET",`${BACKEND_URL}/user/faculty/awards`,);
+export const ft_awards = async(email)=>{
+    return await commonrequest("GET",`${BACKEND_URL}/user/faculty/awards?email=${email}`);
 }
 
-export const ft_achievements = async()=>{
-    return await commonrequest("GET",`${BACKEND_URL}/user/faculty/achievements`,"");
+export const ft_achievements = async(email)=>{
+    return await commonrequest("GET",`${BACKEND_URL}/user/faculty/achievements?email=${email}`);
 }
 
 export const ft_seminars = async()=>{
     return await commonrequest("GET",`${BACKEND_URL}/user/faculty/seminars`,"");
 }
 
-export const ft_foreign = async()=>{
-    return await commonrequest("GET",`${BACKEND_URL}/user/faculty/foreign`,"");
+export const ft_foreign = async(email)=>{
+    return await commonrequest("GET",`${BACKEND_URL}/user/faculty/foreign?email=${email}`);
 }
 
-export const ft_publications = async()=>{
-    return await commonrequest("GET",`${BACKEND_URL}/user/faculty/publications`,"");
+export const ft_publications = async(email)=>{
+    return await commonrequest("GET",`${BACKEND_URL}/user/faculty/publications?email=${email}`);
 }
 
-export const ft_projects = async()=>{
-    return await commonrequest("GET",`${BACKEND_URL}/user/faculty/projects`,"");
+export const ft_projects = async(email)=>{
+    return await commonrequest("GET",`${BACKEND_URL}/user/faculty/projects?email=${email}`);
 }
 
 export const FtyAddAwards = async(data)=>{
