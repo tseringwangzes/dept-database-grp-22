@@ -46,7 +46,7 @@ function FtyProjects() {
     const data = {
       email:email
     }
-    const response = await ft_projects();
+    const response = await ft_projects(email);
     if (response.status === 200) {
       setUserData(response.data)
       console.log(response.data)
@@ -65,20 +65,32 @@ function FtyProjects() {
     () => [
 
       {
-        Header: " Topic",
-        accessor: "topic",
+        Header: "Project Title",
+        accessor: "title",
       },
       {
-        Header: "Date",
-        accessor: "date",
+        Header: "Project Start Date",
+        accessor: "start_date",
       },
       {
-        Header: "Granted-Money",
-        accessor: "granted_money",
+        Header: "Department",
+        accessor: "dept",
       },
       {
-        Header: "Status",
-        accessor: "status",
+        Header: "Funding Agency",
+        accessor: "funding_agency",
+      },
+      {
+        Header: "Funds granted",
+        accessor: "funds",
+      },
+      {
+        Header: "Ongoing/Completed",
+        accessor: "ongoing",
+      },
+      {
+        Header: "Project Link",
+        accessor: "link",
       },
       {
         Header: 'Edit',
@@ -88,13 +100,16 @@ function FtyProjects() {
           <div>
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() => navigate("./FtyProjectsEdit.js/"+original._id, {
               state: {
-                faculty_name:original.faculty_name,
-                topic: original.topic,
-                date: original.date,
-                granted_money: original.granted_money,
-                status:original.status,
+                title: original.title,
+                start_date: original.start_date,
+                dept:original.dept,
+                faculty_name:original.faculty_name,    
+                funding_agency: original.funding_agency,
+                funds: original.funds,    
+                ongoing: original.ongoing,
+                link: original.link,
                 id: original._id,
-                utype:utype
+                utype: utype
               }
             })}>Edit</button>
           </div>);
@@ -174,7 +189,7 @@ function FtyProjects() {
       doc.line(10, 38, pageWidth - 10, 38);
       doc.setFontSize(12);
       doc.setFont("helvetica", "bold");
-      doc.text("PROJECT GRANTS LIST", pageWidth / 2, 45, {
+      doc.text("RESEARCH PROJECTS LIST", pageWidth / 2, 45, {
         align: "center"
       });
       doc.setLineWidth(0.2);
@@ -193,12 +208,10 @@ function FtyProjects() {
       doc.text("Faculty Department", 20, 70);
       doc.text(": ", 70, 70);
       doc.setFont("helvetica", "normal");
-      doc.text("CSE", 72, 70);
-      
-      const columns = [["Topic", "Date", "Granted Money","Description"]];
+      doc.text("CSE", 72, 70);     
+      const columns = [["Project Title", "Project Start Date", "Department","Funding Agency","Funds granted","Ongoing/Completed"]];
       const filteredData = data.filter(item => item.faculty_name === email);
-  
-  const rows = filteredData.map(user=>[user.topic,user.date,user.granted_money,user.status]);
+  const rows = filteredData.map(user=>[user.title,user.start_date,user.dept,user.funding_agency,user.funds,user.ongoing]);
       doc.autoTable({
         head: columns,
         body: rows,
@@ -214,7 +227,7 @@ function FtyProjects() {
     const formattedDate = `${formattedDay}-${formattedMonth}-${year}`;
   
     // save PDF with formatted date in filename
-    const filename = `${formattedDate}-ProjectGrants.pdf`;
+    const filename = `${formattedDate}-${email}-ProjectGrants.pdf`;
     doc.save(filename);
       // add image to PDF here
     });
@@ -332,7 +345,7 @@ function FtyProjects() {
           <br />
 
           <div className="">
-            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Your Projects</h1>
+            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Your Research Projects</h1>
           </div>
           <div className="mt-4">
             <FtyTablesProjects columns={columns} data={data} utype = {utype} />

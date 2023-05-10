@@ -15,9 +15,11 @@ import { ft_seminars } from '../services/Apis';
 export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
   const Date1 = new Date(startDate);
   const Date2 = new Date(EndDate);
+
   const [data, setUserData] = useState([]);
   const userGet = async () => {
-    const response = await userfunc(data);
+    const email = "admin"
+    const response = await userfunc(email);
     // window.location.reload();
     if (response.status === 200) {
       const filteredData = response.data
@@ -164,21 +166,21 @@ export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
       }, 1200)
   }, [])
 
-  const [data10, setUserData10] = useState([]);
-  const userGet10 = async () => {
-    const response = await ft_projects();
-    if (response.status === 200) {
-      setUserData10(response.data)
-      console.log(response.data)
-    } else {
-      console.log("error for get user data")
-    }
-  }
-  useEffect(() => {
-    userGet10();
-    setTimeout(() => {
-    }, 1200)
-  }, [])
+  // const [data10, setUserData10] = useState([]);
+  // const userGet10 = async () => {
+  //   const response = await ft_projects();
+  //   if (response.status === 200) {
+  //     setUserData10(response.data)
+  //     console.log(response.data)
+  //   } else {
+  //     console.log("error for get user data")
+  //   }
+  // }
+  // useEffect(() => {
+  //   userGet10();
+  //   setTimeout(() => {
+  //   }, 1200)
+  // }, [])
 
   const [data11, setUserData11] = useState([]);
   const userGet11 = async () => {
@@ -221,7 +223,7 @@ export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
   const Filtered7 = data7.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
   const Filtered8 = data8.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
   const Filtered9 = data9.filter(item=>new Date(item.start_date) >= Date1 && new Date(item.start_date)<=Date2)
-  const Filtered10 = data10.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
+  // const Filtered10 = data10.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
   const Filtered11 = data11.filter(item=>new Date(item.published_date) >= Date1 && new Date(item.published_date)<=Date2)
   const Filtered12 = data12.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
 
@@ -526,7 +528,7 @@ export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
           </tr>
         </thead>
         <tbody>
-          {Filtered10.map((item) => (
+          {/* {Filtered10.map((item) => (
             <tr key={item.faculty_name}>
               <td class="border border-black p-2"> {item.faculty_name}</td>
               <td class="border border-black p-2">{item.topic}</td>
@@ -534,7 +536,7 @@ export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
               <td class="border border-black p-2">{item.granted_money}</td>
               <td class="border border-black p-2">{item.status}</td>
             </tr>
-          ))}
+          ))} */}
         </tbody>
       </table>
       <br></br>

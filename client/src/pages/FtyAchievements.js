@@ -50,7 +50,7 @@ function FtyAchievements() {
     const data = {
       email:email
     }
-    const response = await ft_achievements(data);
+    const response = await ft_achievements(email);
     if (response.status === 200) {
       setUserData(response.data)
       console.log(response.data)
@@ -77,7 +77,7 @@ function FtyAchievements() {
 
     const aTag=document.createElement("a");
     aTag.href=url;
-    aTag.setAttribute("download","Sample_Faculty_Achievements");
+    aTag.setAttribute("download","Sample_Invited_Lectures");
     document.body.appendChild(aTag);
     aTag.click();
     aTag.remove();
@@ -182,12 +182,12 @@ return(
     doc.setFontSize(14);
     doc.setFont("helvetica", "normal");
     doc.text("Rupnagar,Punjab-140001", pageWidth / 2, 22, { align: "center" });
-    doc.text("Tele:+91-1881-235101, email:cs@iitrpr.ac.in", pageWidth / 2, 28, { align: "center" });
+    doc.text("Tele:+91-1881-242123, email:office-cse-1@iitrpr.ac.in", pageWidth / 2, 28, { align: "center" });
     doc.setLineWidth(0.5);
     doc.line(10, 38, pageWidth - 10, 38);
     doc.setFontSize(12);
     doc.setFont("helvetica", "bold");
-    doc.text("ACHIEVEMENTS LIST", pageWidth / 2, 45, {
+    doc.text("LIST OF LECTURES GIVEN", pageWidth / 2, 45, {
       align: "center"
     });
     doc.setLineWidth(0.2);
@@ -207,11 +207,10 @@ return(
     doc.text(": ", 70, 70);
     doc.setFont("helvetica", "normal");
     doc.text("CSE", 72, 70);
-    
-    const columns = [["Achievement", "Date","Shared With"]];
+    const columns = [["Lecture Title", "Date","Department","Lecture Given at","Additional Information(if any)"]];
     const filteredData = data.filter(item => item.faculty_name === email);
 
-const rows = filteredData.map(user=>[user.Achievements,user.date,user.shared_with]);
+const rows = filteredData.map(user=>[user.title,user.date,user.dept,user.institute,user.additional_info]);
     doc.autoTable({
       head: columns,
       body: rows,
@@ -227,7 +226,7 @@ const rows = filteredData.map(user=>[user.Achievements,user.date,user.shared_wit
    const formattedDate = `${formattedDay}-${formattedMonth}-${year}`;
  
    // save PDF with formatted date in filename
-   const filename = `${formattedDate}-Achievements.pdf`;
+   const filename = `${formattedDate}-${email}-LecturesGiven.pdf`;
    doc.save(filename);
 
     // add image to PDF here

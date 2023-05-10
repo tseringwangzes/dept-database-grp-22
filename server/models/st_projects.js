@@ -1,16 +1,16 @@
 const mongoose = require("mongoose");
 
 const stprojects = new mongoose.Schema({
-    faculty_name:String,
+    title: String,
+    start_date: String,
+    dept:String,
+    faculty_name:String,    
     student_name:String,
-    topic: String,
-    date: String,
-    granted_money: String,
-    description: String,
-    status: String,
-    collaboration:String,
+    funding_agency: String,
+    funds: String,    
+    ongoing: String,
     link: String,
-    
+    status: String,   
 },
     {
         collection: "stprojects",

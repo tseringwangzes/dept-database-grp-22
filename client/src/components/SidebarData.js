@@ -39,7 +39,7 @@ export const SidebarData = [
         link:"/Profile/Publications"
     },
     {
-        title:"Project Grants",
+        title:"Research Projects",
         icon:<CurrencyExchangeSharpIcon />,
         link:"/Profile/Project"
     }

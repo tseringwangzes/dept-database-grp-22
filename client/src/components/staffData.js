@@ -19,19 +19,9 @@ export const SidebarData = [
         link:"/StaffHome"
     },
     {
-        title:"Awards",
+        title:"Awards/Achievements",
         icon:<EmojiEventsIcon />,
         link:"/StaffHome/StaffStudent"
-    },
-    {
-        title:"Achievements",
-        icon:<StarsIcon />,
-        link:"/StaffHome/StaffFaculty"
-    },
-    {
-        title:"Workshops/Seminar Organised",
-        icon:<PeopleIcon />,
-        link:"/StaffHome/StaffSeminar"
     },
     {
         title:"Foreign Visits",

@@ -51,10 +51,10 @@ const Addmorep2 = () => {
 
     var { award_name,date, shared_with,award_link,additional_info, status, faculty_name, student_name } = formFields;
     if (award_name === "") {
-      toast.error("Enter Award Name")
+      toast.error("Enter Award/Achievement Name")
     }
     else if (date === "") {
-      toast.error("Enter Award Date")
+      toast.error("Enter Award/Achievement Date")
     }
    
     else {
@@ -109,7 +109,7 @@ if(utype === "1" || utype === "4")
   {return (
     <body className={signupStyle.rooted}>
       <section className={signupStyle["form-container"]}>
-        <h2 className={signupStyle["form-heading"]}>Add More Award Details of Students</h2>
+        <h2 className={signupStyle["form-heading"]}>Add More Award/Achievement Details of Students</h2>
         <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
 
         <div className={signupStyle["form-item"]} id="faculty_name">
@@ -136,9 +136,9 @@ if(utype === "1" || utype === "4")
 
 
           <div className={signupStyle["form-item"]} id="award_name">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Award Name</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Award/Achievement Name</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
-              placeholder="Enter the Award name"
+              placeholder="Enter the Award/Achievement name"
               name="award_name"
               type="text"
               value={formFields.award_name}
@@ -149,7 +149,7 @@ if(utype === "1" || utype === "4")
           <div className={signupStyle["form-item"]} id="date">
             <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Date</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
-              placeholder="Enter the date the student received the award"
+              placeholder="Enter the date the student received the award/achievement"
               name="date"
               type="date"
               value={formFields.date}
@@ -159,9 +159,9 @@ if(utype === "1" || utype === "4")
           </div>
 
           <div className={signupStyle["form-item"]} id="shared_with">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Award Shared with</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Award/Achievement Shared with</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
-              placeholder="Enter comma separated email id's of people with whom the award was shared with"
+              placeholder="Enter comma separated email id's of people with whom the award/achievement was shared with"
               name="shared_with"
               type="text"
               value={formFields.shared_with}
@@ -179,6 +179,19 @@ if(utype === "1" || utype === "4")
               onChange={hanldeInputValueChange}
             />
           </div>
+
+          <div className={signupStyle["form-item"]} id="additional_info">
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Add Additional Information (if any)</label>
+            <input style={{ height: "30px" }} className={signupStyle.myInput}
+              placeholder="Enter any additional information (if any)"
+              name="additional_info"
+              type="text"
+              value={formFields.additional_info}
+              onChange={hanldeInputValueChange}
+            />
+          </div>
+
+
           <br />
           <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style={{ marginLeft: "auto", }} onClick={handleSubmit} >Submit</button>
         </form>
@@ -190,12 +203,12 @@ if(utype === "1" || utype === "4")
     return(
        <body className={signupStyle.rooted}>
       <section className={signupStyle["form-container"]}>
-        <h2 className={signupStyle["form-heading"]}>Add Your Awards</h2>
+        <h2 className={signupStyle["form-heading"]}>Add Your Awards/Achievements</h2>
         <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
           <div className={signupStyle["form-item"]} id="award_name">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Award Name</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Award/Achievement Name</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
-              placeholder="Enter the award name"
+              placeholder="Enter the award/achievement name"
               name="award_name"
               type="text"
               value={formFields.award_name}
@@ -217,9 +230,9 @@ if(utype === "1" || utype === "4")
           </div>
 
           <div className={signupStyle["form-item"]} id="shared_with">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Award Shared With</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Award/Achievement Shared With</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
-              placeholder="Enter comma seperated email id's of people with whom you shared this award"
+              placeholder="Enter comma seperated email id's of people with whom you shared this award/achievement"
               name="shared_with"
               type="text"
               value={formFields.shared_with}
@@ -228,9 +241,9 @@ if(utype === "1" || utype === "4")
           </div>
           
           <div className={signupStyle["form-item"]} id="award_link">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Award Link</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Award/Achievement Link</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
-              placeholder="Enter any link for reference of this award (if any)"
+              placeholder="Enter any link for reference of this award/achievement (if any)"
               name="award_link"
               type="text"
               value={formFields.award_link}

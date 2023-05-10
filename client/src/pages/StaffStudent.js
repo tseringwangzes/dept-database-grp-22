@@ -10,6 +10,7 @@ import jsPDF from 'jspdf';
 function StaffStudent() {
   const navigate = useNavigate();
   var email = localStorage.getItem('email');
+  const admin = "admin";
   const utype = "1";
     const url='http://localhost:3000/Staff_St_Award_Header.csv'
     const url2='http://localhost:3000/Staff_Fty_Award_Header.csv'
@@ -32,7 +33,7 @@ function StaffStudent() {
 
 
   const userGet = async () => {
-    const response = await userfunc(data);
+    const response = await userfunc(admin);
     if (response.status === 200) {
       setUserData(response.data)
       console.log(response.data)
@@ -54,7 +55,7 @@ function StaffStudent() {
         accessor: "student_name",
       },
       {
-        Header: "Award Name",
+        Header: "Award/Achievements Name",
         accessor: "award_name",
       },
       {
@@ -144,7 +145,7 @@ function StaffStudent() {
         accessor: "faculty_name",
       },
       {
-        Header: "Award Name",
+        Header: "Award/Achievement Name",
         accessor: "award_name",
       },
       {
@@ -200,7 +201,7 @@ function StaffStudent() {
 
     const aTag=document.createElement("a");
     aTag.href=url2;
-    aTag.setAttribute("download","Faculty_Awards");
+    aTag.setAttribute("download","Sample_Faculty_Awards");
     document.body.appendChild(aTag);
     aTag.click();
     aTag.remove();
@@ -214,7 +215,7 @@ function StaffStudent() {
 
 const aTag=document.createElement("a");
 aTag.href=url;
-aTag.setAttribute("download","Student_Awards");
+aTag.setAttribute("download","Sample_Student_Awards");
 document.body.appendChild(aTag);
 aTag.click();
 aTag.remove();
@@ -364,7 +365,7 @@ const rows = data2.map(user=>[user.faculty_name,user.award_name,user.award_reaso
           </div>
           <br></br>
           <div className="">
-            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Student Awards</h1>
+            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Student Awards/Achievements</h1>
           </div>
           <div className="mt-4">
             <TablesAwards columns={columns} data={data} utype={utype} />
@@ -377,7 +378,7 @@ const rows = data2.map(user=>[user.faculty_name,user.award_name,user.award_reaso
           </div>
           <br></br>
           <div className="">
-            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Faculty Awards</h1>
+            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Faculty Awards/Achievements</h1>
           </div>
           <div className="mt-4">
             <FtyTablesAwards columns={columns2} data={data2} utype={utype} />

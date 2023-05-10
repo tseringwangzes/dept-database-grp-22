@@ -1,11 +1,15 @@
 const mongoose = require("mongoose");
 
 const ftprojects = new mongoose.Schema({
-    faculty_name: String,
-    topic: String,
-    date: String,
-    granted_money: String,
-    status: String,
+    title: String,
+    start_date: String,
+    dept:String,
+    faculty_name:String,    
+    funding_agency: String,
+    funds: String,    
+    ongoing: String,
+    link: String,
+    status: String,   
 },
     {
         collection: "ft_projects",

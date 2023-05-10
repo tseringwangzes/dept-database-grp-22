@@ -15,7 +15,6 @@ const FtyAwardsEditPage = () => {
   const utype = state.utype;
 const navigate = useNavigate();
 
-
   const defaultFormFields = {
     faculty_name:state.faculty_name,
     award_name: state.award_name,
@@ -83,7 +82,7 @@ const navigate = useNavigate();
           <div className={signupStyle["form-item"]} id="award_name">
             <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Award/Achievement Name</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
-              placeholder="Enter the name"
+              placeholder="Enter the award/achievement name"
               name="award_name"
               type="text"
               value={formFields.award_name}
@@ -108,7 +107,7 @@ const navigate = useNavigate();
           <div className={signupStyle["form-item"]} id="shared_with">
             <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Shared with</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
-              placeholder="Shared with whom"
+              placeholder="Enter email id's of faculty with whom the award is shared"
               name="shared_with"
               type="text"
               value={formFields.shared_with}
@@ -118,7 +117,7 @@ const navigate = useNavigate();
             <div className={signupStyle["form-item"]} id="additional_info">
                         <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Additional Information (if any)</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Edit the additional information (if you want)"
+                            placeholder="Edit additional information (if any)"
                             name="additional_info"
                             type="text"
                             value={formFields.additional_info}

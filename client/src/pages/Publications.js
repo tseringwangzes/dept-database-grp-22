@@ -41,10 +41,7 @@ function Publications() {
 
 
   const userGet = async () => {
-    const data = {
-      email:email
-    }
-    const response = await st_publi(data);
+    const response = await st_publi(email);
     if (response.status === 200) {
       setUserData(response.data)
       console.log(response.data)
