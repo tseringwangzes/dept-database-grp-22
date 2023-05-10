@@ -10,33 +10,16 @@ const Addmorep2 = () => {
   const navigate = useNavigate();
   var email = localStorage.getItem('email');
 
-  // const [femail, setfemail] = useState();
-
-  // const getfaculty = async () => {
-   
-  //   const response = await getfaculty(email);
-  //   // window.location.reload();
-  //   if (response.status === 200) {
-  //     setfemail(response.data.faculty_name)
-  //    // console.log(response.data)
-  //   } else {
-  //     console.log("error for get user data")
-  //   }
-  // }
-  // useEffect(() => {
-  //   getfaculty();
-   
-  // },[])
-
   var defaultFormFields = {}
   if (utype === "1" || utype === "4") {
     defaultFormFields = {
       faculty_name: "",
       student_name: "",
       award_name: "",
-      award_reason: "",
       date: "",
       shared_with: "",
+      award_link: "",
+      additional_info:"",
       status: "Pending..",
     };
   }
@@ -45,9 +28,10 @@ const Addmorep2 = () => {
       faculty_name: "femail",
       student_name: email,
       award_name: "",
-      award_reason: "",
       date: "",
       shared_with: "",
+      award_link: "",
+      additional_info:"",
       status: "Pending..",
     };
   }
@@ -65,15 +49,12 @@ const Addmorep2 = () => {
     event.preventDefault();
     console.log(formFields)
 
-    var { award_name, award_reason,date, shared_with, status, faculty_name, student_name } = formFields;
+    var { award_name,date, shared_with,award_link,additional_info, status, faculty_name, student_name } = formFields;
     if (award_name === "") {
-      toast.error("Enter Award Name")
-    }
-    else if (award_reason === "") {
-      toast.error("Enter Award Reason")
+      toast.error("Enter Award/Achievement Name")
     }
     else if (date === "") {
-      toast.error("Enter Award Date")
+      toast.error("Enter Award/Achievement Date")
     }
    
     else {
@@ -84,35 +65,30 @@ const Addmorep2 = () => {
       if (response.status === 200) {
         if (utype === "1" || utype === "4") {
           setFormFields({
-            ...formFields, award_name: "",
-            award_reason: "",
+            ...formFields, 
+            award_name: "",
             date: "",
             shared_with: "",
             status: "Pending",
             faculty_name: "",
-            student_name: ""
+            student_name: "",
+            award_link: "",
+            additional_info:"",
           });
         }
 
         else {
           setFormFields({
             ...formFields, award_name: "",
-            award_reason: "",
             date: "",
             shared_with: "",
             status: "Pending",
             faculty_name: "2020csb1135@iitrpr.ac.in",
-            student_name: email
+            student_name: email,
+            award_link: "",
+            additional_info:"",
           });
          }
-    
-    
-     
-      
-         
-         
-       
-
         if(utype==="1"){
           navigate("/StaffHome/StaffStudent")
         }
@@ -133,12 +109,36 @@ if(utype === "1" || utype === "4")
   {return (
     <body className={signupStyle.rooted}>
       <section className={signupStyle["form-container"]}>
-        <h2 className={signupStyle["form-heading"]}>Add More Awards</h2>
+        <h2 className={signupStyle["form-heading"]}>Add More Award/Achievement Details of Students</h2>
         <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
-          <div className={signupStyle["form-item"]} id="award_name">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Name</label>
+
+        <div className={signupStyle["form-item"]} id="faculty_name">
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Faculty Email id</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
-              placeholder="Enter the name"
+              placeholder="Enter Faculty email id"
+              name="faculty_name"
+              type="text"
+              value={formFields.faculty_name}
+              onChange={hanldeInputValueChange}
+            />
+          </div>
+
+          <div className={signupStyle["form-item"]} id="student_name">
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Student Email Id</label>
+            <input style={{ height: "30px" }} className={signupStyle.myInput}
+              placeholder="Enter student email id"
+              name="student_name"
+              type="text"
+              value={formFields.student_name}
+              onChange={hanldeInputValueChange}
+            />
+          </div>
+
+
+          <div className={signupStyle["form-item"]} id="award_name">
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Award/Achievement Name</label>
+            <input style={{ height: "30px" }} className={signupStyle.myInput}
+              placeholder="Enter the Award/Achievement name"
               name="award_name"
               type="text"
               value={formFields.award_name}
@@ -146,22 +146,10 @@ if(utype === "1" || utype === "4")
             />
           </div>
 
-          <div className={signupStyle['form-item']} id="award_reason">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Reason</label>
-            <input style={{ height: "30px" }} className={signupStyle.myInput}
-              placeholder="Enter the Reason"
-              name="award_reason"
-              type="text"
-              value={formFields.award_reason}
-              onChange={hanldeInputValueChange}
-            />
-
-          </div>
-
           <div className={signupStyle["form-item"]} id="date">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>date</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Date</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
-              placeholder="Enter the date"
+              placeholder="Enter the date the student received the award/achievement"
               name="date"
               type="date"
               value={formFields.date}
@@ -171,9 +159,9 @@ if(utype === "1" || utype === "4")
           </div>
 
           <div className={signupStyle["form-item"]} id="shared_with">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Shared with</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Award/Achievement Shared with</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
-              placeholder="Shared with whom"
+              placeholder="Enter comma separated email id's of people with whom the award/achievement was shared with"
               name="shared_with"
               type="text"
               value={formFields.shared_with}
@@ -181,27 +169,29 @@ if(utype === "1" || utype === "4")
             />
           </div>
 
-          <div className={signupStyle["form-item"]} id="faculty_name">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>faculty_name</label>
+          <div className={signupStyle["form-item"]} id="award_link">
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Link</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
-              placeholder="faculty_name"
-              name="faculty_name"
+              placeholder="Attach a link for reference"
+              name="award_link"
               type="text"
-              value={formFields.faculty_name}
+              value={formFields.award_link}
               onChange={hanldeInputValueChange}
             />
           </div>
 
-          <div className={signupStyle["form-item"]} id="student_name">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>student_name</label>
+          <div className={signupStyle["form-item"]} id="additional_info">
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Add Additional Information (if any)</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
-              placeholder="student_name"
-              name="student_name"
+              placeholder="Enter any additional information (if any)"
+              name="additional_info"
               type="text"
-              value={formFields.student_name}
+              value={formFields.additional_info}
               onChange={hanldeInputValueChange}
             />
           </div>
+
+
           <br />
           <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style={{ marginLeft: "auto", }} onClick={handleSubmit} >Submit</button>
         </form>
@@ -213,12 +203,12 @@ if(utype === "1" || utype === "4")
     return(
        <body className={signupStyle.rooted}>
       <section className={signupStyle["form-container"]}>
-        <h2 className={signupStyle["form-heading"]}>Add More Awards</h2>
+        <h2 className={signupStyle["form-heading"]}>Add Your Awards/Achievements</h2>
         <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
           <div className={signupStyle["form-item"]} id="award_name">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Name</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Award/Achievement Name</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
-              placeholder="Enter the name"
+              placeholder="Enter the award/achievement name"
               name="award_name"
               type="text"
               value={formFields.award_name}
@@ -226,20 +216,9 @@ if(utype === "1" || utype === "4")
             />
           </div>
 
-          <div className={signupStyle['form-item']} id="award_reason">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Reason</label>
-            <input style={{ height: "30px" }} className={signupStyle.myInput}
-              placeholder="Enter the Reason"
-              name="award_reason"
-              type="text"
-              value={formFields.award_reason}
-              onChange={hanldeInputValueChange}
-            />
-
-          </div>
 
           <div className={signupStyle["form-item"]} id="date">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>date</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Date</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
               placeholder="Enter the date"
               name="date"
@@ -251,12 +230,33 @@ if(utype === "1" || utype === "4")
           </div>
 
           <div className={signupStyle["form-item"]} id="shared_with">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Shared with</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Award/Achievement Shared With</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
-              placeholder="Shared with whom"
+              placeholder="Enter comma seperated email id's of people with whom you shared this award/achievement"
               name="shared_with"
               type="text"
               value={formFields.shared_with}
+              onChange={hanldeInputValueChange}
+            />
+          </div>
+          
+          <div className={signupStyle["form-item"]} id="award_link">
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Award/Achievement Link</label>
+            <input style={{ height: "30px" }} className={signupStyle.myInput}
+              placeholder="Enter any link for reference of this award/achievement (if any)"
+              name="award_link"
+              type="text"
+              value={formFields.award_link}
+              onChange={hanldeInputValueChange}
+            />
+          </div>
+          <div className={signupStyle["form-item"]} id="additional_info">
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Additional Information</label>
+            <input style={{ height: "30px" }} className={signupStyle.myInput}
+              placeholder="Enter additional information (if any)"
+              name="additional_info"
+              type="text"
+              value={formFields.additional_info}
               onChange={hanldeInputValueChange}
             />
           </div>

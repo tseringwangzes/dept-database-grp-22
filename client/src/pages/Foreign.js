@@ -64,10 +64,6 @@ function Foreign() {
         () => [
 
             {
-                Header: " Topic",
-                accessor: "topic",
-            },
-            {
                 Header: "Start-Date",
                 accessor: "start_date",
             },
@@ -83,10 +79,15 @@ function Foreign() {
                 Header: "Faculty-Name",
                 accessor: "faculty_name",
             },
+           
+            {
+                Header: "Details Of Visit",
+                accessor: "visit_details",
+            },
             {
                 Header: "Attached Link",
-                accessor: "link",
-              },
+                accessor: "visit_link",
+            },
             {
                 Header: "Status",
                 accessor: "status",
@@ -100,14 +101,15 @@ function Foreign() {
                         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() => navigate("./ForeignEdit.js/" + original._id, {
                             state: {
                                 student_name:original.student_name,
-                                topic: original.topic,
                                 start_date: original.start_date,
                                 end_date: original.end_date,
                                 country: original.country,
-                                faculty_name: original.faculty_name,
-                                status: original.status,
+                                faculty_name: original.faculty_name,                               
                                 id:original._id,
-                                link:original.link,
+                                visit_details: original.visit_details,
+                                visit_link:original.visit_link,
+                                
+                                status: original.status,
                                 utype:utype
                             }
                         })}>Edit</button>
@@ -218,8 +220,18 @@ function Foreign() {
           body: rows,
           startY: 80,
         });
-        doc.save('my-document.pdf');
+      //  doc.save('my-document.pdf');
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = today.getMonth() + 1;
+      const day = today.getDate();
+      const formattedMonth = month < 10 ? `0${month}` : month;
+      const formattedDay = day < 10 ? `0${day}` : day;
+      const formattedDate = `${formattedDay}-${formattedMonth}-${year}`;
     
+      // save PDF with formatted date in filename
+      const filename = `${formattedDate}-ForeignVisits.pdf`;
+      doc.save(filename);
         // add image to PDF here
       });
       }

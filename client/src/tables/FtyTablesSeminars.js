@@ -182,8 +182,8 @@ function FtyTablesSeminars({ columns, data,utype }) {
                                                 </tr>
                                             );}  
                                         }
-                                        if(page[i].original.faculty_name===email)
-                                        {return (
+                                       
+                                        return (
                                             <tr {...row.getRowProps()}>
                                              
 
@@ -203,7 +203,7 @@ function FtyTablesSeminars({ columns, data,utype }) {
                                                     
 
                                             </tr>
-                                        );}
+                                        );
                                     })}
                                 </tbody>
                             </table>

@@ -112,7 +112,7 @@ function FtySeminarCsv(){
             <div className="">
   
   
-              <h1 className="text-xl font-semibold">SELECT A FILE OF GIVEN FORMAT FOR FACULTY DATA</h1> <br />
+              <h1 className="text-xl font-semibold">SELECT A FILE OF GIVEN FORMAT FOR LECTURE BY EXPERTS</h1> <br />
   
   <div class="flex flex-row ...">
               <input  class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-2 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 "

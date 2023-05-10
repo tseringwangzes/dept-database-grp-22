@@ -1,6 +1,7 @@
 import React, { Fragment,Component, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { userfunc } from '../services/Apis'
+import { getfaculty } from '../services/Apis'
 import TablesAwards, { StatusPill } from "../tables/TablesAwards";
 import Sidebar from "../components/Sidebar";
 import jsPDF from 'jspdf';
@@ -41,7 +42,24 @@ function Awards() {
     setShowModaldelete(false);
 
   }
+  const [femail, setfemail] = useState("");
 
+  const getfaculty=async()=>{
+    const response=await getfaculty(email);
+    console.log(femail)
+    if(response.status===200){
+      setfemail(response.data)
+      console.log(femail)
+    }
+   else {
+    console.log("error for get user data")
+  }
+  }
+  useEffect(() => {
+    getfaculty();
+    setTimeout(() => {
+    }, 1200)
+  }, [])
 
 
   const [data, setUserData] = useState([]);
@@ -73,12 +91,8 @@ function Awards() {
   const columns = React.useMemo(
     () => [
       {
-        Header: "Award Name",
+        Header: "Award/Achievement Name",
         accessor: "award_name",
-      },
-      {
-        Header: "Award Reason",
-        accessor: "award_reason",
       },
       {
         Header: "Date",
@@ -89,8 +103,12 @@ function Awards() {
         accessor: "shared_with",
       },
       {
-        Header: "Attached Link",
-        accessor: "link",
+        Header: "Attached Link For Reference",
+        accessor: "award_link",
+      },
+      {
+        Header: "Additional Informatio  (If Any) ",
+        accessor: "additional_info",
       },
       {
         Header: "Status",
@@ -109,9 +127,10 @@ function Awards() {
                 faculty_name: original.faculty_name,
                 student_name: original.student_name,
                 award_name: original.award_name,
-                award_reason: original.award_reason,
                 date: original.date,
                 shared_with: original.shared_with,
+                award_link:original.award_link,
+                additional_info:original.additional_info,
                 id: original._id,
                 link:original.link,
                 utype: utype,
@@ -227,7 +246,18 @@ const rows = filteredData.map(user=>[user.award_name,user.award_reason,user.date
       body: rows,
       startY: 80,
     });
-    doc.save('my-document.pdf');
+   // doc.save('my-document.pdf');
+   const today = new Date();
+   const year = today.getFullYear();
+   const month = today.getMonth() + 1;
+   const day = today.getDate();
+   const formattedMonth = month < 10 ? `0${month}` : month;
+   const formattedDay = day < 10 ? `0${day}` : day;
+   const formattedDate = `${formattedDay}-${formattedMonth}-${year}`;
+ 
+   // save PDF with formatted date in filename
+   const filename = `${formattedDate}-${email}.pdf`;
+   doc.save(filename);
 
     // add image to PDF here
   });
@@ -342,7 +372,7 @@ const rows = filteredData.map(user=>[user.award_name,user.award_reason,user.date
        
           <div className="">
           <br />
-            <h2 className="text-center bg-indigo-100 text-xl font-semibold">Your Awards</h2>
+            <h2 className="text-center bg-indigo-100 text-xl font-semibold">Your Awards/Achievements</h2>
           </div>
           <div className="mt-4">
             <TablesAwards columns={columns} data={data} utype={utype} />

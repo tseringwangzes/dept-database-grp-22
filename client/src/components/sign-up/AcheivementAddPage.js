@@ -95,7 +95,7 @@ else{
     return (
       <body className={signupStyle.rooted}>
         <section className={signupStyle["form-container"]}>
-          <h2 className={signupStyle["form-heading"]}>Add more</h2>
+          <h2 className={signupStyle["form-heading"]}>Add More Achievements</h2>
           <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
             <div className={signupStyle["form-item"]} id="achievements">
               <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Achievement</label>
@@ -168,7 +168,7 @@ else{
   return (
     <body className={signupStyle.rooted}>
       <section className={signupStyle["form-container"]}>
-        <h2 className={signupStyle["form-heading"]}>Add more</h2>
+        <h2 className={signupStyle["form-heading"]}>Add more Achievements</h2>
         <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
           <div className={signupStyle["form-item"]} id="achievements">
             <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Achievement</label>

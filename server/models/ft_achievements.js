@@ -2,9 +2,11 @@ const mongoose = require("mongoose");
 
 const ft_achieve = new mongoose.Schema({
     faculty_name:String,
-    Achievements: String,
+    title: String,
     date: String,
-    shared_with: String,    
+    institute: String,    
+    dept: String,
+    additional_info:String,
 },
     {
         collection: "ft_achievements",

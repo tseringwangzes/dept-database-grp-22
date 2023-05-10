@@ -14,20 +14,20 @@ export const SidebarData = [
         link:"/Profile"
     },
     {
-        title:"Awards",
+        title:"Awards/Achievements",
         icon:<EmojiEventsIcon />,
         link:"/Profile/Awards"
     },
-    {
-        title:"Achievements",
-        icon:<StarsIcon />,
-        link:"/Profile/Achievements"
-    },
-    {
-        title:"Workshops/Seminar Organised",
-        icon:<PeopleIcon />,
-        link:"/Profile/Seminars"
-    },
+    // {
+    //     title:"Achievements",
+    //     icon:<StarsIcon />,
+    //     link:"/Profile/Achievements"
+    // },
+    // {
+    //     title:"Workshops/Seminar Organised",
+    //     icon:<PeopleIcon />,
+    //     link:"/Profile/Seminars"
+    // },
     {
         title:"Foreign Visits",
         icon:<AirplanemodeActiveOutlinedIcon />,
@@ -39,7 +39,7 @@ export const SidebarData = [
         link:"/Profile/Publications"
     },
     {
-        title:"Project Grants",
+        title:"Research Projects",
         icon:<CurrencyExchangeSharpIcon />,
         link:"/Profile/Project"
     }

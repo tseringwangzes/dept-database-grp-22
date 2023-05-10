@@ -65,7 +65,7 @@ const Otp = () => {
               <label className={otpStyle.myLabel} htmlFor="otp">OTP</label>
               <input className={otpStyle.myData} type="text" name="otp" id="" onChange={(e) => setOtp(e.target.value)} placeholder='Enter Your OTP' />
             </div>
-            <button className={otpStyle.btn} onClick={LoginUser}>Submit</button>
+            <button type ="submit" className={otpStyle.btn} onClick={LoginUser}>Submit</button>
           </form>
         </div>
         <ToastContainer />

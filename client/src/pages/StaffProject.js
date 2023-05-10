@@ -79,29 +79,40 @@ export default function StaffProject() {
   const columns = React.useMemo(
     () => [
       {
-        Header: " Student Name",
+        Header: "Student Name",
         accessor: "student_name",
       },
       {
-        Header: " Topic",
-        accessor: "topic",
-      },
-     
-      {
-        Header: "Date",
-        accessor: "date",
+        Header: "Project Title",
+        accessor: "title",
       },
       {
-        Header: "Granted-Money",
-        accessor: "granted_money",
+        Header: "Project Start Date",
+        accessor: "start_date",
       },
       {
-        Header: "Description",
-        accessor: "description",
+        Header: "Department",
+        accessor: "dept",
       },
       {
-        Header: "Collaboration with",
-        accessor: "collaboration",
+        Header: "Faculty Assosciated with",
+        accessor: "faculty_name",
+      },
+      {
+        Header: "Funding Agency",
+        accessor: "funding_agency",
+      },
+      {
+        Header: "Funds granted",
+        accessor: "funds",
+      },
+      {
+        Header: "Ongoing/Completed",
+        accessor: "ongoing",
+      },
+      {
+        Header: "Project Link",
+        accessor: "link",
       },
       {
         Header: "Status",
@@ -117,15 +128,17 @@ export default function StaffProject() {
             <div>
               <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() => navigate("./ProjectsEdit.js/" + original._id, {
                 state: {
-                  topic: original.topic,
-                  date: original.date,
-                  granted_money: original.granted_money,
-                  description: original.description,
+                  title: original.title,
+                  start_date: original.start_date,
+                  dept:original.dept,
+                  faculty_name:original.faculty_name,    
+                  student_name:original.student_name,
+                  funding_agency: original.funding_agency,
+                  funds: original.funds,    
+                  ongoing: original.ongoing,
+                  link: original.link,
                   status: original.status,
                   id: original._id,
-                  faculty_name: original.faculty_name,
-                  student_name: original.student_name,
-                  collaboration: original.collaboration,
                   utype: utype
                 }
               })}>Edit</button>
@@ -169,27 +182,39 @@ export default function StaffProject() {
 
 
   const columns2 = React.useMemo(
-    () => [{
-      Header: "Faculty Name",
-      accessor: "faculty_name",
-    },
-    {
-      Header: " Topic",
-      accessor: "topic",
-    },
-   
-    {
-      Header: "Date",
-      accessor: "date",
-    },
-    {
-      Header: "Granted-Money",
-      accessor: "granted_money",
-    },
-    {
-      Header: "Status",
-      accessor: "status",
-    },
+    () => [
+      {
+        Header:"Faculty Name",
+        accessor:"faculty_name"
+      },
+      {
+        Header: "Project Title",
+        accessor: "title",
+      },
+      {
+        Header: "Project Start Date",
+        accessor: "start_date",
+      },
+      {
+        Header: "Department",
+        accessor: "dept",
+      },
+      {
+        Header: "Funding Agency",
+        accessor: "funding_agency",
+      },
+      {
+        Header: "Funds granted",
+        accessor: "funds",
+      },
+      {
+        Header: "Ongoing/Completed",
+        accessor: "ongoing",
+      },
+      {
+        Header: "Project Link",
+        accessor: "link",
+      },
     {
       Header: 'Edit',
       Cell: props => {
@@ -198,11 +223,14 @@ export default function StaffProject() {
           <div>
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() => navigate("./FtyProjectsEdit.js/" + original._id, {
               state: {
-                faculty_name: original.faculty_name,
-                topic: original.topic,
-                date: original.date,
-                granted_money: original.granted_money,
-                status: original.status,
+                title: original.title,
+                start_date: original.start_date,
+                dept:original.dept,
+                faculty_name:original.faculty_name,    
+                funding_agency: original.funding_agency,
+                funds: original.funds,    
+                ongoing: original.ongoing,
+                link: original.link,
                 id: original._id,
                 utype: utype
               }
@@ -368,7 +396,7 @@ const rows = data2.map(user=>[user.faculty_name,user.topic,user.date,user.grante
           </div>
           <br></br>
           <div className="">
-            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Student Project Grants</h1>
+            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Student Research Projects</h1>
           </div>
           <div className="mt-4">
             <TablesProjects columns={columns} data={data} utype={utype}/>
@@ -381,7 +409,7 @@ const rows = data2.map(user=>[user.faculty_name,user.topic,user.date,user.grante
           </div>
           <br></br>
           <div className="">
-            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Faculty Project Grants</h1>
+            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Faculty Research Projects</h1>
           </div>
           <div className="mt-4">
             <FtyTablesProjects columns={columns2} data={data2} utype={utype}/>

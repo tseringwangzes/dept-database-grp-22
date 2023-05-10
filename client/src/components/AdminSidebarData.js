@@ -22,22 +22,10 @@ export const AdminSidebarData = [
         fname:"",
     },
     {
-        title:"Awards",
+        title:"Awards/Achievements",
         icon:<EmojiEventsIcon />,
         link:"/Admin/AdminStudent",
         fname:"",
-    },
-    {
-        title:"Achievements",
-        icon:<StarsIcon />,
-        link:"/Admin/AdminFaculty",
-        fname:""
-    },
-    {
-        title:"Workshops/Seminar Organised",
-        icon:<PeopleIcon />,
-        link:"/Admin/AdminSeminar",
-        fname:""
     },
     {
         title:"Foreign Visits",

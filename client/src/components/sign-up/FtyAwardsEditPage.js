@@ -15,13 +15,12 @@ const FtyAwardsEditPage = () => {
   const utype = state.utype;
 const navigate = useNavigate();
 
-
   const defaultFormFields = {
     faculty_name:state.faculty_name,
     award_name: state.award_name,
-    award_reason: state.award_reason,
     date: state.date,
     shared_with: state.shared_with,
+    additional_info:state.additional_info,
   };
 
   const [formFields, setFormFields] = useState(defaultFormFields);
@@ -40,7 +39,7 @@ const navigate = useNavigate();
   const handleSubmit = async(event) => {
     event.preventDefault();
 
-    const{award_name,award_reason,date,shared_with,faculty_name} = formFields;
+    const{award_name,date,shared_with,faculty_name,additional_info} = formFields;
     if(award_name === ""){
 
       toast.error("Enter Award Name")
@@ -78,12 +77,12 @@ const navigate = useNavigate();
   return (
     <body className={signupStyle.rooted}>
       <section className={signupStyle["form-container"]}>
-        <h2 className={signupStyle["form-heading"]}>Edit</h2>
+        <h2 className={signupStyle["form-heading"]}>Edit Award/Achievement Details</h2>
         <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
           <div className={signupStyle["form-item"]} id="award_name">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Name</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Award/Achievement Name</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
-              placeholder="Enter the name"
+              placeholder="Enter the award/achievement name"
               name="award_name"
               type="text"
               value={formFields.award_name}
@@ -91,20 +90,10 @@ const navigate = useNavigate();
             />
           </div>
 
-          <div className={signupStyle['form-item']} id="award_reason">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Reason</label>
-            <input style={{ height: "30px" }} className={signupStyle.myInput}
-              placeholder="Enter the Reason"
-              name="award_reason"
-              type="text"
-              value={formFields.award_reason}
-              onChange={hanldeInputValueChange}
-            />
 
-          </div>
 
           <div className={signupStyle["form-item"]} id="date">
-            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>date</label>
+            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Date</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
               placeholder="Enter the date"
               name="date"
@@ -118,13 +107,23 @@ const navigate = useNavigate();
           <div className={signupStyle["form-item"]} id="shared_with">
             <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Shared with</label>
             <input style={{ height: "30px" }} className={signupStyle.myInput}
-              placeholder="Shared with whom"
+              placeholder="Enter email id's of faculty with whom the award is shared"
               name="shared_with"
               type="text"
               value={formFields.shared_with}
               onChange={hanldeInputValueChange}
               />
             </div>
+            <div className={signupStyle["form-item"]} id="additional_info">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Additional Information (if any)</label>
+                        <input style={{ height: "30px" }} className={signupStyle.myInput}
+                            placeholder="Edit additional information (if any)"
+                            name="additional_info"
+                            type="text"
+                            value={formFields.additional_info}
+                            onChange={hanldeInputValueChange}
+                        />
+                    </div>
           <br />
           <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style={{ marginLeft: "auto", }} onClick={handleSubmit} >Submit</button>
         </form>

@@ -10,6 +10,7 @@ import jsPDF from 'jspdf';
 function StaffStudent() {
   const navigate = useNavigate();
   var email = localStorage.getItem('email');
+  const admin = "admin";
   const utype = "1";
     const url='http://localhost:3000/Staff_St_Award_Header.csv'
     const url2='http://localhost:3000/Staff_Fty_Award_Header.csv'
@@ -32,7 +33,7 @@ function StaffStudent() {
 
 
   const userGet = async () => {
-    const response = await userfunc(data);
+    const response = await userfunc(admin);
     if (response.status === 200) {
       setUserData(response.data)
       console.log(response.data)
@@ -54,12 +55,8 @@ function StaffStudent() {
         accessor: "student_name",
       },
       {
-        Header: "Award Name",
+        Header: "Award/Achievements Name",
         accessor: "award_name",
-      },
-      {
-        Header: "Award Reason",
-        accessor: "award_reason",
       },
       {
         Header: "Date",
@@ -68,6 +65,14 @@ function StaffStudent() {
       {
         Header: "Shared With",
         accessor: "shared_with",
+      },
+      {
+        Header: "Attached Link for reference",
+        accessor: "award_link",
+      },
+      {
+        Header: "Additional Information (if any)",
+        accessor: "additional_info",
       },
       {
         Header: "Status",
@@ -85,9 +90,10 @@ function StaffStudent() {
                 faculty_name: original.faculty_name,
                 student_name: original.student_name,
                 award_name: original.award_name,
-                award_reason: original.award_reason,
                 date: original.date,
                 shared_with: original.shared_with,
+                award_link: original.award_link,
+                additional_info:original.additional_info,
                 id: original._id,
                 utype: utype
               }
@@ -139,12 +145,8 @@ function StaffStudent() {
         accessor: "faculty_name",
       },
       {
-        Header: "Award Name",
+        Header: "Award/Achievement Name",
         accessor: "award_name",
-      },
-      {
-        Header: "Award Reason",
-        accessor: "award_reason",
       },
       {
         Header: "Date",
@@ -155,6 +157,10 @@ function StaffStudent() {
         accessor: "shared_with",
       },
       {
+        Header: "Additional Information(if any)",
+        accessor: "additional_info",
+      },
+      {
         Header: 'Edit',
         Cell: props => {
           const { original } = props.cell.row;
@@ -163,9 +169,9 @@ function StaffStudent() {
               state: {
                 faculty_name: original.faculty_name,
                 award_name: original.award_name,
-                award_reason: original.award_reason,
                 date: original.date,
                 shared_with: original.shared_with,
+                additional_info:original.additional_info,
                 id: original._id,
                 utype: utype
               }
@@ -359,7 +365,7 @@ const rows = data2.map(user=>[user.faculty_name,user.award_name,user.award_reaso
           </div>
           <br></br>
           <div className="">
-            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Student Awards</h1>
+            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Student Awards/Achievements</h1>
           </div>
           <div className="mt-4">
             <TablesAwards columns={columns} data={data} utype={utype} />
@@ -372,7 +378,7 @@ const rows = data2.map(user=>[user.faculty_name,user.award_name,user.award_reaso
           </div>
           <br></br>
           <div className="">
-            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Faculty Awards</h1>
+            <h1 className="text-center bg-indigo-100 text-xl font-semibold">Faculty Awards/Achievements</h1>
           </div>
           <div className="mt-4">
             <FtyTablesAwards columns={columns2} data={data2} utype={utype} />

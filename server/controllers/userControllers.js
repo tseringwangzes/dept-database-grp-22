@@ -33,9 +33,9 @@ exports.getfaculty = async (req, res) => {
     const email=req.query.email;
     console.log(email)
     try {
-        const femail = await users.findOne({email:email});
+        const femail = await users.find({email:email});
       // const allUser = await stdetails.find().sort({updatedAt: -1});;
-       console.log(femail)
+       console.log(femail.faculty_name)
        res.status(200).json(femail)
    } catch (error) {
        res.status(401).json(error)
@@ -229,6 +229,7 @@ exports.userApprovalSend = async (req, res) => {
 
 exports.userLogin = async (req, res) => {
     const { email, otp,type } = req.body;
+    console.log(req.body.otp)
 
     if (!otp || !email) {
         res.status(400).json({ error: "Please Enter Your OTP and email" })
@@ -282,7 +283,13 @@ exports.usergetall = async (req, res) => {
         const email=req.query.email;
         console.log(email)
         try {
-             const allUser = await stdetails.find({student_name:email}).sort({updatedAt: -1});
+            var allUser
+            if(email === "admin") {
+                allUser = await stdetails.find().sort({updatedAt: -1});
+            }
+            else{
+             allUser = await stdetails.find({student_name:email}).sort({updatedAt: -1});
+            }
            // const allUser = await stdetails.find().sort({updatedAt: -1});;
           //  console.log(allUser)
             res.status(200).json(allUser)
@@ -518,10 +525,10 @@ exports.st_publication_csv = async (req, res) => {
 
 
 exports.useraddmore = async (req, res) => {
-    const { award_name,award_reason,date,shared_with,status,faculty_name,student_name} = req.body;
+    const { award_name,date,shared_with,award_link,additional_info,status,faculty_name,student_name} = req.body;
    
 
-    if (!award_name || !award_reason || !date || !status || !faculty_name ) {
+    if (!award_name || !date || !status || !faculty_name ) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
 
@@ -538,11 +545,11 @@ exports.useraddmore = async (req, res) => {
             const nshw1 = student_name2.split(shared_each_email).join("");
             const nshw2 = nshw1 + "," + req.body.student_name;
             const shareduseraddmore = new stdetails({
-                award_name,award_reason,date,"shared_with":nshw2,status,faculty_name,"student_name":shared_each_email
+                award_name,date,"shared_with":nshw2,status,faculty_name,"student_name":shared_each_email,award_link,additional_info
             });
             console.log(shareduseraddmore);
            
-            const findAward = await stdetails.findOne({student_name:shared_each_email,award_name:award_name,award_reason:award_reason,date:date})
+            const findAward = await stdetails.findOne({student_name:shared_each_email,award_name:award_name,date:date,award_link:award_link,additional_info:additional_info})
             console.log(findAward);
             if(!findAward){
             const storeData = await shareduseraddmore.save();
@@ -561,7 +568,7 @@ exports.useraddmore = async (req, res) => {
             // const femail = await users.findOne({email:student_name});
             // console.log(femail)
             const useraddmore = new stdetails({
-                award_name,award_reason,date,shared_with,status,faculty_name,student_name
+                award_name,date,shared_with,status,faculty_name,student_name,award_link,additional_info
             });
 
             const findAward = await stdetails.findOne({student_name:student_name,award_name:award_name,award_reason:award_reason,date:date,shared_with:shared_with})
@@ -850,14 +857,14 @@ exports.facultygetprojects = async(req,res)=>{
 }
 
 exports.facultyaddawards = async (req, res) => {
-    const { award_name,award_reason,date,shared_with,faculty_name} = req.body;
+    const { award_name,award_reason,date,shared_with,faculty_name,additional_info} = req.body;
 
-    if (!award_name || !award_reason || !date || !shared_with || !faculty_name) {
+    if (!award_name || !date || !shared_with || !faculty_name || !additional_info) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
     try {            
             const facultyaddawards = new ft_awards({
-                award_name,award_reason,date,shared_with,faculty_name
+                award_name,award_reason,date,shared_with,faculty_name,additional_info
             });
 
             const storeData = await facultyaddawards.save();
@@ -893,16 +900,16 @@ exports.editachievements = async (req, res) => {
 };
 
 exports.editforeign = async (req, res) => {
-    const { topic,start_date,end_date,country,status,faculty_name,student_name} = req.body;
+    const { start_date,end_date,country,visit_details, visit_link, status,faculty_name,student_name} = req.body;
 
-    if (!topic || !start_date || !end_date || !country || !status || !faculty_name|| !student_name) {
+    if ( !start_date || !end_date || !country || !visit_details || !visit_link || !status || !faculty_name|| !student_name) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
     try {            
             const editforeign = new st_for_visits({
-                topic,start_date,end_date,country,status,faculty_name,student_name
+                start_date,end_date,country,visit_details,visit_link,status,faculty_name,student_name
             });
-            const findforeign = await st_for_visits.findOne({topic:topic,start_date:start_date,end_date:end_date,country:country})
+            const findforeign = await st_for_visits.findOne({start_date:start_date,end_date:end_date,country:country,visit_details:visit_details, visit_link:visit_link})
             if(!findforeign){
             const storeData = await editforeign.save();
             res.status(200).json(storeData);
@@ -965,16 +972,16 @@ exports.editpublication = async (req, res) => {
 };
 
 exports.editproject = async (req, res) => {
-    const {topic, date, collaboration, granted_money,description, status,faculty_name,student_name} = req.body;
+    const {title,start_date,dept,faculty_name,student_name,funding_agency,funds,ongoing,link,status} = req.body;
 
-    if (!topic || !date || !collaboration || !granted_money || !description || !status || !faculty_name || !student_name) {
+    if (!title || !start_date || !dept || !faculty_name || !student_name || !funding_agency || !funds || !ongoing || !link || !status) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
     try {            
             const editproject = new st_project({
-                topic, date, collaboration, granted_money,description, status,faculty_name,student_name
+                title,start_date,dept,faculty_name,student_name,funding_agency,funds,ongoing,link,status
             });
-            const findAward = await st_project.findOne({topic:topic, date:date, collaboration:collaboration, granted_money:granted_money,description:description})
+            const findAward = await st_project.findOne({title:title,start_date:start_date,dept:dept,faculty_name:faculty_name,student_name:student_name,funding_agency:funding_agency,funds:funds,ongoing:ongoing,link:link,status:status})
             if(!findAward){
             const storeData = await editproject.save();
             res.status(200).json(storeData);
@@ -991,17 +998,16 @@ exports.editproject = async (req, res) => {
 
 
 exports.facultyeditachievements = async (req, res) => {
-    const { Achievements,date,shared_with,faculty_name} = req.body;
-
-    if (!Achievements || !date || !shared_with || !faculty_name) {
+    const { title,date,dept,faculty_name,additional_info,institute} = req.body;
+    if (!title || !date || !dept || !faculty_name || !institute) {
         res.status(400).json({ error: "Please Enter All Input Data" })
         return;
     }
     try {            
             const facultyeditachievements = new ft_achievements({
-                Achievements,date,shared_with,faculty_name
+                title,date,dept,faculty_name,additional_info,institute
             });
-            const findAward = await ft_achievements.findOne({Achievements:Achievements,date:date,shared_with:shared_with})
+            const findAward = await ft_achievements.findOne({title:title,date:date,dept:dept,additional_info:additional_info,institute:institute})
             if(!findAward){
             const storeData = await facultyeditachievements.save();
             res.status(200).json(storeData);
@@ -1018,15 +1024,16 @@ exports.facultyeditachievements = async (req, res) => {
 
 };
 
-exports.facultyeditseminars = async (req, res) => {
-    const { title,type,date,venue,chief_guest,mode,collaborator,faculty_name} = req.body;
 
-    if (!title||!type || !date || !venue || !chief_guest || !mode || !collaborator || !faculty_name) {
+exports.facultyeditseminars = async (req, res) => {
+    const { title,speaker,date,venue,dept,designation,institute,additional_info,num_participant} = req.body;
+
+    if (!title||!speaker || !date || !venue || !dept || !designation || !institute || !num_participant) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
     try {            
             const facultyeditseminars = new ft_seminars({
-                title,type,date,venue,chief_guest,mode,collaborator,faculty_name
+                title,speaker,date,venue,dept,designation,institute,additional_info,num_participant
             });
 
             const storeData = await facultyeditseminars.save();
@@ -1038,16 +1045,16 @@ exports.facultyeditseminars = async (req, res) => {
 };
 
 exports.facultyeditforeign = async (req, res) => {
-    const { topic,start_date,end_date,country,faculty_name} = req.body;
+    const { start_date,end_date,country,visit_details,faculty_name} = req.body;
 
-    if (!topic||!start_date || !end_date || !country || !faculty_name) {
+    if (!start_date || !end_date || !country || !visit_details|| !faculty_name) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
     try {            
             const facultyeditforeign = new ft_foreign({
-                topic,start_date,end_date,country,faculty_name
+                start_date,end_date,country,faculty_name,visit_details
             });
-            const findAward = await ft_foreign.findOne({topic:topic,start_date:start_date,end_date:end_date,country:country,faculty_name:faculty_name})
+            const findAward = await ft_foreign.findOne({start_date:start_date,end_date:end_date,country:country,faculty_name:faculty_name,visit_details:visit_details})
             if(!findAward){
             const storeData = await facultyeditforeign.save();
             res.status(200).json(storeData);
@@ -1269,14 +1276,14 @@ exports.facultyeditpublication = async (req, res) => {
 };
 
 exports.facultyeditproject = async (req, res) => {
-    const { topic,date,granted_money,status,faculty_name} = req.body;
+    const { title,start_date,dept,faculty_name,funding_agency,funds,ongoing,link} = req.body;
 
-    if (!topic || !date || !granted_money || !status || !faculty_name) {
+    if (!title || !start_date || !dept || !faculty_name || !funding_agency || !funds || !ongoing || !link) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
     try {            
             const facultyeditproject = new ft_projects({
-                topic, date,granted_money,status,faculty_name
+                title,start_date,dept,faculty_name,funding_agency,funds,ongoing,link
             });
 
             const storeData = await facultyeditproject.save();

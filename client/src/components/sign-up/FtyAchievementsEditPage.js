@@ -17,9 +17,11 @@ const FtyAchievementsEditPage = () => {
 
     const defaultFormFields = {
         faculty_name:state.faculty_name,
-        Achievements: state.Achievements,
+        title: state.title,
         date: state.date,
-        shared_with: state.shared_with,
+        dept: state.dept,
+        institute: state.institute,
+        additional_info:state.additional_info,
     };
 
     const [formFields, setFormFields] = useState(defaultFormFields);
@@ -39,21 +41,21 @@ const FtyAchievementsEditPage = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { Achievements,date, shared_with,faculty_name } = formFields;
-        if (Achievements === "") {
-
-            toast.error("Enter Achievement Name")
-
+        const { title,date, dept,faculty_name,additional_info,institute } = formFields;
+        if (title === "") {
+            toast.error("Enter Lecture Tile")
         }
         else {
             const response = await FtyEditAchievements(formFields);
             if (response.status === 200) {
                 setFormFields({
                     ...formFields,
-                    Achievements: state.Achievements,
-                    date: state.date,
-                    shared_with: state.shared_with,
                     faculty_name:state.faculty_name,
+                    title: state.title,
+                    date: state.date,
+                    dept: state.dept,
+                    institute: state.institute,
+                    additional_info:state.additional_info,
                 });
                 if(utype === "1"){
                     navigate("/StaffHome/StaffFaculty")
@@ -78,41 +80,63 @@ const FtyAchievementsEditPage = () => {
     return (
         <body className={signupStyle.rooted}>
             <section className={signupStyle["form-container"]}>
-                <h2 className={signupStyle["form-heading"]}>Edit</h2>
-                <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
-                    <div className={signupStyle["form-item"]} id="Achievements">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Achievement</label>
+            <h2 className={signupStyle["form-heading"]}> Edit Details Of Invited Lectures By You</h2>
+                    <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
+                        <div className={signupStyle["form-item"]} id="title">
+                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Lecture Title</label>
+                            <input style={{ height: "30px" }} className={signupStyle.myInput}
+                                placeholder="Enter the lecture title"
+                                name="title"
+                                type="text"
+                                value={formFields.title}
+                                onChange={hanldeInputValueChange}
+                            />
+                        </div>
+      
+                        <div className={signupStyle["form-item"]} id="date">
+                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Date</label>
+                            <input style={{ height: "30px" }} className={signupStyle.myInput}
+                                placeholder="Enter the date"
+                                name="date"
+                                type="date"
+                                value={formFields.date}
+                                onChange={hanldeInputValueChange}
+                            />
+    
+                        </div>
+    
+                        <div className={signupStyle["form-item"]} id="dept">
+                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Department</label>
+                            <input style={{ height: "30px" }} className={signupStyle.myInput}
+                                placeholder="Enter your department"
+                                name="dept"
+                                type="text"
+                                value={formFields.dept}
+                                onChange={hanldeInputValueChange}
+                            />
+                        </div>
+
+                        <div className={signupStyle["form-item"]} id="institute">
+                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Institute</label>
+                            <input style={{ height: "30px" }} className={signupStyle.myInput}
+                                placeholder="Enter institute"
+                                name="institute"
+                                type="text"
+                                value={formFields.institute}
+                                onChange={hanldeInputValueChange}
+                            />
+                        </div> 
+                        <div className={signupStyle["form-item"]} id="additional_info">
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Additional Information (if any)</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the achievement"
-                            name="Achievements"
+                            placeholder="Enter any additional information if you want"
+                            name="additional_info"
                             type="text"
-                            value={formFields.Achievements}
+                            value={formFields.additional_info}
                             onChange={hanldeInputValueChange}
                         />
                     </div>
-
-                    <div className={signupStyle["form-item"]} id="date">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>date</label>
-                        <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Enter the date"
-                            name="date"
-                            type="date"
-                            value={formFields.date}
-                            onChange={hanldeInputValueChange}
-                        />
-
-                    </div>
-
-                    <div className={signupStyle["form-item"]} id="shared_with">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Shared with</label>
-                        <input style={{ height: "30px" }} className={signupStyle.myInput}
-                            placeholder="Shared with whom"
-                            name="shared_with"
-                            type="text"
-                            value={formFields.shared_with}
-                            onChange={hanldeInputValueChange}
-                        />
-                    </div>
+                  
                     <br />
                     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style={{ marginLeft: "auto", }} onClick={handleSubmit} >Submit</button>
                 </form>

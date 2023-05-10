@@ -3,9 +3,9 @@ const mongoose = require("mongoose");
 const ftschema = new mongoose.Schema({
     faculty_name:String,
     award_name: String,
-    award_reason: String,
     date: String,
     shared_with: String,
+    additional_info:String,
     created_At: Date
     
 },
