@@ -19,13 +19,13 @@ export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
 
 
   const [data, setUserData] = useState([]);
-  let sortedData = data;
+  // let sortedData = data;
   const userGet = async () => {
     const response = await ft_awards(email);
     if (response.status === 200) {
       setUserData(response.data)
       console.log(response.data)
-      sortedData = data.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+      // sortedData = data.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
     } else {
       console.log("error for get user data")
     }
@@ -37,12 +37,12 @@ export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
   }, [])
 
   const [data2, setUserData2] = useState([]);
-  let sortedData2 = data;
+  // let sortedData2 = data;
   const userGet2 = async () => {
     const response = await userfunc(email);
     if (response.status === 200) {
-      setUserData(response.data)
-      sortedData2 = data.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+      setUserData2(response.data)
+      // sortedData2 = data.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
     } else {
       console.log("error for get user data")
     }
@@ -263,7 +263,7 @@ export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
         </thead>
         <tbody>
           {Filtered.map((item,index) => (
-            <tr key={item.id}>
+            <tr key={item.faculty_name}>
               <td class="border border-black p-2"> {index+1}</td>
               <td class="border border-black p-2"> {item.faculty_name}</td>
               <td class="border border-black p-2">{item.award_name}</td>
