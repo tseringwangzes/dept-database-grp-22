@@ -9,6 +9,7 @@ import ImportContactsSharpIcon from '@mui/icons-material/ImportContactsSharp';
 import CurrencyExchangeSharpIcon from '@mui/icons-material/CurrencyExchangeSharp';
 import Groups2Icon from '@mui/icons-material/Groups2';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
+import EditNoteIcon from '@mui/icons-material/EditNote';
 export const SidebarData = [
     {
         title:"BOG Meeting Data",
@@ -16,9 +17,14 @@ export const SidebarData = [
         link:"/StaffHome"
     },
     {
-        title:"Department Information",
+        title:"Print Department Information",
         icon:<FontAwesomeIcon icon={faHome} />,
         link:"StaffHome/StaffDeptInfo"
+    },
+    {
+        title:"Edit Department Information",
+        icon:<EditNoteIcon/>,
+        link:"StaffHome/StaffEditDeptInfo"
     },
     {
         title:"Awards/Achievements",
