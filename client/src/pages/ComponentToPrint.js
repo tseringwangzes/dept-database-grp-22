@@ -1,6 +1,6 @@
 import { userfunc } from '../services/Apis'
 import React, { useEffect, useState } from "react";
-import { st_ach } from '../services/Apis'
+import { st_ach,st_home,ft_home } from '../services/Apis'
 import { st_publi } from '../services/Apis'
 import { st_semi } from '../services/Apis'
 import { stproj } from '../services/Apis'
@@ -13,36 +13,114 @@ import { ft_publications } from '../services/Apis';
 import { ft_seminars } from '../services/Apis';
 
 export const ComponentToPrint = React.forwardRef(({startDate,endDate}, ref) => {
+  console.log(`Chosen start date: ${startDate}\nChosen end date: ${endDate}`);
   const Date1 = new Date(startDate);
   const Date2 = new Date(endDate);
   const email = "admin"
+// const[temp,setTemp] = useState([])
+ 
 
+  
+  
+  const handleFArray = async (myArr) => {
+    const modifiedArray = await Promise.all(
+      myArr.map(async (item) => {
+        if (item.faculty_name) {
+          const facultyName = await getFName(item.faculty_name);
+          return {
+            ...item,
+            faculty_name: facultyName
+          };
+        } else {
+          return item;
+        }
+      })
+    );
+  
+    return modifiedArray;
+  };
 
-  const [data, setUserData] = useState([]);
-  // let sortedData = data;
-  const userGet = async () => {
-    const response = await ft_awards(email);
-    if (response.status === 200) {
-      setUserData(response.data)
-      console.log(response.data)
-      // sortedData = data.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
-    } else {
-      console.log("error for get user data")
+  const handleSArray = async (myArr) => {
+    const modifiedArray = await Promise.all(
+      myArr.map(async (item) => {
+        if (item.student_name) {
+          const studentName = await getSName(item.student_name);
+          return {
+            ...item,
+            student_name: studentName
+          };
+        } else {
+          return item;
+        }
+      })
+    );
+  
+    return modifiedArray;
+  };
+  
+  
+  const getFName = async (emailID) => {
+    console.log('email=', emailID);
+    
+    // Check if emailID is a valid email address
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailID)) {
+      console.log('Invalid email address');
+      return emailID;
     }
+    
+    const res = await ft_home(emailID);
+    const myName = res.data[6];
+    console.log('my name is ', myName);
+    return myName;
+  };
+  
+  const getSName = async (emailID) => {
+    console.log('email=', emailID);
+    
+    // Check if emailID is a valid email address
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailID)) {
+      console.log('Invalid email address');
+      return emailID;
+    }
+    
+    const res = await st_home(emailID);
+    const myName = res.data[6];
+    console.log('stu name ', myName);
+    return myName;
+  };
+  
+  
+
+
+
+const [data, setUserData] = useState([]);
+let sortedData = data;
+const userGet = async () => {
+  const response = await ft_awards(email);
+  if (response.status === 200) {
+    const temp = response.data;
+    const temp2 = await handleFArray(temp);
+    setUserData(temp2);
+    sortedData = data.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+  } else {
+    console.log("error for get user data");
   }
-  useEffect(() => {
-    userGet();
-    setTimeout(() => {
-    }, 1200)
-  }, [])
+};
+useEffect(() => {
+  userGet();
+}, []);
 
   const [data2, setUserData2] = useState([]);
-  // let sortedData2 = data;
+  let sortedData2 = data;
   const userGet2 = async () => {
     const response = await userfunc(email);
     if (response.status === 200) {
-      setUserData2(response.data)
-      // sortedData2 = data.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+      const temp = response.data;
+      const temp2 = await handleSArray(temp);
+      setUserData2(temp2);
+        sortedData2 = data.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
     } else {
       console.log("error for get user data")
     }
@@ -59,7 +137,7 @@ export const ComponentToPrint = React.forwardRef(({startDate,endDate}, ref) => {
     const response = await ft_seminars(email);
     if (response.status === 200) {
       setUserData3(response.data)
-      console.log(response.data)
+      //console.log(response.data)
     } else {
       console.log("error for get user data")
     }
@@ -74,8 +152,10 @@ export const ComponentToPrint = React.forwardRef(({startDate,endDate}, ref) => {
   const userGet4 = async () => {
     const response = await ft_achievements(email);
     if (response.status === 200) {
-      setUserData4(response.data)
-      console.log(response.data)
+      const temp = response.data;
+      const temp2 = await handleFArray(temp);
+      setUserData4(temp2);
+      //console.log(response.data)
     } else {
       console.log("error for get user data")
     }
@@ -151,21 +231,21 @@ export const ComponentToPrint = React.forwardRef(({startDate,endDate}, ref) => {
   //   }, 1200)
   // }, [])
 
-  // const [data9, setUserData9] = useState([]);
-  // const userGet9 = async () => {
-  //     const response = await ft_foreign();
-  //     if (response.status === 200) {
-  //         setUserData9(response.data)
-  //         console.log(response.data)
-  //     } else {
-  //         console.log("error for get user data")
-  //     }
-  // }
-  // useEffect(() => {
-  //     userGet9();
-  //     setTimeout(() => {
-  //     }, 1200)
-  // }, [])
+  const [data9, setUserData9] = useState([]);
+   const userGet9 = async () => {
+      const response = await ft_foreign();
+      if (response.status === 200) {
+          setUserData9(response.data)
+           console.log(response.data)
+       } else {
+          console.log("error for get user data")
+      }
+  }
+   useEffect(() => {
+     userGet9();
+     setTimeout(() => {
+     }, 1200)
+  }, [])
 
   // const [data10, setUserData10] = useState([]);
   // const userGet10 = async () => {
@@ -223,14 +303,14 @@ export const ComponentToPrint = React.forwardRef(({startDate,endDate}, ref) => {
   // const Filtered6 = data6.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
   // const Filtered7 = data7.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
   // const Filtered8 = data8.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
-  // const Filtered9 = data9.filter(item=>new Date(item.start_date) >= Date1 && new Date(item.start_date)<=Date2)
+   const Filtered9 = data9.filter(item=>new Date(item.start_date) >= Date1 && new Date(item.start_date)<=Date2)
   // const Filtered10 = data10.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
   // const Filtered11 = data11.filter(item=>new Date(item.published_date) >= Date1 && new Date(item.published_date)<=Date2)
   // const Filtered12 = data12.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
 
 
   return (
-    <div ref={ref} class="border border-black p-3">
+    <div ref={ref} className="border border-black p-3">
       <br></br>
       <div className="text-center text-2xl font-bold">
         INDIAN INSTITUTE OF TECHNOLOGY, ROPAR
@@ -239,7 +319,7 @@ export const ComponentToPrint = React.forwardRef(({startDate,endDate}, ref) => {
         Rupnagar,Punjab
       </div>
       <div className="text-center text-xl font-semibold">
-        Tele:+91-1881-235101, email:cs@iitrpr.ac.in
+        Tele:+91-1881-242123, email:office-cse-1@iitrpr.ac.in
       </div>
       <hr className="w-4/5 border-black mx-auto align-center" />
       <div className="bg-indigo-100 text-center text-l font-semibold">
@@ -247,27 +327,27 @@ export const ComponentToPrint = React.forwardRef(({startDate,endDate}, ref) => {
       </div>
       <br></br>
       <div className="bg-indigo-100 text-center text-l font-semibold">
-        Fy Awards and Honors
+        Faculty Awards and Honors
       </div>
       <br></br>
       {/* <TableStudentAwards data={data} columns={columns}/> */}
-      {/* <div class="d-flex justify-content-center"> */}
+      {/* <div className="d-flex justify-content-center"> */}
       <table>
         <thead>
           <tr>
-          <th class="border border-black p-2">Sr. No.</th>
-            <th class="border border-black p-2">Faculty Name</th>
-            <th class="border border-black p-2">Award Details</th>
-            <th class="border border-black p-2">Additional Information</th>
+          <th className="border border-black p-2">Sr. No.</th>
+            <th className="border border-black p-2">Faculty Name</th>
+            <th className="border border-black p-2">Award Details</th>
+            <th className="border border-black p-2">Additional Information</th>
           </tr>
         </thead>
         <tbody>
           {Filtered.map((item,index) => (
-            <tr key={item.faculty_name}>
-              <td class="border border-black p-2"> {index+1}</td>
-              <td class="border border-black p-2"> {item.faculty_name}</td>
-              <td class="border border-black p-2">{item.award_name}</td>
-              <td class="border border-black p-2">{item.additional_info}</td>
+            <tr key={index}>
+              <td className="border border-black p-2"> {index+1}</td>
+              <td className="border border-black p-2"> {item.faculty_name}</td>
+              <td className="border border-black p-2">{item.award_name}</td>
+              <td className="border border-black p-2">{item.additional_info}</td>
             </tr>
           ))}
         </tbody>
@@ -278,23 +358,23 @@ export const ComponentToPrint = React.forwardRef(({startDate,endDate}, ref) => {
       Students Awards and Honors
       </div>
       <br></br>
-      {/* <div class="d-flex justify-content-center"> */}
+      {/* <div className="d-flex justify-content-center"> */}
       <table>
         <thead>
           <tr>
-          <th class="border border-black p-2">Sr. No.</th>
-            <th class="border border-black p-2">Student Name</th>
-            <th class="border border-black p-2">Award Details</th>
-            <th class="border border-black p-2">Additional Information</th>
+          <th className="border border-black p-2">Sr. No.</th>
+            <th className="border border-black p-2">Student Name</th>
+            <th className="border border-black p-2">Award Details</th>
+            <th className="border border-black p-2">Additional Information</th>
           </tr>
         </thead>
         <tbody>
           {Filtered2.map((item,index) => (
-            <tr key={item.faculty_name}>
-              <td class="border border-black p-2">{index+1}</td>
-              <td class="border border-black p-2"> {item.student_name}</td>
-              <td class="border border-black p-2">{item.award_name}</td>
-              <td class="border border-black p-2">{item.additional_info}</td>
+            <tr key={index}>
+              <td className="border border-black p-2">{index+1}</td>
+              <td className="border border-black p-2"> {item.student_name}</td>
+              <td className="border border-black p-2">{item.award_name}</td>
+              <td className="border border-black p-2">{item.additional_info}</td>
             </tr>
           ))}
         </tbody>
@@ -308,25 +388,25 @@ export const ComponentToPrint = React.forwardRef(({startDate,endDate}, ref) => {
       <table>
         <thead>
           <tr>
-          <th class="border border-black p-2">Sr. No.</th>
-            <th class="border border-black p-2">Name of Speaker/Chief Guest</th>
-            <th class="border border-black p-2">Title/ abstract of Workshop/conference/seminar</th>
-            <th class="border border-black p-2">Date</th>
-            <th class="border border-black p-2">Venue</th>
-            <th class="border border-black p-2">Number of Participants</th>
-            <th class="border border-black p-2">Additional Information</th>
+          <th className="border border-black p-2">Sr. No.</th>
+            <th className="border border-black p-2">Name of Speaker/Chief Guest</th>
+            <th className="border border-black p-2">Title/ abstract of Workshop/conference/seminar</th>
+            <th className="border border-black p-2">Date</th>
+            <th className="border border-black p-2">Venue</th>
+            <th className="border border-black p-2">Number of Participants</th>
+            <th className="border border-black p-2">Additional Information</th>
           </tr>
         </thead>
         <tbody>
           {Filtered3.map((item,index) => (
-            <tr key={item.faculty_name}>
-              <td class="border border-black p-2"> {index+1}</td>
-              <td class="border border-black p-2">{item.speaker}</td>
-              <td class="border border-black p-2">{item.title}</td>
-              <td class="border border-black p-2">{item.date}</td>
-              <td class="border border-black p-2">{item.venue}</td>
-              <td class="border border-black p-2">{item.num_participant}</td>
-              <td class="border border-black p-2">{item.additional_info}</td>
+            <tr key={index}>
+              <td className="border border-black p-2"> {index+1}</td>
+              <td className="border border-black p-2">{item.speaker}</td>
+              <td className="border border-black p-2">{item.title}</td>
+              <td className="border border-black p-2">{item.date}</td>
+              <td className="border border-black p-2">{item.venue}</td>
+              <td className="border border-black p-2">{item.num_participant}</td>
+              <td className="border border-black p-2">{item.additional_info}</td>
             </tr>
           ))}
         </tbody>
@@ -340,29 +420,30 @@ export const ComponentToPrint = React.forwardRef(({startDate,endDate}, ref) => {
         <thead>
           <tr>
 
-          <th class="border border-black p-2">Sr. No.</th>
-            <th class="border border-black p-2">Faculty Name</th>
-            <th class="border border-black p-2">Lecture Title</th>
-            <th class="border border-black p-2">Department</th>
-            <th class="border border-black p-2">Institute</th>
-            <th class="border border-black p-2">Date</th>
+          <th className="border border-black p-2">Sr. No.</th>
+            <th className="border border-black p-2">Faculty Name</th>
+            <th className="border border-black p-2">Lecture Title</th>
+            <th className="border border-black p-2">Department</th>
+            <th className="border border-black p-2">Institute</th>
+            <th className="border border-black p-2">Date</th>
 
           </tr>
         </thead>
         <tbody>
           {Filtered4.map((item,index) => (
-            <tr key={item.faculty_name}>
-              <td class="border border-black p-2"> {index+1}</td>
-              <td class="border border-black p-2">{item.faculty_name}</td>
-              <td class="border border-black p-2">{item.title}</td>
-              <td class="border border-black p-2">{item.dept}</td>
-              <td class="border border-black p-2">{item.institute}</td>     
-              <td class="border border-black p-2">{item.date}</td>         
+            <tr key={index}>
+              <td className="border border-black p-2"> {index+1}</td>
+              <td className="border border-black p-2">{item.faculty_name}</td>
+              <td className="border border-black p-2">{item.title}</td>
+              <td className="border border-black p-2">{item.dept}</td>
+              <td className="border border-black p-2">{item.institute}</td>     
+              <td className="border border-black p-2">{item.date}</td>         
             </tr>
           ))}
         </tbody>
       </table>  
-      <br></br>    
+      <br></br>   
+      <h6>This Data is from - {startDate} to {endDate}</h6> 
     </div>
   );
 });

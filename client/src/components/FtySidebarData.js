@@ -51,6 +51,14 @@ export const FtySidebarData = [
         link:"/faculty/Projects",
         fname:""
     },
+
+    {
+        title:"Combined Pdf",
+        icon:<ImportContactsSharpIcon />,
+        link:"/faculty/Fac_Combined",
+        fname:"/faculty/"
+    },
+
     {
         title:"Approve students",
         icon:<VerifiedIcon/>,

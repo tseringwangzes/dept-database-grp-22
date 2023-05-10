@@ -43,9 +43,7 @@ function FtyProjects() {
 
   const [data, setUserData] = useState([]);
   const userGet = async () => {
-    const data = {
-      email:email
-    }
+  
     const response = await ft_projects(email);
     if (response.status === 200) {
       setUserData(response.data)
