@@ -7,16 +7,18 @@ import PeopleIcon from '@mui/icons-material/People';
 import TourIcon from '@mui/icons-material/Tour';
 import ImportContactsSharpIcon from '@mui/icons-material/ImportContactsSharp';
 import CurrencyExchangeSharpIcon from '@mui/icons-material/CurrencyExchangeSharp';
-import StarsIcon from '@mui/icons-material/Stars';
-
-
-
-
+import Groups2Icon from '@mui/icons-material/Groups2';
+import FileCopyIcon from '@mui/icons-material/FileCopy';
 export const SidebarData = [
     {
-        title:"Home",
-        icon:<FontAwesomeIcon icon={faHome} />,
+        title:"BOG Meeting Data",
+        icon:<FileCopyIcon/>,
         link:"/StaffHome"
+    },
+    {
+        title:"Department Information",
+        icon:<FontAwesomeIcon icon={faHome} />,
+        link:"/StaffHome/StaffDepartment"
     },
     {
         title:"Awards/Achievements",
@@ -27,6 +29,11 @@ export const SidebarData = [
         title:"Foreign Visits",
         icon:<TourIcon />,
         link:"/StaffHome/StaffForeign"
+    },
+    {
+        title:"Lectures/Workshops",
+        icon:<Groups2Icon />,
+        link:"/StaffHome/StaffDepartment"
     },
     {
         title:"Publications/Patents/Journals",

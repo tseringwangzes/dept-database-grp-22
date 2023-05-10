@@ -84,20 +84,12 @@ function Awards() {
 
 
   const [data, setUserData] = useState([]);
-
+  let sortedData = data;
   const userGet = async () => {
-    // const data = {
-    //   email:email
-    // }
-    // // const data = {
-    // //   email:email
-    // // }
-  // console.log(data)
     const response = await userfunc(email);
-    // window.location.reload();
     if (response.status === 200) {
       setUserData(response.data)
-     // console.log(response.data)
+      sortedData = data.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
     } else {
       console.log("error for get user data")
     }
