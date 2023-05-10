@@ -29,7 +29,7 @@ export const SidebarData = [
         link:"/StaffHome/StaffForeign"
     },
     {
-        title:"Publications/Patents",
+        title:"Publications/Patents/Journals",
         icon:<ImportContactsSharpIcon />,
         link:"/StaffHome/StaffPublications"
     },

@@ -52,7 +52,7 @@ export default function StaffProject() {
 
     const aTag=document.createElement("a");
     aTag.href=url;
-    aTag.setAttribute("download","Student_Projects");
+    aTag.setAttribute("download","Sample_Student_Projects");
     document.body.appendChild(aTag);
     aTag.click();
     aTag.remove();
@@ -66,7 +66,7 @@ export default function StaffProject() {
 
       const aTag=document.createElement("a");
       aTag.href=url2;
-      aTag.setAttribute("download","Faculty_Projects");
+      aTag.setAttribute("download","Sample_Faculty_Projects");
       document.body.appendChild(aTag);
       aTag.click();
       aTag.remove();

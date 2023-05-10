@@ -42,10 +42,7 @@ function Foreign() {
 
     const [data, setUserData] = useState([]);
     const userGet = async () => {
-        const data = {
-            email:email
-          }
-        const response = await stforvisits();
+        const response = await stforvisits(email);
         if (response.status === 200) {
             setUserData(response.data)
             console.log(response.data)
@@ -108,7 +105,6 @@ function Foreign() {
                                 id:original._id,
                                 visit_details: original.visit_details,
                                 visit_link:original.visit_link,
-                                
                                 status: original.status,
                                 utype:utype
                             }
@@ -137,6 +133,7 @@ function Foreign() {
         navigate("./StForeignCsv" ,{state:{
             utype: utype,
             fname: data[0].faculty_name,
+            email: email,
          }})
        }
 
@@ -185,7 +182,7 @@ function Foreign() {
         doc.setFontSize(14);
         doc.setFont("helvetica", "normal");
         doc.text("Rupnagar,Punjab-140001", pageWidth / 2, 22, { align: "center" });
-        doc.text("Tele:+91-1881-235101, email:cs@iitrpr.ac.in", pageWidth / 2, 28, { align: "center" });
+        doc.text("Tele:+91-1881-242123, email:office-cse-1@iitrpr.ac.in", pageWidth / 2, 28, { align: "center" });
         doc.setLineWidth(0.5);
         doc.line(10, 38, pageWidth - 10, 38);
         doc.setFontSize(12);
@@ -211,10 +208,10 @@ function Foreign() {
         doc.setFont("helvetica", "normal");
         doc.text("PhD, CSE", 72, 70);
         
-        const columns = [["Topic", "Start Date", "End Date","Country","Faculty accompanied"]];
+        const columns = [["Start Date of Visit", "End Date of Visit","Country Visited","Faculty accompanied","Visit Details"]];
         const filteredData = data.filter(item => item.student_name === email);
     
-    const rows = filteredData.map(user=>[user.topic,user.start_date,user.end_date,user.country,user.faculty_name,user.status]);
+    const rows = filteredData.map(user=>[user.start_date,user.end_date,user.country,user.faculty_name,user.visit_details]);
         doc.autoTable({
           head: columns,
           body: rows,
@@ -230,7 +227,7 @@ function Foreign() {
       const formattedDate = `${formattedDay}-${formattedMonth}-${year}`;
     
       // save PDF with formatted date in filename
-      const filename = `${formattedDate}-ForeignVisits.pdf`;
+      const filename = `${formattedDate}-${email}-ForeignVisits.pdf`;
       doc.save(filename);
         // add image to PDF here
       });

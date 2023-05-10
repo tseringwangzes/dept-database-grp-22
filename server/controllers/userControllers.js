@@ -30,16 +30,16 @@ const tarnsporter = nodemailer.createTransport({
 })
 
 exports.getfaculty = async (req, res) => {
-    const email=req.query.email;
+    const email = req.query.email;
     console.log(email)
     try {
-        const femail = await users.find({email:email});
-      // const allUser = await stdetails.find().sort({updatedAt: -1});;
-       console.log(femail.faculty_name)
-       res.status(200).json(femail)
-   } catch (error) {
-       res.status(401).json(error)
-   }
+        const femail = await users.find({ email: email });
+        // const allUser = await stdetails.find().sort({updatedAt: -1});;
+        console.log(femail.faculty_name)
+        res.status(200).json(femail)
+    } catch (error) {
+        res.status(401).json(error)
+    }
 }
 
 
@@ -122,7 +122,7 @@ exports.userOtpSend = async (req, res) => {
 
                 const saveOtpData = new userotp({
                     email, otp: OTP
-                    
+
                 });
 
                 await saveOtpData.save();
@@ -229,7 +229,7 @@ exports.userApprovalSend = async (req, res) => {
 
 
 exports.userLogin = async (req, res) => {
-    const { email, otp,type } = req.body;
+    const { email, otp, type } = req.body;
     console.log(req.body.otp)
 
     if (!otp || !email) {
@@ -241,15 +241,15 @@ exports.userLogin = async (req, res) => {
         // console.log(typeverification[0].usertype)
         // console.log(type)
         if (otpverification.otp === otp) {
-            var typeverification = await users.find({email:email,usertype:type});
-            if(!typeverification[0]){
+            var typeverification = await users.find({ email: email, usertype: type });
+            if (!typeverification[0]) {
                 res.status(400).json({ error: "Invalid User" })
             }
-            else if(typeverification && typeverification[0].usertype === type){
-            const preuser = await users.findOne({ email: email });
-            // token generate
-            const token = await preuser.generateAuthtoken();
-            res.status(200).json({ message: "User Login Succesfully Done", userToken: token });
+            else if (typeverification && typeverification[0].usertype === type) {
+                const preuser = await users.findOne({ email: email });
+                // token generate
+                const token = await preuser.generateAuthtoken();
+                res.status(200).json({ message: "User Login Succesfully Done", userToken: token });
             }
         } else {
             res.status(400).json({ error: "Invalid Otp" })
@@ -273,7 +273,7 @@ exports.userget = async (req, res) => {
 //    console.log(email)
 //     try {
 //         const allUser = await stdetails.find({student_name:email});
-       
+
 //       //  console.log(allUser)
 //         res.status(200).json(allUser)
 //     } catch (error) {
@@ -281,27 +281,27 @@ exports.userget = async (req, res) => {
 //     }
 // }
 exports.usergetall = async (req, res) => {
-        const email=req.query.email;
-        console.log(email)
-        try {
-            var allUser
-            if(email === "admin") {
-                allUser = await stdetails.find().sort({updatedAt: -1});
-            }
-            else{
-             allUser = await stdetails.find({student_name:email}).sort({updatedAt: -1});
-            }
-           // const allUser = await stdetails.find().sort({updatedAt: -1});;
-          //  console.log(allUser)
-            res.status(200).json(allUser)
-        } catch (error) {
-            res.status(401).json(error)
+    const email = req.query.email;
+    console.log(email)
+    try {
+        var allUser
+        if (email === "admin") {
+            allUser = await stdetails.find().sort({ updatedAt: -1 });
         }
+        else {
+            allUser = await stdetails.find({ student_name: email }).sort({ updatedAt: -1 });
+        }
+        // const allUser = await stdetails.find().sort({updatedAt: -1});;
+        //  console.log(allUser)
+        res.status(200).json(allUser)
+    } catch (error) {
+        res.status(401).json(error)
     }
+}
 
 exports.stachievem = async (req, res) => {
     try {
-        const allUser = await st_achievements.find().sort({updatedAt: -1});
+        const allUser = await st_achievements.find().sort({ updatedAt: -1 });
         res.status(200).json(allUser)
     } catch (error) {
         res.status(401).json(error)
@@ -309,31 +309,52 @@ exports.stachievem = async (req, res) => {
 }
 exports.stsemi = async (req, res) => {
     try {
-        const allUser = await st_seminar.find().sort({updatedAt: -1});
+        const allUser = await st_seminar.find().sort({ updatedAt: -1 });
         res.status(200).json(allUser)
     } catch (error) {
         res.status(401).json(error)
     }
 }
 exports.stforvisits = async (req, res) => {
+    const email = req.query.email;
     try {
-        const allUser = await st_for_visits.find().sort({updatedAt: -1});
+        var allUser
+        if (email === "admin") {
+            allUser = await st_for_visits.find().sort({ updatedAt: -1 });
+        }
+        else {
+            allUser = await st_for_visits.find({ student_name: email }).sort({ updatedAt: -1 });
+        }
         res.status(200).json(allUser)
     } catch (error) {
         res.status(401).json(error)
     }
 }
 exports.stpubli = async (req, res) => {
+    const email = req.query.email;
     try {
-        const allUser = await st_publi.find().sort({updatedAt: -1});
+        var allUser
+        if (email === "admin") {
+            allUser = await st_publi.find().sort({ updatedAt: -1 });
+        }
+        else {
+            allUser = await st_publi.find({ student_name: email }).sort({ updatedAt: -1 });
+        }
         res.status(200).json(allUser)
     } catch (error) {
         res.status(401).json(error)
     }
 }
 exports.stproj = async (req, res) => {
+    const email = req.query.email;
     try {
-        const allUser = await st_project.find().sort({updatedAt: -1});
+        var allUser
+        if(email==="admin"){
+        allUser = await st_project.find().sort({ updatedAt: -1 });
+        }
+        else{
+            allUser = await st_project.find({student_name:email}).sort({ updatedAt: -1 });
+        }
         res.status(200).json(allUser)
     } catch (error) {
         res.status(401).json(error)
@@ -341,20 +362,20 @@ exports.stproj = async (req, res) => {
 }
 
 exports.insert_csv = async (req, res) => {
-    
+
     const data = req.body;
 
     for (const entry of data) {
         try {
-           // console.log(entry);
+            // console.log(entry);
             const existingEntry = await stdetails.findOne(entry);
             //console.log(existingEntry);
-            if ( existingEntry === null) {
+            if (existingEntry === null) {
                 await stdetails.create(entry)
-            } 
-           
-           
-        }  catch ( error) {
+            }
+
+
+        } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'An error occurred while checking data' });
             return;
@@ -364,8 +385,8 @@ exports.insert_csv = async (req, res) => {
 }
 
 exports.st_achievement_csv = async (req, res) => {
-    
-    
+
+
     // try {
     //     //console.log(req);
     //     await st_achievements.insertMany(req.body);
@@ -374,20 +395,20 @@ exports.st_achievement_csv = async (req, res) => {
     //     console.error(error);
     //     res.status(500).json({ message: 'An error occurred while inserting data' });
     // }
-    
+
     const data = req.body;
 
     for (const entry of data) {
         try {
-           // console.log(entry);
+            // console.log(entry);
             const existingEntry = await st_achievements.findOne(entry);
             //console.log(existingEntry);
-            if ( existingEntry === null) {
+            if (existingEntry === null) {
                 await st_achievements.create(entry)
-            } 
-           
-           
-        }  catch ( error) {
+            }
+
+
+        } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'An error occurred while checking data' });
             return;
@@ -396,8 +417,8 @@ exports.st_achievement_csv = async (req, res) => {
 };
 
 exports.st_project_csv = async (req, res) => {
-    
-     
+
+
     // try {
     //     //console.log(req);
     //     await st_project.insertMany(req.body);
@@ -411,15 +432,15 @@ exports.st_project_csv = async (req, res) => {
 
     for (const entry of data) {
         try {
-           // console.log(entry);
+            console.log(entry);
             const existingEntry = await st_project.findOne(entry);
             //console.log(existingEntry);
-            if ( existingEntry === null) {
+            if (existingEntry === null) {
                 await st_project.create(entry)
-            } 
-           
-           
-        }  catch ( error) {
+            }
+
+
+        } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'An error occurred while checking data' });
             return;
@@ -430,8 +451,8 @@ exports.st_project_csv = async (req, res) => {
 };
 
 exports.st_seminar_csv = async (req, res) => {
-    
-    
+
+
     // try {
     //     //console.log(req);
     //     await st_seminar.insertMany(req.body);
@@ -446,13 +467,13 @@ exports.st_seminar_csv = async (req, res) => {
         try {
             console.log(entry);
             const existingEntry = await st_seminar.findOne(entry);
-           // console.log(existingEntry);
-            if ( existingEntry === null) {
+            // console.log(existingEntry);
+            if (existingEntry === null) {
                 await st_seminar.create(entry)
-            } 
-           
-           
-        }  catch ( error) {
+            }
+
+
+        } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'An error occurred while checking data' });
             return;
@@ -461,8 +482,8 @@ exports.st_seminar_csv = async (req, res) => {
 };
 
 exports.st_foreign_csv = async (req, res) => {
-    
-     
+
+
     // try {
     //     //console.log(req);
     //     await st_for_visits.insertMany(req.body);
@@ -475,15 +496,15 @@ exports.st_foreign_csv = async (req, res) => {
 
     for (const entry of data) {
         try {
-           // console.log(entry);
+            console.log(entry);
             const existingEntry = await st_for_visits.findOne(entry);
             //console.log(existingEntry);
-            if ( existingEntry === null) {
+            if (existingEntry === null) {
                 await st_for_visits.create(entry)
-            } 
-           
-           
-        }  catch ( error) {
+            }
+
+
+        } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'An error occurred while checking data' });
             return;
@@ -492,8 +513,8 @@ exports.st_foreign_csv = async (req, res) => {
 };
 
 exports.st_publication_csv = async (req, res) => {
-    
-     
+
+
     // try {
     //     //console.log(req);
     //     await st_publi.insertMany(req.body);
@@ -507,15 +528,15 @@ exports.st_publication_csv = async (req, res) => {
 
     for (const entry of data) {
         try {
-           // console.log(entry);
+            // console.log(entry);
             const existingEntry = await st_publi.findOne(entry);
             //console.log(existingEntry);
-            if ( existingEntry === null) {
+            if (existingEntry === null) {
                 await st_publi.create(entry)
-            } 
-           
-           
-        }  catch ( error) {
+            }
+
+
+        } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'An error occurred while checking data' });
             return;
@@ -526,61 +547,62 @@ exports.st_publication_csv = async (req, res) => {
 
 
 exports.useraddmore = async (req, res) => {
-    const { award_name,date,shared_with,award_link,additional_info,status,faculty_name,student_name} = req.body;
-   
+    const { award_name, date, shared_with, award_link, additional_info, status, faculty_name, student_name } = req.body;
 
-    if (!award_name || !date || !status || !faculty_name ) {
+
+    if (!award_name || !date || !status || !faculty_name) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
 
-    if(req.body.shared_with!==""){
+    if (req.body.shared_with !== "") {
         console.log("not null")
-    const student_name2=req.body.shared_with;
-    
-    console.log(student_name2)
-    student_name2.split(',').map(async (shared_each_email)=>{ 
+        const student_name2 = req.body.shared_with;
 
-        // const femail = await users.findOne({email:shared_each_email});
-        //  console.log(femail)
+        console.log(student_name2)
+        student_name2.split(',').map(async (shared_each_email) => {
+
+            // const femail = await users.findOne({email:shared_each_email});
+            //  console.log(femail)
             console.log(shared_each_email)
             const nshw1 = student_name2.split(shared_each_email).join("");
             const nshw2 = nshw1 + "," + req.body.student_name;
             const shareduseraddmore = new stdetails({
-                award_name,date,"shared_with":nshw2,status,faculty_name,"student_name":shared_each_email,award_link,additional_info
+                award_name, date, "shared_with": nshw2, status, faculty_name, "student_name": shared_each_email, award_link, additional_info
             });
             console.log(shareduseraddmore);
-           
-            const findAward = await stdetails.findOne({student_name:shared_each_email,award_name:award_name,date:date,award_link:award_link,additional_info:additional_info})
+
+            const findAward = await stdetails.findOne({ student_name: shared_each_email, award_name: award_name, date: date, award_link: award_link, additional_info: additional_info })
             console.log(findAward);
-            if(!findAward){
-            const storeData = await shareduseraddmore.save();
-           
+            if (!findAward) {
+                const storeData = await shareduseraddmore.save();
+
             }
-          
-    
-       
-    }) }
 
 
-   
+
+        })
+    }
+
+
+
 
     try {
-      
-            // const femail = await users.findOne({email:student_name});
-            // console.log(femail)
-            const useraddmore = new stdetails({
-                award_name,date,shared_with,status,faculty_name,student_name,award_link,additional_info
-            });
 
-            const findAward = await stdetails.findOne({student_name:student_name,award_name:award_name,award_reason:award_reason,date:date,shared_with:shared_with})
-           // console.log(findAward);
-            if(!findAward){
+        // const femail = await users.findOne({email:student_name});
+        // console.log(femail)
+        const useraddmore = new stdetails({
+            award_name, date, shared_with, status, faculty_name, student_name, award_link, additional_info
+        });
+
+        const findAward = await stdetails.findOne({ student_name: student_name, award_name: award_name, date: date, shared_with: shared_with, award_link: award_link, additional_info: additional_info })
+        console.log(findAward);
+        if (!findAward) {
             const storeData = await useraddmore.save();
             res.status(200).json(storeData);
-            }
-            else{
-                res.status(400).json({error:"Data already exist"})
-            }
+        }
+        else {
+            res.status(400).json({ error: "Data already exist" })
+        }
     } catch (error) {
         res.status(400).json({ error: "Invalid Details", error })
     }
@@ -597,12 +619,12 @@ exports.st_award_csv = async (req, res) => {
             //console.log(entry.status);
             const existingEntry = await stdetails.findOne(entry);
             //console.log(existingEntry);
-            if ( existingEntry === null) {
+            if (existingEntry === null) {
                 await stdetails.create(entry)
-            } 
-           
-           
-        }  catch ( error) {
+            }
+
+
+        } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'An error occurred while checking data' });
             return;
@@ -612,11 +634,11 @@ exports.st_award_csv = async (req, res) => {
 
 exports.studentHome = async (req, res) => {
     var count = new Array(12);
-    
+
     var email = req.query.email;
 
     try {
-        
+
         const promises = [
             student_award.countDocuments({ student_name: email }),
             st_achievements.countDocuments({ student_name: email }),
@@ -624,28 +646,28 @@ exports.studentHome = async (req, res) => {
             st_project.countDocuments({ student_name: email }),
             st_publi.countDocuments({ student_name: email }),
             st_seminar.countDocuments({ student_name: email }),
-            
-          ];
-          
-          const results = await Promise.all(promises);
-          
-          for (let i = 0; i < results.length; i++) {
+
+        ];
+
+        const results = await Promise.all(promises);
+
+        for (let i = 0; i < results.length; i++) {
             count[i] = results[i];
-          }
-          const doc = await users.findOne({email: email})
-          const name = doc.fname
+        }
+        const doc = await users.findOne({ email: email })
+        const name = doc.fname
 
-          count[6] = name;
-          //console.log(count);
+        count[6] = name;
+        //console.log(count);
 
-          const temp = await personalDetails.findOne({email_id: email})
+        const temp = await personalDetails.findOne({ email_id: email })
 
-          if (temp) {
+        if (temp) {
             count[7] = temp.webLink
             count[8] = temp.subjects
             count[9] = temp.research
             count[10] = temp.education
-          }
+        }
 
         const det = await personalDetails.findOneAndUpdate(
             { email_id: email },
@@ -653,106 +675,106 @@ exports.studentHome = async (req, res) => {
             { upsert: true, new: true }
         );
 
-          
-         // console.log(count);
-          res.status(200).json(count);
-          
-        
 
-            
-        
+        // console.log(count);
+        res.status(200).json(count);
+
+
+
+
+
     } catch (error) {
-        console.log(error);   
+        console.log(error);
     }
 
 }
 
-exports.homePost = async(req,res) => {
+exports.homePost = async (req, res) => {
     const type = req.body.type;
     const myEmail = req.body.email
     //console.log(req.body);
 
-   try {
-     if (type === 'List') {
- 
-         var myList = req.body.subList
-         const document = await personalDetails.findOneAndUpdate({email_id: myEmail},{subjects: myList});
-         //console.log(document);
-         res.status(200).json({ message: 'Items Added Successfully' });
- 
-     } else if (type === 'Research') {
-        var myMsg = req.body.msg
-        await personalDetails.findOneAndUpdate({email_id: myEmail},{research: myMsg});
-        res.status(200).json({ message: 'Items Added Successfully' });
+    try {
+        if (type === 'List') {
 
-     } else if (type === 'Education') {
+            var myList = req.body.subList
+            const document = await personalDetails.findOneAndUpdate({ email_id: myEmail }, { subjects: myList });
+            //console.log(document);
+            res.status(200).json({ message: 'Items Added Successfully' });
 
+        } else if (type === 'Research') {
+            var myMsg = req.body.msg
+            await personalDetails.findOneAndUpdate({ email_id: myEmail }, { research: myMsg });
+            res.status(200).json({ message: 'Items Added Successfully' });
 
-        var myMsg = req.body.msg
-        await personalDetails.findOneAndUpdate({email_id: myEmail},{education: myMsg});
-        res.status(200).json({ message: 'Items Added Successfully' });
-     } else if (type === 'Link') {
-        var myMsg = req.body.edit
-        await personalDetails.findOneAndUpdate({email_id: myEmail},{webLink: myMsg});
-        res.status(200).json({ message: 'Items Added Successfully' });
-     }
+        } else if (type === 'Education') {
 
 
-   } catch (error) {
-    console.log(error);
-    res.status(400).json(error)
-   }
+            var myMsg = req.body.msg
+            await personalDetails.findOneAndUpdate({ email_id: myEmail }, { education: myMsg });
+            res.status(200).json({ message: 'Items Added Successfully' });
+        } else if (type === 'Link') {
+            var myMsg = req.body.edit
+            await personalDetails.findOneAndUpdate({ email_id: myEmail }, { webLink: myMsg });
+            res.status(200).json({ message: 'Items Added Successfully' });
+        }
+
+
+    } catch (error) {
+        console.log(error);
+        res.status(400).json(error)
+    }
 }
 
-exports.ftHomePost = async(req,res) => {
+exports.ftHomePost = async (req, res) => {
 
     const type = req.body.type;
     const myEmail = req.body.email
     console.log(req.body);
 
-   try {
-     if (type === 'List') {
- 
-         var myList = req.body.subList
-         const document = await ftDetails.findOneAndUpdate({email_id: myEmail},{studentsUnder: myList});
-         //console.log(document);
-         res.status(200).json({ message: 'Items Added Successfully' });
- 
-     } else if (type === 'Research') {
-        var myMsg = req.body.msg
-        await ftDetails.findOneAndUpdate({email_id: myEmail},{research: myMsg});
-        res.status(200).json({ message: 'Items Added Successfully' });
+    try {
+        if (type === 'List') {
 
-     } else if (type === 'Education') {
+            var myList = req.body.subList
+            const document = await ftDetails.findOneAndUpdate({ email_id: myEmail }, { studentsUnder: myList });
+            //console.log(document);
+            res.status(200).json({ message: 'Items Added Successfully' });
 
+        } else if (type === 'Research') {
+            var myMsg = req.body.msg
+            await ftDetails.findOneAndUpdate({ email_id: myEmail }, { research: myMsg });
+            res.status(200).json({ message: 'Items Added Successfully' });
 
-        var myMsg = req.body.msg
-        await ftDetails.findOneAndUpdate({email_id: myEmail},{education: myMsg});
-        res.status(200).json({ message: 'Items Added Successfully' });
-     } else if (type === 'Link') {
-        var myMsg = req.body.edit
-        await ftDetails.findOneAndUpdate({email_id: myEmail},{webLink: myMsg});
-        res.status(200).json({ message: 'Items Added Successfully' });
-     }
+        } else if (type === 'Education') {
 
 
-   } catch (error) {
-    console.log(error);
-    res.status(400).json(error)
-   }
+            var myMsg = req.body.msg
+            await ftDetails.findOneAndUpdate({ email_id: myEmail }, { education: myMsg });
+            res.status(200).json({ message: 'Items Added Successfully' });
+        } else if (type === 'Link') {
+            var myMsg = req.body.edit
+            await ftDetails.findOneAndUpdate({ email_id: myEmail }, { webLink: myMsg });
+            res.status(200).json({ message: 'Items Added Successfully' });
+        }
+
+
+    } catch (error) {
+        console.log(error);
+        res.status(400).json(error)
+    }
 
 
 }
 
 
-exports.facultyHome = async(req,res) => {
+exports.facultyHome = async (req, res) => {
 
-    var count = new Array (12);
+    var count = new Array(12);
     var email = req.query.email;
     console.log(email);
 
     try {
-        
+
         const promises = [
             ft_awards.countDocuments({ faculty_name: email }),
             ft_achievements.countDocuments({ faculty_name: email }),
@@ -760,49 +782,56 @@ exports.facultyHome = async(req,res) => {
             ft_projects.countDocuments({ faculty_name: email }),
             ft_publications.countDocuments({ faculty_name: email }),
             ft_seminars.countDocuments({ faculty_name: email })
-          ];
-          
-          const results = await Promise.all(promises);
-          
-          for (let i = 0; i < results.length; i++) {
+        ];
+
+        const results = await Promise.all(promises);
+
+        for (let i = 0; i < results.length; i++) {
             count[i] = results[i];
-          }
+        }
 
-          const doc = await users.findOne({email: email})
-          const name = doc.fname
+        const doc = await users.findOne({ email: email })
+        const name = doc.fname
 
-          count[6] = name;
-          //console.log(count);
+        count[6] = name;
+        //console.log(count);
 
-          const temp = await ftDetails.findOne({email_id: email})
+        const temp = await ftDetails.findOne({ email_id: email })
 
-          if (temp) {
+        if (temp) {
             count[7] = temp.webLink
             count[8] = temp.studentsUnder
             count[9] = temp.research
             count[10] = temp.education
-          }
+        }
 
         const det = await ftDetails.findOneAndUpdate(
             { email_id: email },
             { email_id: email },
             { upsert: true, new: true }
         );
-          
-          res.status(200).json(count);
-          
-        
 
-            
-        
+        res.status(200).json(count);
+
+
+
+
+
     } catch (error) {
-        console.log(error);   
+        console.log(error);
     }
 }
 
-exports.facultygetawards = async(req,res)=>{
+exports.facultygetawards = async (req, res) => {
+    const email = req.query.email;
     try {
-        const allUser=await ft_awards.find().sort({updatedAt: -1});
+        var allUser
+        if (email === "admin") {
+            allUser = await ft_awards.find().sort({ updatedAt: -1 });
+        }
+        else {
+            allUser = await ft_awards.find({ faculty_name: email }).sort({ updatedAt: -1 });
+        }
         res.status(200).json(allUser)
     } catch (error) {
         res.status(401).json(error)
@@ -810,47 +839,74 @@ exports.facultygetawards = async(req,res)=>{
 }
 
 
-exports.facultygetachievements = async(req,res)=>{
+exports.facultygetachievements = async (req, res) => {
+    const email = req.query.email;
+    try {
+        var allUser
+        if (email === "admin") {
+            allUser = await ft_achievements.find().sort({ updatedAt: -1 });
+        }
+        else {
+            allUser = await ft_achievements.find({ faculty_name: email }).sort({ updatedAt: -1 });
+        }
+        res.status(200).json(allUser)
+    } catch (error) {
+        res.status(401).json(error)
+    }
+}
+
+exports.facultygetseminars = async (req, res) => {
     // const {email} = req.body;
     try {
-        const allUser=await ft_achievements.find().sort({updatedAt: -1});
+        const allUser = await ft_seminars.find().sort({ updatedAt: -1 });
         res.status(200).json(allUser)
     } catch (error) {
         res.status(401).json(error)
     }
 }
 
-exports.facultygetseminars = async(req,res)=>{
-    // const {email} = req.body;
+exports.facultygetforeign = async (req, res) => {
+    const email = req.query.email;
     try {
-        const allUser=await ft_seminars.find().sort({updatedAt: -1});
+        var allUser
+        if (email === "admin") {
+            allUser = await ft_foreign.find().sort({ updatedAt: -1 });
+        }
+        else {
+            allUser = await ft_foreign.find({ faculty_name: email }).sort({ updatedAt: -1 });
+        }
         res.status(200).json(allUser)
     } catch (error) {
         res.status(401).json(error)
     }
 }
 
-exports.facultygetforeign = async(req,res)=>{
+exports.facultygetpublications = async (req, res) => {
+    const email = req.query.email;
     try {
-        const allUser=await ft_foreign.find().sort({updatedAt: -1});
+        var allUser
+        if (email === "admin") {
+            allUser = await ft_publications.find().sort({ updatedAt: -1 });
+        }
+        else {
+            allUser = await ft_publications.find({ faculty_name: email }).sort({ updatedAt: -1 });
+        }
         res.status(200).json(allUser)
     } catch (error) {
         res.status(401).json(error)
     }
 }
 
-exports.facultygetpublications = async(req,res)=>{
+exports.facultygetprojects = async (req, res) => {
+    const email=req.query.email;
     try {
-        const allUser=await ft_publications.find().sort({updatedAt: -1});
-        res.status(200).json(allUser)
-    } catch (error) {
-        res.status(401).json(error)
-    }
-}
-
-exports.facultygetprojects = async(req,res)=>{
-    try {
-        const allUser=await ft_projects.find().sort({updatedAt: -1});
+        var allUser
+        if(email==="admin"){
+        const allUser = await ft_projects.find().sort({ updatedAt: -1 });
+        }
+        else{
+            const allUser = await ft_projects.find({faculty_name:email}).sort({ updatedAt: -1 });
+        }
         res.status(200).json(allUser)
     } catch (error) {
         res.status(401).json(error)
@@ -858,140 +914,167 @@ exports.facultygetprojects = async(req,res)=>{
 }
 
 exports.facultyaddawards = async (req, res) => {
-    const { award_name,award_reason,date,shared_with,faculty_name,additional_info} = req.body;
+    const { award_name, award_reason, date, shared_with, faculty_name, additional_info } = req.body;
 
     if (!award_name || !date || !shared_with || !faculty_name || !additional_info) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
-    try {            
-            const facultyaddawards = new ft_awards({
-                award_name,award_reason,date,shared_with,faculty_name,additional_info
-            });
+    try {
+        const facultyaddawards = new ft_awards({
+            award_name, award_reason, date, shared_with, faculty_name, additional_info
+        });
 
+        const findAward = await ft_awards.findOne({ award_name:award_name, award_reason:award_reason, date:date, shared_with:shared_with, faculty_name:faculty_name, additional_info:additional_info })
+        if (!findAward) {
             const storeData = await facultyaddawards.save();
             res.status(200).json(storeData);
+            return;
+        }
+        else {
+            res.status(400).json({ error: "Data already exist" });
+            return;
+        }
     } catch (error) {
-        res.status(400).json({ error: "Invalid Details", error })
+        res.status(400).json({ error: "Invalid Details", error });
+        return;
     }
 
 };
 
 exports.editachievements = async (req, res) => {
-    const { achievements,date,shared_with,status,faculty_name,student_name} = req.body;
+    const { achievements, date, shared_with, status, faculty_name, student_name } = req.body;
     console.log(req.body)
     if (!achievements || !date || !shared_with || !status || !faculty_name || !student_name) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
-    try {            
-            const editachievements = new st_achievements({
-                achievements,date,shared_with,status,faculty_name,student_name
-            });
-            const findAchievement = await st_achievements.findOne({achievements:achievements,date:date,shared_with:shared_with})
-            if(!findAchievement){
+    try {
+        const editachievements = new st_achievements({
+            achievements, date, shared_with, status, faculty_name, student_name
+        });
+        const findAchievement = await st_achievements.findOne({ achievements: achievements, date: date, shared_with: shared_with })
+        if (!findAchievement) {
             const storeData = await editachievements.save();
             res.status(200).json(storeData);
-            }
-            else{
-                res.status(400).json({error:"Data already exist"})
-            }
+            return;
+        }
+        else {
+            res.status(400).json({ error: "Data already exist" });
+            return;
+        }
     } catch (error) {
-        res.status(400).json({ error: "Invalid Details", error })
+        res.status(400).json({ error: "Invalid Details", error });
+        return;
     }
 
 };
 
 exports.editforeign = async (req, res) => {
-    const { start_date,end_date,country,visit_details, visit_link, status,faculty_name,student_name} = req.body;
+    const { start_date, end_date, country, visit_details, visit_link, status, faculty_name, student_name } = req.body;
 
-    if ( !start_date || !end_date || !country || !visit_details || !visit_link || !status || !faculty_name|| !student_name) {
+    if (!start_date || !end_date || !country || !visit_details || !visit_link || !status || !faculty_name || !student_name) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
-    try {            
-            const editforeign = new st_for_visits({
-                start_date,end_date,country,visit_details,visit_link,status,faculty_name,student_name
-            });
-            const findforeign = await st_for_visits.findOne({start_date:start_date,end_date:end_date,country:country,visit_details:visit_details, visit_link:visit_link})
-            if(!findforeign){
+    try {
+        const editforeign = new st_for_visits({
+            start_date, end_date, country, visit_details, visit_link, status, faculty_name, student_name
+        });
+        const findforeign = await st_for_visits.findOne({ start_date: start_date, end_date: end_date, country: country, visit_details: visit_details, visit_link: visit_link })
+        if (!findforeign) {
             const storeData = await editforeign.save();
             res.status(200).json(storeData);
-            }
-            else{
-                res.status(400).json({error:"Data already exist"})
-            }
+            return;
+        }
+        else {
+            res.status(400).json({ error: "Data already exist" });
+            return;
+        }
     } catch (error) {
-        res.status(400).json({ error: "Invalid Details", error })
+        res.status(400).json({ error: "Invalid Details", error });
+        return;
     }
 
 };
 
 exports.editseminar = async (req, res) => {
-    const { title, type, date, venue, chief_guest, mode, collaborator, status,faculty_name,student_name} = req.body;
+    const { title, type, date, venue, chief_guest, mode, collaborator, status, faculty_name, student_name } = req.body;
     console.log(req.body)
     if (!title || !type || !date || !venue || !chief_guest || !mode || !collaborator || !status || !faculty_name || !student_name) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
-    try {            
-            const editseminar = new st_seminar({
-                title, type, date, venue, chief_guest, mode, collaborator, status,faculty_name,student_name
-            });
-            const findSeminar = await st_seminar.findOne({title:title, type:type, date:date, venue:venue, chief_guest:chief_guest, mode:mode, collaborator:collaborator})
-            if(!findSeminar){
+    try {
+        const editseminar = new st_seminar({
+            title, type, date, venue, chief_guest, mode, collaborator, status, faculty_name, student_name
+        });
+        const findSeminar = await st_seminar.findOne({ title: title, type: type, date: date, venue: venue, chief_guest: chief_guest, mode: mode, collaborator: collaborator })
+        if (!findSeminar) {
             const storeData = await editseminar.save();
             res.status(200).json(storeData);
-            }
-            else{
-                res.status(400).json({error:"Data already exist"})
-            }
+            return;
+        }
+        else {
+            res.status(400).json({ error: "Data already exist" });
+            return;
+        }
     } catch (error) {
         res.status(400).json({ error: "Invalid Details", error })
+        return;
     }
 
 };
 
 exports.editpublication = async (req, res) => {
-    const { topic,accepted_date,published_date, collaboration, no_of_students, status,faculty_name,student_name} = req.body;
+    const { title,author,type,title_publish,patent_no,accepted_date,published_date,assignee,impact_factor,additional_info,link,status,faculty_name,student_name} = req.body;
 
-    if (!topic || !accepted_date || !published_date || !collaboration || !no_of_students || !status || !faculty_name || !student_name) {
+    if (!title || !author || !type || !title_publish || !patent_no || !accepted_date || !published_date || !assignee || !impact_factor || !additional_info || !link || !status || !faculty_name || !student_name) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
     try {            
             const editpublication = new st_publi({
-                topic, accepted_date,published_date, collaboration, no_of_students, status,faculty_name,student_name
+                title,author,type,title_publish,patent_no,accepted_date,published_date,assignee,impact_factor,
+                additional_info,link,status,faculty_name,student_name
             });
-            const findAward = await st_publi.findOne({ topic:topic, published_date:published_date,accepted_date:accepted_date, collaboration:collaboration, no_of_students:no_of_students})
+            const findAward = await st_publi.findOne({title:title,author:author,type:type,title_publish:title_publish,patent_no:patent_no,
+                accepted_date:accepted_date,published_date:published_date,assignee:assignee,impact_factor:impact_factor,additional_info:additional_info,
+                link:link,status:status,faculty_name:faculty_name,student_name:student_name})
             if(!findAward){
             const storeData = await editpublication.save();
             res.status(200).json(storeData);
-            }
-            else{
-                res.status(400).json({error:"Data already exist"})  
-            }
+            return;
+        }
+        else {
+            res.status(400).json({ error: "Data already exist" })
+            return;
+        }
     } catch (error) {
         res.status(400).json({ error: "Invalid Details", error })
+        return;
     }
 
 };
 
 exports.editproject = async (req, res) => {
-    const {title,start_date,dept,faculty_name,student_name,funding_agency,funds,ongoing,link,status} = req.body;
+    const { title, start_date, dept, faculty_name, student_name, funding_agency, funds, ongoing, link, status } = req.body;
 
     if (!title || !start_date || !dept || !faculty_name || !student_name || !funding_agency || !funds || !ongoing || !link || !status) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
-    try {            
-            const editproject = new st_project({
-                title,start_date,dept,faculty_name,student_name,funding_agency,funds,ongoing,link,status
-            });
-            const findAward = await st_project.findOne({title:title,start_date:start_date,dept:dept,faculty_name:faculty_name,student_name:student_name,funding_agency:funding_agency,funds:funds,ongoing:ongoing,link:link,status:status})
-            if(!findAward){
+    try {
+        const editproject = new st_project({
+            title, start_date, dept, faculty_name, student_name, funding_agency, funds, ongoing, link, status
+        });
+        const findAward = await st_project.findOne({ title: title, start_date: start_date, dept: dept, faculty_name: faculty_name, student_name: student_name, funding_agency: funding_agency, funds: funds, ongoing: ongoing, link: link, status: status })
+        if (!findAward) {
             const storeData = await editproject.save();
             res.status(200).json(storeData);
-            }
-            else{
-                res.status(400).json({error:"Data already exist"})  
-            }
+            return;
+        }
+        else {
+            res.status(400).json({ error: "Data already exist" });
+            return;
+        }
     } catch (error) {
         res.status(400).json({ error: "Invalid Details", error })
+        return;
     }
 
 };
@@ -999,25 +1082,25 @@ exports.editproject = async (req, res) => {
 
 
 exports.facultyeditachievements = async (req, res) => {
-    const { title,date,dept,faculty_name,additional_info,institute} = req.body;
+    const { title, date, dept, faculty_name, additional_info, institute } = req.body;
     if (!title || !date || !dept || !faculty_name || !institute) {
         res.status(400).json({ error: "Please Enter All Input Data" })
         return;
     }
-    try {            
-            const facultyeditachievements = new ft_achievements({
-                title,date,dept,faculty_name,additional_info,institute
-            });
-            const findAward = await ft_achievements.findOne({title:title,date:date,dept:dept,additional_info:additional_info,institute:institute})
-            if(!findAward){
+    try {
+        const facultyeditachievements = new ft_achievements({
+            title, date, dept, faculty_name, additional_info, institute
+        });
+        const findAward = await ft_achievements.findOne({ title: title, date: date, dept: dept, additional_info: additional_info, institute: institute })
+        if (!findAward) {
             const storeData = await facultyeditachievements.save();
             res.status(200).json(storeData);
             return;
-            }
-            else{
-                res.status(400).json({error:"Data already exist"})  
-                return;
-            }
+        }
+        else {
+            res.status(400).json({ error: "Data already exist" })
+            return;
+        }
     } catch (error) {
         res.status(400).json({ error: "Invalid Details", error })
         return;
@@ -1027,18 +1110,26 @@ exports.facultyeditachievements = async (req, res) => {
 
 
 exports.facultyeditseminars = async (req, res) => {
-    const { title,speaker,date,venue,dept,designation,institute,additional_info,num_participant} = req.body;
+    const { title, speaker, date, venue, dept, designation, institute, additional_info, num_participant } = req.body;
 
-    if (!title||!speaker || !date || !venue || !dept || !designation || !institute || !num_participant) {
+    if (!title || !speaker || !date || !venue || !dept || !designation || !institute || !num_participant) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
-    try {            
-            const facultyeditseminars = new ft_seminars({
-                title,speaker,date,venue,dept,designation,institute,additional_info,num_participant
-            });
-
+    try {
+        const facultyeditseminars = new ft_seminars({
+            title, speaker, date, venue, dept, designation, institute, additional_info, num_participant
+        });
+        const findAward = await ft_seminars.findOne({ title:title, speaker:speaker, date:date, venue:venue, dept:dept, designation:designation, institute:institute, additional_info:additional_info, num_participant:num_participant })
+        if (!findAward) {
             const storeData = await facultyeditseminars.save();
             res.status(200).json(storeData);
+            return;
+        }
+        else {
+            res.status(400).json({ error: "Data already exist" })
+            return;
+        }
+
     } catch (error) {
         res.status(400).json({ error: "Invalid Details", error })
     }
@@ -1046,33 +1137,33 @@ exports.facultyeditseminars = async (req, res) => {
 };
 
 exports.facultyeditforeign = async (req, res) => {
-    const { start_date,end_date,country,visit_details,faculty_name} = req.body;
+    const { start_date, end_date, country, visit_details, faculty_name } = req.body;
 
-    if (!start_date || !end_date || !country || !visit_details|| !faculty_name) {
+    if (!start_date || !end_date || !country || !visit_details || !faculty_name) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
-    try {            
-            const facultyeditforeign = new ft_foreign({
-                start_date,end_date,country,faculty_name,visit_details
-            });
-            const findAward = await ft_foreign.findOne({start_date:start_date,end_date:end_date,country:country,faculty_name:faculty_name,visit_details:visit_details})
-            if(!findAward){
+    try {
+        const facultyeditforeign = new ft_foreign({
+            start_date, end_date, country, faculty_name, visit_details
+        });
+        const findAward = await ft_foreign.findOne({ start_date: start_date, end_date: end_date, country: country, faculty_name: faculty_name, visit_details: visit_details })
+        if (!findAward) {
             const storeData = await facultyeditforeign.save();
             res.status(200).json(storeData);
             return;
-            }
-            else{
-                res.status(400).json({error:"Data already exist"})  
-                return;
-            }
+        }
+        else {
+            res.status(400).json({ error: "Data already exist" })
+            return;
+        }
     } catch (error) {
         res.status(400).json({ error: "Invalid Details", error })
     }
 };
 
 exports.fty_award_csv = async (req, res) => {
-    
-     
+
+
     // try {
     //     //console.log(req);
     //     await ft_awards.insertMany(req.body);
@@ -1086,15 +1177,15 @@ exports.fty_award_csv = async (req, res) => {
 
     for (const entry of data) {
         try {
-           // console.log(entry);
+            //console.log(entry);
             const existingEntry = await ft_awards.findOne(entry);
             //console.log(existingEntry);
-            if ( existingEntry === null) {
+            if (existingEntry === null) {
                 await ft_awards.create(entry)
-            } 
-           
-           
-        }  catch ( error) {
+            }
+
+
+        } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'An error occurred while checking data' });
             return;
@@ -1103,20 +1194,20 @@ exports.fty_award_csv = async (req, res) => {
 };
 
 exports.fty_project_csv = async (req, res) => {
-    
+
     const data = req.body;
 
     for (const entry of data) {
         try {
-           // console.log(entry);
+            // console.log(entry);
             const existingEntry = await ft_projects.findOne(entry);
             //console.log(existingEntry);
-            if ( existingEntry === null) {
+            if (existingEntry === null) {
                 await ft_projects.create(entry)
-            } 
-           
-           
-        }  catch ( error) {
+            }
+
+
+        } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'An error occurred while checking data' });
             return;
@@ -1125,8 +1216,8 @@ exports.fty_project_csv = async (req, res) => {
 };
 
 exports.fty_achievement_csv = async (req, res) => {
-    
-    
+
+
     // try {
     //     //console.log(req);
     //     await ft_achievements.insertMany(req.body);
@@ -1140,15 +1231,15 @@ exports.fty_achievement_csv = async (req, res) => {
 
     for (const entry of data) {
         try {
-           // console.log(entry);
+            // console.log(entry);
             const existingEntry = await ft_achievements.findOne(entry);
             //console.log(existingEntry);
-            if ( existingEntry === null) {
+            if (existingEntry === null) {
                 await ft_achievements.create(entry)
-            } 
-           
-           
-        }  catch ( error) {
+            }
+
+
+        } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'An error occurred while checking data' });
             return;
@@ -1157,8 +1248,8 @@ exports.fty_achievement_csv = async (req, res) => {
 };
 
 exports.fty_seminar_csv = async (req, res) => {
-    
-    
+
+
     // try {
     //     //console.log(req);
     //     await ft_seminars.insertMany(req.body);
@@ -1172,15 +1263,15 @@ exports.fty_seminar_csv = async (req, res) => {
 
     for (const entry of data) {
         try {
-           // console.log(entry);
+            console.log(entry);
             const existingEntry = await ft_seminars.findOne(entry);
             //console.log(existingEntry);
-            if ( existingEntry === null) {
+            if (existingEntry === null) {
                 await ft_seminars.create(entry)
-            } 
-           
-           
-        }  catch ( error) {
+            }
+
+
+        } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'An error occurred while checking data' });
             return;
@@ -1188,8 +1279,8 @@ exports.fty_seminar_csv = async (req, res) => {
     }
 };
 exports.fty_foreign_csv = async (req, res) => {
-    
-    
+
+
     // try {
     //     //console.log(req);
     //     await ft_foreign.insertMany(req.body);
@@ -1203,15 +1294,15 @@ exports.fty_foreign_csv = async (req, res) => {
 
     for (const entry of data) {
         try {
-           // console.log(entry);
+            // console.log(entry);
             const existingEntry = await ft_foreign.findOne(entry);
             //console.log(existingEntry);
-            if ( existingEntry === null) {
+            if (existingEntry === null) {
                 await ft_foreign.create(entry)
-            } 
-           
-           
-        }  catch ( error) {
+            }
+
+
+        } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'An error occurred while checking data' });
             return;
@@ -1219,8 +1310,8 @@ exports.fty_foreign_csv = async (req, res) => {
     }
 };
 exports.fty_publication_csv = async (req, res) => {
-    
-    
+
+
     // try {
     //     //console.log(req);
     //     await ft_publications.insertMany(req.body);
@@ -1234,15 +1325,15 @@ exports.fty_publication_csv = async (req, res) => {
 
     for (const entry of data) {
         try {
-           // console.log(entry);
+            // console.log(entry);
             const existingEntry = await ft_publications.findOne(entry);
             //console.log(existingEntry);
-            if ( existingEntry === null) {
+            if (existingEntry === null) {
                 await ft_publications.create(entry)
-            } 
-           
-           
-        }  catch ( error) {
+            }
+
+
+        } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'An error occurred while checking data' });
             return;
@@ -1251,25 +1342,28 @@ exports.fty_publication_csv = async (req, res) => {
 };
 
 exports.facultyeditpublication = async (req, res) => {
-    const { topic, published_date,accepted_date, collaboration,faculty_name} = req.body;
+    const { title,author,type,title_publish,patent_no,accepted_date,published_date,assignee,impact_factor,additional_info,link,faculty_name} = req.body;
 
-    if (!topic || !published_date || !accepted_date || !collaboration || !faculty_name) {
+    if (!title || !author || !type || !title_publish || !patent_no || !accepted_date || !published_date || !assignee || !impact_factor || !additional_info || !link || !faculty_name) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
     try {            
             const facultyeditpublication = new ft_publications({
-                topic,published_date,accepted_date, collaboration,faculty_name
+                title,author,type,title_publish,patent_no,accepted_date,published_date,assignee,impact_factor,
+                additional_info,link,faculty_name
             });
-            const findAward = await ft_publications.findOne({ topic:topic,published_date:published_date,accepted_date:accepted_date, collaboration:collaboration,faculty_name:faculty_name})
+            const findAward = await ft_publications.findOne({title:title,author:author,type:type,title_publish:title_publish,patent_no:patent_no,
+                accepted_date:accepted_date,published_date:published_date,assignee:assignee,impact_factor:impact_factor,additional_info:additional_info,
+                link:link,faculty_name:faculty_name})
             if(!findAward){
             const storeData = await facultyeditpublication.save();
             res.status(200).json(storeData);
             return;
-            }
-            else{
-                res.status(400).json({error:"Data already exist"})  
-                return;
-            }
+        }
+        else {
+            res.status(400).json({ error: "Data already exist" })
+            return;
+        }
     } catch (error) {
         res.status(400).json({ error: "Invalid Details", error })
     }
@@ -1277,18 +1371,26 @@ exports.facultyeditpublication = async (req, res) => {
 };
 
 exports.facultyeditproject = async (req, res) => {
-    const { title,start_date,dept,faculty_name,funding_agency,funds,ongoing,link} = req.body;
+    const { title, start_date, dept, faculty_name, funding_agency, funds, ongoing, link } = req.body;
 
     if (!title || !start_date || !dept || !faculty_name || !funding_agency || !funds || !ongoing || !link) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
-    try {            
-            const facultyeditproject = new ft_projects({
-                title,start_date,dept,faculty_name,funding_agency,funds,ongoing,link
-            });
-
+    try {
+        const facultyeditproject = new ft_projects({
+            title, start_date, dept, faculty_name, funding_agency, funds, ongoing, link
+        });
+        
+        const findProject= await ft_projects.findOne({  title:title, start_date:start_date, dept:dept, faculty_name:faculty_name, funding_agency:funding_agency, funds:funds, ongoing:ongoing, link:link })
+        if (!findProject) {
             const storeData = await facultyeditproject.save();
             res.status(200).json(storeData);
+            return;
+        }
+        else {
+            res.status(400).json({ error: "Data already exist" })
+            return;
+        }
     } catch (error) {
         res.status(400).json({ error: "Invalid Details", error })
     }
@@ -1298,15 +1400,15 @@ exports.facultyeditproject = async (req, res) => {
 
 exports.send_mail = async (req, res) => {
     try {
-       
+
         const { emailSubject, emailContent, sendToFaculty, sendToStudents } = req.body.data;
-     //   console.log(emailSubject, emailContent, sendToFaculty, sendToStudents);
-        
+        //   console.log(emailSubject, emailContent, sendToFaculty, sendToStudents);
+
         let mes = '';
-        
+
         // let recepient = sendToFaculty.toString();
         // console.log(recepient);
-       
+
         if (!emailContent) {
             mes = "Please Enter Your Email Content";
         }
@@ -1328,15 +1430,15 @@ exports.send_mail = async (req, res) => {
         let allUsers = '';
 
         if (sendToFaculty && !sendToStudents) {
-            allUsers = await users.find({usertype: '2'}).select('email');
+            allUsers = await users.find({ usertype: '2' }).select('email');
         }
 
         if (sendToStudents && !sendToFaculty) {
-            allUsers = await users.find({usertype: '1'}).select('email');
+            allUsers = await users.find({ usertype: '1' }).select('email');
         }
 
-        if ( sendToFaculty && sendToStudents) {
-            allUsers = await users.find({usertype: {$in: ['1', '2']}}).select('email');
+        if (sendToFaculty && sendToStudents) {
+            allUsers = await users.find({ usertype: { $in: ['1', '2'] } }).select('email');
 
         }
 

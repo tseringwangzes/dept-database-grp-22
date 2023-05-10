@@ -3,13 +3,19 @@ const mongoose = require("mongoose");
 const stpublica = new mongoose.Schema({
     faculty_name:String,
     student_name:String,
-    topic: String,
-    published_date: String,
+    title: String,
+    author: String,
+    type: String,
+    title_publish:String,
+    patent_no:String,
     accepted_date: String,
-    collaboration: String,
-    no_of_students: String,
-    status: String,
+    published_date: String,
+    assignee: String,
+    impact_factor: String,
+    additional_info: String,
     link: String,
+    status: String,
+    
     
 },
     {

@@ -44,7 +44,7 @@ function Projects() {
     const data = {
       email: email
     }
-    const response = await stproj();
+    const response = await stproj(email);
     if (response.status === 200) {
       setUserData(response.data)
       console.log(response.data)
@@ -146,6 +146,7 @@ function Projects() {
       state: {
         utype: utype,
         fname: data[0].faculty_name,
+        email:email
 
       }
     })
@@ -196,12 +197,12 @@ function Projects() {
         doc.setFontSize(14);
         doc.setFont("helvetica", "normal");
         doc.text("Rupnagar,Punjab-140001", pageWidth / 2, 22, { align: "center" });
-        doc.text("Tele:+91-1881-235101, email:cs@iitrpr.ac.in", pageWidth / 2, 28, { align: "center" });
+        doc.text("Tele:+91-1881-242123, email:office-cse-1@iitrpr.ac.in", pageWidth / 2, 28, { align: "center" });
         doc.setLineWidth(0.5);
         doc.line(10, 38, pageWidth - 10, 38);
         doc.setFontSize(12);
         doc.setFont("helvetica", "bold");
-        doc.text("PROJECT GRANTS LIST", pageWidth / 2, 45, {
+        doc.text("RESEARCH PROJECTS LIST", pageWidth / 2, 45, {
           align: "center"
         });
         doc.setLineWidth(0.2);
@@ -222,10 +223,10 @@ function Projects() {
         doc.setFont("helvetica", "normal");
         doc.text("PhD, CSE", 72, 70);
 
-        const columns = [["Topic", "Date", "Granted Money", "Description", "Collaboration With", "Status"]];
+        const columns = [["Project Title", "Project Start Date", "Faculty Associated", "Funding Agency", "Funds Provided","Ongoing/Completed","Status"]];
         const filteredData = data.filter(item => item.student_name === email);
 
-        const rows = filteredData.map(user => [user.topic, user.date, user.granted_money, user.description, user.collaboration, user.status]);
+        const rows = filteredData.map(user => [user.title, user.start_date,user.faculty_name, user.funding_agency, user.funds,user.ongoing,user.status]);
         doc.autoTable({
           head: columns,
           body: rows,
@@ -241,7 +242,7 @@ function Projects() {
         const formattedDate = `${formattedDay}-${formattedMonth}-${year}`;
 
         // save PDF with formatted date in filename
-        const filename = `${formattedDate}-ProjectGrants.pdf`;
+        const filename = `${formattedDate}-${email}-ProjectGrants.pdf`;
         doc.save(filename);
         // add image to PDF here
       });

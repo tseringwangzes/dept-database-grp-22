@@ -44,7 +44,7 @@ function FtyForeign() {
         const data = {
             email:email
           }
-        const response = await ft_foreign();
+        const response = await ft_foreign(email);
         if (response.status === 200) {
             setUserData(response.data)
             console.log(response.data)
@@ -169,7 +169,7 @@ function FtyForeign() {
       doc.setFontSize(14);
       doc.setFont("helvetica", "normal");
       doc.text("Rupnagar,Punjab-140001", pageWidth / 2, 22, { align: "center" });
-      doc.text("Tele:+91-1881-235101, email:cs@iitrpr.ac.in", pageWidth / 2, 28, { align: "center" });
+      doc.text("Tele:+91-1881-242123, email:office-cse-1@iitrpr.ac.in", pageWidth / 2, 28, { align: "center" });
       doc.setLineWidth(0.5);
       doc.line(10, 38, pageWidth - 10, 38);
       doc.setFontSize(12);
@@ -195,10 +195,10 @@ function FtyForeign() {
       doc.setFont("helvetica", "normal");
       doc.text("CSE", 72, 70);
       
-      const columns = [["Topic", "Start Date", "End Date","Country"]];
+      const columns = [["Start Date","End Date","Country Visited","Visit Details"]];
       const filteredData = data.filter(item => item.faculty_name === email);
   
-  const rows = filteredData.map(user=>[user.topic,user.start_date,user.end_date,user.country]);
+  const rows = filteredData.map(user=>[user.start_date,user.end_date,user.country,user.visit_details]);
       doc.autoTable({
         head: columns,
         body: rows,
@@ -214,7 +214,7 @@ function FtyForeign() {
    const formattedDate = `${formattedDay}-${formattedMonth}-${year}`;
  
    // save PDF with formatted date in filename
-   const filename = `${formattedDate}-ForeignVisits.pdf`;
+   const filename = `${formattedDate}-${email}-ForeignVisits.pdf`;
    doc.save(filename);
       // add image to PDF here
     });

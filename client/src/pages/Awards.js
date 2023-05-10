@@ -183,6 +183,7 @@ function Awards() {
   navigate("./StAwardCsv" ,{state:{
     utype: utype,
     fname: data[0].faculty_name,
+    email: email,
  }})
  }
 
@@ -232,12 +233,12 @@ console.log(data[0].faculty_name)
     doc.setFontSize(14);
     doc.setFont("helvetica", "normal");
     doc.text("Rupnagar,Punjab-140001", pageWidth / 2, 22, { align: "center" });
-    doc.text("Tele:+91-1881-235101, email:cs@iitrpr.ac.in", pageWidth / 2, 28, { align: "center" });
+    doc.text("Tele:+91-1881-242123, email:office-cse-1@iitrpr.ac.in", pageWidth / 2, 28, { align: "center" });
     doc.setLineWidth(0.5);
     doc.line(10, 38, pageWidth - 10, 38);
     doc.setFontSize(12);
     doc.setFont("helvetica", "bold");
-    doc.text("AWARDS LIST", pageWidth / 2, 45, {
+    doc.text("AWARDS/ACHIEVEMENTS LIST", pageWidth / 2, 45, {
       align: "center"
     });
     doc.setLineWidth(0.2);
@@ -258,10 +259,9 @@ console.log(data[0].faculty_name)
     doc.setFont("helvetica", "normal");
     doc.text("PhD, CSE", 72, 70);
     
-    const columns = [["Award Name", "Award Reason", "Date","Shared With","Status"]];
+    const columns = [["Award Name", "Date", "Shared With","Additional Information","Status"]];
     const filteredData = data.filter(item => item.student_name === email);
-
-const rows = filteredData.map(user=>[user.award_name,user.award_reason,user.date,user.shared_with,user.status]);
+    const rows = filteredData.map(user=>[user.award_name,user.date,user.shared_with,user.additional_info,user.status]);
     doc.autoTable({
       head: columns,
       body: rows,

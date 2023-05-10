@@ -40,7 +40,7 @@ export const FtySidebarData = [
         fname:""
     },
     {
-        title:"Publications/Patents",
+        title:"Publications/Patents/Journals",
         icon:<ImportContactsSharpIcon />,
         link:"/faculty/Publications",
         fname:""
