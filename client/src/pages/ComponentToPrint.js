@@ -1,22 +1,37 @@
 import { userfunc } from '../services/Apis'
 import React, { useEffect, useState } from "react";
-import { st_ach } from '../services/Apis'
-import { st_publi } from '../services/Apis'
-import { st_semi } from '../services/Apis'
-import { stproj } from '../services/Apis'
-import { stforvisits } from '../services/Apis'
-import { ft_awards } from '../services/Apis';
-import { ft_achievements } from '../services/Apis';
-import { ft_foreign } from '../services/Apis';
-import { ft_projects } from '../services/Apis';
-import { ft_publications } from '../services/Apis';
-import { ft_seminars } from '../services/Apis';
+import { st_ach,st_publi,st_semi,stproj,stforvisits,ft_awards,ft_achievements,ft_foreign,ft_publications,ft_seminars,st_home,ft_home } from '../services/Apis'
+import { useAsyncError } from 'react-router-dom';
+
 
 export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
   const Date1 = new Date(startDate);
   const Date2 = new Date(EndDate);
 
   const [data, setUserData] = useState([]);
+  var handleModifyArray = (myArr) => {
+    const modifiedArray = myArr.map((item) => {
+      return {
+        ...item, 
+        faculty_name:  getFName(item.faculty_name),
+        student_name:  getSName(item.student_name)
+      };
+    })
+
+    return modifiedArray
+  }
+
+  var handleFArray = (myArr) => {
+    const fArray = myArr.map((item) => {
+      return {
+        ...item, 
+        faculty_name: getFName(item.faculty_name),
+        //student_name: getSName(item.student_name)
+      };
+    })
+
+    return fArray
+  }
   const userGet = async () => {
     const email = "admin"
     const response = await userfunc(email);
@@ -24,8 +39,11 @@ export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
     if (response.status === 200) {
       const filteredData = response.data
       // .filter(item=>item.date>={startDate} && item.date<={EndDate});
-      setUserData(filteredData)
-      console.log(filteredData)
+      setUserData(handleModifyArray(filteredData))
+      //console.log(filteredData)
+      //data.student_name = await getSName(data.student_name)
+      //data.faculty_name = await getFName(data.faculty_name)
+
     } else {
       console.log("error for get user data")
     }
@@ -40,7 +58,7 @@ export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
   const userGet2 = async () => {
     const response = await st_ach();
     if (response.status === 200) {
-      setUserData2(response.data)
+      setUserData2(handleModifyArray(response.data))
       console.log(response.data)
     } else {
       console.log("error for get user data")
@@ -56,7 +74,7 @@ export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
   const userGet3 = async () => {
     const response = await st_publi();
     if (response.status === 200) {
-      setUserData3(response.data)
+      setUserData3(handleModifyArray(response.data))
       console.log(response.data)
     } else {
       console.log("error for get user data")
@@ -73,7 +91,7 @@ export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
   const userGet4 = async () => {
     const response = await stforvisits();
     if (response.status === 200) {
-      setUserData4(response.data)
+      setUserData4(handleModifyArray(response.data))
       console.log(response.data)
     } else {
       console.log("error for get user data")
@@ -90,7 +108,7 @@ export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
   const userGet5 = async () => {
     const response = await st_semi();
     if (response.status === 200) {
-      setUserData5(response.data)
+      setUserData5(handleModifyArray(response.data))
       console.log(response.data)
     } else {
       console.log("error for get user data")
@@ -106,7 +124,7 @@ export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
   const userGet6 = async () => {
     const response = await stproj();
     if (response.status === 200) {
-      setUserData6(response.data)
+      setUserData6(handleModifyArray(response.data))
       console.log(response.data)
     } else {
       console.log("error for get user data")
@@ -122,7 +140,7 @@ export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
   const userGet7 = async () => {
     const response = await ft_awards(data);
     if (response.status === 200) {
-      setUserData7(response.data)
+      setUserData7(handleModifyArray(response.data))
       console.log(response.data)
     } else {
       console.log("error for get user data")
@@ -138,7 +156,7 @@ export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
   const userGet8 = async () => {
     const response = await ft_achievements(data);
     if (response.status === 200) {
-      setUserData8(response.data)
+      setUserData8(handleFArray(response.data))
       console.log(response.data)
     } else {
       console.log("error for get user data")
@@ -154,8 +172,8 @@ export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
   const userGet9 = async () => {
       const response = await ft_foreign();
       if (response.status === 200) {
-          setUserData9(response.data)
-          console.log(response.data)
+        setUserData9(handleFArray(response.data))
+        console.log(response.data)
       } else {
           console.log("error for get user data")
       }
@@ -166,27 +184,12 @@ export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
       }, 1200)
   }, [])
 
-  // const [data10, setUserData10] = useState([]);
-  // const userGet10 = async () => {
-  //   const response = await ft_projects();
-  //   if (response.status === 200) {
-  //     setUserData10(response.data)
-  //     console.log(response.data)
-  //   } else {
-  //     console.log("error for get user data")
-  //   }
-  // }
-  // useEffect(() => {
-  //   userGet10();
-  //   setTimeout(() => {
-  //   }, 1200)
-  // }, [])
-
+  
   const [data11, setUserData11] = useState([]);
   const userGet11 = async () => {
     const response = await ft_publications();
     if (response.status === 200) {
-      setUserData11(response.data)
+      setUserData11(handleFArray(response.data))
       console.log(response.data)
     } else {
       console.log("error for get user data")
@@ -202,7 +205,7 @@ export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
   const userGet12 = async () => {
     const response = await ft_seminars(data);
     if (response.status === 200) {
-      setUserData12(response.data)
+      setUserData12(handleFArray(response.data))
       console.log(response.data)
     } else {
       console.log("error for get user data")
@@ -213,6 +216,32 @@ export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
     setTimeout(() => {
     }, 1200)
   }, [])
+
+  const [myName,setMyName] = useState([]);
+
+  var getSName = async (emailID) => {
+    
+    const data = {
+      email: emailID
+    }
+
+    const res = await st_home(data);
+    setMyName(res.data)
+    return myName[6];
+
+  }
+
+  var getFName = async (emailID) => {
+    
+    const data = {
+      email: emailID
+    }
+
+    const res = await ft_home(data);
+    setMyName(res.data)
+    return myName[6];
+
+  }
 
   const Filtered = data.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
   const Filtered2 = data2.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
@@ -263,6 +292,7 @@ export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
         </thead>
         <tbody>
           {Filtered.map((item) => (
+           
             <tr key={item.faculty_name}>
               <td class="border border-black p-2"> {item.faculty_name}</td>
               <td class="border border-black p-2">{item.student_name}</td>
