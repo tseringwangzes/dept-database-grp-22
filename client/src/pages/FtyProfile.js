@@ -96,7 +96,7 @@ function FtyProfile() {
                   <dd className="mt-1 text-3xl font-extrabold text-gray-900">{ftData[3]}</dd>
                 </div>
                 <div className="border-t-2 border-gray-300 pt-6 w-auto">
-                  <dt className="text-base font-medium text-gray-500">Achievements</dt>
+                  <dt className="text-base font-medium text-gray-500">Invited Lectures</dt>
                   <dd className="mt-1 text-3xl font-extrabold text-gray-900">{ftData[1]}</dd>
                 </div>
                 <div className="border-t-2 border-gray-300 pt-6 w-auto">
@@ -108,7 +108,7 @@ function FtyProfile() {
                   <dd className="mt-1 text-3xl font-extrabold text-gray-900">{ftData[4]}</dd>
                 </div>
                 <div className="border-t-2 border-gray-300 pt-6 w-auto">
-                  <dt className="text-base font-medium text-gray-500">Seminars</dt>
+                  <dt className="text-base font-medium text-gray-500">Visiting Expert Lectures</dt>
                   <dd className="mt-1 text-3xl font-extrabold text-gray-900">{ftData[5]}</dd>
                 </div>
               </dl>
