@@ -61,7 +61,7 @@ const email = localStorage.getItem('email');
 
   const [data, setUserData] = useState([]);
   const userGet = async () => {
-    const response = await st_publi();
+    const response = await st_publi("admin");
     if (response.status === 200) {
       setUserData(response.data)
       console.log(response.data)
@@ -79,8 +79,13 @@ const email = localStorage.getItem('email');
   const columns = React.useMemo(
     () => [
       {
-        Header: " Student Name",
+        Header: " Student Email Id",
         accessor: "student_name",
+      },
+
+      {
+        Header: "Faculty Email Id",
+        accessor: "faculty_name",
       },
       {
         Header: "Title of Articles/Publications/Patents",
@@ -245,7 +250,7 @@ const email = localStorage.getItem('email');
 
   const [data2, setUserData2] = useState([]);
   const userGet2 = async () => {
-    const response = await ft_publications();
+    const response = await ft_publications("admin");
     if (response.status === 200) {
       setUserData2(response.data)
       console.log(response.data)
@@ -263,7 +268,7 @@ const email = localStorage.getItem('email');
   const columns2 = React.useMemo(
     () => [
       {
-        Header: "Faculty Name",
+        Header: "Faculty Email Id",
         accessor: "faculty_name",
       },
       {
@@ -292,7 +297,7 @@ const email = localStorage.getItem('email');
       },
      
       {
-        Header: "Publish Date",
+        Header: "Published Date",
         accessor: "published_date",
        
       },

@@ -901,10 +901,10 @@ exports.facultygetprojects = async (req, res) => {
     try {
         var allUser
         if(email==="admin"){
-        const allUser = await ft_projects.find().sort({ updatedAt: -1 });
+        allUser = await ft_projects.find().sort({ updatedAt: -1 });
         }
         else{
-            const allUser = await ft_projects.find({faculty_name:email}).sort({ updatedAt: -1 });
+        allUser = await ft_projects.find({faculty_name:email}).sort({ updatedAt: -1 });
         }
         res.status(200).json(allUser)
     } catch (error) {

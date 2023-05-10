@@ -15,10 +15,10 @@ const ForeignEditPage = () => {
 
     const defaultFormFields = {
         student_name: state.student_name,
+        faculty_name: state.faculty_name,
         start_date: state.start_date,
         end_date: state.end_date,
         country: state.country,
-        faculty_name: state.faculty_name,
         visit_details:state.visit_details,
         visit_link:state.visit_link,
 
@@ -58,13 +58,12 @@ const ForeignEditPage = () => {
             if (response.status === 200) {
                 setFormFields({
                     ...formFields,
-                    
+                    faculty_name: state.faculty_name,
                     start_date: state.start_date,
                     end_date: state.end_date,
                     country: state.country,
-                    faculty_name: state.faculty_name,
                     visit_details:state.visit_details,
-                   visit_link:state.visit_link,
+                    visit_link:state.visit_link,
                     status: "Pending..",
                 });
                 deleteid(id);

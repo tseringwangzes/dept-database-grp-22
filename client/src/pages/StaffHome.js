@@ -25,7 +25,7 @@ function StaffHome() {
             Choose Start Date 
           {/* </div> */}
 
-          <input
+         <input
             type="date"
             value={startDate}
             onChange={handleStartDateChange}
@@ -65,8 +65,3 @@ function StaffHome() {
 }
 
 export default StaffHome;
-
-
-
-
-

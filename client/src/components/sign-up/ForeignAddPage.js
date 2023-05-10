@@ -26,11 +26,11 @@ const ForeignAddPage = () => {
     else {
         defaultFormFields = {
             student_name: email,
+            faculty_name: "",
             topic: "",
             start_date: "",
             end_date: "",
             country: "",
-            faculty_name: "",
             visit_details:"",
             visit_link:"",
             status: "Pending..",
@@ -65,10 +65,10 @@ const ForeignAddPage = () => {
                     setFormFields({
                         ...formFields,
                         student_name: "",
+                        faculty_name: "",
                         start_date: "",
                         end_date: "",
                         country: "",
-                        faculty_name: "",
                         visit_details:"",
                         visit_link:"",
                         status: "Pending..",
@@ -79,10 +79,10 @@ const ForeignAddPage = () => {
                     setFormFields({
                         ...formFields,
                         student_name: email,
+                        faculty_name: "",
                         start_date: "",
                         end_date: "",
                         country: "",
-                        faculty_name: "",
                         visit_details:"",
                         visit_link:"",
                         status: "Pending..",
@@ -111,6 +111,31 @@ const ForeignAddPage = () => {
                     <h2 className={signupStyle["form-heading"]}>Add More Foreign Visits Details</h2>
                     <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
                        
+
+                    <div className={signupStyle["form-item"]} id="student_name">
+                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Student Email Id</label>
+                            <input style={{ height: "30px" }} className={signupStyle.myInput}
+                                placeholder="Enter the student_name"
+                                name="student_name"
+                                type="text"
+                                value={formFields.student_name}
+                                onChange={hanldeInputValueChange}
+                            />
+
+                    </div>
+
+                    <div className={signupStyle["form-item"]} id="faculty_name">
+                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Faculty Email Id</label>
+                            <input style={{ height: "30px" }} className={signupStyle.myInput}
+                                placeholder="Enter the faculty's id with whom you visit"
+                                name="faculty_name"
+                                type="text"
+                                value={formFields.faculty_name}
+                                onChange={hanldeInputValueChange}
+                            />
+
+                    </div>
+
 
                         <div className={signupStyle["form-item"]} id="start_date">
                             <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Start date of visit</label>
@@ -147,29 +172,6 @@ const ForeignAddPage = () => {
 
                         </div>
 
-                        <div className={signupStyle["form-item"]} id="faculty_name">
-                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Faculty Name</label>
-                            <input style={{ height: "30px" }} className={signupStyle.myInput}
-                                placeholder="Enter the faculty's id with whom you visit"
-                                name="faculty_name"
-                                type="text"
-                                value={formFields.faculty_name}
-                                onChange={hanldeInputValueChange}
-                            />
-
-                        </div>
-
-                        <div className={signupStyle["form-item"]} id="student_name">
-                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Student Name</label>
-                            <input style={{ height: "30px" }} className={signupStyle.myInput}
-                                placeholder="Enter the student_name"
-                                name="student_name"
-                                type="text"
-                                value={formFields.student_name}
-                                onChange={hanldeInputValueChange}
-                            />
-
-                        </div>
 
                         <div className={signupStyle["form-item"]} id="visit_details">
                         <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Visit Details</label>
