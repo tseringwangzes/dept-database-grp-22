@@ -247,7 +247,7 @@ export const ComponentToPrint = React.forwardRef(({startDate,EndDate}, ref) => {
       </div>
       <br></br>
       <div className="bg-indigo-100 text-center text-l font-semibold">
-        Faculty Awards and Honors
+        Fy Awards and Honors
       </div>
       <br></br>
       {/* <TableStudentAwards data={data} columns={columns}/> */}
