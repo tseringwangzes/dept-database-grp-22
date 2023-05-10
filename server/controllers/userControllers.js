@@ -571,8 +571,8 @@ exports.useraddmore = async (req, res) => {
                 award_name,date,shared_with,status,faculty_name,student_name,award_link,additional_info
             });
 
-            const findAward = await stdetails.findOne({student_name:student_name,award_name:award_name,date:date,shared_with:shared_with,award_link:award_link,additional_info:additional_info})
-            console.log(findAward);
+            const findAward = await stdetails.findOne({student_name:student_name,award_name:award_name,award_reason:award_reason,date:date,shared_with:shared_with})
+           // console.log(findAward);
             if(!findAward){
             const storeData = await useraddmore.save();
             res.status(200).json(storeData);
@@ -593,7 +593,7 @@ exports.st_award_csv = async (req, res) => {
     for (const entry of data) {
         try {
 
-            console.log(entry);
+            //console.log(entry.status);
             const existingEntry = await stdetails.findOne(entry);
             //console.log(existingEntry);
             if ( existingEntry === null) {
@@ -669,7 +669,7 @@ exports.studentHome = async (req, res) => {
 exports.homePost = async(req,res) => {
     const type = req.body.type;
     const myEmail = req.body.email
-    console.log(req.body);
+    //console.log(req.body);
 
    try {
      if (type === 'List') {

@@ -60,11 +60,12 @@ const Login = () => {
                             <label className={loginStyle.myLabel} htmlFor="email">Email</label>
                             <input className = {loginStyle.myData} type="email" name="email" id="" onChange={(e) => setEmail(e.target.value)} placeholder='Enter Your Email Address' />
                         </div>
-                        <button className={loginStyle.btn} onClick={sendOtp}>Login
-                        {
-                            spiner ? <span><Spinner animation="border" /></span>:""
-                        }
+                        <button className={loginStyle.btn} onClick={sendOtp}>
+                            {!spiner && 'Login'}
+                             {spiner && <Spinner animation="border" />}
                         </button>
+
+
                         {/* <p className={loginStyle.para}>Don't have an account? <NavLink to="/Register">Sign up</NavLink> </p> */}
                     </form>
                     </div>
