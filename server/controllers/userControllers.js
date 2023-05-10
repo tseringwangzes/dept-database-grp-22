@@ -855,9 +855,15 @@ exports.facultygetachievements = async (req, res) => {
 }
 
 exports.facultygetseminars = async (req, res) => {
-    // const {email} = req.body;
+    const email = req.query.email;
     try {
-        const allUser = await ft_seminars.find().sort({ updatedAt: -1 });
+        var allUser
+        if(email === "admin"){
+        allUser = await ft_seminars.find().sort({ updatedAt: -1 });
+        }
+        else{
+            allUser = await ft_seminars.find({faculty_name:email}).sort({ updatedAt: -1 });
+        }
         res.status(200).json(allUser)
     } catch (error) {
         res.status(401).json(error)
