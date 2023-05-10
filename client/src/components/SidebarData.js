@@ -34,7 +34,7 @@ export const SidebarData = [
         link:"/Profile/Foreign"
     },
     {
-        title:"Publications/Patents",
+        title:"Publications/Patents/Journals",
         icon:<ImportContactsSharpIcon />,
         link:"/Profile/Publications"
     },

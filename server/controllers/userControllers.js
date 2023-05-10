@@ -942,16 +942,19 @@ exports.editseminar = async (req, res) => {
 };
 
 exports.editpublication = async (req, res) => {
-    const { topic,accepted_date,published_date, collaboration, no_of_students, status,faculty_name,student_name} = req.body;
+    const { title,author,type,title_publish,patent_no,accepted_date,published_date,assignee,impact_factor,additional_info,link,status,faculty_name,student_name} = req.body;
 
-    if (!topic || !accepted_date || !published_date || !collaboration || !no_of_students || !status || !faculty_name || !student_name) {
+    if (!title || !author || !type || !title_publish || !patent_no || !accepted_date || !published_date || !assignee || !impact_factor || !additional_info || !link || !status || !faculty_name || !student_name) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
     try {            
             const editpublication = new st_publi({
-                topic, accepted_date,published_date, collaboration, no_of_students, status,faculty_name,student_name
+                title,author,type,title_publish,patent_no,accepted_date,published_date,assignee,impact_factor,
+                additional_info,link,status,faculty_name,student_name
             });
-            const findAward = await st_publi.findOne({ topic:topic, published_date:published_date,accepted_date:accepted_date, collaboration:collaboration, no_of_students:no_of_students})
+            const findAward = await st_publi.findOne({title:title,author:author,type:type,title_publish:title_publish,patent_no:patent_no,
+                accepted_date:accepted_date,published_date:published_date,assignee:assignee,impact_factor:impact_factor,additional_info:additional_info,
+                link:link,status:status,faculty_name:faculty_name,student_name:student_name})
             if(!findAward){
             const storeData = await editpublication.save();
             res.status(200).json(storeData);
@@ -1244,16 +1247,19 @@ exports.fty_publication_csv = async (req, res) => {
 };
 
 exports.facultyeditpublication = async (req, res) => {
-    const { topic, published_date,accepted_date, collaboration,faculty_name} = req.body;
+    const { title,author,type,title_publish,patent_no,accepted_date,published_date,assignee,impact_factor,additional_info,link,faculty_name} = req.body;
 
-    if (!topic || !published_date || !accepted_date || !collaboration || !faculty_name) {
+    if (!title || !author || !type || !title_publish || !patent_no || !accepted_date || !published_date || !assignee || !impact_factor || !additional_info || !link || !faculty_name) {
         res.status(400).json({ error: "Please Enter All Input Data" })
     }
     try {            
             const facultyeditpublication = new ft_publications({
-                topic,published_date,accepted_date, collaboration,faculty_name
+                title,author,type,title_publish,patent_no,accepted_date,published_date,assignee,impact_factor,
+                additional_info,link,faculty_name
             });
-            const findAward = await ft_publications.findOne({ topic:topic,published_date:published_date,accepted_date:accepted_date, collaboration:collaboration,faculty_name:faculty_name})
+            const findAward = await ft_publications.findOne({title:title,author:author,type:type,title_publish:title_publish,patent_no:patent_no,
+                accepted_date:accepted_date,published_date:published_date,assignee:assignee,impact_factor:impact_factor,additional_info:additional_info,
+                link:link,faculty_name:faculty_name})
             if(!findAward){
             const storeData = await facultyeditpublication.save();
             res.status(200).json(storeData);

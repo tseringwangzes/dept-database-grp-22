@@ -63,24 +63,46 @@ function Publications() {
     () => [
 
       {
-        Header: " Topic",
-        accessor: "topic",
+        Header: "Title of Articles/Publications/Patents",
+        accessor: "title",
       },
       {
-        Header: "Published Date",
-        accessor: "published_date",
-      },,
+        Header: "Authors",
+        accessor: "author",
+      },
+      {
+        Header: "Publications/Journals/Patents",
+        accessor: "type",
+      },
+      {
+        Header: "Title of Journal",
+        accessor: "title_publish",
+      },
+      {
+        Header: "Volume/Issue/Patent No.",
+        accessor: "patent_no",
+      },
       {
         Header: "Accepted Date",
         accessor: "accepted_date",
       },
+     
       {
-        Header: "Collaborations",
-        accessor: "collaboration",
+        Header: "Publish Date",
+        accessor: "published_date",
+       
       },
       {
-        Header: "Number-of-students",
-        accessor: "no_of_students",
+        Header: "DOI/ISBN/Assignee",
+        accessor: "assignee",
+      },
+      {
+        Header: "Impact Factor",
+        accessor: "impact_factor",
+      },
+      {
+        Header: "Additional Information",
+        accessor: "additional_info",
       },
       {
         Header: "Attached Link",
@@ -100,15 +122,21 @@ function Publications() {
           <div>
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() => navigate("./PublicationsEdit.js/"+original._id, {
               state: {
+                id:original._id,
                 faculty_name:original.faculty_name,
                 student_name:original.student_name,
-                topic:original.topic,
-                published_date:original.published_date,
+                title:original.title,
+                author:original.author,
+                type:original.type,
+                title_publish:original.title_publish,
+                patent_no:original.patent_no,
                 accepted_date:original.accepted_date,
-                collaboration:original.collaboration,
-                no_of_students:original.no_of_students,
-                id:original._id,
+                published_date:original.published_date,
+                assignee:original.assignee,
+                impact_factor:original.impact_factor,
+                additional_info:original.additional_info,
                 link:original.link,
+                status:original.status,
                 utype:utype
               }
             })}>Edit</button>
@@ -340,7 +368,7 @@ const rows = filteredData.map(user=>[user.topic,user.published_date,user.accepte
 
           <div className="">
           <br />
-            <h1 className="text-center bg-indigo-100  text-xl font-semibold">Your Publications and Patents</h1>
+            <h1 className="text-center bg-indigo-100  text-xl font-semibold">Your Publications/Patents/Journals</h1>
           </div>
           <div className="mt-4">
             <TablesPublications columns={columns} data={data} utype={utype}/>
