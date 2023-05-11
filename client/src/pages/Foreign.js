@@ -4,15 +4,37 @@ import { stforvisits } from '../services/Apis'
 import TablesForeigns, { StatusPill } from "../tables/TablesForeigns";
 import Sidebar from "../components/Sidebar";
 import jsPDF from 'jspdf';
+import {st_home} from '../services/Apis';
 
 function Foreign() {
     const utype = "0";
     const [showModal, setShowModal] = useState(false);
     const [showModaldelete, setShowModaldelete] = useState(false);
     const [did, setdid] = useState("");
+    const [stData, setData] = useState([]);
   
 
     const url='http://localhost:3000/St_Foreign_Header.csv'
+
+    useEffect(() => {
+        const fetchData = async (e) => {
+          try {
+            
+            const response = await st_home(email);
+            
+            setData(response.data)
+            //console.log(response.data);
+            //console.log(ftData);
+           // console.log('react');
+          } catch (error) {
+            console.error(error);
+          }
+        };
+        if (email) {
+          fetchData();
+        }
+        fetchData();
+      }, [email]);
 
     const navigate = useNavigate();
     var email = localStorage.getItem('email');
@@ -151,6 +173,7 @@ function Foreign() {
         navigate("./StForeignCsv" ,{state:{
             utype: utype,
             fname: data[0].faculty_name,
+            email: email,
          }})
         
         }
@@ -196,7 +219,7 @@ function Foreign() {
         doc.text("Student Name", 20, 60);
         doc.text(":", 70, 60);
         doc.setFont("helvetica", "normal");
-        doc.text("Vishwas Rathi", 72, 60);
+        doc.text(stData[6], 72, 60);
         doc.setFont("helvetica", "bold");
         doc.text("Student Email", 20, 65);
         doc.text(": ", 70, 65);
@@ -227,7 +250,7 @@ function Foreign() {
       const formattedDate = `${formattedDay}-${formattedMonth}-${year}`;
     
       // save PDF with formatted date in filename
-      const filename = `${formattedDate}-${email}-ForeignVisits.pdf`;
+      const filename = `${formattedDate}-${stData[6]}-ForeignVisits.pdf`;
       doc.save(filename);
         // add image to PDF here
       });
