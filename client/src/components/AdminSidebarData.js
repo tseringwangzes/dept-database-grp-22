@@ -9,12 +9,7 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import StarsIcon from '@mui/icons-material/Stars';
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 export const AdminSidebarData = [
-    {
-        title:"Home",
-        icon:<HomeIcon />,
-        link:"/Admin",
-        fname:"",
-    },
+    
     {
         title:"Add new User",
         icon:<PersonAddAltOutlinedIcon />,

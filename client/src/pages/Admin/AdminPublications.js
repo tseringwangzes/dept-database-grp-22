@@ -445,8 +445,9 @@ const rows = data.map(user=>[user.student_name,user.faculty_name,user.award_name
         <Sidebar />
         <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
         <div className="">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={generatePDF}>Generate PDF</button>
-            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={uploadbulk} >Upload Data in Bulk</button>
+
+            <button class=" p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={uploadbulk} >Upload Data in Bulk</button>
+            <br></br>
           </div>
           <br></br>
           <div className="">
@@ -457,9 +458,9 @@ const rows = data.map(user=>[user.student_name,user.faculty_name,user.award_name
           </div>
           <br/>
           <div className="">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={FtygeneratePDF}>Generate PDF</button>
-            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={uploadbulk2} >Upload Data in Bulk</button>
-
+            
+            <button class=" p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={uploadbulk2} >Upload Data in Bulk</button>
+            <br></br>
 
           </div>
           <br></br>
