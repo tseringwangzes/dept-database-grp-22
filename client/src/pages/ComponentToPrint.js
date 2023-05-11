@@ -6,9 +6,9 @@ import { ft_achievements } from '../services/Apis';
 import { ft_seminars } from '../services/Apis';
 
 export const ComponentToPrint = React.forwardRef(({startDate,endDate}, ref) => {
- // console.log(`Chosen start date: ${startDate}\nChosen end date: ${endDate}`);
-  const Date1 = new Date('2023-05-01');
-  const Date2 = new Date('2023-05-30');
+ console.log(`Chosen start date: ${startDate}\nChosen end date: ${endDate}`);
+  const Date1 = new Date(startDate);
+  const Date2 = new Date(endDate);
   const email = "admin"
 // const[temp,setTemp] = useState([])
  
@@ -160,149 +160,11 @@ useEffect(() => {
     }, 1200)
   }, [])
 
-
-  // const [data5, setUserData5] = useState([]);
-  // const userGet5 = async () => {
-  //   const response = await st_semi();
-  //   if (response.status === 200) {
-  //     setUserData5(response.data)
-  //     console.log(response.data)
-  //   } else {
-  //     console.log("error for get user data")
-  //   }
-  // }
-  // useEffect(() => {
-  //   userGet5();
-  //   setTimeout(() => {
-  //   }, 1200)
-  // }, [])
-
-  // const [data6, setUserData6] = useState([]);
-  // const userGet6 = async () => {
-  //   const response = await stproj();
-  //   if (response.status === 200) {
-  //     setUserData6(response.data)
-  //     console.log(response.data)
-  //   } else {
-  //     console.log("error for get user data")
-  //   }
-  // }
-  // useEffect(() => {
-  //   userGet6();
-  //   setTimeout(() => {
-  //   }, 1200)
-  // }, [])
-
-  // const [data7, setUserData7] = useState([]);
-  // const userGet7 = async () => {
-  //   const response = await ft_awards(data);
-  //   if (response.status === 200) {
-  //     setUserData7(response.data)
-  //     console.log(response.data)
-  //   } else {
-  //     console.log("error for get user data")
-  //   }
-  // }
-  // useEffect(() => {
-  //   userGet7();
-  //   setTimeout(() => {
-  //   }, 1200)
-  // }, [])
-
-  // const [data8, setUserData8] = useState([]);
-  // const userGet8 = async () => {
-  //   const response = await ft_achievements(data);
-  //   if (response.status === 200) {
-  //     setUserData8(response.data)
-  //     console.log(response.data)
-  //   } else {
-  //     console.log("error for get user data")
-  //   }
-  // }
-  // useEffect(() => {
-  //   userGet8();
-  //   setTimeout(() => {
-  //   }, 1200)
-  // }, [])
-
-  // const [data9, setUserData9] = useState([]);
-  //  const userGet9 = async () => {
-  //     const response = await ft_foreign();
-  //     if (response.status === 200) {
-  //         setUserData9(response.data)
-  //          console.log(response.data)
-  //      } else {
-  //         console.log("error for get user data")
-  //     }
-  // }
-  //  useEffect(() => {
-  //    userGet9();
-  //    setTimeout(() => {
-  //    }, 1200)
-  // }, [])
-
-  // const [data10, setUserData10] = useState([]);
-  // const userGet10 = async () => {
-  //   const response = await ft_projects();
-  //   if (response.status === 200) {
-  //     setUserData10(response.data)
-  //     console.log(response.data)
-  //   } else {
-  //     console.log("error for get user data")
-  //   }
-  // }
-  // useEffect(() => {
-  //   userGet10();
-  //   setTimeout(() => {
-  //   }, 1200)
-  // }, [])
-
-  // const [data11, setUserData11] = useState([]);
-  // const userGet11 = async () => {
-  //   const response = await ft_publications();
-  //   if (response.status === 200) {
-  //     setUserData11(response.data)
-  //     console.log(response.data)
-  //   } else {
-  //     console.log("error for get user data")
-  //   }
-  // }
-  // useEffect(() => {
-  //   userGet11();
-  //   setTimeout(() => {
-  //   }, 1200)
-  // }, [])
-
-  // const [data12, setUserData12] = useState([]);
-  // const userGet12 = async () => {
-  //   const response = await ft_seminars(data);
-  //   if (response.status === 200) {
-  //     setUserData12(response.data)
-  //     console.log(response.data)
-  //   } else {
-  //     console.log("error for get user data")
-  //   }
-  // }
-  // useEffect(() => {
-  //   userGet12();
-  //   setTimeout(() => {
-  //   }, 1200)
-  // }, [])
-
   const Filtered = data.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
   const Filtered2 = data2.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
   const Filtered3 = data3.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
   const Filtered4 = data4.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
-  // const Filtered5 = data5.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
-  // const Filtered6 = data6.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
-  // const Filtered7 = data7.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
-  // const Filtered8 = data8.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
-  //  const Filtered9 = data9.filter(item=>new Date(item.start_date) >= Date1 && new Date(item.start_date)<=Date2)
-  // const Filtered10 = data10.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
-  // const Filtered11 = data11.filter(item=>new Date(item.published_date) >= Date1 && new Date(item.published_date)<=Date2)
-  // const Filtered12 = data12.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
-
-
+  
   return (
     <div ref={ref} className="border border-black p-3">
       <br></br>
@@ -324,8 +186,6 @@ useEffect(() => {
         Faculty Awards and Honors
       </div>
       <br></br>
-      {/* <TableStudentAwards data={data} columns={columns}/> */}
-      {/* <div className="d-flex justify-content-center"> */}
       <table>
         <thead>
           <tr>
