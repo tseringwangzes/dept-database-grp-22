@@ -1,15 +1,8 @@
 import { userfunc } from '../services/Apis'
 import React, { useEffect, useState } from "react";
-import { st_ach,st_home,ft_home } from '../services/Apis'
-import { st_publi } from '../services/Apis'
-import { st_semi } from '../services/Apis'
-import { stproj } from '../services/Apis'
-import { stforvisits } from '../services/Apis'
+import { st_home,ft_home } from '../services/Apis'
 import { ft_awards } from '../services/Apis';
 import { ft_achievements } from '../services/Apis';
-import { ft_foreign } from '../services/Apis';
-import { ft_projects } from '../services/Apis';
-import { ft_publications } from '../services/Apis';
 import { ft_seminars } from '../services/Apis';
 
 export const ComponentToPrint = React.forwardRef(({startDate,endDate}, ref) => {

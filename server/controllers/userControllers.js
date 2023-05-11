@@ -670,7 +670,7 @@ exports.studentHome = async (req, res) => {
     try {
 
         const promises = [
-            student_award.countDocuments({ student_name: email }),
+            stdetails.countDocuments({ student_name: email }),
             st_achievements.countDocuments({ student_name: email }),
             st_for_visits.countDocuments({ student_name: email }),
             st_project.countDocuments({ student_name: email }),
@@ -705,13 +705,8 @@ exports.studentHome = async (req, res) => {
             { upsert: true, new: true }
         );
 
-
         // console.log(count);
         res.status(200).json(count);
-
-
-
-
 
     } catch (error) {
         console.log(error);
