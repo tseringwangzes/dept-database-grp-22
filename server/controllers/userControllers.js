@@ -728,13 +728,8 @@ exports.studentHome = async (req, res) => {
             { upsert: true, new: true }
         );
 
-
         // console.log(count);
         res.status(200).json(count);
-
-
-
-
 
     } catch (error) {
         console.log(error);
