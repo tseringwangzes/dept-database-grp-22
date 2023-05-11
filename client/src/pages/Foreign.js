@@ -230,10 +230,10 @@ function Foreign() {
         doc.setFont("helvetica", "normal");
         doc.text("PhD, CSE", 72, 70);
         
-        const columns = [["Start Date of Visit", "End Date of Visit","Country Visited","Faculty accompanied","Visit Details"]];
+        const columns = [["Start Date of Visit", "End Date of Visit","Country Visited","Faculty accompanied","Visit Details","Status"]];
         const filteredData = data.filter(item => item.student_name === email);
     
-    const rows = filteredData.map(user=>[user.start_date,user.end_date,user.country,user.faculty_name,user.visit_details]);
+    const rows = filteredData.map(user=>[user.start_date,user.end_date,user.country,user.faculty_name,user.visit_details,user.status]);
         doc.autoTable({
           head: columns,
           body: rows,
