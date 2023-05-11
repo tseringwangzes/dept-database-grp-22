@@ -434,18 +434,11 @@ exports.st_achievement_csv = async (req, res) => {
 exports.st_project_csv = async (req, res) => {
 
 
-    // try {
-    //     //console.log(req);
-    //     await st_project.insertMany(req.body);
-    //     res.status(200).json({ message: 'Data successfully inserted' });
-    // } catch ( error) {
-    //     console.error(error);
-    //     res.status(500).json({ message: 'An error occurred while inserting data' });
-    // }
 
     const data = req.body;
 
     for (const entry of data) {
+        console.log(data.student_name)
         try {
             console.log(entry);
             const existingEntry = await st_project.findOne(entry);
@@ -499,17 +492,10 @@ exports.st_seminar_csv = async (req, res) => {
 exports.st_foreign_csv = async (req, res) => {
 
 
-    // try {
-    //     //console.log(req);
-    //     await st_for_visits.insertMany(req.body);
-    //     res.status(200).json({ message: 'Data successfully inserted' });
-    // } catch ( error) {
-    //     console.error(error);
-    //     res.status(500).json({ message: 'An error occurred while inserting data' });
-    // }
     const data = req.body;
 
     for (const entry of data) {
+        console.log(data.student_name)
         try {
             console.log(entry);
             const existingEntry = await st_for_visits.findOne(entry);
@@ -530,18 +516,11 @@ exports.st_foreign_csv = async (req, res) => {
 exports.st_publication_csv = async (req, res) => {
 
 
-    // try {
-    //     //console.log(req);
-    //     await st_publi.insertMany(req.body);
-    //     res.status(200).json({ message: 'Data successfully inserted' });
-    // } catch ( error) {
-    //     console.error(error);
-    //     res.status(500).json({ message: 'An error occurred while inserting data' });
-    // }
 
     const data = req.body;
 
     for (const entry of data) {
+        console.log(data.student_name)
         try {
             // console.log(entry);
             const existingEntry = await st_publi.findOne(entry);
@@ -663,6 +642,7 @@ exports.useraddmore = async (req, res) => {
 exports.st_award_csv = async (req, res) => {
 
     let data = req.body;
+    console.log("student is "+ data.student_name);
 
     for (const entry of data) {
         try {
