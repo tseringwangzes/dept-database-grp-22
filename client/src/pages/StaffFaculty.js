@@ -1,8 +1,9 @@
 import React, { Component, useEffect, useState } from "react";
+import Sidebar from "../components/staffSide";
 import { useNavigate } from "react-router-dom";
 import { st_ach } from '../services/Apis'
 import { ft_achievements } from '../services/Apis'
-import Sidebar from "../components/staffSide";
+
 import TablesAchievements, { StatusPill } from "../tables/TablesAchievements";
 import FtyTablesAchievements from "../tables/FtyTablesAchievements";
 import jsPDF from 'jspdf';

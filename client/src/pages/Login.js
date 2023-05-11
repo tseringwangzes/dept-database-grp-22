@@ -33,14 +33,14 @@ const Login = () => {
                 email: email
             }
 
-            const response = await sentOtpFunction(data);
+           // const response = await sentOtpFunction(data);
 
-            if (response.status === 200) {
+           // if (response.status === 200) {
                 setSpiner(false)
                 navigate("/user/otp",{state:{email:email,idd:id}})
-            } else {
-                toast.error(response.response.data.error);
-            }
+           // } else {
+                //toast.error(response.response.data.error);
+           // }
         }
     }
     return (
@@ -58,7 +58,7 @@ const Login = () => {
                     <form className={loginStyle.my_form}>
                         <div className={loginStyle.form_input}>
                             <label className={loginStyle.myLabel} htmlFor="email">Email</label>
-                            <input className = {loginStyle.myData} type="email" name="email" id="" onChange={(e) => setEmail(e.target.value)} placeholder='Enter Your Email Address' />
+                            <input className = {loginStyle.myData} type="email" name="email" id="" onChange={(e) => setEmail(e.target.value.toLowerCase())} placeholder='Enter Your Email Address' />
                         </div>
                         <button className={loginStyle.btn} onClick={sendOtp}>
                             {!spiner && 'Login'}

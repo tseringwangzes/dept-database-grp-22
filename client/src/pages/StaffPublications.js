@@ -17,6 +17,19 @@ const email = localStorage.getItem('email');
   const url='http://localhost:3000/Staff_St_Publication_Header.csv'
 
 
+  const [showModal, setShowModal] = useState(false);
+  const [showModaldelete, setShowModaldelete] = useState(false);
+  const [did, setdid] = useState("");
+
+  const [ftshowModal, ftsetShowModal] = useState(false);
+  const [ftshowModaldelete, ftsetShowModaldelete] = useState(false);
+  const [ftdid, ftsetdid] = useState("");
+
+
+  function stuploadbulk2(){
+    navigate("/Profile/Publications/StPublicationCsv",{state:{utype:utype}} )
+
+   }
   function uploadbulk(){
 
     const aTag=document.createElement("a");
@@ -30,6 +43,12 @@ const email = localStorage.getItem('email');
     navigate("/Profile/Publications/StPublicationCsv",{state:{utype:utype}} )
     
     }
+    function ftuploadbulk2(){
+     
+      navigate("/faculty/Publications/FtyPublicationCsv",{state:{utype:utype}} )
+
+     }
+
 
   function uploadbulk2(){
 
@@ -45,17 +64,46 @@ const email = localStorage.getItem('email');
     
     }
   const deleteRow=async (id)=>{
-    let result = await fetch(`http://localhost:4002/user/ftydeletepublication/${id}`, {
+    ftsetShowModaldelete(true);
+    ftsetdid(id);
+    // let result = await fetch(`http://localhost:4002/user/ftydeletepublication/${id}`, {
+    //   method:"Delete"});
+    //  // result=await result.json()
+    //   window.location.reload();
+  }
+  const ftdeleteRowyes=async ()=>{
+  
+   let result = await fetch(`http://localhost:4002/user/ftydeletepublication/${ftdid}`, {
       method:"Delete"});
      // result=await result.json()
+  ftsetShowModaldelete(false);
+   window.location.reload();
+}
+
+  const stdeleteRow=async (id)=>{
+    setShowModaldelete(true);
+    setdid(id);
+    // let result= await fetch(`http://localhost:4002/user/deletepublicationid/${id}`,{
+    //   method:"Delete"});
+    //  // result=await result.json()
+    //   window.location.reload();
+  }
+  const deleteRowyes=async ()=>{
+  
+  let result= await fetch(`http://localhost:4002/user/deletepublicationid/${did}`,{
+      method:"Delete"});
+     // result=await result.json()
+     setShowModaldelete(false);
       window.location.reload();
   }
 
-  const stdeleteRow=async (id)=>{
-    let result= await fetch(`http://localhost:4002/user/deletepublicationid/${id}`,{
-      method:"Delete"});
-     // result=await result.json()
-      window.location.reload();
+  function canceldelete(){
+    setShowModaldelete(false);
+
+  }
+  function ftcanceldelete(){
+    ftsetShowModaldelete(false);
+
   }
 
 
@@ -96,7 +144,7 @@ const email = localStorage.getItem('email');
         accessor: "author",
       },
       {
-        Header: "Publications/Journals/Patents",
+        Header: "Conference Name",
         accessor: "type",
       },
       {
@@ -104,7 +152,7 @@ const email = localStorage.getItem('email');
         accessor: "title_publish",
       },
       {
-        Header: "Volume/Issue/Patent No.",
+        Header: "Page/Issue/Patent No.",
         accessor: "patent_no",
       },
       {
@@ -431,9 +479,104 @@ const email = localStorage.getItem('email');
         <Sidebar />
         <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
           <div className="">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={generatePDF}>Generate PDF</button>
-            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={uploadbulk} >Upload Data in Bulk</button>
+            {/* <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={generatePDF}>Generate PDF</button> */}
+            <button class=" p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={()=>setShowModal(true) } >Upload Data in Bulk</button>
+         <br />
           </div>
+
+          {showModal ? (
+                <>
+                    <div className="fixed inset-0 z-10 overflow-y-auto">
+                        <div
+                            className="fixed inset-0 w-full h-full bg-black opacity-40"
+                            onClick={() => setShowModal(false)}
+                        ></div>
+                        <div className="flex items-center min-h-screen px-1 py-8">
+                            <div className="relative w-90 max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
+                              
+                                    
+                                    <div className="mt-2 text-center sm:ml-4 sm:text-left">
+                                       
+                                        <p className="mt-2 text-[20px] leading-relaxed text-gray-500">
+                                          Do you want to download a sample file?
+                                        </p>
+                                        <div className="items-center gap-4 mt-3 sm:flex">
+                                            <button
+                                                className="w-full mt-2 p-1.5 flex-1 text-white bg-blue-600 rounded-md outline-none ring-offset-2 ring-blue-600 focus:ring-2"
+                                                onClick={stuploadbulk2}  >
+                                                Not Now
+                                            </button>
+                                            <button
+                                                className="w-full mt-2 p-1.5 flex-1 text-white  bg-green-600 rounded-md outline-none border ring-offset-2 ring-green-600 focus:ring-2"
+                                                onClick={ uploadbulk }  >
+                                                Download
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                </>
+            ) : null}
+        
+
+
+        {showModaldelete ? (
+                <>
+                    <div className="fixed inset-0 z-10 overflow-y-auto">
+                        <div
+                            className="fixed inset-0 w-full h-full bg-black opacity-40"
+                            onClick={() => setShowModaldelete(false)}
+                        ></div>
+                        <div className="flex items-center min-h-screen px-4 py-8">
+                            <div className="relative w-90 max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
+                                <div className="mt-3 sm:flex">
+                                    <div className="flex items-center justify-center flex-none w-12 h-12 mx-auto bg-red-100 rounded-full">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="w-6 h-6 text-red-600"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
+                                        >
+                                            <path
+                                                fillRule="evenodd"
+                                                d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                                                clipRule="evenodd"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <div className="mt-2 text-center sm:ml-4 sm:text-left">
+                                       
+                                        <p className="mt-2 text-[20px] leading-relaxed text-gray-500">
+                                            Do you want to delete this?
+                                        </p>
+                                        <div className="items-center gap-2 mt-3 sm:flex">
+                                            <button
+                                                className="w-full mt-2 p-2.5 flex-1 text-white bg-red-600 rounded-md outline-none ring-offset-2 ring-red-600 focus:ring-2"
+                                                onClick={() =>
+                                                  deleteRowyes()
+                                                }
+                                            >
+                                                Delete
+                                            </button>
+                                            <button
+                                                className="w-full mt-2 p-2.5 flex-1 text-gray-800 rounded-md outline-none border ring-offset-2 ring-indigo-600 focus:ring-2"
+                                                onClick={() =>
+                                                    canceldelete()
+                                                }
+                                            >
+                                                Cancel
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </>
+            ) : null}
+
           <br></br>
           <div className="">
             <h1 className="text-center bg-indigo-100 text-xl font-semibold">Student Publications/Patents/Journals</h1>
@@ -443,10 +586,104 @@ const email = localStorage.getItem('email');
           </div>
           <br />
           <div className="">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={FtygeneratePDF}>Generate PDF</button>
-            <button class="float-right p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={uploadbulk2} >Upload Data in Bulk</button>
-
+            {/* <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={FtygeneratePDF}>Generate PDF</button> */}
+            <button class=" p-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full "  onClick={()=>ftsetShowModal(true)} >Upload Data in Bulk</button>
+<br />
           </div>
+
+          {ftshowModal ? (
+                <>
+                    <div className="fixed inset-0 z-10 overflow-y-auto">
+                        <div
+                            className="fixed inset-0 w-full h-full bg-black opacity-40"
+                            onClick={() => ftsetShowModal(false)}
+                        ></div>
+                        <div className="flex items-center min-h-screen px-1 py-8">
+                            <div className="relative w-90 max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
+                              
+                                    
+                                    <div className="mt-2 text-center sm:ml-4 sm:text-left">
+                                       
+                                        <p className="mt-2 text-[20px] leading-relaxed text-gray-500">
+                                          Do you want to download a sample file?
+                                        </p>
+                                        <div className="items-center gap-4 mt-3 sm:flex">
+                                            <button
+                                                className="w-full mt-2 p-1.5 flex-1 text-white bg-blue-600 rounded-md outline-none ring-offset-2 ring-blue-600 focus:ring-2"
+                                                onClick={ftuploadbulk2}  >
+                                                Not Now
+                                            </button>
+                                            <button
+                                                className="w-full mt-2 p-1.5 flex-1 text-white  bg-green-600 rounded-md outline-none border ring-offset-2 ring-green-600 focus:ring-2"
+                                                onClick={ uploadbulk2}  >
+                                                Download
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                </>
+            ) : null}
+        
+
+
+        {ftshowModaldelete ? (
+                <>
+                    <div className="fixed inset-0 z-10 overflow-y-auto">
+                        <div
+                            className="fixed inset-0 w-full h-full bg-black opacity-40"
+                            onClick={() => ftsetShowModaldelete(false)}
+                        ></div>
+                        <div className="flex items-center min-h-screen px-4 py-8">
+                            <div className="relative w-90 max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
+                                <div className="mt-3 sm:flex">
+                                    <div className="flex items-center justify-center flex-none w-12 h-12 mx-auto bg-red-100 rounded-full">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="w-6 h-6 text-red-600"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
+                                        >
+                                            <path
+                                                fillRule="evenodd"
+                                                d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                                                clipRule="evenodd"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <div className="mt-2 text-center sm:ml-4 sm:text-left">
+                                       
+                                        <p className="mt-2 text-[20px] leading-relaxed text-gray-500">
+                                            Do you want to delete this?
+                                        </p>
+                                        <div className="items-center gap-2 mt-3 sm:flex">
+                                            <button
+                                                className="w-full mt-2 p-2.5 flex-1 text-white bg-red-600 rounded-md outline-none ring-offset-2 ring-red-600 focus:ring-2"
+                                                onClick={() =>
+                                                  ftdeleteRowyes()
+                                                }
+                                            >
+                                                Delete
+                                            </button>
+                                            <button
+                                                className="w-full mt-2 p-2.5 flex-1 text-gray-800 rounded-md outline-none border ring-offset-2 ring-indigo-600 focus:ring-2"
+                                                onClick={() =>
+                                                    ftcanceldelete()
+                                                }
+                                            >
+                                                Cancel
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </>
+            ) : null}
+
           <br></br>
           <div className="">
             <h1 className="text-center bg-indigo-100 text-xl font-semibold">Faculty Publications/Patents/Journals</h1>
