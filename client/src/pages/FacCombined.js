@@ -1,13 +1,13 @@
 import React, { useRef } from "react";
-import Sidebar from "../components/staffSide";
+import FtySidebar from "../components/FtySidebar";
 import ReactToPrint from "react-to-print";
-import { ComponentToPrint } from "./ComponentToPrint";
+import { ComponentToPrint } from "./FacultyPdf";
 import { useState } from "react";
 
-function StaffHome() {
+function Fac_Combined() {
   let componentRef = useRef();
   const [startDate, setStartDate] = useState("");
-  const [EndDate, setEndDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   var handleStartDateChange = (event) => {
     setStartDate(event.target.value);
@@ -67,42 +67,39 @@ function StaffHome() {
   return (
     <>
       <div className="absolute right-0 w-3/4 bg-gray-100 text-gray-900">
-        <Sidebar />
+        <FtySidebar />
         <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-          <div className="mt-4 flex flex-col">
-            Choose Start Date 
-          {/* </div> */}
-
-         <input
-            type="date"
-            value={startDate}
-            onChange={handleStartDateChange}
-            className="ml-2 rounded-md px-4 py-2 border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          />
-        <br></br>
-       Choose End Date
-          <input
-            type="date"
-            value={EndDate}
-            onChange={handleEndDateChange}
-            className="ml-2 rounded-md px-4 py-2 border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          />
-          </div>
-          <br></br>
-          {/* <div className="mt-4"> */}
+          <div className="mt-4">
+            Choose Start Date
+            <input
+              type="date"
+              value={startDate}
+              onChange={handleStartDateChange}
+              className="ml-2 rounded-md px-4 py-2 border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+            <br />
+            <br />
+            Choose End Date
+            <input
+              type="date"
+              value={endDate}
+              onChange={handleEndDateChange}
+              className="ml-2 rounded-md px-4 py-2 border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
             <ReactToPrint
-              trigger={() => <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full mb-3">Print this out!</button>}
+              trigger={() => <button>Print this out!</button>}
               content={() => componentRef.current}
               documentTitle="BOG MEETING DATA"
             />
-            <ComponentToPrint ref={componentRef} startDate={startDate} endDate={EndDate} />
+            <ComponentToPrint ref={componentRef} startDate={startDate} endDate={endDate} />
             <button onClick={handleDownloadPDFToDOC}>
               Convert and Download as DOC
             </button>
+          </div>
         </main>
       </div>
     </>
   );
 }
 
-export default StaffHome;
+export default Fac_Combined;

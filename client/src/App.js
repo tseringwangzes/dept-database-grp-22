@@ -7,6 +7,7 @@ import Otp from './pages/Otp';
 import Error from './pages/Error';
 import Headers from './components/Headers';
 import Headers1 from './components/Headers1';
+import Fac_Combined from './pages/FacCombined';
 
 import { Routes, Route } from "react-router-dom"
 import Awards from './pages/Awards';
@@ -68,6 +69,7 @@ import FtyPublicationCsv from './pages/FtyPublicationCsv';
 import FtyForeignCsv from './pages/FtyForeignCsv';
 import FtyProjectCsv from './pages/FtyProjectCsv';
 import StaffDeptInfo from './pages/Staff_dept_info';
+import StaffEditDeptInfo from './pages/StaffEditDeptInfo';
 import Editdept1 from './pages/Editdept1'
 
 import Admin from './pages/Admin';
@@ -115,6 +117,9 @@ function App() {
         <Route path='/StaffHome/StaffSeminar' element={<StaffSeminar />} />
         <Route path='/StaffHome/StaffReminder' element={<StaffReminder />} />
         <Route path='/StaffHome/StaffDeptInfo' element={<StaffDeptInfo />} />
+        <Route path='/StaffHome/StaffEditDeptInfo' element={<StaffEditDeptInfo />} />
+
+        <Route path='/StaffHome/StaffEditDeptInfo/Editdept1' element={<Editdept1 />} />
         <Route path='/StaffHome/StaffDeptInfo/Editdept1' element={<Editdept1 />} />
 
 
@@ -129,8 +134,8 @@ function App() {
         <Route path='/StaffHome/StaffFaculty/FtyAchievementAdd.js' element={<FtyAchievementAdd />} />
 
         <Route path='/StaffHome/StaffSeminar/SeminarsEdit.js/:id' element={<SeminarEdit />} />
-        <Route path='/StaffHome/StaffSeminar/SeminarAdd.js' element={<SeminarAdd />} />
-        <Route path='/StaffHome/StaffSeminar/FtySeminarsEdit.js/:id' element={<FtySeminarsEdit />} />
+        <Route path='/StaffHome/StaffSeminar/SeminarAdd.js' element={<SeminarAdd />} /> 
+        <Route path='/StaffHome/StaffSeminar/FtyAchievementsEdit.js/:id' element={<FtyAchievementsEdit />} />
         <Route path='/StaffHome/StaffSeminar/FtySeminarAdd.js' element={<FtySeminarAdd />} />
 
         <Route path='/StaffHome/StaffForeign/ForeignEdit.js/:id' element={<ForeignEdit />} />
@@ -144,7 +149,7 @@ function App() {
         <Route path='/StaffHome/StaffPublications/PublicationAdd.js' element={<PublicationAdd />} />
         <Route path='/StaffHome/StaffPublications/FtyPublicationAdd.js' element={<FtyPublicationAdd />} />
 
-
+      {/* <Route path='/StaffHome/Staff' */}
 
         <Route path='/StaffHome/StaffProject/ProjectsEdit.js/:id' element={<ProjectEdit />} />
         <Route path='/StaffHome/StaffProject/FtyProjectsEdit.js/:id' element={<FtyProjectsEdit />} />
@@ -168,6 +173,7 @@ function App() {
         <Route path='/faculty/foreign' element={<FtyForeign />} />
         <Route path='/faculty/Publications' element={<FtyPublications />} />
         <Route path='/faculty/Projects' element={<FtyProjects />} />
+        <Route path='/faculty/Fac_Combined' element={<Fac_Combined />} />
         <Route path='/faculty/Awards/FtyAwardsEdit.js/:id' element={<FtyAwardsEdit />} />
         <Route path='/faculty/Achievements/FtyAchievementsEdit.js/:id' element={<FtyAchievementsEdit />} />
         <Route path='/faculty/Seminars/FtySeminarsEdit.js/:id' element={<FtySeminarsEdit />} />

@@ -69,7 +69,7 @@ var email = localStorage.getItem('email');
                         institute:"",
                         additional_info:"",
                     });
-                    navigate("/StaffHome/StaffFaculty")
+                    navigate("/StaffHome/StaffSeminar")
                 }
                 else if(utype === "4"){
                     setFormFields({
@@ -105,8 +105,19 @@ var email = localStorage.getItem('email');
         return (
             <body className={signupStyle.rooted}>
                 <section className={signupStyle["form-container"]}>
-                    <h2 className={signupStyle["form-heading"]}> Add Invited Lectures By You</h2>
+                    <h2 className={signupStyle["form-heading"]}> Add Invited Lectures</h2>
                     <form style={{ fontSize: 15 }} onSubmit={handleSubmit}>
+                    <div className={signupStyle["form-item"]} id="faculty_name">
+                            <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Faculty Name</label>
+                            <input style={{ height: "30px" }} className={signupStyle.myInput}
+                                placeholder="Enter the Faculty name who gave the lecture"
+                                name="faculty_name"
+                                type="text"
+                                value={formFields.faculty_name}
+                                onChange={hanldeInputValueChange}
+                            />
+                        </div>
+
                         <div className={signupStyle["form-item"]} id="title">
                             <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Lecture Title</label>
                             <input style={{ height: "30px" }} className={signupStyle.myInput}
