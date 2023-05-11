@@ -18,7 +18,7 @@ function FtyApprove() {
   const [data, setUserData] = useState([]);
 
   const userGet = async () => {
-    const response = await userfunc();
+    const response = await userfunc("admin");
     if (response.status === 200) {
       setUserData(response.data)
       //  console.log(response.data)
@@ -116,7 +116,7 @@ function FtyApprove() {
 
   const [data3, setUserData3] = useState([]);
   const userGet3 = async () => {
-    const response = await st_publi();
+    const response = await st_publi("admin");
     if (response.status === 200) {
       setUserData3(response.data)
       console.log(response.data)
@@ -133,6 +133,10 @@ function FtyApprove() {
 
   const columns3 = React.useMemo(
     () => [
+      {
+        Header: " Student Name",
+        accessor: "student_name",
+      },
       {
         Header: " Topic",
         accessor: "topic",
@@ -198,7 +202,7 @@ function FtyApprove() {
 
   const [data4, setUserData4] = useState([]);
   const userGet4 = async () => {
-    const response = await stforvisits();
+    const response = await stforvisits("admin");
     if (response.status === 200) {
       setUserData4(response.data)
       console.log(response.data)
@@ -282,20 +286,20 @@ function FtyApprove() {
   }
 
   const [data5, setUserData5] = useState([]);
-  const userGet5 = async () => {
-    const response = await st_semi();
-    if (response.status === 200) {
-      setUserData5(response.data)
-      console.log(response.data)
-    } else {
-      console.log("error for get user data")
-    }
-  }
-  useEffect(() => {
-    userGet5();
-    setTimeout(() => {
-    }, 1200)
-  }, [])
+  // const userGet5 = async () => {
+  //   const response = await st_semi("admin");
+  //   if (response.status === 200) {
+  //     setUserData5(response.data)
+  //     console.log(response.data)
+  //   } else {
+  //     console.log("error for get user data")
+  //   }
+  // }
+  // useEffect(() => {
+  //   userGet5();
+  //   setTimeout(() => {
+  //   }, 1200)
+  // }, [])
 
 
   const columns5 = React.useMemo(
@@ -372,7 +376,7 @@ function FtyApprove() {
 
   const [data6, setUserData6] = useState([]);
   const userGet6 = async () => {
-    const response = await stproj();
+    const response = await stproj("admin");
     if (response.status === 200) {
       setUserData6(response.data)
       console.log(response.data)

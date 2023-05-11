@@ -21,7 +21,7 @@ const email = localStorage.getItem('email');
 
     const aTag=document.createElement("a");
     aTag.href=url;
-    aTag.setAttribute("download","Student_Publications");
+    aTag.setAttribute("download","Sample_Student_Publications");
     document.body.appendChild(aTag);
     aTag.click();
     aTag.remove();
@@ -35,7 +35,7 @@ const email = localStorage.getItem('email');
 
     const aTag=document.createElement("a");
     aTag.href=url2;
-    aTag.setAttribute("download","Faculty_Publications");
+    aTag.setAttribute("download","Sample_Faculty_Publications");
     document.body.appendChild(aTag);
     aTag.click();
     aTag.remove();

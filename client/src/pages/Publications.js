@@ -160,6 +160,7 @@ function Publications() {
     navigate("./StPublicationCsv" ,{state:{
       utype: utype,
       fname: data[0].faculty_name,
+      email:email,
    }})
    }
 
@@ -176,6 +177,7 @@ function Publications() {
      navigate("./StPublicationCsv" ,{state:{
       utype: utype,
       fname: data[0].faculty_name,
+      email:email,
    }})
     
     }
