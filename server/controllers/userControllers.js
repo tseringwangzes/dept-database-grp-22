@@ -1442,9 +1442,9 @@ exports.fty_publication_csv = async (req, res) => {
 exports.facultyeditpublication = async (req, res) => {
     const { title,author,type,title_publish,patent_no,accepted_date,published_date,assignee,impact_factor,additional_info,link,faculty_name} = req.body;
 
-    if (!title || !author || !type || !title_publish || !patent_no || !accepted_date || !published_date || !assignee || !impact_factor || !additional_info || !link || !faculty_name) {
-        res.status(400).json({ error: "Please Enter All Input Data" })
-    }
+    // if (!title || !author || !type || !title_publish || !patent_no || !accepted_date || !published_date || !assignee || !impact_factor || !additional_info || !faculty_name) {
+    //     res.status(400).json({ error: "Please Enter All Input Data" })
+    // }
     try {            
             const facultyeditpublication = new ft_publications({
                 title,author,type,title_publish,patent_no,accepted_date,published_date,assignee,impact_factor,
@@ -1471,9 +1471,9 @@ exports.facultyeditpublication = async (req, res) => {
 exports.facultyeditproject = async (req, res) => {
     const { title, start_date, dept, faculty_name, funding_agency, funds, ongoing, link } = req.body;
 
-    if (!title || !start_date || !dept || !faculty_name || !funding_agency || !funds || !ongoing || !link) {
-        res.status(400).json({ error: "Please Enter All Input Data" })
-    }
+ //   if (!title || !start_date || !dept || !faculty_name || !funding_agency || !funds || !ongoing || !link) {
+   //     res.status(400).json({ error: "Please Enter All Input Data" })
+    //}
     try {
         const facultyeditproject = new ft_projects({
             title, start_date, dept, faculty_name, funding_agency, funds, ongoing, link

@@ -356,7 +356,7 @@ const rows = data.map(user=>[user.student_name,user.faculty_name,user.award_name
         accessor: "author",
       },
       {
-        Header: "Publications/Journals/Patents",
+        Header: "Conference Name",
         accessor: "type",
       },
       {
@@ -364,7 +364,7 @@ const rows = data.map(user=>[user.student_name,user.faculty_name,user.award_name
         accessor: "title_publish",
       },
       {
-        Header: "Volume/Issue/Patent No.",
+        Header: "Page/Issue/Patent No.",
         accessor: "patent_no",
       },
       {

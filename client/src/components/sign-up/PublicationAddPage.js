@@ -175,7 +175,7 @@ if(utype === "1" || utype === "4"){
                     </div>
 
                     <div className={signupStyle["form-item"]} id="type">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Publications/Journals/Patents</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Conference Name</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the Publications/Journals/Patents"
                             name="type"
@@ -197,7 +197,7 @@ if(utype === "1" || utype === "4"){
                     </div>
 
                     <div className={signupStyle["form-item"]} id="patent_no">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Volume/Issue/Patent No.</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Page/Issue/Patent No.</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the Volume/Issue/Patent No."
                             name="patent_no"
@@ -318,7 +318,7 @@ else{
                     </div>
 
                     <div className={signupStyle["form-item"]} id="type">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Publications/Journals/Patents</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Conference Name</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the Publications/Journals/Patents"
                             name="type"
@@ -340,7 +340,7 @@ else{
                     </div>
 
                     <div className={signupStyle["form-item"]} id="patent_no">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Volume/Issue/Patent No.</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Page/Issue/Patent No.</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the Volume/Issue/Patent No."
                             name="patent_no"

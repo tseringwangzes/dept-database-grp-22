@@ -144,7 +144,7 @@ const email = localStorage.getItem('email');
         accessor: "author",
       },
       {
-        Header: "Publications/Journals/Patents",
+        Header: "Conference Name",
         accessor: "type",
       },
       {
@@ -152,7 +152,7 @@ const email = localStorage.getItem('email');
         accessor: "title_publish",
       },
       {
-        Header: "Volume/Issue/Patent No.",
+        Header: "Page/Issue/Patent No.",
         accessor: "patent_no",
       },
       {
