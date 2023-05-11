@@ -231,21 +231,21 @@ useEffect(() => {
   //   }, 1200)
   // }, [])
 
-  const [data9, setUserData9] = useState([]);
-   const userGet9 = async () => {
-      const response = await ft_foreign();
-      if (response.status === 200) {
-          setUserData9(response.data)
-           console.log(response.data)
-       } else {
-          console.log("error for get user data")
-      }
-  }
-   useEffect(() => {
-     userGet9();
-     setTimeout(() => {
-     }, 1200)
-  }, [])
+  // const [data9, setUserData9] = useState([]);
+  //  const userGet9 = async () => {
+  //     const response = await ft_foreign();
+  //     if (response.status === 200) {
+  //         setUserData9(response.data)
+  //          console.log(response.data)
+  //      } else {
+  //         console.log("error for get user data")
+  //     }
+  // }
+  //  useEffect(() => {
+  //    userGet9();
+  //    setTimeout(() => {
+  //    }, 1200)
+  // }, [])
 
   // const [data10, setUserData10] = useState([]);
   // const userGet10 = async () => {
@@ -303,7 +303,7 @@ useEffect(() => {
   // const Filtered6 = data6.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
   // const Filtered7 = data7.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
   // const Filtered8 = data8.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
-   const Filtered9 = data9.filter(item=>new Date(item.start_date) >= Date1 && new Date(item.start_date)<=Date2)
+  //  const Filtered9 = data9.filter(item=>new Date(item.start_date) >= Date1 && new Date(item.start_date)<=Date2)
   // const Filtered10 = data10.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
   // const Filtered11 = data11.filter(item=>new Date(item.published_date) >= Date1 && new Date(item.published_date)<=Date2)
   // const Filtered12 = data12.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
