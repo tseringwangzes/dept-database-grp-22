@@ -119,6 +119,7 @@ function App() {
         <Route path='/StaffHome/StaffDeptInfo' element={<StaffDeptInfo />} />
         <Route path='/StaffHome/StaffEditDeptInfo' element={<StaffEditDeptInfo />} />
 
+        <Route path='/StaffHome/StaffEditDeptInfo/Editdept1' element={<Editdept1 />} />
         <Route path='/StaffHome/StaffDeptInfo/Editdept1' element={<Editdept1 />} />
 
 

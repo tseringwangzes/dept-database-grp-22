@@ -17,14 +17,9 @@ export const SidebarData = [
         link:"/StaffHome"
     },
     {
-        title:"Print Department Information",
+        title:"Department Information",
         icon:<FontAwesomeIcon icon={faHome} />,
         link:"StaffHome/StaffDeptInfo"
-    },
-    {
-        title:"Edit Department Information",
-        icon:<EditNoteIcon/>,
-        link:"StaffHome/StaffEditDeptInfo"
     },
     {
         title:"Awards/Achievements",
