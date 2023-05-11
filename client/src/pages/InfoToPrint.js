@@ -115,8 +115,8 @@ export const InfoToPrint = React.forwardRef(({ startDate, endDate }, ref) => {
   const ug = data.map((item) => item.num_ug_lab)
   const pg = data.map((item) => item.num_pg_lab)
   const re = data.map((item) => item.num_research_lab)
-
-
+  var ftycount
+  var pubcount
   const [documents, setDocuments] = useState([]);
 
   useEffect(() => {
@@ -132,7 +132,8 @@ export const InfoToPrint = React.forwardRef(({ startDate, endDate }, ref) => {
 
     fetchDocuments();
   }, []);
-
+  ftycount=documents.length;
+  console.log(ftycount);
   const [data1, setUserData1] = useState([]);
   let sortedData1 = data;
   const userGet1 = async () => {
@@ -272,7 +273,6 @@ export const InfoToPrint = React.forwardRef(({ startDate, endDate }, ref) => {
     setTimeout(() => {
     }, 1200)
   }, [])
-
   const Filtered1 = data1.filter(item => new Date(item.date) >= Date1 && new Date(item.date) <= Date2)
   const Filtered2 = data2.filter(item => new Date(item.date) >= Date1 && new Date(item.date) <= Date2)
   const Filtered4 = data4.filter(item => new Date(item.date) >= Date1 && new Date(item.date) <= Date2)
@@ -280,7 +280,8 @@ export const InfoToPrint = React.forwardRef(({ startDate, endDate }, ref) => {
   const Filtered5 = data5.filter(item => new Date(item.start_date) >= Date1 && new Date(item.start_date) <= Date2)
   const Filtered6 = data6.filter(item => new Date(item.start_date) >= Date1 && new Date(item.start_date) <= Date2)
   const Filtered7 = data7.filter(item => new Date(item.start_date) >= Date1 && new Date(item.start_date) <= Date2)
-
+  const Filtered8 = data8.filter(item => new Date(item.accepted_date) >= Date1 && new Date(item.accepted_date) <= Date2)
+  pubcount = Filtered8.length;
   return (
     <div ref={ref} class="border border-black p-3">
       <br></br>
@@ -331,7 +332,7 @@ export const InfoToPrint = React.forwardRef(({ startDate, endDate }, ref) => {
       <br></br>
       <div class="row">
         <div class="col-md-4 font-bold">Number of Faculty Members</div>
-        <div class="col-md-8">left</div>
+        <div class="col-md-8">: {ftycount}</div>
       </div>
       <br></br>
       <div class="row">
@@ -353,13 +354,12 @@ export const InfoToPrint = React.forwardRef(({ startDate, endDate }, ref) => {
       <br></br>
       <div class="row">
         <div class="col-md-4 font-bold">No. Of Publications</div>
-        <div class="col-md-8">left</div>
+        <div class="col-md-8">: {pubcount}</div>
       </div>
       <br></br>
       <div class="row">
         <div class="col-md-4 font-bold">FACULTY MEMBERS </div>
-        <div class="col-md-8">(Names should be in alphabetical order) (Attach photographs separately)
-        </div>
+        <div class="col-md-8">(Attached photographs separately)</div>
       </div>
       <br></br>
       
@@ -620,7 +620,7 @@ export const InfoToPrint = React.forwardRef(({ startDate, endDate }, ref) => {
       <br></br>
       <div>
         <ul>
-          {data8.map((row, index) => (
+          {Filtered8.map((row, index) => (
             <li key={index}>{index+1}. {row.author}, {row.title},{row.type},{row.title_publish}, (patent no.={row.patent_no},impact factor={row.impact_factor},DOI number={row.assignee})
             </li>
           ))}
