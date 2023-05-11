@@ -68,7 +68,8 @@ import FtySeminarCsv from './pages/FtySeminarCsv';
 import FtyPublicationCsv from './pages/FtyPublicationCsv';
 import FtyForeignCsv from './pages/FtyForeignCsv';
 import FtyProjectCsv from './pages/FtyProjectCsv';
-// import StaffDeptInfo from './pages/Staff_dept_info';
+import StaffDeptInfo from './pages/Staff_dept_info';
+import StaffEditDeptInfo from './pages/StaffEditDeptInfo';
 import Editdept1 from './pages/Editdept1'
 
 import Admin from './pages/Admin';
@@ -115,7 +116,10 @@ function App() {
         <Route path='/StaffHome/StaffPublications' element={<StaffPublications />} />
         <Route path='/StaffHome/StaffSeminar' element={<StaffSeminar />} />
         <Route path='/StaffHome/StaffReminder' element={<StaffReminder />} />
-        {/* <Route path='/StaffHome/StaffDeptInfo' element={<StaffDeptInfo />} /> */}
+        <Route path='/StaffHome/StaffDeptInfo' element={<StaffDeptInfo />} />
+        <Route path='/StaffHome/StaffEditDeptInfo' element={<StaffEditDeptInfo />} />
+
+        <Route path='/StaffHome/StaffEditDeptInfo/Editdept1' element={<Editdept1 />} />
         <Route path='/StaffHome/StaffDeptInfo/Editdept1' element={<Editdept1 />} />
 
 

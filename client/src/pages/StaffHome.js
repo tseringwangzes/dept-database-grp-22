@@ -69,7 +69,7 @@ function StaffHome() {
       <div className="absolute right-0 w-3/4 bg-gray-100 text-gray-900">
         <Sidebar />
         <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-          <div className="mt-4">
+          <div className="mt-4 flex flex-col">
             Choose Start Date 
           {/* </div> */}
 
@@ -80,7 +80,6 @@ function StaffHome() {
             className="ml-2 rounded-md px-4 py-2 border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
         <br></br>
-        <br></br>
        Choose End Date
           <input
             type="date"
@@ -88,10 +87,11 @@ function StaffHome() {
             onChange={handleEndDateChange}
             className="ml-2 rounded-md px-4 py-2 border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
-          
+          </div>
+          <br></br>
           {/* <div className="mt-4"> */}
             <ReactToPrint
-              trigger={() => <button>Print this out!</button>}
+              trigger={() => <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full mb-3">Print this out!</button>}
               content={() => componentRef.current}
               documentTitle="BOG MEETING DATA"
             />
@@ -99,7 +99,6 @@ function StaffHome() {
             <button onClick={handleDownloadPDFToDOC}>
               Convert and Download as DOC
             </button>
-          </div>
         </main>
       </div>
     </>
