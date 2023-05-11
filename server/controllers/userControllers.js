@@ -123,15 +123,16 @@ exports.userOtpSend = async (req, res) => {
                 }
 
 
-                tarnsporter.sendMail(mailOptions, (error, info) => {
-                    if (error) {
-                        console.log("error", error);
-                        res.status(400).json({ error: "Email not send" })
-                    } else {
-                        console.log("Email sent", info.response);
-                        res.status(200).json({ message: "Email sent Successfully" })
-                    }
-                })
+                // tarnsporter.sendMail(mailOptions, (error, info) => {
+                //     if (error) {
+                //         console.log("error", error);
+                //         res.status(400).json({ error: "Email not send" })
+                //     } else {
+                //         console.log("Email sent", info.response);
+                //         res.status(200).json({ message: "Email sent Successfully" })
+                //     }
+                // })
+                res.status(200).json({ message: "Email sent Successfully" })//remove this
 
             } else {
 
@@ -149,15 +150,16 @@ exports.userOtpSend = async (req, res) => {
                 }
 
 
-                tarnsporter.sendMail(mailOptions, (error, info) => {
-                    if (error) {
-                        console.log("error", error);
-                        res.status(400).json({ error: "email not send" })
-                    } else {
-                        console.log("Email sent", info.response);
-                        res.status(200).json({ message: "Email sent Successfully" })
-                    }
-                })
+                // tarnsporter.sendMail(mailOptions, (error, info) => {
+                //     if (error) {
+                //         console.log("error", error);
+                //         res.status(400).json({ error: "email not send" })
+                //     } else {
+                //         console.log("Email sent", info.response);
+                //         res.status(200).json({ message: "Email sent Successfully" })
+                //     }
+                // })
+                res.status(200).json({ message: "Email sent Successfully" })//remove this
             }
         } else {
             res.status(400).json({ error: "User Does Not Exist" })
@@ -842,7 +844,12 @@ exports.facultyHome = async (req, res) => {
         }
 
         const doc = await users.findOne({ email: email })
-        const name = doc.fname
+        let name
+        if (doc) {
+             name = doc.fname
+        } else {
+             name = email
+        }
 
         count[6] = name;
         //console.log(count);
