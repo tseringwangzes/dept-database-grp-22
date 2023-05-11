@@ -108,7 +108,7 @@ function Publications() {
       },
      
       {
-        Header: "Publish Date",
+        Header: "Published Date",
         accessor: "published_date",
        
       },
@@ -256,10 +256,10 @@ function Publications() {
     doc.setFont("helvetica", "normal");
     doc.text("PhD, CSE", 72, 70);
     
-    const columns = [["Topic", "Published Date", "Accepted Date","Collaboration with","No. Of Students","Status"]];
+    const columns = [["Title", "Authors","Title of Journal","Volume/Issue/Patent No.", "Accepted Date","Published Date","DOI/ISBN/Assignee","Impact Factor"]];
     const filteredData = data.filter(item => item.student_name === email);
 
-const rows = filteredData.map(user=>[user.topic,user.published_date,user.accepted_date,user.collaboration,user.no_of_students,user.status]);
+const rows = filteredData.map(user=>[user.title,user.author,user.title_publish,user.patent_no,user.accepted_date,user.published_date,user.assignee,user.impact_factor]);
     doc.autoTable({
       head: columns,
       body: rows,
