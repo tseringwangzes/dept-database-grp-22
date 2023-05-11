@@ -4,6 +4,7 @@ import { ft_projects } from '../services/Apis'
 import FtyTablesProjects, { StatusPill } from "../tables/FtyTablesProjects";
 import FtySidebar from "../components/FtySidebar";
 import jsPDF from 'jspdf';
+import {ft_home} from '../services/Apis';
 
 function FtyProjects() {
   const utype = "0";
@@ -11,9 +12,30 @@ function FtyProjects() {
   const [showModal, setShowModal] = useState(false);
   const [showModaldelete, setShowModaldelete] = useState(false);
   const [did, setdid] = useState("");
-
+  const [stData, setData] = useState([]);
 
   const url='http://localhost:3000/Fty_Project_Header.csv'
+
+  useEffect(() => {
+    const fetchData = async (e) => {
+      try {
+        
+        const response = await ft_home(email);
+        
+        setData(response.data)
+        //console.log(response.data);
+        //console.log(ftData);
+       // console.log('react');
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    if (email) {
+      fetchData();
+    }
+    fetchData();
+  }, [email]);
+
 
   const navigate = useNavigate();
   var email = localStorage.getItem('email');
@@ -196,7 +218,7 @@ function FtyProjects() {
       doc.text("Faculty Name", 20, 60);
       doc.text(":", 70, 60);
       doc.setFont("helvetica", "normal");
-      doc.text("Dr. Puneet Goyal", 72, 60);
+      doc.text(stData[6], 72, 60);
       doc.setFont("helvetica", "bold");
       doc.text("Faculty Email", 20, 65);
       doc.text(": ", 70, 65);
@@ -225,7 +247,7 @@ function FtyProjects() {
     const formattedDate = `${formattedDay}-${formattedMonth}-${year}`;
   
     // save PDF with formatted date in filename
-    const filename = `${formattedDate}-${email}-ProjectGrants.pdf`;
+    const filename = `${formattedDate}_${stData[6]}_ProjectGrants.pdf`;
     doc.save(filename);
       // add image to PDF here
     });

@@ -5,6 +5,7 @@ import FtyTablesSeminars, { StatusPill } from "../tables/FtyTablesSeminars";
 import FtySidebar from "../components/FtySidebar";
 import { useLocation } from 'react-router-dom';
 import jsPDF from 'jspdf';
+import {ft_home} from '../services/Apis';
 
 function FtySeminars() {
   const utype= "0";
@@ -13,8 +14,29 @@ function FtySeminars() {
   const [showModal, setShowModal] = useState(false);
   const [showModaldelete, setShowModaldelete] = useState(false);
   const [did, setdid] = useState("");
- 
+  const [stData, setData] = useState([]);
   const url='http://localhost:3000/Fty_Seminar_Header.csv'
+
+  useEffect(() => {
+    const fetchData = async (e) => {
+      try {
+        
+        const response = await ft_home(email);
+        
+        setData(response.data)
+        //console.log(response.data);
+        //console.log(ftData);
+       // console.log('react');
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    if (email) {
+      fetchData();
+    }
+    fetchData();
+  }, [email]);
+
 
 
   console.log(email)
@@ -205,7 +227,7 @@ function FtySeminars() {
     doc.text("Faculty Name", 20, 60);
     doc.text(":", 70, 60);
     doc.setFont("helvetica", "normal");
-    doc.text("Dr. Puneet Goyal", 72, 60);
+    doc.text(stData[6], 72, 60);
     doc.setFont("helvetica", "bold");
     doc.text("Faculty Email", 20, 65);
     doc.text(": ", 70, 65);
@@ -235,7 +257,7 @@ const rows = data.map(user=>[user.speaker,user.title,user.designation,user.date,
    const formattedDate = `${formattedDay}-${formattedMonth}-${year}`;
  
    // save PDF with formatted date in filename
-   const filename = `${formattedDate}-LecturesByExperts.pdf`;
+   const filename = `${formattedDate}_${stData[6]}_LecturesByExperts.pdf`;
    doc.save(filename);
 
     // add image to PDF here

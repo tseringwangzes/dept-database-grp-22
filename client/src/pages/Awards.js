@@ -269,7 +269,7 @@ console.log(data[0].faculty_name)
    const formattedDate = `${formattedDay}-${formattedMonth}-${year}`;
  
    // save PDF with formatted date in filename
-   const filename = `${formattedDate}-${email}.pdf`;
+   const filename = `${formattedDate}-${stData[6]}-Awards.pdf`;
    doc.save(filename);
 
     // add image to PDF here
