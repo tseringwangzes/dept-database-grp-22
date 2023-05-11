@@ -197,6 +197,7 @@ console.log(data[0].faculty_name)
   navigate("./StAwardCsv" ,{state:{
     utype: utype,
     fname: data[0].faculty_name,
+    email: email,
  }})
 
 }

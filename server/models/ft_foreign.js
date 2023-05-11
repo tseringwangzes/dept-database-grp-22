@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 const ftforeign = new mongoose.Schema({
     faculty_name:String,
-    
     start_date: String,
     end_date: String,
     country: String,
