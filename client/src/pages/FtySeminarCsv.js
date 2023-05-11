@@ -44,10 +44,10 @@ function FtySeminarCsv(){
           alert("sucessfully uploaded!");
           if(utype==='0'){
             navigate('/faculty/Seminars');}
-            else if(utype==='1' || utype==='4'){
+            else if( utype==='4'){
               navigate('/Admin/AdminSeminar');
             }
-            else if(utype==='2'){
+            else if(utype==='1'){
               navigate('/StaffHome/StaffSeminar');
             }
 

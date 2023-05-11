@@ -92,9 +92,9 @@ function Fac_Combined() {
               documentTitle="BOG MEETING DATA"
             />
             <ComponentToPrint ref={componentRef} startDate={startDate} endDate={endDate} />
-            <button onClick={handleDownloadPDFToDOC}>
+            {/* <button onClick={handleDownloadPDFToDOC}>
               Convert and Download as DOC
-            </button>
+            </button> */}
           </div>
         </main>
       </div>

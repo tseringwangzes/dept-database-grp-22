@@ -20,6 +20,11 @@ const Register = () => {
 
   // setinputvalue
   const handleChange = (e)=>{
+    if(e.target.name==="email"){
+      const name = e.target.name;
+      const value=e.target.value.toLowerCase();
+      setInputdata({...inputdata,[name]:value})
+    }
     const {name,value} = e.target;
     setInputdata({...inputdata,[name]:value})
   }
@@ -84,10 +89,10 @@ const Register = () => {
               <label className = {registerStyle.myLabel} htmlFor="email">Email</label>
               <input className = {registerStyle.myData} type="email" name="email" id=""  onChange={handleChange}  placeholder='Enter User Email Address' />
             </div>
-            <div className={registerStyle.form_input}>
+            {/* <div className={registerStyle.form_input}>
               <label className = {registerStyle.myLabel} htmlFor="email">Your Faculty Email</label>
               <input className = {registerStyle.myData} type="email" name="email" id=""  onChange={handleChange}  placeholder='Enter Your Faculty Email' />
-            </div>
+            </div> */}
             {/* <div className={registerStyle.form_input}>
               <label className = {registerStyle.myLabel} htmlFor="password">Password</label>
               <div className={registerStyle.two}>
