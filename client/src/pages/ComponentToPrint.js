@@ -6,9 +6,9 @@ import { ft_achievements } from '../services/Apis';
 import { ft_seminars } from '../services/Apis';
 
 export const ComponentToPrint = React.forwardRef(({startDate,endDate}, ref) => {
-  console.log(`Chosen start date: ${startDate}\nChosen end date: ${endDate}`);
-  const Date1 = new Date(startDate);
-  const Date2 = new Date(endDate);
+ // console.log(`Chosen start date: ${startDate}\nChosen end date: ${endDate}`);
+  const Date1 = new Date('2023-05-01');
+  const Date2 = new Date('2023-05-30');
   const email = "admin"
 // const[temp,setTemp] = useState([])
  
@@ -43,17 +43,18 @@ export const ComponentToPrint = React.forwardRef(({startDate,endDate}, ref) => {
             student_name: studentName
           };
         } else {
+          console.log(item)
           return item;
         }
       })
     );
-  
+      console.log(modifiedArray)
     return modifiedArray;
   };
   
   
   const getFName = async (emailID) => {
-    console.log('email=', emailID);
+    //console.log('email=', emailID);
     
     // Check if emailID is a valid email address
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -64,12 +65,12 @@ export const ComponentToPrint = React.forwardRef(({startDate,endDate}, ref) => {
     
     const res = await ft_home(emailID);
     const myName = res.data[6];
-    console.log('my name is ', myName);
+   // console.log('my name is ', myName);
     return myName;
   };
   
   const getSName = async (emailID) => {
-    console.log('email=', emailID);
+    console.log('student email=', emailID);
     
     // Check if emailID is a valid email address
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
