@@ -3,14 +3,19 @@ const mongoose = require("mongoose");
 const ftpublications = new mongoose.Schema({
     faculty_name:String,
     title: String,
-    author: String,
-    type: String,
+    author: String, 
+    type: String, 
     title_publish:String,
+
     patent_no:String,
+
     accepted_date: String,
     published_date: String,
+
     assignee: String,
+
     impact_factor: String,
+    
     additional_info: String,
     link: String,
    

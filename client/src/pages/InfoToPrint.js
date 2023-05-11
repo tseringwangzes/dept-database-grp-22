@@ -1,10 +1,12 @@
-import { deptgetallinfo } from '../services/Apis'
+import { deptgetallinfo, ft_projects, ft_publications } from '../services/Apis'
 import { st_home, ft_home } from '../services/Apis'
 import React, { useEffect, useState } from "react";
 import { ft_awards } from '../services/Apis';
 import { userfunc } from '../services/Apis'
 import { ft_achievements } from '../services/Apis';
-import { ft_seminars,ft_foreign } from '../services/Apis';
+import { ft_seminars, ft_foreign, stforvisits } from '../services/Apis';
+// import FacDetails from './FacDetails';
+import { ftDept } from '../services/Apis';
 
 
 export const InfoToPrint = React.forwardRef(({ startDate, endDate }, ref) => {
@@ -75,14 +77,12 @@ export const InfoToPrint = React.forwardRef(({ startDate, endDate }, ref) => {
       console.log('Invalid email address');
       return emailID;
     }
-
+    console.log('email=', emailID)
     const res = await st_home(emailID);
     const myName = res.data[6];
     console.log('stu name ', myName);
     return myName;
   };
-
-
 
   const [data, setUserData] = useState([]);
 
@@ -117,6 +117,22 @@ export const InfoToPrint = React.forwardRef(({ startDate, endDate }, ref) => {
   const re = data.map((item) => item.num_research_lab)
 
 
+  const [documents, setDocuments] = useState([]);
+
+  useEffect(() => {
+    const fetchDocuments = async () => {
+      try {
+        const res = await ftDept();
+        setDocuments(res.data);
+        console.log(res.data);
+      } catch (error) {
+        console.error('Error fetching documents:', error);
+      }
+    };
+
+    fetchDocuments();
+  }, []);
+
   const [data1, setUserData1] = useState([]);
   let sortedData1 = data;
   const userGet1 = async () => {
@@ -142,16 +158,14 @@ export const InfoToPrint = React.forwardRef(({ startDate, endDate }, ref) => {
       const temp = response.data;
       const temp2 = await handleSArray(temp);
       setUserData2(temp2);
-        sortedData2 = data.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+      sortedData2 = data.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
     } else {
-      console.log("error for get user data")
+      console.log("error for get user data");
     }
-  }
+  };
   useEffect(() => {
     userGet2();
-    setTimeout(() => {
-    }, 1200)
-  }, [])
+  }, []);
 
   const [data4, setUserData4] = useState([]);
   const userGet4 = async () => {
@@ -187,30 +201,85 @@ export const InfoToPrint = React.forwardRef(({ startDate, endDate }, ref) => {
     }, 1200)
   }, [])
 
-  // const [data5, setUserData5] = useState([]);
-  // const userGet5 = async () => {
-  //   const response = await ft_foreign(email);
-  //   if (response.status === 200) {
-  //     const temp = response.data;
-  //     const temp2 = await handleFArray(temp);
-  //     setUserData5(temp2);
-  //     //console.log(response.data)
-  //   } else {
-  //     console.log("error for get user data")
-  //   }
-  // }
-  // useEffect(() => {
-  //   userGet5();
-  //   setTimeout(() => {
-  //   }, 1200)
-  // }, [])
+  const [data5, setUserData5] = useState([]);
+  const userGet5 = async () => {
+    const response = await ft_foreign(email);
+    if (response.status === 200) {
+      const temp = response.data;
+      const temp2 = await handleFArray(temp);
+      setUserData5(temp2);
+      console.log(response.data)
+    } else {
+      console.log("error for get user data")
+    }
+  }
+  useEffect(() => {
+    userGet5();
+    setTimeout(() => {
+    }, 1200)
+  }, [])
 
+  const [data6, setUserData6] = useState([]);
+  const userGet6 = async () => {
+    const response = await stforvisits(email);
+    if (response.status === 200) {
+      const temp = response.data;
+      const temp2 = await handleSArray(temp);
+      setUserData6(temp2);
+      console.log(response.data)
+    } else {
+      console.log("error for get user data")
+    }
+  }
+  useEffect(() => {
+    userGet6();
+    setTimeout(() => {
+    }, 1200)
+  }, [])
+
+  const [data7, setUserData7] = useState([]);
+  const userGet7 = async () => {
+    const response = await ft_projects(email);
+    if (response.status === 200) {
+      const temp = response.data;
+      const temp2 = await handleFArray(temp);
+      setUserData7(temp2);
+      console.log(response.data)
+    } else {
+      console.log("error for get user data")
+    }
+  }
+  useEffect(() => {
+    userGet7();
+    setTimeout(() => {
+    }, 1200)
+  }, [])
+
+  const [data8, setUserData8] = useState([]);
+  const userGet8 = async () => {
+    const response = await ft_publications(email);
+    if (response.status === 200) {
+      const temp = response.data;
+      const temp2 = await handleFArray(temp);
+      setUserData8(temp2);
+      console.log(response.data)
+    } else {
+      console.log("error for get user data")
+    }
+  }
+  useEffect(() => {
+    userGet8();
+    setTimeout(() => {
+    }, 1200)
+  }, [])
 
   const Filtered1 = data1.filter(item => new Date(item.date) >= Date1 && new Date(item.date) <= Date2)
-  const Filtered2 = data2.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
-  const Filtered4 = data4.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
-  const Filtered3 = data3.filter(item=>new Date(item.date) >= Date1 && new Date(item.date)<=Date2)
-  // const Filtered5 = data5.filter(item=>new Date(item.start_date) >= Date1 && new Date(item.start_date)<=Date2)
+  const Filtered2 = data2.filter(item => new Date(item.date) >= Date1 && new Date(item.date) <= Date2)
+  const Filtered4 = data4.filter(item => new Date(item.date) >= Date1 && new Date(item.date) <= Date2)
+  const Filtered3 = data3.filter(item => new Date(item.date) >= Date1 && new Date(item.date) <= Date2)
+  const Filtered5 = data5.filter(item => new Date(item.start_date) >= Date1 && new Date(item.start_date) <= Date2)
+  const Filtered6 = data6.filter(item => new Date(item.start_date) >= Date1 && new Date(item.start_date) <= Date2)
+  const Filtered7 = data7.filter(item => new Date(item.start_date) >= Date1 && new Date(item.start_date) <= Date2)
 
   return (
     <div ref={ref} class="border border-black p-3">
@@ -293,9 +362,35 @@ export const InfoToPrint = React.forwardRef(({ startDate, endDate }, ref) => {
         </div>
       </div>
       <br></br>
+      
 
+      <div className='container'>
+      <ul>
+        {documents.map((document) => (
+          <li key={document._id} className="my-4 card">
+            <div className='row'>
+            <div className="col-md-6 align-items-center justify-content-center">
+            <img
+                src={document.image}
+                alt={document.fname}
+                className="w-32 h-32 mt-4 mx-auto my-auto"
+              />
+              </div>
+              <div className="col-md-6">
+              <p className="text-blue-500">
+                Weblink: <a href={document.webLink}>{document.webLink}</a>
+              </p>
+              <p className="text-gray-600">Email: {document.email_id}</p>
+              <p className="text-gray-600">PhD: {document.phD}</p>
+              <p className="text-gray-600">Research: {document.research}</p>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
 
-      <div className="container">
+      {/* <div className="container">
         <div className="row">
           <div className="col-md-6 align-items-center justify-content-center">
             <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg" alt="Faculty Photograph" className="my-auto" />
@@ -307,7 +402,7 @@ export const InfoToPrint = React.forwardRef(({ startDate, endDate }, ref) => {
             <p>Research Interests:</p>
           </div>
         </div>
-      </div>
+      </div> */}
       <br></br>
       <div class="font-bold">Ongoing Activities</div>
       <div>Teaching and Research in various aspects of Computer Science and Engineering.</div>
@@ -355,23 +450,23 @@ export const InfoToPrint = React.forwardRef(({ startDate, endDate }, ref) => {
 
       <br></br>
       <div className="bg-indigo-100 text-l font-semibold">
-      AWARDS AND HONORS (students)
+        AWARDS AND HONORS (students)
       </div>
       <br></br>
       {/* <div className="d-flex justify-content-center"> */}
       <table>
         <thead>
           <tr>
-          <th className="border border-black p-2">Sr. No.</th>
+            <th className="border border-black p-2">Sr. No.</th>
             <th className="border border-black p-2">Student Name</th>
             <th className="border border-black p-2">Award Details</th>
             <th className="border border-black p-2">Additional Information</th>
           </tr>
         </thead>
         <tbody>
-          {Filtered2.map((item,index) => (
+          {Filtered2.map((item, index) => (
             <tr key={index}>
-              <td className="border border-black p-2">{index+1}</td>
+              <td className="border border-black p-2">{index + 1}</td>
               <td className="border border-black p-2"> {item.student_name}</td>
               <td className="border border-black p-2">{item.award_name}</td>
               <td className="border border-black p-2">{item.additional_info}</td>
@@ -382,13 +477,13 @@ export const InfoToPrint = React.forwardRef(({ startDate, endDate }, ref) => {
 
       <br></br>
       <div className="bg-indigo-100 text-l font-semibold">
-      INVITED LECTURES BY FACULTY
+        INVITED LECTURES BY FACULTY
       </div>
       <br></br>
       <table>
         <thead>
           <tr>
-          <th className="border border-black p-2">Sr. No.</th>
+            <th className="border border-black p-2">Sr. No.</th>
             <th className="border border-black p-2">Faculty Name</th>
             <th className="border border-black p-2">Lecture Title</th>
             <th className="border border-black p-2">Department</th>
@@ -397,18 +492,18 @@ export const InfoToPrint = React.forwardRef(({ startDate, endDate }, ref) => {
           </tr>
         </thead>
         <tbody>
-          {Filtered4.map((item,index) => (
+          {Filtered4.map((item, index) => (
             <tr key={index}>
-              <td className="border border-black p-2"> {index+1}</td>
+              <td className="border border-black p-2"> {index + 1}</td>
               <td className="border border-black p-2">{item.faculty_name}</td>
               <td className="border border-black p-2">{item.title}</td>
               <td className="border border-black p-2">{item.dept}</td>
-              <td className="border border-black p-2">{item.institute}</td>     
-              <td className="border border-black p-2">{item.date}</td>         
+              <td className="border border-black p-2">{item.institute}</td>
+              <td className="border border-black p-2">{item.date}</td>
             </tr>
           ))}
         </tbody>
-      </table>  
+      </table>
       <br></br>
       <div className="bg-indigo-100 text-l font-semibold">
         LECTURES BY VISITING EXPERTS
@@ -417,8 +512,8 @@ export const InfoToPrint = React.forwardRef(({ startDate, endDate }, ref) => {
       <table>
         <thead>
           <tr>
-          <th className="border border-black p-2">Sr. No.</th>
-          <th className='border border-black p-2'>Name of the department</th>
+            <th className="border border-black p-2">Sr. No.</th>
+            <th className='border border-black p-2'>Name of the department</th>
             <th className="border border-black p-2">Name of visitor,designation and institute/organization</th>
             <th className="border border-black p-2">Purpose</th>
             <th className="border border-black p-2">Date</th>
@@ -426,9 +521,9 @@ export const InfoToPrint = React.forwardRef(({ startDate, endDate }, ref) => {
           </tr>
         </thead>
         <tbody>
-          {Filtered3.map((item,index) => (
+          {Filtered3.map((item, index) => (
             <tr key={index}>
-              <td className="border border-black p-2"> {index+1}</td>
+              <td className="border border-black p-2"> {index + 1}</td>
               <td className="border border-black p-2">{item.dept}</td>
               <td className="border border-black p-2">{item.speaker},{item.designation},{item.institute}</td>
               <td className="border border-black p-2">{item.title}</td>
@@ -447,23 +542,91 @@ export const InfoToPrint = React.forwardRef(({ startDate, endDate }, ref) => {
       <table>
         <thead>
           <tr>
-          <th className="border border-black p-2">Sr. No.</th>
-          <th className='border border-black p-2'>Name of the faculty member</th>
+            <th className="border border-black p-2">Sr. No.</th>
+            <th className='border border-black p-2'>Name of the faculty member</th>
             <th className="border border-black p-2">Country</th>
             <th className="border border-black p-2">Detail of visit with date</th>
           </tr>
         </thead>
         <tbody>
-          {Filtered1.map((item,index) => (
+          {Filtered5.map((item, index) => (
             <tr key={index}>
-              <td className="border border-black p-2"> {index+1}</td>
+              <td className="border border-black p-2"> {index + 1}</td>
               <td className="border border-black p-2">{item.faculty_name}</td>
+              <td className="border border-black p-2">{item.country}</td>
+              <td className="border border-black p-2">{item.visit_details}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <br></br>
+      <div className="bg-indigo-100 text-l font-semibold">
+        FOREIGN VISITS BY STUDENTS
+      </div>
+      <br></br>
+      <table>
+        <thead>
+          <tr>
+            <th className="border border-black p-2">Sr. No.</th>
+            <th className='border border-black p-2'>Name of the Student</th>
+            <th className="border border-black p-2">Country</th>
+            <th className="border border-black p-2">Detail of visit with date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Filtered6.map((item, index) => (
+            <tr key={index}>
+              <td className="border border-black p-2"> {index + 1}</td>
+              <td className="border border-black p-2">{item.student_name}</td>
               <td className="border border-black p-2">{item.country}</td>
               <td className="border border-black p-2">{item.visit_details},from {item.start_date} to {item.end_date}</td>
             </tr>
           ))}
         </tbody>
       </table>
+      <br></br>
+      <div className="bg-indigo-100 text-l font-semibold">
+        MAJOR RESEARCH PROJECTS (Ongoing/Completed)
+      </div>
+      <br></br>
+      <table>
+        <thead>
+          <tr>
+            <th className="border border-black p-2">Sr. No.</th>
+            <th className='border border-black p-2'>Funding Agency</th>
+            <th className="border border-black p-2">Name of Faculty Member</th>
+            <th className="border border-black p-2">Department</th>
+            <th className="border border-black p-2">Title of Project</th>
+            <th className="border border-black p-2">Funds</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Filtered7.map((item, index) => (
+            <tr key={index}>
+              <td className="border border-black p-2"> {index + 1}</td>
+              <td className="border border-black p-2">{item.funding_agency}</td>
+              <td className="border border-black p-2">{item.faculty_name}</td>
+              <td className="border border-black p-2">{item.dept}</td>
+              <td className="border border-black p-2">{item.title}</td>
+              <td className="border border-black p-2">{item.funds}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <br></br>
+      <div className="bg-indigo-100 text-l font-semibold">
+        PUBLICATIONS/CONFERENCES/JOURNALS/BOOKS PUBLISHED/BOOKS EDITED IN IEEE FORMAT
+      </div>
+      <br></br>
+      <div>
+        <ul>
+          {data8.map((row, index) => (
+            <li key={index}>{index+1}. {row.author}, {row.title},{row.type},{row.title_publish}, (patent no.={row.patent_no},impact factor={row.impact_factor},DOI number={row.assignee})
+            </li>
+          ))}
+        </ul>
+
+      </div>
     </div>
   );
 });

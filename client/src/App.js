@@ -8,6 +8,7 @@ import Error from './pages/Error';
 import Headers from './components/Headers';
 import Headers1 from './components/Headers1';
 import Fac_Combined from './pages/FacCombined';
+import FacDetails from './pages/FacDetails';
 
 import { Routes, Route } from "react-router-dom"
 import Awards from './pages/Awards';
@@ -89,6 +90,11 @@ function App() {
     <>
       <Headers />
       <Routes>
+
+        <Route path ='/facDetails' element = {<FacDetails/>}/>
+
+
+
         <Route path='/' element={<First />} />
         <Route path='/Login' element={<Login />} />
         <Route path='/register' element={<Register />} />

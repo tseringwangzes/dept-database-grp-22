@@ -1,7 +1,7 @@
 import {React,useEffect, useState,useRef} from 'react'
 import Sidebar from "../components/staffSide";
 import { useNavigate } from "react-router-dom";
-import { deptgetallinfo } from '../services/Apis'
+import { deptgetallinfo, ftDept } from '../services/Apis'
 import ReactToPrint from "react-to-print";
 import { InfoToPrint } from "./InfoToPrint";
 
@@ -20,10 +20,26 @@ function StaffDeptInfo() {
     };
 
   const [data, setUserData] = useState([]);
+  const [documents, setDocuments] = useState([]);
+
+  useEffect(() => {
+    const fetchDocuments = async () => {
+      try {
+        const res = await ftDept();
+        setDocuments(res.data);
+        console.log(res.data)
+      } catch (error) {
+        console.error('Error fetching documents:', error);
+      }
+    };
+
+    fetchDocuments();
+  }, []);
 
   const getdeptinfo = async () => {
   
     const response = await deptgetallinfo();
+    //const res = await ftDept();
     // window.location.reload();
     if (response.status === 200) {
       setUserData(response.data)
@@ -62,6 +78,7 @@ function StaffDeptInfo() {
       id:data[0]._id,
 
    }})}>Edit Department Details</button>
+  
           <div className="mt-4 flex flex-col">
             Choose Start Date 
           {/* </div> */}
@@ -92,6 +109,7 @@ function StaffDeptInfo() {
           </div>
    </main>
 </div>
+
     </>
   )
 }
