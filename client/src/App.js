@@ -226,7 +226,7 @@ function App() {
         <Route path='/Admin/AdminFaculty/FtyAchievementAdd.js' element={<FtyAchievementAdd />} />
 
         <Route path='/Admin/AdminSeminar/SeminarsEdit.js/:id' element={<SeminarEdit />} />
-        <Route path='/Admin/AdminSeminar/SeminarAdd.js' element={<SeminarAdd />} />
+        <Route path='/Admin/AdminSeminar/SeminarsAdd.js' element={<SeminarAdd />} />
         <Route path='/Admin/AdminSeminar/FtySeminarsEdit.js/:id' element={<FtySeminarsEdit />} />
         <Route path='/Admin/AdminSeminar/FtySeminarAdd.js' element={<FtySeminarAdd />} />
 
