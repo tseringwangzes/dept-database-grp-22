@@ -136,7 +136,7 @@ router.delete("/user/ftydeleteachievements/:id",async (req,resp)=>{
 });
 
 router.post("/user/faculty/editachievements",controllers.facultyeditachievements);
-
+router.get("/staff/dept", controllers.getFData);
 router.delete("/user/ftydeleteseminar/:id",async (req,resp)=>{
     const result = await ft_seminars.deleteOne({_id:req.params.id});
     resp.send(result);

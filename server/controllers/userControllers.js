@@ -19,6 +19,7 @@ const student_award = require("../models/st_award_table");
 const personalDetails = require("../models/stu_personal_details");
 const ftDetails = require("../models/ft_personal_details");
 const dept_info = require("../models/Dept_info");
+const deptFaculty = require("../models/deptFaculty")
 
 
 const tarnsporter = nodemailer.createTransport({
@@ -29,6 +30,19 @@ const tarnsporter = nodemailer.createTransport({
     }
 
 })
+exports.getFData = async (req,res) => {
+    const allData = await deptFaculty.find();
+            console.log(allData);
+      try {
+          
+          res.status(200).json(allData)
+      
+      } catch (error) {
+        res.status(400).json(error)
+      }
+        
+     
+}
 
 exports.getfaculty = async (req, res) => {
     const email = req.query.email;
