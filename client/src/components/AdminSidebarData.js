@@ -42,7 +42,7 @@ export const AdminSidebarData = [
         fname:""
     },
     {
-        title:"Project Grants",
+        title:"Research Projects",
         icon:<CurrencyExchangeSharpIcon />,
         link:"/Admin/AdminProject",
         fname:""

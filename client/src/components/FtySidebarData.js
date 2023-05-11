@@ -47,7 +47,7 @@ export const FtySidebarData = [
         fname:""
     },
     {
-        title:"Project Grants",
+        title:"Research Projects",
         icon:<CurrencyExchangeSharpIcon />,
         link:"/faculty/Projects",
         fname:""

@@ -243,8 +243,9 @@ export const ComponentToPrint = React.forwardRef(({startDate,endDate}, ref) => {
           <th class="border border-black p-2">Sr. No.</th>
             <th class="border border-black p-2">Title of Publications/Patents</th>
             <th class="border border-black p-2">Authors</th>
+            <th class="border border-black p-2">Conference Name</th>
             <th class="border border-black p-2">Title of Journal</th>
-            <th class="border border-black p-2">Volume/Issue/Patent No</th>
+            <th class="border border-black p-2">Page/Issue/Patent No</th>
             <th class="border border-black p-2">Accepted Date</th>
             <th class="border border-black p-2">Published Date</th>
             <th class="border border-black p-2">DOI/ISBN/Assignee</th>
@@ -257,6 +258,7 @@ export const ComponentToPrint = React.forwardRef(({startDate,endDate}, ref) => {
               <td class="border border-black p-2"> {index+1}</td>
               <td class="border border-black p-2">{item.title}</td>
               <td class="border border-black p-2">{item.author}</td>
+              <td class="border border-black p-2">{item.type}</td>
               <td class="border border-black p-2">{item.title_publish}</td>
               <td class="border border-black p-2">{item.patent_no}</td> 
               <td class="border border-black p-2">{item.accepted_date}</td>
