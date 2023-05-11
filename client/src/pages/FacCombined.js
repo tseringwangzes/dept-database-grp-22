@@ -8,7 +8,7 @@ function Fac_Combined() {
   let componentRef = useRef();
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-
+  const email = localStorage.getItem('email')
   var handleStartDateChange = (event) => {
     setStartDate(event.target.value);
   };
@@ -89,9 +89,9 @@ function Fac_Combined() {
             <ReactToPrint
               trigger={() => <button>Print this out!</button>}
               content={() => componentRef.current}
-              documentTitle="BOG MEETING DATA"
+              documentTitle="Combined Data"
             />
-            <ComponentToPrint ref={componentRef} startDate={startDate} endDate={endDate} />
+            <ComponentToPrint ref={componentRef} startDate={startDate} endDate={endDate} Ftyemail={email}/>
             {/* <button onClick={handleDownloadPDFToDOC}>
               Convert and Download as DOC
             </button> */}

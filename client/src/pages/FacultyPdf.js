@@ -7,13 +7,13 @@ import { ft_projects } from '../services/Apis';
 import { ft_publications } from '../services/Apis';
 import { ft_seminars } from '../services/Apis';
 
-export const ComponentToPrint = React.forwardRef(({startDate,endDate}, ref) => {
+export const ComponentToPrint = React.forwardRef(({startDate,endDate,Ftyemail}, ref) => {
     console.log(`Chosen start date: ${startDate}\nChosen end date: ${endDate}`);
     
 
   const Date1 = new Date(startDate);
   const Date2 = new Date(endDate);
-  const email = "admin"
+  const email = Ftyemail
 
 
   const [data, setUserData] = useState([]);
