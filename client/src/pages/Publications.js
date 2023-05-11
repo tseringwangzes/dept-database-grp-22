@@ -5,6 +5,8 @@ import TablesPublications, { StatusPill } from "../tables/TablesPublications";
 import Sidebar from "../components/Sidebar";
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import {st_home} from '../services/Apis';
+
 function Publications() {
   const navigate = useNavigate();
 
@@ -14,9 +16,30 @@ function Publications() {
   const [showModaldelete, setShowModaldelete] = useState(false);
   const [did, setdid] = useState("");
   const [data, setUserData] = useState([]);
+  const [stData, setData] = useState([]);
   var email = localStorage.getItem('email');
 
   const url='http://localhost:3000/St_Publication_Header.csv'
+
+  useEffect(() => {
+    const fetchData = async (e) => {
+      try {
+        
+        const response = await st_home(email);
+        
+        setData(response.data)
+        //console.log(response.data);
+        //console.log(ftData);
+       // console.log('react');
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    if (email) {
+      fetchData();
+    }
+    fetchData();
+  }, [email]);
 
   const deleteRow=async (id)=>{
     setShowModaldelete(true);
@@ -221,7 +244,7 @@ function Publications() {
     doc.text("Student Name", 20, 60);
     doc.text(":", 70, 60);
     doc.setFont("helvetica", "normal");
-    doc.text("Vishwas Rathi", 72, 60);
+    doc.text(stData[6], 72, 60);
     doc.setFont("helvetica", "bold");
     doc.text("Student Email", 20, 65);
     doc.text(": ", 70, 65);
@@ -252,7 +275,7 @@ const rows = filteredData.map(user=>[user.topic,user.published_date,user.accepte
     const formattedDate = `${formattedDay}-${formattedMonth}-${year}`;
   
     // save PDF with formatted date in filename
-    const filename = `${formattedDate}-Publications.pdf`;
+    const filename = `${formattedDate}-${stData[6]}-Publications.pdf`;
     doc.save(filename);
     // add image to PDF here
   });

@@ -4,6 +4,7 @@ import { stproj } from '../services/Apis'
 import TablesProjects, { StatusPill } from "../tables/TablesProjects";
 import Sidebar from "../components/Sidebar";
 import jsPDF from 'jspdf';
+import {st_home} from '../services/Apis';
 
 function Projects() {
   const navigate = useNavigate();
@@ -13,8 +14,29 @@ function Projects() {
   const [showModal, setShowModal] = useState(false);
   const [showModaldelete, setShowModaldelete] = useState(false);
   const [did, setdid] = useState("");
+  const [stData, setData] = useState([]);
 
   const url = 'http://localhost:3000/St_Project_Header.csv'
+
+  useEffect(() => {
+    const fetchData = async (e) => {
+      try {
+        
+        const response = await st_home(email);
+        
+        setData(response.data)
+        //console.log(response.data);
+        //console.log(ftData);
+       // console.log('react');
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    if (email) {
+      fetchData();
+    }
+    fetchData();
+  }, [email]);
 
   const deleteRow = async (id) => {
     setShowModaldelete(true);
@@ -212,7 +234,7 @@ function Projects() {
         doc.text("Student Name", 20, 60);
         doc.text(":", 70, 60);
         doc.setFont("helvetica", "normal");
-        doc.text("Vishwas Rathi", 72, 60);
+        doc.text(stData[6], 72, 60);
         doc.setFont("helvetica", "bold");
         doc.text("Student Email", 20, 65);
         doc.text(": ", 70, 65);
@@ -243,7 +265,7 @@ function Projects() {
         const formattedDate = `${formattedDay}-${formattedMonth}-${year}`;
 
         // save PDF with formatted date in filename
-        const filename = `${formattedDate}-${email}-ProjectGrants.pdf`;
+        const filename = `${formattedDate}-${stData[6]}-ProjectGrants.pdf`;
         doc.save(filename);
         // add image to PDF here
       });

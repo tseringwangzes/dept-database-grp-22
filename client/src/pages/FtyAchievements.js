@@ -4,7 +4,9 @@ import { ft_achievements } from '../services/Apis'
 import FtyTablesAchievements, { StatusPill } from "../tables/FtyTablesAchievements";
 import FtySidebar from "../components/FtySidebar";
 import jsPDF from "jspdf";
+import {ft_home} from '../services/Apis';
 const { Document, Table, TableCell, TableRow } = require('docx');
+
 
 function FtyAchievements() {
   const navigate = useNavigate();
@@ -14,9 +16,30 @@ function FtyAchievements() {
   const [showModal, setShowModal] = useState(false);
   const [showModaldelete, setShowModaldelete] = useState(false);
   const [did, setdid] = useState("");
+  const [stData, setData] = useState([]);
   
   console.log(email)
   const url='http://localhost:3000/Fty_Achievement_Header.csv'
+
+  useEffect(() => {
+    const fetchData = async (e) => {
+      try {
+        
+        const response = await ft_home(email);
+        
+        setData(response.data)
+        //console.log(response.data);
+        //console.log(ftData);
+       // console.log('react');
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    if (email) {
+      fetchData();
+    }
+    fetchData();
+  }, [email]);
 
 
   
@@ -191,7 +214,7 @@ return(
     doc.text("Faculty Name", 20, 60);
     doc.text(":", 70, 60);
     doc.setFont("helvetica", "normal");
-    doc.text("Dr. Puneet Goyal", 72, 60);
+    doc.text(stData[6], 72, 60);
     doc.setFont("helvetica", "bold");
     doc.text("Faculty Email", 20, 65);
     doc.text(": ", 70, 65);
@@ -221,7 +244,7 @@ const rows = filteredData.map(user=>[user.title,user.date,user.dept,user.institu
    const formattedDate = `${formattedDay}-${formattedMonth}-${year}`;
  
    // save PDF with formatted date in filename
-   const filename = `${formattedDate}-${email}-LecturesGiven.pdf`;
+   const filename = `${formattedDate}_${stData[6]}_LecturesGiven.pdf`;
    doc.save(filename);
 
     // add image to PDF here
