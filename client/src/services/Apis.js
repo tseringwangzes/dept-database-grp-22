@@ -25,7 +25,7 @@ export const userfunc = async(email)=>{
     return await commonrequest("GET",`${BACKEND_URL}/user/getall?email=${email}`);
 }
 export const deptgetallinfo = async()=>{
-    return await commonrequest("GET",`${BACKEND_URL}/user/deptgetallinfo`);
+    return await commonrequest("GET",`${BACKEND_URL}/user/deptgetallinfo`,"");
 }
 
 export const editdeptinfo = async(data)=>{

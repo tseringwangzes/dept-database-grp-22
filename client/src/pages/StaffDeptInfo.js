@@ -5,7 +5,7 @@ import { deptgetallinfo } from '../services/Apis'
 import ReactToPrint from "react-to-print";
 import { InfoToPrint } from "./InfoToPrint";
 
-function Staff_dept_info() {
+function StaffDeptInfo() {
     const navigate=useNavigate();
     let componentRef = useRef();
     const [startDate, setStartDate] = useState("");
@@ -27,15 +27,16 @@ function Staff_dept_info() {
     // window.location.reload();
     if (response.status === 200) {
       setUserData(response.data)
+      console.log(data)
     } else {
       console.log("error for get user data")
     }
-  }
+  };
   useEffect(() => {
     getdeptinfo();
-    setTimeout(() => {
-    }, 1200)
-  },[])
+    // setTimeout(() => {
+    // }, 1200)
+  },[]);
 
   return (
     <>
@@ -81,34 +82,13 @@ function Staff_dept_info() {
           />
           </div>
 <br></br>
-          {/* <div flex justify-between mt-4>
-    <button class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={() => navigate("./Editdept1",{state:{
-      programs_offered: data[0].programs_offered,
-      st_num_btech:data[0].st_num_btech,
-      st_num_mtech:data[0].st_num_mtech,
-      st_num_ms:data[0].st_num_ms,
-      st_num_phd:data[0].st_num_phd,
-      hod:data[0].hod,
-      staff_postdoc:data[0].staff_postdoc,
-      staff_tech:data[0].staff_tech,
-      staff_admin:data[0].staff_admin,
-      thrust:data[0].thrust,
-      num_ug_lab:data[0].num_ug_lab,
-      num_pg_lab:data[0].num_pg_lab,
-      num_research_lab:data[0].num_research_lab,
-      id:data[0]._id,
-
-   }})}>Edit</button> */}
-          {/* <div className="mt-4"> */}
             <ReactToPrint
               trigger={() => <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full mb-3">Click Here to Print!</button>}
               content={() => componentRef.current}
-              documentTitle="Department Information"
+              documentTitle="DepartmentInformation"
             />
             <br></br>
-            <InfoToPrint ref={componentRef} startDate={startDate} endDate={EndDate} />
-
-          
+            <InfoToPrint ref={componentRef} startDate={startDate} endDate={EndDate}/>         
           </div>
    </main>
 </div>
@@ -116,4 +96,4 @@ function Staff_dept_info() {
   )
 }
 
-export default Staff_dept_info
+export default StaffDeptInfo

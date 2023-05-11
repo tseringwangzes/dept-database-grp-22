@@ -301,16 +301,15 @@ exports.usergetall = async (req, res) => {
 }
 
 exports.deptgetall = async (req, res) => {
-     console.log("hi")
         try {
             const allUser = await dept_info.find();
-            
-           // const allUser = await stdetails.find().sort({updatedAt: -1});;
             console.log(allUser)
             res.status(200).json(allUser)
+            return res;
         } catch (error) {
             res.status(401).json(error)
             console.log(error)
+            return;
         }
     }
 

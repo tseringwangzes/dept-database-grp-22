@@ -68,7 +68,7 @@ import FtySeminarCsv from './pages/FtySeminarCsv';
 import FtyPublicationCsv from './pages/FtyPublicationCsv';
 import FtyForeignCsv from './pages/FtyForeignCsv';
 import FtyProjectCsv from './pages/FtyProjectCsv';
-import StaffDeptInfo from './pages/Staff_dept_info';
+import StaffDeptInfo from './pages/StaffDeptInfo';
 import StaffEditDeptInfo from './pages/StaffEditDeptInfo';
 import Editdept1 from './pages/Editdept1'
 
