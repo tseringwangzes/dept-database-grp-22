@@ -27,11 +27,6 @@ export const SidebarData = [
         link:"/StaffHome/StaffStudent"
     },
     {
-        title:"Lecture By Visiting Experts",
-        icon:<PeopleIcon />,
-        link:"/StaffHome/Seminars",
-    },
-    {
         title:"Foreign Visits",
         icon:<TourIcon />,
         link:"/StaffHome/StaffForeign"

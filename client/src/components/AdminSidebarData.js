@@ -8,13 +8,9 @@ import CurrencyExchangeSharpIcon from '@mui/icons-material/CurrencyExchangeSharp
 import VerifiedIcon from '@mui/icons-material/Verified';
 import StarsIcon from '@mui/icons-material/Stars';
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
+import Groups2Icon from '@mui/icons-material/Groups2';
 export const AdminSidebarData = [
-    {
-        title:"Home",
-        icon:<HomeIcon />,
-        link:"/Admin",
-        fname:"",
-    },
+    
     {
         title:"Add new User",
         icon:<PersonAddAltOutlinedIcon />,
@@ -32,6 +28,12 @@ export const AdminSidebarData = [
         icon:<AirplanemodeActiveOutlinedIcon />,
         link:"/Admin/AdminForeign",
         fname:""
+    },
+    {
+        title:"Lectures/Workshops",
+        icon:<Groups2Icon />,
+        link:"/Admin/AdminSeminar",
+        fname:"",
     },
     {
         title:"Publications/Patents",

@@ -25,7 +25,7 @@ export const userfunc = async(email)=>{
     return await commonrequest("GET",`${BACKEND_URL}/user/getall?email=${email}`);
 }
 export const deptgetallinfo = async()=>{
-    return await commonrequest("GET",`${BACKEND_URL}/user/deptgetallinfo`);
+    return await commonrequest("GET",`${BACKEND_URL}/user/deptgetallinfo`,"");
 }
 
 export const editdeptinfo = async(data)=>{
@@ -60,6 +60,9 @@ export const addmorefunction = async(data)=>{
     return await commonrequest("POST",`${BACKEND_URL}/user/adddata`,data)
 }
 
+export const ftDept = async () => {
+    return await commonrequest("GET", `${BACKEND_URL}/staff/dept`)
+}
 export const ft_home = async (email) => {
     return await commonrequest("GET", `${BACKEND_URL}/user/faculty/home?email=${email}`);
   }

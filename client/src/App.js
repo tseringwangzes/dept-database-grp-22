@@ -8,6 +8,7 @@ import Error from './pages/Error';
 import Headers from './components/Headers';
 import Headers1 from './components/Headers1';
 import Fac_Combined from './pages/FacCombined';
+import FacDetails from './pages/FacDetails';
 
 import { Routes, Route } from "react-router-dom"
 import Awards from './pages/Awards';
@@ -68,7 +69,7 @@ import FtySeminarCsv from './pages/FtySeminarCsv';
 import FtyPublicationCsv from './pages/FtyPublicationCsv';
 import FtyForeignCsv from './pages/FtyForeignCsv';
 import FtyProjectCsv from './pages/FtyProjectCsv';
-import StaffDeptInfo from './pages/Staff_dept_info';
+import StaffDeptInfo from './pages/StaffDeptInfo';
 import StaffEditDeptInfo from './pages/StaffEditDeptInfo';
 import Editdept1 from './pages/Editdept1'
 
@@ -89,6 +90,11 @@ function App() {
     <>
       <Headers />
       <Routes>
+
+        <Route path ='/facDetails' element = {<FacDetails/>}/>
+
+
+
         <Route path='/' element={<First />} />
         <Route path='/Login' element={<Login />} />
         <Route path='/register' element={<Register />} />
@@ -226,7 +232,7 @@ function App() {
         <Route path='/Admin/AdminFaculty/FtyAchievementAdd.js' element={<FtyAchievementAdd />} />
 
         <Route path='/Admin/AdminSeminar/SeminarsEdit.js/:id' element={<SeminarEdit />} />
-        <Route path='/Admin/AdminSeminar/SeminarAdd.js' element={<SeminarAdd />} />
+        <Route path='/Admin/AdminSeminar/SeminarsAdd.js' element={<SeminarAdd />} />
         <Route path='/Admin/AdminSeminar/FtySeminarsEdit.js/:id' element={<FtySeminarsEdit />} />
         <Route path='/Admin/AdminSeminar/FtySeminarAdd.js' element={<FtySeminarAdd />} />
 
