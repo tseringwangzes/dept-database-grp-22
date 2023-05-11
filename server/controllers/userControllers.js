@@ -2,7 +2,7 @@ const users = require("../models/userSchema");
 const userotp = require("../models/userOtp");
 const nodemailer = require("nodemailer");
 const st_schema = require("../models/st_schema");
-const stdetails = require("../models/stdetails");
+const stAwardDetail = require("../models/stAwardDetails");
 const st_achievements = require("../models/st_achievements");
 const st_seminar = require("../models/st_seminars");
 const st_for_visits = require("../models/st_foreign");
@@ -20,7 +20,7 @@ const personalDetails = require("../models/stu_personal_details");
 const ftDetails = require("../models/ft_personal_details");
 const dept_info = require("../models/Dept_info");
 const deptFaculty = require("../models/deptFaculty")
-
+//var stAwardDetail
 
 const tarnsporter = nodemailer.createTransport({
     service: "gmail",
@@ -301,10 +301,10 @@ exports.usergetall = async (req, res) => {
     try {
         var allUser
         if (email === "admin") {
-            allUser = await stdetails.find().sort({ updatedAt: -1 });
+            allUser = await stAwardDetail.find().sort({ updatedAt: -1 });
         }
         else {
-            allUser = await stdetails.find({ student_name: email }).sort({ updatedAt: -1 });
+            allUser = await stAwardDetail.find({ student_name: email }).sort({ updatedAt: -1 });
         }
         // const allUser = await stdetails.find().sort({updatedAt: -1});;
         //  console.log(allUser)
@@ -396,10 +396,10 @@ exports.insert_csv = async (req, res) => {
     for (const entry of data) {
         try {
             // console.log(entry);
-            const existingEntry = await stdetails.findOne(entry);
+            const existingEntry = await stAwardDetail.findOne(entry);
             //console.log(existingEntry);
             if (existingEntry === null) {
-                await stdetails.create(entry)
+                await stAwardDetail.create(entry)
             }
 
 
@@ -609,12 +609,12 @@ exports.useraddmore = async (req, res) => {
             console.log(shared_each_email)
             const nshw1 = student_name2.split(shared_each_email).join("");
             const nshw2 = nshw1 + "," + req.body.student_name;
-            const shareduseraddmore = new stdetails({
+            const shareduseraddmore = new stAwardDetail({
                 award_name, date, "shared_with": nshw2, status, faculty_name, "student_name": shared_each_email, award_link, additional_info
             });
             console.log(shareduseraddmore);
 
-            const findAward = await stdetails.findOne({ student_name: shared_each_email, award_name: award_name, date: date, award_link: award_link, additional_info: additional_info })
+            const findAward = await stAwardDetail.findOne({ student_name: shared_each_email, award_name: award_name, date: date, award_link: award_link, additional_info: additional_info })
             console.log(findAward);
             if (!findAward) {
                 const storeData = await shareduseraddmore.save();
@@ -633,11 +633,11 @@ exports.useraddmore = async (req, res) => {
 
         // const femail = await users.findOne({email:student_name});
         // console.log(femail)
-        const useraddmore = new stdetails({
+        const useraddmore = new stAwardDetail({
             award_name, date, shared_with, status, faculty_name, student_name, award_link, additional_info
         });
 
-        const findAward = await stdetails.findOne({ student_name: student_name, award_name: award_name, date: date, shared_with: shared_with, award_link: award_link, additional_info: additional_info })
+        const findAward = await stAwardDetail.findOne({ student_name: student_name, award_name: award_name, date: date, shared_with: shared_with, award_link: award_link, additional_info: additional_info })
         console.log(findAward);
         if (!findAward) {
             const storeData = await useraddmore.save();
@@ -661,10 +661,10 @@ exports.st_award_csv = async (req, res) => {
         try {
 
             //console.log(entry.status);
-            const existingEntry = await stdetails.findOne(entry);
+            const existingEntry = await stAwardDetail.findOne(entry);
             //console.log(existingEntry);
             if (existingEntry === null) {
-                await stdetails.create(entry)
+                await stAwardDetail.create(entry)
             }
 
 
@@ -680,11 +680,12 @@ exports.studentHome = async (req, res) => {
     var count = new Array(12);
 
     var email = req.query.email;
+    console.log('student email ', email)
 
     try {
 
         const promises = [
-            student_award.countDocuments({ student_name: email }),
+            stAwardDetail.countDocuments({ student_name: email }),
             st_achievements.countDocuments({ student_name: email }),
             st_for_visits.countDocuments({ student_name: email }),
             st_project.countDocuments({ student_name: email }),
@@ -699,7 +700,13 @@ exports.studentHome = async (req, res) => {
             count[i] = results[i];
         }
         const doc = await users.findOne({ email: email })
-        const name = doc.fname
+        let name
+        if (doc) {
+             name = doc.fname
+        } else {
+             name = email
+        }
+        
 
         count[6] = name;
         //console.log(count);
@@ -815,7 +822,7 @@ exports.facultyHome = async (req, res) => {
 
     var count = new Array(12);
     var email = req.query.email;
-    console.log(email);
+    //console.log(email);
 
     try {
 

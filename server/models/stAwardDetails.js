@@ -12,10 +12,10 @@ const stschema = new mongoose.Schema({
     
 },
     {
-        collection: "phdstudents",
+        collection: "stAwardDetails",
         timestamps: true
     }
 );
 
-const phdstudents = mongoose.model("phdstudents", stschema);
-module.exports = phdstudents;
+const stAwardDetails = mongoose.model("stAwardDetails", stschema);
+module.exports = stAwardDetails;
