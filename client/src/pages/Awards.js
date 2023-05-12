@@ -18,7 +18,7 @@ function Awards() {
   const [did, setdid] = useState("");
   const [stData, setData] = useState([]);
 
-  const url='https://dep-t22-iitropar-department-databas.netlify.app/St_Award_Header.csv'
+  const url='https://dep-t22-iitropar-department-databas.netlify.app/Sample_St_Award_Header.csv'
 
   useEffect(() => {
     const fetchData = async (e) => {
@@ -154,7 +154,7 @@ function Awards() {
  function uploadbulk2(){
   navigate("./StAwardCsv" ,{state:{
     utype: utype,
-    fname: data[0].faculty_name,
+    fname: "puneet@iitrpr.ac.in",
     email: email,
  }})
  }
@@ -170,13 +170,12 @@ aTag.setAttribute("download","Sample_Student_Awards");
 document.body.appendChild(aTag);
 aTag.click();
 aTag.remove();
-console.log(data[0].faculty_name)
   
 
 
   navigate("./StAwardCsv" ,{state:{
     utype: utype,
-    fname: data[0].faculty_name,
+    fname: "puneet@iitrpr.ac.in",
     email: email,
  }})
 

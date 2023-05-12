@@ -183,7 +183,7 @@ function Publications() {
   function uploadbulk2(){
     navigate("./StPublicationCsv" ,{state:{
       utype: utype,
-      fname: data[0].faculty_name,
+      fname: "puneet@iitrpr.ac.in",
       email:email,
    }})
    }
@@ -196,11 +196,10 @@ function Publications() {
     document.body.appendChild(aTag);
     aTag.click();
     aTag.remove();
-    console.log(data[0].faculty_name)
     
      navigate("./StPublicationCsv" ,{state:{
       utype: utype,
-      fname: data[0].faculty_name,
+      fname: "puneet@iitrpr.ac.in",
       email:email,
    }})
     

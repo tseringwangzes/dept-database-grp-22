@@ -156,7 +156,7 @@ const deleteRow=async (id)=>{
  function uploadbulk2(){
  navigate("./StAchievementCsv" ,{state:{
                utype: utype,
-               fname: data[0].faculty_name,
+               fname: "puneet@iitrpr.ac.in",
             }})
  }
 
@@ -173,7 +173,7 @@ console.log(data[0].faculty_name)
 
   navigate("./StAchievementCsv" ,{state:{
                utype: utype,
-               fname: data[0].faculty_name,
+               fname: "puneet@iitrpr.ac.in",
             }})
           }
 
