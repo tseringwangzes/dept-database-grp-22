@@ -48,9 +48,14 @@ const ForeignAddPage = () => {
         event.preventDefault();
 
         const { start_date, end_date, country, faculty_name, status, student_name, visit_details,visit_link} = formFields;
-        if (visit_details === "") {
+        if (start_date === "") {
 
-            toast.error("Enter Visit Details")
+            toast.error("Enter Start Date")
+
+        }
+        if (end_date === "") {
+
+            toast.error("Enter End Date")
 
         }
         else if (country === "") {
