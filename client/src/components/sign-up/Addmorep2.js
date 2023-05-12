@@ -83,7 +83,7 @@ const Addmorep2 = () => {
             date: "",
             shared_with: "",
             status: "Pending",
-            faculty_name: "2020csb1135@iitrpr.ac.in",
+            faculty_name: "puneet@iitrpr.ac.in",
             student_name: email,
             award_link: "",
             additional_info:"",
