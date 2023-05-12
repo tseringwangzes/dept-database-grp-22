@@ -39,7 +39,7 @@ const email = localStorage.getItem('email');
     document.body.appendChild(aTag);
     aTag.click();
     aTag.remove();
-    console.log(data[0].faculty_name)
+   
     
     navigate("/Profile/Publications/StPublicationCsv",{state:{utype:utype}} )
     
@@ -59,7 +59,7 @@ const email = localStorage.getItem('email');
     document.body.appendChild(aTag);
     aTag.click();
     aTag.remove();
-    console.log(data[0].faculty_name)
+   
     
     navigate("/faculty/Publications/FtyPublicationCsv",{state:{utype:utype}} )
     
