@@ -6,6 +6,7 @@ import { ft_publications } from '../../services/Apis'
 import Table, { StatusPill } from "../Table";
 import TablesPublications from "../../tables/TablesPublications";
 import FtyTablesPublications from "../../tables/FtyTablesPublications";
+import {BACKEND_URL} from "../../services/helper";
 
 export default function StaffStudent() {
   const navigate = useNavigate();

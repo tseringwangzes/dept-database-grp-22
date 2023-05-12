@@ -5,8 +5,9 @@ import FtyTablesAchievements, { StatusPill } from "../tables/FtyTablesAchievemen
 import FtySidebar from "../components/FtySidebar";
 import jsPDF from "jspdf";
 import {ft_home} from '../services/Apis';
-const { Document, Table, TableCell, TableRow } = require('docx');
+import {BACKEND_URL} from "../services/helper";
 
+const { Document, Table, TableCell, TableRow } = require('docx');
 
 function FtyAchievements() {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ function FtyAchievements() {
   const deleteRow=async (id)=>{
     setShowModaldelete(true);
     setdid(id);
-    // let result = await fetch(`http://localhost:4002/user/ftydeleteachievements/${id}`, {
+    // let result = await fetch(`${BACKEND_URL}/user/ftydeleteachievements/${id}`, {
     //   method:"Delete"});
     //  // result=await result.json()
     //   window.location.reload();
@@ -54,7 +55,7 @@ function FtyAchievements() {
     
   const deleteRowyes=async ()=>{
   
-    let result = await fetch(`http://localhost:4002/user/ftydeleteachievements/${did}`, {
+    let result = await fetch(`${BACKEND_URL}/user/ftydeleteachievements/${did}`, {
       method:"Delete"});
      // result=await result.json()
      setShowModaldelete(false);

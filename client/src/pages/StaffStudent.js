@@ -6,6 +6,7 @@ import FtyTablesAwards, { StatusPill } from "../tables/FtyTablesAwards";
 import TablesAwards from "../tables/TablesAwards";
 import Sidebar from "../components/staffSide";
 import jsPDF from 'jspdf';
+import {BACKEND_URL} from "../services/helper";
 
 function StaffStudent() {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ function StaffStudent() {
   const deleteRowst=async (id)=>{
     setShowModaldelete(true);
     setdid(id);
-    // let result= await fetch(`http://localhost:4002/user/deleteid/${id}`,{
+    // let result= await fetch(`${BACKEND_URL}/user/deleteid/${id}`,{
     //   method:"Delete"});
     //  // result=await result.json()
     //   window.location.reload();
@@ -35,7 +36,7 @@ function StaffStudent() {
 
   const deleteRowyes=async ()=>{
   
-    let result= await fetch(`http://localhost:4002/user/deleteid/${did}`,{
+    let result= await fetch(`${BACKEND_URL}/user/deleteid/${did}`,{
       method:"Delete"});
      // result=await result.json()
      setShowModaldelete(false);
@@ -55,7 +56,7 @@ function StaffStudent() {
   const deleteRow=async (id)=>{
     ftsetShowModaldelete(true);
     ftsetdid(id);
-    // let result= await fetch(`http://localhost:4002/user/ftydeleteaward/${id}`,{
+    // let result= await fetch(`${BACKEND_URL}/user/ftydeleteaward/${id}`,{
     //   method:"Delete"});
     //  // result=await result.json()
     //   window.location.reload();
@@ -63,7 +64,7 @@ function StaffStudent() {
 
   const ftdeleteRowyes=async ()=>{
   
-    let result= await fetch(`http://localhost:4002/user/ftydeleteaward/${ftdid}`,{
+    let result= await fetch(`${BACKEND_URL}/user/ftydeleteaward/${ftdid}`,{
       method:"Delete"});
      // result=await result.json()
      ftsetShowModaldelete(false);

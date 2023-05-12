@@ -5,6 +5,7 @@ import TablesForeigns, { StatusPill } from "../tables/TablesForeigns";
 import Sidebar from "../components/Sidebar";
 import jsPDF from 'jspdf';
 import {st_home} from '../services/Apis';
+import {BACKEND_URL} from "../services/helper";
 
 function Foreign() {
     const utype = "0";
@@ -42,7 +43,7 @@ function Foreign() {
     const deleteRow=async (id)=>{
         setShowModaldelete(true);
         setdid(id);
-        // let result= await fetch(`http://localhost:4002/user/foreigndeleteid/${id}`,{
+        // let result= await fetch(`${BACKEND_URL}/user/foreigndeleteid/${id}`,{
         //   method:"Delete"});
         //  // result=await result.json()
         //   window.location.reload();
@@ -50,7 +51,7 @@ function Foreign() {
 
       const deleteRowyes=async ()=>{
   
-        let result= await fetch(`http://localhost:4002/user/foreigndeleteid/${did}`,{
+        let result= await fetch(`${BACKEND_URL}/user/foreigndeleteid/${did}`,{
           method:"Delete"});
          // result=await result.json()
          setShowModaldelete(false);

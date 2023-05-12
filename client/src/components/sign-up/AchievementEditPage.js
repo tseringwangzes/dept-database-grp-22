@@ -4,6 +4,7 @@ import signupStyle from "../../pages/Home.module.css";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer,toast } from "react-toastify";
 import { achievementEdit } from "../../services/Apis";
+import {BACKEND_URL} from "../../services/helper";
 
 
 const AchievementEditPage = () => {
@@ -28,7 +29,7 @@ const AchievementEditPage = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   
   const deleteid=async (id)=>{
-    let result= await fetch(`http://localhost:4002/user/achdeleteid/${id}`,{
+    let result= await fetch(`${BACKEND_URL}/user/achdeleteid/${id}`,{
       method:"Delete"});
       result=await result.json()
   }

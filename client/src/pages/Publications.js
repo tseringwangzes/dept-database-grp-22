@@ -6,6 +6,7 @@ import Sidebar from "../components/Sidebar";
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import {st_home} from '../services/Apis';
+import {BACKEND_URL} from "../services/helper";
 
 function Publications() {
   const navigate = useNavigate();
@@ -44,14 +45,14 @@ function Publications() {
   const deleteRow=async (id)=>{
     setShowModaldelete(true);
     setdid(id);
-    // let result= await fetch(`http://localhost:4002/user/deletepublicationid/${id}`,{
+    // let result= await fetch(`${BACKEND_URL}/user/deletepublicationid/${id}`,{
     //   method:"Delete"});
     //  // result=await result.json()
       // window.location.reload();
   }
   const deleteRowyes=async ()=>{
   
-    let result= await fetch(`http://localhost:4002/user/deletepublicationid/${did}`,{
+    let result= await fetch(`${BACKEND_URL}/user/deletepublicationid/${did}`,{
       method:"Delete"});
      // result=await result.json()
      setShowModaldelete(false);

@@ -6,6 +6,7 @@ import Sidebar from "../components/Sidebar";
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import {st_home} from '../services/Apis';
+import {BACKEND_URL} from "../services/helper";
 
 function Awards() {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ function Awards() {
   const deleteRow=async (id)=>{
     setShowModaldelete(true);
     setdid(id);
-    // let result= await fetch(`http://localhost:4002/user/deleteid/${id}`,{
+    // let result= await fetch(`${BACKEND_URL}/user/deleteid/${id}`,{
     //   method:"Delete"});
     //  // result=await result.json()
     //   window.location.reload();
@@ -50,7 +51,7 @@ function Awards() {
   
   const deleteRowyes=async ()=>{
   
-    let result= await fetch(`http://localhost:4002/user/deleteid/${did}`,{
+    let result= await fetch(`${BACKEND_URL}/user/deleteid/${did}`,{
       method:"Delete"});
      // result=await result.json()
      setShowModaldelete(false);

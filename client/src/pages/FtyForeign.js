@@ -5,6 +5,7 @@ import FtyTablesForeigns, { StatusPill } from "../tables/FtyTablesForeigns";
 import FtySidebar from "../components/FtySidebar";
 import jsPDF from 'jspdf';
 import {ft_home} from '../services/Apis';
+import {BACKEND_URL} from "../services/helper";
 
 function FtyForeign() {
     const utype = "0";
@@ -41,14 +42,14 @@ function FtyForeign() {
     const deleteRow=async (id)=>{
       setShowModaldelete(true);
       setdid(id);
-        // let result = await fetch(`http://localhost:4002/user/ftydeleteforeign/${id}`, {
+        // let result = await fetch(`${BACKEND_URL}/user/ftydeleteforeign/${id}`, {
         //   method:"Delete"});
         //  // result=await result.json()
         //   window.location.reload();
       }
 
       const deleteRowyes=async ()=>{
-        let result = await fetch(`http://localhost:4002/user/ftydeleteforeign/${did}`, {
+        let result = await fetch(`${BACKEND_URL}/user/ftydeleteforeign/${did}`, {
           method:"Delete"});
          // result=await result.json()
          setShowModaldelete(false);

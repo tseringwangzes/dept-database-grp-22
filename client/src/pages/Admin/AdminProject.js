@@ -6,7 +6,7 @@ import { ft_projects } from '../../services/Apis'
 import Table, { StatusPill } from "../Table";
 import TablesProjects from "../../tables/TablesProjects";
 import FtyTablesProjects from "../../tables/FtyTablesProjects";
-
+import {BACKEND_URL} from "../../services/helper";
 
 function StaffProject() {
   const navigate = useNavigate();
@@ -44,14 +44,14 @@ function StaffProject() {
       
       }
       const stdeleteRow=async (id)=>{
-        let result= await fetch(`http://localhost:4002/user/deleteprojectid/${id}`,{
+        let result= await fetch(`${BACKEND_URL}/user/deleteprojectid/${id}`,{
           method:"Delete"});
          // result=await result.json()
           window.location.reload();
       }
 
       const deleteRow=async (id)=>{
-        let result = await fetch(`http://localhost:4002/user/ftydeleteproject/${id}`, {
+        let result = await fetch(`${BACKEND_URL}/user/ftydeleteproject/${id}`, {
           method:"Delete"});
          // result=await result.json()
           window.location.reload();

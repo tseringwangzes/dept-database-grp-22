@@ -5,6 +5,7 @@ import FtyTablesPublications, { StatusPill } from "../tables/FtyTablesPublicatio
 import FtySidebar from "../components/FtySidebar";
 import jsPDF from 'jspdf';
 import {ft_home} from '../services/Apis';
+import {BACKEND_URL} from "../services/helper";
 
 function FtyPublications() {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ function FtyPublications() {
   const deleteRow=async (id)=>{
     setShowModaldelete(true);
     setdid(id);
-    // let result = await fetch(`http://localhost:4002/user/ftydeletepublication/${id}`, {
+    // let result = await fetch(`${BACKEND_URL}/user/ftydeletepublication/${id}`, {
     //   method:"Delete"});
     //  // result=await result.json()
     //   window.location.reload();
@@ -49,7 +50,7 @@ function FtyPublications() {
 
   const deleteRowyes=async ()=>{
   
-    let result = await fetch(`http://localhost:4002/user/ftydeletepublication/${did}`, {
+    let result = await fetch(`${BACKEND_URL}/user/ftydeletepublication/${did}`, {
       method:"Delete"});
      // result=await result.json()
      setShowModaldelete(false);

@@ -7,6 +7,7 @@
  import TablesForeigns from "../tables/TablesForeigns";
  import FtyTablesForeigns from "../tables/FtyTablesForeigns";
  import jsPDF from 'jspdf';
+ import {BACKEND_URL} from "../services/helper";
 
  function StaffForeign() {
    const navigate = useNavigate();
@@ -35,7 +36,7 @@
    }
    const deleteRowyes=async ()=>{
   
-    let result= await fetch(`http://localhost:4002/user/foreigndeleteid/${did}`,{
+    let result= await fetch(`${BACKEND_URL}/user/foreigndeleteid/${did}`,{
       method:"Delete"});
      // result=await result.json()
      setShowModaldelete(false);
@@ -61,7 +62,7 @@
    }
    const ftdeleteRowyes=async ()=>{
   
-       let result = await fetch(`http://localhost:4002/user/ftydeleteforeign/${ftdid}`, {
+       let result = await fetch(`${BACKEND_URL}/user/ftydeleteforeign/${ftdid}`, {
        method:"Delete"});
       // result=await result.json()
      ftsetShowModaldelete(false);

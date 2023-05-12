@@ -6,6 +6,7 @@ import Sidebar from "../../components/AdminSidebar";
 import TablesAchievements,{StatusPill} from "../../tables/TablesAchievements";
 import FtyTablesAchievements from "../../tables/FtyTablesAchievements";
 //import jsPDF from "jspdf";
+import {BACKEND_URL} from "../../services/helper";
 
 function StaffFaculty() {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ function StaffFaculty() {
   const [data, setUserData] = useState([]);
 
   const deleteRowst=async (id)=>{
-    let result= await fetch(`http://localhost:4002/user/achdeleteid/${id}`,{
+    let result= await fetch(`${BACKEND_URL}/user/achdeleteid/${id}`,{
       method:"Delete"});
      // result=await result.json()
       window.location.reload();
@@ -132,7 +133,7 @@ function StaffFaculty() {
   );
 
   const deleteRow=async (id)=>{
-    let result = await fetch(`http://localhost:4002/user/ftydeleteachievements/${id}`, {
+    let result = await fetch(`${BACKEND_URL}/user/ftydeleteachievements/${id}`, {
       method:"Delete"});
      // result=await result.json()
       window.location.reload();

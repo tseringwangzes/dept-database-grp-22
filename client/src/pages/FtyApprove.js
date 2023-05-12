@@ -11,6 +11,8 @@ import Sidebar from "../components/FtySidebar";
 import { useLocation } from 'react-router-dom';
 import { sentApprovalFunction } from "../services/Apis";
 import { toast } from "react-toastify";
+import {BACKEND_URL} from "../services/helper";
+
 function FtyApprove() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -85,7 +87,7 @@ function FtyApprove() {
     console.log("DATA HERE")
     console.log(item);
 
-    let result = await fetch(`http://localhost:4002/user/faculty/Approve/${id}`, {
+    let result = await fetch(`${BACKEND_URL}/user/faculty/Approve/${id}`, {
       method: 'Put',
       body: JSON.stringify({ award_name, award_reason, date, shared_with, status }),
       headers: {
@@ -185,7 +187,7 @@ function FtyApprove() {
     let item = { topic, date, collaboration, status }
     console.log(item);
 
-    let result = await fetch(`http://localhost:4002/user/faculty/ApprovePub/${id}`, {
+    let result = await fetch(`${BACKEND_URL}/user/faculty/ApprovePub/${id}`, {
       method: 'Put',
       body: JSON.stringify({ topic, date, collaboration, status }),
       headers: {
@@ -271,7 +273,7 @@ function FtyApprove() {
     let item = { topic, start_date, end_date, country, status }
     console.log(item);
 
-    let result = await fetch(`http://localhost:4002/user/faculty/ApproveFor/${id}`, {
+    let result = await fetch(`${BACKEND_URL}/user/faculty/ApproveFor/${id}`, {
       method: 'Put',
       body: JSON.stringify({ topic, start_date, end_date, country, status }),
       headers: {
@@ -360,7 +362,7 @@ function FtyApprove() {
     let item = { title, type, date, status }
     console.log(item);
 
-    let result = await fetch(`http://localhost:4002/user/faculty/ApproveSemi/${id}`, {
+    let result = await fetch(`${BACKEND_URL}/user/faculty/ApproveSemi/${id}`, {
       method: 'Put',
       body: JSON.stringify({ title, type, date, status }),
       headers: {
@@ -452,7 +454,7 @@ function FtyApprove() {
     let item = { date, granted_money, description, status }
     console.log(item);
 
-    let result = await fetch(`http://localhost:4002/user/faculty/ApprovePro/${id}`, {
+    let result = await fetch(`${BACKEND_URL}/user/faculty/ApprovePro/${id}`, {
       method: 'Put',
       body: JSON.stringify({ date, granted_money, description, status }),
       headers: {

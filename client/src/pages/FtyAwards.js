@@ -6,6 +6,7 @@ import FtySidebar from "../components/FtySidebar";
 import { useLocation } from 'react-router-dom';
 import jsPDF from 'jspdf';
 import {ft_home} from '../services/Apis';
+import {BACKEND_URL} from "../services/helper";
 
 
 function FtyAwards() {
@@ -47,7 +48,7 @@ function FtyAwards() {
     setShowModaldelete(true);
     setdid(id);
 
-    // let result= await fetch(`http://localhost:4002/user/ftydeleteaward/${id}`,{
+    // let result= await fetch(`${BACKEND_URL}/user/ftydeleteaward/${id}`,{
     //   method:"Delete"});
     //  // result=await result.json()
     //   window.location.reload();
@@ -55,7 +56,7 @@ function FtyAwards() {
 
   const deleteRowyes=async ()=>{
   
-    let result= await fetch(`http://localhost:4002/user/ftydeleteaward/${did}`,{
+    let result= await fetch(`${BACKEND_URL}/user/ftydeleteaward/${did}`,{
       method:"Delete"});
      // result=await result.json()
      setShowModaldelete(false);

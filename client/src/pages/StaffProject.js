@@ -8,6 +8,8 @@ import Table, { StatusPill } from "./Table";
 import TablesProjects from "../tables/TablesProjects";
 import FtyTablesProjects from "../tables/FtyTablesProjects";
 import jsPDF from 'jspdf';
+import {BACKEND_URL} from "../services/helper";
+
 
 export default function StaffProject() {
   const email = "admin";
@@ -46,14 +48,14 @@ export default function StaffProject() {
   const stdeleteRow=async (id)=>{
     setShowModaldelete(true);
     setdid(id);
-    // let result= await fetch(`http://localhost:4002/user/deleteprojectid/${id}`,{
+    // let result= await fetch(`${BACKEND_URL}/user/deleteprojectid/${id}`,{
     //   method:"Delete"});
     //  // result=await result.json()
     //   window.location.reload();
   }
   const deleteRowyes=async ()=>{
   
-     let result= await fetch(`http://localhost:4002/user/deleteprojectid/${did}`,{
+     let result= await fetch(`${BACKEND_URL}/user/deleteprojectid/${did}`,{
       method:"Delete"});
      // result=await result.json()
      setShowModaldelete(false);
@@ -63,14 +65,14 @@ export default function StaffProject() {
   const deleteRow=async (id)=>{
     ftsetShowModaldelete(true);
     ftsetdid(id);
-    // let result = await fetch(`http://localhost:4002/user/ftydeleteproject/${id}`, {
+    // let result = await fetch(`${BACKEND_URL}/user/ftydeleteproject/${id}`, {
     //   method:"Delete"});
     //  // result=await result.json()
     //   window.location.reload();
   }
   const ftdeleteRowyes=async ()=>{
   
-    let result = await fetch(`http://localhost:4002/user/ftydeleteproject/${ftdid}`, {
+    let result = await fetch(`${BACKEND_URL}/user/ftydeleteproject/${ftdid}`, {
       method:"Delete"});
      // result=await result.json()
   ftsetShowModaldelete(false);

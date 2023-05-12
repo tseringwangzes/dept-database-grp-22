@@ -5,6 +5,8 @@ import TablesAchievements, { StatusPill } from "../tables/TablesAchievements";
 import Sidebar from "../components/Sidebar";
 import jsPDF from 'jspdf';
 import {st_home} from '../services/Apis';
+import {BACKEND_URL} from "../services/helper";
+
 
 
 function Achievements() {
@@ -46,14 +48,14 @@ const getName = async (e) => {
 const deleteRow=async (id)=>{
    setShowModaldelete(true);
     setdid(id);
-  // let result= await fetch(`http://localhost:4002/user/achdeleteid/${id}`,{
+  // let result= await fetch(`${BACKEND_URL}/user/achdeleteid/${id}`,{
   //   method:"Delete"});
   //  // result=await result.json()
   //   window.location.reload();
 }
  const deleteRowyes=async ()=>{
   
-    let result= await fetch(`http://localhost:4002/user/achdeleteid/${did}`,{
+    let result= await fetch(`${BACKEND_URL}/user/achdeleteid/${did}`,{
     method:"Delete"});
    // result=await result.json()
      setShowModaldelete(false);

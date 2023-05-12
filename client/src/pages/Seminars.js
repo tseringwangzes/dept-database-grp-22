@@ -4,6 +4,7 @@ import { st_semi } from '../services/Apis'
 import TablesSeminars, { StatusPill } from "../tables/TablesSeminars";
 import Sidebar from "../components/Sidebar";
 import jsPDF from 'jspdf';
+import {BACKEND_URL} from "../services/helper";
 
 
 function Seminars() {
@@ -22,7 +23,7 @@ const url='http://localhost:3000/St_Seminar_Header.csv'
 const deleteRow=async (id)=>{
   setShowModaldelete(true);
   setdid(id);
-  // let result= await fetch(`http://localhost:4002/user/deleteseminarid/${id}`,{
+  // let result= await fetch(`${BACKEND_URL}/user/deleteseminarid/${id}`,{
   //   method:"Delete"});
   //  // result=await result.json()
   //   window.location.reload();
@@ -30,7 +31,7 @@ const deleteRow=async (id)=>{
 
 const deleteRowyes=async ()=>{
   
-  let result= await fetch(`http://localhost:4002/user/deleteseminarid/${did}`,{
+  let result= await fetch(`${BACKEND_URL}/user/deleteseminarid/${did}`,{
     method:"Delete"});
    // result=await result.json()
    setShowModaldelete(false);

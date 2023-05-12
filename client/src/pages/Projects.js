@@ -5,6 +5,7 @@ import TablesProjects, { StatusPill } from "../tables/TablesProjects";
 import Sidebar from "../components/Sidebar";
 import jsPDF from 'jspdf';
 import {st_home} from '../services/Apis';
+import {BACKEND_URL} from "../services/helper";
 
 function Projects() {
   const navigate = useNavigate();
@@ -41,14 +42,14 @@ function Projects() {
   const deleteRow = async (id) => {
     setShowModaldelete(true);
     setdid(id);
-    // let result= await fetch(`http://localhost:4002/user/deleteprojectid/${id}`,{
+    // let result= await fetch(`${BACKEND_URL}/user/deleteprojectid/${id}`,{
     //   method:"Delete"});
     //  // result=await result.json()
     //   window.location.reload();
   }
 
   const deleteRowyes = async () => {
-    let result = await fetch(`http://localhost:4002/user/deleteprojectid/${did}`, {
+    let result = await fetch(`${BACKEND_URL}/user/deleteprojectid/${did}`, {
       method: "Delete"
     });
     // result=await result.json()

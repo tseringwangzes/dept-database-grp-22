@@ -4,6 +4,7 @@ import signupStyle from "../../pages/Home.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import { projectEdit } from "../../services/Apis";
 import { useNavigate } from "react-router-dom";
+import {BACKEND_URL} from "../../services/helper";
 
 const ProjectsEditPage = () => {
 
@@ -28,7 +29,7 @@ const ProjectsEditPage = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
 
     const deleteid = async (id) => {
-        let result = await fetch(`http://localhost:4002/user/deleteprojectid/${id}`, {
+        let result = await fetch(`${BACKEND_URL}/user/deleteprojectid/${id}`, {
             method: "Delete"
         });
         result = await result.json()

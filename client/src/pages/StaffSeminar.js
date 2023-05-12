@@ -7,6 +7,8 @@ import FtyTablesAchievements, { StatusPill } from "../tables/FtyTablesAchievemen
 import FtyTablesSeminars from "../tables/FtyTablesSeminars";
 import jsPDF from 'jspdf';
 import { ft_achievements } from "../services/Apis";
+import {BACKEND_URL} from "../services/helper";
+
 function StaffSeminar() {
   const navigate = useNavigate();
 
@@ -44,7 +46,7 @@ function StaffSeminar() {
   const deleteRow=async (id)=>{
     ftsetShowModaldelete(true);
     ftsetdid(id);
-    // let result = await fetch(`http://localhost:4002/user/ftydeleteachievements/${id}`, {
+    // let result = await fetch(`${BACKEND_URL}/user/ftydeleteachievements/${id}`, {
     //   method:"Delete"});
     //  // result=await result.json()
     //   window.location.reload();
@@ -53,7 +55,7 @@ function StaffSeminar() {
 
   const deleteRowyes=async ()=>{
   
-     let result = await fetch(`http://localhost:4002/user/ftydeleteachievements/${did}`, {
+     let result = await fetch(`${BACKEND_URL}/user/ftydeleteachievements/${did}`, {
       method:"Delete"});
      // result=await result.json()
      setShowModaldelete(false);
@@ -67,14 +69,14 @@ function StaffSeminar() {
   const stdeleteRow=async (id)=>{
     setShowModaldelete(true);
     setdid(id);
-    // let result= await fetch(`http://localhost:4002/user/deletepublicationid/${id}`,{
+    // let result= await fetch(`${BACKEND_URL}/user/deletepublicationid/${id}`,{
     //   method:"Delete"});
     //  // result=await result.json()
     //   window.location.reload();
   }
   const ftdeleteRowyes=async ()=>{
   
-    let result = await fetch(`http://localhost:4002/user/ftydeleteseminar/${ftdid}`, {
+    let result = await fetch(`${BACKEND_URL}/user/ftydeleteseminar/${ftdid}`, {
       method:"Delete"});
      // result=await result.json()
    ftsetShowModaldelete(false);
