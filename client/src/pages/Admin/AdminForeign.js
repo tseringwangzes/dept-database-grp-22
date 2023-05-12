@@ -7,13 +7,14 @@ import { ft_foreign } from '../../services/Apis'
 import TablesForeigns from "../../tables/TablesForeigns";
 import FtyTablesForeigns from "../../tables/FtyTablesForeigns";
 import jsPDF from 'jspdf';
+import {BACKEND_URL} from "../../services/helper";
 
 function StaffForeign() {
   const navigate = useNavigate();
   const utype = "4";
 
-  const url='http://localhost:3000/Staff_St_Foreign_Header.csv'
-  const url2='http://localhost:3000/Staff_Fty_Foreign_Header.csv'
+  const url='https://dep-t22-iitropar-department-databas.netlify.app/Sample_Staff_St_Foreign_Header.csv'
+  const url2='https://dep-t22-iitropar-department-databas.netlify.app/Sample_Staff_Fty_Foreign_Header.csv'
 
 
   
@@ -46,7 +47,7 @@ function StaffForeign() {
       }
 
   const deleteRowst=async (id)=>{
-    let result= await fetch(`http://localhost:4002/user/foreigndeleteid/${id}`,{
+    let result= await fetch(`${BACKEND_URL}/user/foreigndeleteid/${id}`,{
       method:"Delete"});
      // result=await result.json()
       window.location.reload();
@@ -303,7 +304,7 @@ const rows = data.map(user=>[user.award_name,user.award_reason,user.date,user.sh
 
      
   const deleteRow=async (id)=>{
-    let result = await fetch(`http://localhost:4002/user/ftydeleteforeign/${id}`, {
+    let result = await fetch(`${BACKEND_URL}/user/ftydeleteforeign/${id}`, {
       method:"Delete"});
      // result=await result.json()
       window.location.reload();

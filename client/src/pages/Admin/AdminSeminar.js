@@ -7,12 +7,14 @@ import FtyTablesAchievements, { StatusPill } from "../../tables/FtyTablesAchieve
 import FtyTablesSeminars from "../../tables/FtyTablesSeminars";
 import jsPDF from 'jspdf';
 import { ft_achievements } from "../../services/Apis";
+import {BACKEND_URL} from "../../services/helper";
+
 function StaffSeminar() {
   const navigate = useNavigate();
 
   const utype = "4";
-  const url='http://localhost:3000/Staff_St_Seminar_Header.csv'
-  const url2='http://localhost:3000/Staff_Fty_Seminar_Header.csv'
+  const url='https://dep-t22-iitropar-department-databas.netlify.app/Sample_Staff_St_Lecture_Experts_Header.csv'
+  const url2='https://dep-t22-iitropar-department-databas.netlify.app/Sample_Staff_Fty_Lecture_Experts_Header.csv'
 
   function uploadbulk(){
 
@@ -47,7 +49,7 @@ function StaffSeminar() {
       const deleteRow=async (id)=>{
         setShowModaldelete(true);
         setdid(id);
-        // let result = await fetch(`http://localhost:4002/user/ftydeleteachievements/${id}`, {
+        // let result = await fetch(`${BACKEND_URL}/user/ftydeleteachievements/${id}`, {
         //   method:"Delete"});
         //  // result=await result.json()
         //   window.location.reload();
@@ -56,7 +58,7 @@ function StaffSeminar() {
     
       const deleteRowyes=async ()=>{
       
-        let result = await fetch(`http://localhost:4002/user/ftydeleteachievements/${did}`, {
+        let result = await fetch(`${BACKEND_URL}/user/ftydeleteachievements/${did}`, {
           method:"Delete"});
          // result=await result.json()
          setShowModaldelete(false);

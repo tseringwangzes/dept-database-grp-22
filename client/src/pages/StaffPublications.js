@@ -8,13 +8,14 @@ import Table, { StatusPill } from "./Table";
 import TablesPublications from "../tables/TablesPublications";
 import FtyTablesPublications from "../tables/FtyTablesPublications";
 import jsPDF from 'jspdf';
+import {BACKEND_URL} from "../services/helper";
 
 export default function StaffStudent() {
   const navigate = useNavigate();
   const utype = "1";
 const email = localStorage.getItem('email');
-  const url2='http://localhost:3000/Staff_Fty_Publication_Header.csv'
-  const url='http://localhost:3000/Staff_St_Publication_Header.csv'
+  const url2='https://dep-t22-iitropar-department-databas.netlify.app/Sample_Staff_Fty_Publication_Header.csv'
+  const url='https://dep-t22-iitropar-department-databas.netlify.app/Sample_Staff_St_Publication_Header.csv'
 
 
   const [showModal, setShowModal] = useState(false);
@@ -38,7 +39,7 @@ const email = localStorage.getItem('email');
     document.body.appendChild(aTag);
     aTag.click();
     aTag.remove();
-    console.log(data[0].faculty_name)
+   
     
     navigate("/Profile/Publications/StPublicationCsv",{state:{utype:utype}} )
     
@@ -58,7 +59,7 @@ const email = localStorage.getItem('email');
     document.body.appendChild(aTag);
     aTag.click();
     aTag.remove();
-    console.log(data[0].faculty_name)
+   
     
     navigate("/faculty/Publications/FtyPublicationCsv",{state:{utype:utype}} )
     
@@ -66,14 +67,14 @@ const email = localStorage.getItem('email');
   const deleteRow=async (id)=>{
     ftsetShowModaldelete(true);
     ftsetdid(id);
-    // let result = await fetch(`http://localhost:4002/user/ftydeletepublication/${id}`, {
+    // let result = await fetch(`${BACKEND_URL}/user/ftydeletepublication/${id}`, {
     //   method:"Delete"});
     //  // result=await result.json()
     //   window.location.reload();
   }
   const ftdeleteRowyes=async ()=>{
   
-   let result = await fetch(`http://localhost:4002/user/ftydeletepublication/${ftdid}`, {
+   let result = await fetch(`${BACKEND_URL}/user/ftydeletepublication/${ftdid}`, {
       method:"Delete"});
      // result=await result.json()
   ftsetShowModaldelete(false);
@@ -83,14 +84,14 @@ const email = localStorage.getItem('email');
   const stdeleteRow=async (id)=>{
     setShowModaldelete(true);
     setdid(id);
-    // let result= await fetch(`http://localhost:4002/user/deletepublicationid/${id}`,{
+    // let result= await fetch(`${BACKEND_URL}/user/deletepublicationid/${id}`,{
     //   method:"Delete"});
     //  // result=await result.json()
     //   window.location.reload();
   }
   const deleteRowyes=async ()=>{
   
-  let result= await fetch(`http://localhost:4002/user/deletepublicationid/${did}`,{
+  let result= await fetch(`${BACKEND_URL}/user/deletepublicationid/${did}`,{
       method:"Delete"});
      // result=await result.json()
      setShowModaldelete(false);

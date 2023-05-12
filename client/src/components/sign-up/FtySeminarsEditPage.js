@@ -4,6 +4,7 @@ import signupStyle from "../../pages/Home.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import { FtyEditSeminars } from "../../services/Apis";
 import { useNavigate } from "react-router-dom";
+import {BACKEND_URL} from "../../services/helper";
 
 const FtySeminarsEditPage = () => {
 
@@ -28,7 +29,7 @@ const utype = state.utype;
     const [formFields, setFormFields] = useState(defaultFormFields);
 
     const deleteid = async (id) => {
-        let result = await fetch(`http://localhost:4002/user/ftydeleteseminar/${id}`, {
+        let result = await fetch(`${BACKEND_URL}/user/ftydeleteseminar/${id}`, {
             method: "Delete"
         });
         result = await result.json()

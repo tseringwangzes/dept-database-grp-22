@@ -4,6 +4,7 @@ import signupStyle from "../../pages/Home.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import { publicationEdit } from "../../services/Apis";
 import { useNavigate } from "react-router-dom";
+import {BACKEND_URL} from "../../services/helper";
 
 const PublicationEditPage = () => {
 
@@ -34,7 +35,7 @@ const PublicationEditPage = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
 
     const deleteid = async (id) => {
-        let result = await fetch(`http://localhost:4002/user/deletepublicationid/${id}`, {
+        let result = await fetch(`${BACKEND_URL}/user/deletepublicationid/${id}`, {
             method: "Delete"
         });
         result = await result.json()

@@ -798,6 +798,7 @@ exports.ftHomePost = async (req, res) => {
         } else if (type === 'Research') {
             var myMsg = req.body.msg
             await ftDetails.findOneAndUpdate({ email_id: myEmail }, { research: myMsg });
+
             res.status(200).json({ message: 'Items Added Successfully' });
 
         } else if (type === 'Education') {

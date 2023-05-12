@@ -5,6 +5,7 @@ import FtyTablesPublications, { StatusPill } from "../tables/FtyTablesPublicatio
 import FtySidebar from "../components/FtySidebar";
 import jsPDF from 'jspdf';
 import {ft_home} from '../services/Apis';
+import {BACKEND_URL} from "../services/helper";
 
 function FtyPublications() {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ function FtyPublications() {
   const [showModaldelete, setShowModaldelete] = useState(false);
   const [did, setdid] = useState("");
   const [stData, setData] = useState([]);
-  const url='http://localhost:3000/Fty_Publication_Header.csv'
+  const url='https://dep-t22-iitropar-department-databas.netlify.app/Sample_Fty_Publication_Header.csv'
 
   useEffect(() => {
     const fetchData = async (e) => {
@@ -41,7 +42,7 @@ function FtyPublications() {
   const deleteRow=async (id)=>{
     setShowModaldelete(true);
     setdid(id);
-    // let result = await fetch(`http://localhost:4002/user/ftydeletepublication/${id}`, {
+    // let result = await fetch(`${BACKEND_URL}/user/ftydeletepublication/${id}`, {
     //   method:"Delete"});
     //  // result=await result.json()
     //   window.location.reload();
@@ -49,7 +50,7 @@ function FtyPublications() {
 
   const deleteRowyes=async ()=>{
   
-    let result = await fetch(`http://localhost:4002/user/ftydeletepublication/${did}`, {
+    let result = await fetch(`${BACKEND_URL}/user/ftydeletepublication/${did}`, {
       method:"Delete"});
      // result=await result.json()
      setShowModaldelete(false);
@@ -190,7 +191,7 @@ function FtyPublications() {
     document.body.appendChild(aTag);
     aTag.click();
     aTag.remove();
-    console.log(data[0].faculty_name)
+   
     
     navigate("./FtyPublicationCsv" ,{state:{
       utype: utype,

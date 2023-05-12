@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom";
 import { ToastContainer,toast } from "react-toastify";
 import { FtyAddAwards } from "../../services/Apis";
 import { useNavigate } from "react-router-dom";
+import {BACKEND_URL} from "../../services/helper";
+
 
 const FtyAwardsEditPage = () => {
 
@@ -26,7 +28,7 @@ const navigate = useNavigate();
   const [formFields, setFormFields] = useState(defaultFormFields);
 
   const deleteid=async (id)=>{
-    let result= await fetch(`http://localhost:4002/user/ftydeleteaward/${id}`,{
+    let result= await fetch(`${BACKEND_URL}/user/ftydeleteaward/${id}`,{
       method:"Delete"});
       result=await result.json()
   }

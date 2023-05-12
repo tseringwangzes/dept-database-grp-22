@@ -6,6 +6,7 @@ import FtySidebar from "../components/FtySidebar";
 import { useLocation } from 'react-router-dom';
 import jsPDF from 'jspdf';
 import {ft_home} from '../services/Apis';
+import {BACKEND_URL} from "../services/helper";
 
 
 function FtyAwards() {
@@ -15,7 +16,7 @@ function FtyAwards() {
   const [did, setdid] = useState("");
   const [stData, setData] = useState([]);
 
-  const url='http://localhost:3000/Fty_Award_Header.csv'
+  const url='https://dep-t22-iitropar-department-databas.netlify.app/Sample_Fty_Award_Header.csv'
 
   useEffect(() => {
     const fetchData = async (e) => {
@@ -47,7 +48,7 @@ function FtyAwards() {
     setShowModaldelete(true);
     setdid(id);
 
-    // let result= await fetch(`http://localhost:4002/user/ftydeleteaward/${id}`,{
+    // let result= await fetch(`${BACKEND_URL}/user/ftydeleteaward/${id}`,{
     //   method:"Delete"});
     //  // result=await result.json()
     //   window.location.reload();
@@ -55,7 +56,7 @@ function FtyAwards() {
 
   const deleteRowyes=async ()=>{
   
-    let result= await fetch(`http://localhost:4002/user/ftydeleteaward/${did}`,{
+    let result= await fetch(`${BACKEND_URL}/user/ftydeleteaward/${did}`,{
       method:"Delete"});
      // result=await result.json()
      setShowModaldelete(false);
@@ -79,7 +80,8 @@ function FtyAwards() {
     if (response.status === 200) {
       setUserData(response.data)
       console.log(response.data)
-      sortedData = data.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+      if(data.length!==0){
+      sortedData = data.slice().sort((a, b) => new Date(b.date) - new Date(a.date));}
     } else {
       console.log("error for get user data")
     }

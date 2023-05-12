@@ -5,6 +5,7 @@ import FtyTablesForeigns, { StatusPill } from "../tables/FtyTablesForeigns";
 import FtySidebar from "../components/FtySidebar";
 import jsPDF from 'jspdf';
 import {ft_home} from '../services/Apis';
+import {BACKEND_URL} from "../services/helper";
 
 function FtyForeign() {
     const utype = "0";
@@ -15,7 +16,7 @@ function FtyForeign() {
     const [showModaldelete, setShowModaldelete] = useState(false);
     const [did, setdid] = useState("");
     const [stData, setData] = useState([]);
-    const url='http://localhost:3000/Fty_Foreign_Header.csv'
+    const url='https://dep-t22-iitropar-department-databas.netlify.app/Sample_Fty_Foreign_Header.csv'
 
     useEffect(() => {
         const fetchData = async (e) => {
@@ -41,14 +42,14 @@ function FtyForeign() {
     const deleteRow=async (id)=>{
       setShowModaldelete(true);
       setdid(id);
-        // let result = await fetch(`http://localhost:4002/user/ftydeleteforeign/${id}`, {
+        // let result = await fetch(`${BACKEND_URL}/user/ftydeleteforeign/${id}`, {
         //   method:"Delete"});
         //  // result=await result.json()
         //   window.location.reload();
       }
 
       const deleteRowyes=async ()=>{
-        let result = await fetch(`http://localhost:4002/user/ftydeleteforeign/${did}`, {
+        let result = await fetch(`${BACKEND_URL}/user/ftydeleteforeign/${did}`, {
           method:"Delete"});
          // result=await result.json()
          setShowModaldelete(false);
@@ -155,7 +156,7 @@ function FtyForeign() {
       document.body.appendChild(aTag);
       aTag.click();
       aTag.remove();
-      console.log(data[0].faculty_name)
+     
       
     navigate("./FtyForeignCsv" ,{state:{
         utype: utype,
