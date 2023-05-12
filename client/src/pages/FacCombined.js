@@ -66,7 +66,7 @@ function Fac_Combined() {
 
   return (
     <>
-      <div className="absolute right-0 w-3/4 bg-gray-100 text-gray-900">
+     <div className="absolute right-0 w-3/4 bg-gray-100 text-gray-900">
         <FtySidebar />
         <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
           <div className="mt-4">
@@ -95,11 +95,17 @@ function Fac_Combined() {
             {/* <button onClick={handleDownloadPDFToDOC}>
               Convert and Download as DOC
             </button> */}
-          </div>
-        </main>
-      </div>
+            </div>
+            </main>
+          </div> 
+     
     </>
   );
 }
 
 export default Fac_Combined;
+
+/**
+ 
+
+ */
