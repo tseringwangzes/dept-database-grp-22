@@ -43,7 +43,7 @@ var email = localStorage.getItem('email');
             impact_factor:"",
             additional_info:"",
             link:"",
-        faculty_name: "2020csb1136@iitrpr.ac.in",
+        faculty_name: "puneet@iitrpr.ac.in",
         student_name: email,
         status: "Pending..",
     };}
