@@ -44,24 +44,24 @@ function First(){
     <div className="card bg-white rounded-lg shadow-lg w-80 p-6 m-4 cursor-pointer transform transition duration-300 hover:shadow-xl hover:scale-105 hover:text-black flex flex-col justify-center items-center" onClick={() => history('/Login', { state: "1" })}>
     <i className="icon fa-solid fa-user-graduate text-6xl mb-2"></i>
       <h2 className="text-lg font-bold">Student</h2>
-      <p className="text-gray-700 text-sm mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum</p>
+      <p className="text-gray-700 text-sm mt-2">Click here to sign in or login</p>
     </div>
     <div className="card bg-white rounded-lg shadow-lg w-80 p-6 m-4 cursor-pointer transform transition duration-300 hover:shadow-xl hover:scale-105 hover:text-black flex flex-col justify-center items-center" onClick={() => history('/Login', { state: "2" })}>
       <i className="fa-sharp fa-solid fa-chalkboard-user text-6xl mb-2 icon"></i>
       <h2 className="text-lg font-bold">Faculty</h2>
-      <p className="text-gray-700 text-sm mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum</p>
+      <p className="text-gray-700 text-sm mt-2">Click here to sign in or login</p>
     </div>
   </div>
   <div className="flex flex-col md:flex-row items-center">
     <div className="card bg-white rounded-lg shadow-lg w-80 p-6 m-4 cursor-pointer transform transition duration-300 hover:shadow-xl hover:scale-105 hover:text-black flex flex-col justify-center items-center" onClick={() => history('/Login', { state: "3" })}>
       <i className="icon fa-solid fa-print text-6xl mb-2"></i>
       <h2 className="text-lg font-bold">Office Staff</h2>
-      <p className="text-gray-700 text-sm mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum</p>
+      <p className="text-gray-700 text-sm mt-2">Click here to sign in or login</p>
     </div>
     <div className="card bg-white rounded-lg shadow-lg w-80 p-6 m-4 cursor-pointer transform transition duration-300 hover:shadow-xl hover:scale-105 hover:text-black flex flex-col justify-center items-center" onClick={() => history('/Login', { state: "4" })}>
       <i className="icon fa-solid fa-user-plus text-6xl mb-2"></i>
       <h2 className="text-lg font-bold -ml-5">Admin</h2>
-      <p className="text-gray-700 text-sm mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum</p>
+      <p className="text-gray-700 text-sm mt-2">Click here to sign in or login</p>
     </div>
   </div>
 
