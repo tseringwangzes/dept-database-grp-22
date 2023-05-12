@@ -57,6 +57,11 @@ const ProjectAddPage = () => {
             toast.error("Enter title Name")
 
         }
+        if (date === "") {
+
+            toast.error("Enter the date")
+
+        }
         else {
             const response = await projectEdit(formFields);
             if (response.status === 200) {

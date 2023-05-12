@@ -52,6 +52,11 @@ var email = localStorage.getItem('email');
             toast.error("Enter title Name")
 
         }
+        if (start_date === "") {
+
+            toast.error("Enter the start date")
+
+        }
         else {
             const response = await FtyEditProjects(formFields);
             if (response.status === 200) {

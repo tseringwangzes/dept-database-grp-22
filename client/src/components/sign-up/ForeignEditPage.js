@@ -55,6 +55,9 @@ const ForeignEditPage = () => {
             toast.error("Enter visit details")
 
         }
+        if(start_date===""){
+            toast.error("Enter start_date")
+        }
         else {
             const response = await foreignEdit(formFields);
             if (response.status === 200) {

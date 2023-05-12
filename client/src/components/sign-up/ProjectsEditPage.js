@@ -49,6 +49,11 @@ const ProjectsEditPage = () => {
             toast.error("Enter topic Name")
 
         }
+        if (start_date === "") {
+
+            toast.error("Enter the start date")
+
+        }
         else {
             const response = await projectEdit(formFields);
             if (response.status === 200) {

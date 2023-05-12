@@ -48,6 +48,11 @@ const FtyAwardAddPage = () => {
       toast.error("Enter Award/Achievement Name")
 
     }
+    if(date === ""){
+
+      toast.error("Enter the date")
+
+    }
     else{
       //       const dateObject = new Date(date);
       // const isoDate = dateObject.toISOString();

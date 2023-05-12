@@ -48,6 +48,11 @@ else{
             toast.error("Enter Country Name")
 
         }
+        if (start_date === "") {
+
+            toast.error("Enter the star date")
+
+        }
         else {
             const response = await FtyEditForeign(formFields);
             if (response.status === 200) {

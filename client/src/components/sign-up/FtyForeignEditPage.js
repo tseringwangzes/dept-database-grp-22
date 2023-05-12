@@ -47,6 +47,11 @@ const FtyForeignEditPage = () => {
             toast.error("Enter Country Name")
 
         }
+        if (start_date === "") {
+
+            toast.error("Enter the start date")
+
+        }
         else {
             const response = await FtyEditForeign(formFields);
             if (response.status === 200) {

@@ -46,6 +46,9 @@ const FtyAchievementsEditPage = () => {
         if (title === "") {
             toast.error("Enter Lecture Tile")
         }
+        if (date === "") {
+            toast.error("Enter the date")
+        }
         else {
             const response = await FtyEditAchievements(formFields);
             if (response.status === 200) {

@@ -9,6 +9,8 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import StarsIcon from '@mui/icons-material/Stars';
 import AirplanemodeActiveOutlinedIcon from '@mui/icons-material/AirplanemodeActiveOutlined';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
+import PersonIcon from '@mui/icons-material/Person';
+
 export const FtySidebarData = [
     {
         title:"Home",
@@ -30,7 +32,7 @@ export const FtySidebarData = [
     },
       {
         title:"Invited Lectures By Faculty",
-        icon:<StarsIcon />,
+        icon:<PersonIcon  />,
         link:"/faculty/Achievements",
         fname:""
     },   

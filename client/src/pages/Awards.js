@@ -131,7 +131,7 @@ function Awards() {
                 utype: utype,
               }
             })}>Edit</button>
-            
+               window.location.reload();
           </div>);
 
 
