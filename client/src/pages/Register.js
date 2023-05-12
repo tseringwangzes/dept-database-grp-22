@@ -100,10 +100,11 @@ const Register = () => {
         <h6>Enter 3 if Office Staff</h6>
         <h6>Enter 4 if Admin</h6>
       </div>
-      <button className="bg-blue-500 text-white rounded-full w-full py-3 mb-4 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" onClick={handleSubmit}>Sign Up</button>
+      <button onClick={handleSubmit}>Sign Up</button>
     </form>
   </div>
 </section>
+
 
 
 
