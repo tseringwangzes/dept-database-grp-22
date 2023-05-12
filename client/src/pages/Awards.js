@@ -150,8 +150,17 @@ function Awards() {
     []
   );
 
+const fname="";
+
+
 
  function uploadbulk2(){
+  if(data[0].faculty_name===""){
+    fname="puneet@iitrpr.ac.in"
+  }
+  else{
+    fname=data[0].faculty_name
+  }
   navigate("./StAwardCsv" ,{state:{
     utype: utype,
     fname: "puneet@iitrpr.ac.in",
@@ -170,6 +179,13 @@ aTag.setAttribute("download","Sample_Student_Awards");
 document.body.appendChild(aTag);
 aTag.click();
 aTag.remove();
+
+if(data[0].faculty_name===""){
+  fname="puneet@iitrpr.ac.in"
+}
+else{
+  fname=data[0].faculty_name
+}
   
 
 
