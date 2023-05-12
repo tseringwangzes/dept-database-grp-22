@@ -70,7 +70,7 @@ function FtyProfile() {
   <div className="py-12">
     <div className="max-w-3xl ml-44 mr-5 space-y-8">
       <div className="text-center flex flex-col items-center">
-        <img className="h-40 rounded-full border-4 border-white shadow-lg mb-4" src={process.env.PUBLIC_URL + '/images/stu.jpg'} alt="student" />
+        <img className="h-40 rounded-full border-4 border-white shadow-lg mb-4" src={process.env.PUBLIC_URL + 'https://cse.iitrpr.ac.in/sites/default/files/pic_shweta.jpg'} alt="student" />
         <h2 className="mt-4 text-3xl font-bold text-gray-900" style={{fontFamily: 'Bahnschrift, sans-serif'}}>{ftData[6]}</h2>
         <p className="mt-1 text-lg text-gray-600">{email}</p>
         <p className="mt-1 text-lg text-gray-600">
