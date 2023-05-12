@@ -102,7 +102,7 @@ function FtyAchievements() {
     document.body.appendChild(aTag);
     aTag.click();
     aTag.remove();
-    console.log(data[0].faculty_name)
+    
     
    navigate("./FtyAchievementCsv" ,{state:{
       utype: utype,

@@ -156,7 +156,7 @@ function FtyForeign() {
       document.body.appendChild(aTag);
       aTag.click();
       aTag.remove();
-      console.log(data[0].faculty_name)
+     
       
     navigate("./FtyForeignCsv" ,{state:{
         utype: utype,

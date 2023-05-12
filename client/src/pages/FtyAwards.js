@@ -80,7 +80,8 @@ function FtyAwards() {
     if (response.status === 200) {
       setUserData(response.data)
       console.log(response.data)
-      sortedData = data.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+      if(data.length!==0){
+      sortedData = data.slice().sort((a, b) => new Date(b.date) - new Date(a.date));}
     } else {
       console.log("error for get user data")
     }
