@@ -6,18 +6,19 @@ import FtyTablesAwards, { StatusPill } from "../../tables/FtyTablesAwards";
 import TablesAwards from "../../tables/TablesAwards";
 import Sidebar from "../../components/AdminSidebar"; 
 import jsPDF from 'jspdf';
+import {BACKEND_URL} from "../../services/helper";
 
 function StaffStudent() {
   const navigate = useNavigate();
   var email = localStorage.getItem('email');
   const utype = "4";
-  const url='http://localhost:3000/Staff_St_Award_Header.csv'
-  const url2='http://localhost:3000/Staff_Fty_Award_Header.csv'
+  const url='https://dep-t22-iitropar-department-databas.netlify.app/Sample_Staff_St_Award_Header.csv'
+  const url2='https://dep-t22-iitropar-department-databas.netlify.app/Sample_Staff_Fty_Award_Header.csv'
 
   const [data, setUserData] = useState([]);
 
   const deleteRowst=async (id)=>{
-    let result= await fetch(`http://localhost:4002/user/deleteid/${id}`,{
+    let result= await fetch(`${BACKEND_URL}/user/deleteid/${id}`,{
       method:"Delete"});
      // result=await result.json()
       window.location.reload();
@@ -140,7 +141,7 @@ console.log(data[0].faculty_name)
 
 
   const deleteRow=async (id)=>{
-    let result= await fetch(`http://localhost:4002/user/ftydeleteaward/${id}`,{
+    let result= await fetch(`${BACKEND_URL}/user/ftydeleteaward/${id}`,{
       method:"Delete"});
      // result=await result.json()
       window.location.reload();

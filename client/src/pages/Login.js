@@ -33,14 +33,14 @@ const Login = () => {
                 email: email
             }
 
-            const response = await sentOtpFunction(data);
+           // const response = await sentOtpFunction(data);
 
-            if (response.status === 200) {
+           // if (response.status === 200) {
                 setSpiner(false)
                 navigate("/user/otp",{state:{email:email,idd:id}})
-            } else {
-                toast.error(response.response.data.error);
-            }
+           // } else {
+                //toast.error(response.response.data.error);
+           // }
         }
     }
     return (
@@ -58,12 +58,14 @@ const Login = () => {
                     <form className={loginStyle.my_form}>
                         <div className={loginStyle.form_input}>
                             <label className={loginStyle.myLabel} htmlFor="email">Email</label>
-                            <input className = {loginStyle.myData} type="email" name="email" id="" onChange={(e) => setEmail(e.target.value)} placeholder='Enter Your Email Address' />
+                            <input className = {loginStyle.myData} type="email" name="email" id="" onChange={(e) => setEmail(e.target.value.toLowerCase())} placeholder='Enter Your Email Address' />
                         </div>
-                        <button className={loginStyle.btn} onClick={sendOtp}>
-                            {!spiner && 'Login'}
-                             {spiner && <Spinner animation="border" />}
-                        </button>
+                        <button className="bg-blue-500 text-white rounded-full w-full py-3 px-6 mb-4 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" onClick={sendOtp}>
+  {!spiner && 'Login'}
+  {spiner && <Spinner animation="border" />}
+</button>
+
+
 
 
                         {/* <p className={loginStyle.para}>Don't have an account? <NavLink to="/Register">Sign up</NavLink> </p> */}

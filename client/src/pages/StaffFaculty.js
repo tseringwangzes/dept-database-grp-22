@@ -1,19 +1,21 @@
 import React, { Component, useEffect, useState } from "react";
+import Sidebar from "../components/staffSide";
 import { useNavigate } from "react-router-dom";
 import { st_ach } from '../services/Apis'
 import { ft_achievements } from '../services/Apis'
-import Sidebar from "../components/staffSide";
+
 import TablesAchievements, { StatusPill } from "../tables/TablesAchievements";
 import FtyTablesAchievements from "../tables/FtyTablesAchievements";
 import jsPDF from 'jspdf';
+import {BACKEND_URL} from "../services/helper";
 
 function StaffFaculty() {
   const navigate = useNavigate();
   var email = sessionStorage.getItem('email');
   const utype = "1";
 
-  const url='http://localhost:3000/Staff_St_Achievement_Header.csv'
-  const url2='http://localhost:3000/Staff_Fty_Achievement_Header.csv'
+  const url='https://dep-t22-iitropar-department-databas.netlify.app/Staff_St_Achievement_Header.csv'
+  const url2='https://dep-t22-iitropar-department-databas.netlify.app/Sample_Staff_Fty_Lecture_Header.csv'
 
 
   function uploadbulk(){
@@ -46,7 +48,7 @@ function StaffFaculty() {
     }
 
   const deleteRowst=async (id)=>{
-    let result= await fetch(`http://localhost:4002/user/achdeleteid/${id}`,{
+    let result= await fetch(`${BACKEND_URL}/user/achdeleteid/${id}`,{
       method:"Delete"});
      // result=await result.json()
       window.location.reload();
@@ -131,7 +133,7 @@ function StaffFaculty() {
   );
 
   const deleteRow=async (id)=>{
-    let result = await fetch(`http://localhost:4002/user/ftydeleteachievements/${id}`, {
+    let result = await fetch(`${BACKEND_URL}/user/ftydeleteachievements/${id}`, {
       method:"Delete"});
      // result=await result.json()
       window.location.reload();

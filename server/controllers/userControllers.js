@@ -299,7 +299,7 @@ exports.userget = async (req, res) => {
 // }
 exports.usergetall = async (req, res) => {
     const email = req.query.email;
-    console.log(email)
+    // console.log(email)
     try {
         var allUser
         if (email === "admin") {
@@ -595,29 +595,35 @@ exports.useraddmore = async (req, res) => {
     const { award_name, date, shared_with, award_link, additional_info, status, faculty_name, student_name } = req.body;
 
 
-    if (!award_name || !date || !status || !faculty_name) {
-        res.status(400).json({ error: "Please Enter All Input Data" })
-    }
+    // if (!award_name || !date || !status) {
+    //     res.status(400).json({ error: "Please Enter All Input Data" })
+    // }
 
-    if (req.body.shared_with !== "") {
+    if(shared_with!==""){
         console.log("not null")
-        const student_name2 = req.body.shared_with;
 
-        console.log(student_name2)
-        student_name2.split(',').map(async (shared_each_email) => {
+        const student_name2 = shared_with.split(',');
+     
 
-            // const femail = await users.findOne({email:shared_each_email});
-            //  console.log(femail)
-            console.log(shared_each_email)
-            const nshw1 = student_name2.split(shared_each_email).join("");
-            const nshw2 = nshw1 + "," + req.body.student_name;
+       
+       for(const shared_each_email of student_name2) {
+        const shareddata =shared_with.split(',');
+           // console.log(student_name2);
+            const array=shareddata;
+            var index = array.indexOf(shared_each_email)
+            array.splice(index, 1);
+             array.push(student_name)
+           // console.log(array);
+
+            const nshw2=array.toString()
+            console.log(nshw2);
             const shareduseraddmore = new stAwardDetail({
                 award_name, date, "shared_with": nshw2, status, faculty_name, "student_name": shared_each_email, award_link, additional_info
             });
-            console.log(shareduseraddmore);
+            // console.log(shareduseraddmore);
 
             const findAward = await stAwardDetail.findOne({ student_name: shared_each_email, award_name: award_name, date: date, award_link: award_link, additional_info: additional_info })
-            console.log(findAward);
+            // console.log(findAward);
             if (!findAward) {
                 const storeData = await shareduseraddmore.save();
 
@@ -625,8 +631,9 @@ exports.useraddmore = async (req, res) => {
 
 
 
-        })
+        }
     }
+    
 
 
 
@@ -791,6 +798,7 @@ exports.ftHomePost = async (req, res) => {
         } else if (type === 'Research') {
             var myMsg = req.body.msg
             await ftDetails.findOneAndUpdate({ email_id: myEmail }, { research: myMsg });
+
             res.status(200).json({ message: 'Items Added Successfully' });
 
         } else if (type === 'Education') {
@@ -975,9 +983,41 @@ exports.facultygetprojects = async (req, res) => {
 exports.facultyaddawards = async (req, res) => {
     const { award_name, award_reason, date, shared_with, faculty_name, additional_info } = req.body;
 
-    if (!award_name || !date || !shared_with || !faculty_name || !additional_info) {
-        res.status(400).json({ error: "Please Enter All Input Data" })
+    // if (!award_name || !date || !shared_with || !faculty_name || !additional_info) {
+    //     res.status(400).json({ error: "Please Enter All Input Data" })
+    // }
+
+if(shared_with!==""){
+
+    const student_name2 = shared_with.split(',');
+    for(const shared_each_email of student_name2) {
+    
+        const shareddata =shared_with.split(',');
+
+    
+        const array=shareddata;
+        var index = array.indexOf(shared_each_email)
+        array.splice(index, 1);
+         array.push(faculty_name)
+       // console.log(array);
+
+        const nshw2=array.toString()
+
+        const facultyaddawards = new ft_awards({
+            award_name, award_reason, date, "shared_with":nshw2, "faculty_name":shared_each_email, additional_info
+        });
+        const findAward = await ft_awards.findOne({ award_name:award_name, award_reason:award_reason, date:date, shared_with:shared_with, faculty_name:faculty_name, additional_info:additional_info })
+        if (!findAward) {
+            const storeData = await facultyaddawards.save();
+           // res.status(200).json(storeData);
+           // return;
+        }
+    
     }
+
+}
+
+
     try {
         const facultyaddawards = new ft_awards({
             award_name, award_reason, date, shared_with, faculty_name, additional_info
@@ -1003,9 +1043,9 @@ exports.facultyaddawards = async (req, res) => {
 exports.editachievements = async (req, res) => {
     const { achievements, date, shared_with, status, faculty_name, student_name } = req.body;
     console.log(req.body)
-    if (!achievements || !date || !shared_with || !status || !faculty_name || !student_name) {
-        res.status(400).json({ error: "Please Enter All Input Data" })
-    }
+    // if (!achievements || !date || !shared_with || !status || !faculty_name || !student_name) {
+    //     res.status(400).json({ error: "Please Enter All Input Data" })
+    // }
     try {
         const editachievements = new st_achievements({
             achievements, date, shared_with, status, faculty_name, student_name
@@ -1030,9 +1070,9 @@ exports.editachievements = async (req, res) => {
 exports.editforeign = async (req, res) => {
     const { start_date, end_date, country, visit_details, visit_link, status, faculty_name, student_name } = req.body;
 
-    if (!start_date || !end_date || !country || !visit_details || !visit_link || !status || !faculty_name || !student_name) {
-        res.status(400).json({ error: "Please Enter All Input Data" })
-    }
+    // if (!start_date || !end_date || !country || !visit_details || !visit_link || !status || !faculty_name || !student_name) {
+    //     res.status(400).json({ error: "Please Enter All Input Data" })
+    // }
     try {
         const editforeign = new st_for_visits({
             start_date, end_date, country, visit_details, visit_link, status, faculty_name, student_name
@@ -1057,9 +1097,9 @@ exports.editforeign = async (req, res) => {
 exports.editseminar = async (req, res) => {
     const { title, type, date, venue, chief_guest, mode, collaborator, status, faculty_name, student_name } = req.body;
     console.log(req.body)
-    if (!title || !type || !date || !venue || !chief_guest || !mode || !collaborator || !status || !faculty_name || !student_name) {
-        res.status(400).json({ error: "Please Enter All Input Data" })
-    }
+    // if (!title || !type || !date || !venue || !chief_guest || !mode || !collaborator || !status || !faculty_name || !student_name) {
+    //     res.status(400).json({ error: "Please Enter All Input Data" })
+    // }
     try {
         const editseminar = new st_seminar({
             title, type, date, venue, chief_guest, mode, collaborator, status, faculty_name, student_name
@@ -1084,9 +1124,9 @@ exports.editseminar = async (req, res) => {
 exports.editpublication = async (req, res) => {
     const { title,author,type,title_publish,patent_no,accepted_date,published_date,assignee,impact_factor,additional_info,link,status,faculty_name,student_name} = req.body;
 
-    if (!title || !author || !type || !title_publish || !patent_no || !accepted_date || !published_date || !assignee || !impact_factor || !additional_info || !link || !status || !faculty_name || !student_name) {
-        res.status(400).json({ error: "Please Enter All Input Data" })
-    }
+    // if (!title || !author || !type || !title_publish || !patent_no || !accepted_date || !published_date || !assignee || !impact_factor || !additional_info || !link || !status || !faculty_name || !student_name) {
+    //     res.status(400).json({ error: "Please Enter All Input Data" })
+    // }
     try {            
             const editpublication = new st_publi({
                 title,author,type,title_publish,patent_no,accepted_date,published_date,assignee,impact_factor,
@@ -1114,9 +1154,9 @@ exports.editpublication = async (req, res) => {
 exports.editproject = async (req, res) => {
     const { title, start_date, dept, faculty_name, student_name, funding_agency, funds, ongoing, link, status } = req.body;
 
-    if (!title || !start_date || !dept || !faculty_name || !student_name || !funding_agency || !funds || !ongoing || !link || !status) {
-        res.status(400).json({ error: "Please Enter All Input Data" })
-    }
+    // if (!title || !start_date || !dept || !faculty_name || !student_name || !funding_agency || !funds || !ongoing || !link || !status) {
+    //     res.status(400).json({ error: "Please Enter All Input Data" })
+    // }
     try {
         const editproject = new st_project({
             title, start_date, dept, faculty_name, student_name, funding_agency, funds, ongoing, link, status
@@ -1142,10 +1182,10 @@ exports.editproject = async (req, res) => {
 
 exports.facultyeditachievements = async (req, res) => {
     const { title, date, dept, faculty_name, additional_info, institute } = req.body;
-    if (!title || !date || !dept || !faculty_name || !institute) {
-        res.status(400).json({ error: "Please Enter All Input Data" })
-        return;
-    }
+    // if (!title || !date || !dept || !faculty_name || !institute) {
+    //     res.status(400).json({ error: "Please Enter All Input Data" })
+    //     return;
+    // }
     try {
         const facultyeditachievements = new ft_achievements({
             title, date, dept, faculty_name, additional_info, institute
@@ -1171,9 +1211,9 @@ exports.facultyeditachievements = async (req, res) => {
 exports.facultyeditseminars = async (req, res) => {
     const { title, speaker, date, venue, dept, designation, institute, additional_info, num_participant } = req.body;
 
-    if (!title || !speaker || !date || !venue || !dept || !designation || !institute || !num_participant) {
-        res.status(400).json({ error: "Please Enter All Input Data" })
-    }
+    // if (!title || !speaker || !date || !venue || !dept || !designation || !institute || !num_participant) {
+    //     res.status(400).json({ error: "Please Enter All Input Data" })
+    // }
     try {
         const facultyeditseminars = new ft_seminars({
             title, speaker, date, venue, dept, designation, institute, additional_info, num_participant
@@ -1198,9 +1238,9 @@ exports.facultyeditseminars = async (req, res) => {
 exports.facultyeditforeign = async (req, res) => {
     const { start_date, end_date, country, visit_details, faculty_name } = req.body;
 
-    if (!start_date || !end_date || !country || !visit_details || !faculty_name) {
-        res.status(400).json({ error: "Please Enter All Input Data" })
-    }
+    // if (!start_date || !end_date || !country || !visit_details || !faculty_name) {
+    //     res.status(400).json({ error: "Please Enter All Input Data" })
+    // }
     try {
         const facultyeditforeign = new ft_foreign({
             start_date, end_date, country, faculty_name, visit_details
@@ -1403,9 +1443,9 @@ exports.fty_publication_csv = async (req, res) => {
 exports.facultyeditpublication = async (req, res) => {
     const { title,author,type,title_publish,patent_no,accepted_date,published_date,assignee,impact_factor,additional_info,link,faculty_name} = req.body;
 
-    if (!title || !author || !type || !title_publish || !patent_no || !accepted_date || !published_date || !assignee || !impact_factor || !additional_info || !link || !faculty_name) {
-        res.status(400).json({ error: "Please Enter All Input Data" })
-    }
+    // if (!title || !author || !type || !title_publish || !patent_no || !accepted_date || !published_date || !assignee || !impact_factor || !additional_info || !faculty_name) {
+    //     res.status(400).json({ error: "Please Enter All Input Data" })
+    // }
     try {            
             const facultyeditpublication = new ft_publications({
                 title,author,type,title_publish,patent_no,accepted_date,published_date,assignee,impact_factor,
@@ -1432,9 +1472,9 @@ exports.facultyeditpublication = async (req, res) => {
 exports.facultyeditproject = async (req, res) => {
     const { title, start_date, dept, faculty_name, funding_agency, funds, ongoing, link } = req.body;
 
-    if (!title || !start_date || !dept || !faculty_name || !funding_agency || !funds || !ongoing || !link) {
-        res.status(400).json({ error: "Please Enter All Input Data" })
-    }
+ //   if (!title || !start_date || !dept || !faculty_name || !funding_agency || !funds || !ongoing || !link) {
+   //     res.status(400).json({ error: "Please Enter All Input Data" })
+    //}
     try {
         const facultyeditproject = new ft_projects({
             title, start_date, dept, faculty_name, funding_agency, funds, ongoing, link

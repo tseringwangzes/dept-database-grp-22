@@ -32,24 +32,21 @@ function FtyAchievementCsv(){
         delimiter: ',',
         skipEmptyLines: true,
   
-        columns: [ 'title', 'date', 'institute','dept','additional_info'],
+        columns: ['faculty_name','title','institute','date','dept','additional_info'],
         header: true, complete: function (results) {
           let data=results.data;
 
-        if(utype==='0') { for(const entry of data){
-            entry.faculty_name=email;
-          }}
 
           console.log("Finished:", results.data);
           fty_achievement_csv(data);
           alert("sucessfully uploaded!");
           if(utype==='0'){
           navigate('/faculty/Achievements');}
-          else if(utype==='1' || utype==='4'){
-            navigate('/Admin/AdminFaculty');
+          else if( utype==='4'){
+            navigate('/Admin/AdminSeminar');
           }
-          else if(utype==='2'){
-            navigate('/StaffHome/StaffFaculty');
+          else if(utype==='1'){
+            navigate('/StaffHome/StaffSeminar');
           }
           window.location.reload();
   

@@ -6,14 +6,14 @@ import { ft_projects } from '../../services/Apis'
 import Table, { StatusPill } from "../Table";
 import TablesProjects from "../../tables/TablesProjects";
 import FtyTablesProjects from "../../tables/FtyTablesProjects";
-
+import {BACKEND_URL} from "../../services/helper";
 
 function StaffProject() {
   const navigate = useNavigate();
   const utype = "4";
 
-  const url='http://localhost:3000/Staff_St_Project_Header.csv'
-  const url2='http://localhost:3000/Staff_Fty_Project_Header.csv'
+  const url='https://dep-t22-iitropar-department-databas.netlify.app/Sample_Staff_St_Project_Header.csv'
+  const url2='https://dep-t22-iitropar-department-databas.netlify.app/Sample_Staff_Fty_Project_Header.csv'
 
 
   function uploadbulk(){
@@ -44,14 +44,14 @@ function StaffProject() {
       
       }
       const stdeleteRow=async (id)=>{
-        let result= await fetch(`http://localhost:4002/user/deleteprojectid/${id}`,{
+        let result= await fetch(`${BACKEND_URL}/user/deleteprojectid/${id}`,{
           method:"Delete"});
          // result=await result.json()
           window.location.reload();
       }
 
       const deleteRow=async (id)=>{
-        let result = await fetch(`http://localhost:4002/user/ftydeleteproject/${id}`, {
+        let result = await fetch(`${BACKEND_URL}/user/ftydeleteproject/${id}`, {
           method:"Delete"});
          // result=await result.json()
           window.location.reload();

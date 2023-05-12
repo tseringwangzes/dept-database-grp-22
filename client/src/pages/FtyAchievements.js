@@ -5,8 +5,9 @@ import FtyTablesAchievements, { StatusPill } from "../tables/FtyTablesAchievemen
 import FtySidebar from "../components/FtySidebar";
 import jsPDF from "jspdf";
 import {ft_home} from '../services/Apis';
-const { Document, Table, TableCell, TableRow } = require('docx');
+import {BACKEND_URL} from "../services/helper";
 
+const { Document, Table, TableCell, TableRow } = require('docx');
 
 function FtyAchievements() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ function FtyAchievements() {
   const [stData, setData] = useState([]);
   
   console.log(email)
-  const url='http://localhost:3000/Fty_Achievement_Header.csv'
+  const url='https://dep-t22-iitropar-department-databas.netlify.app/Sample_Fty_Lecture_Header.csv'
 
   useEffect(() => {
     const fetchData = async (e) => {
@@ -46,7 +47,7 @@ function FtyAchievements() {
   const deleteRow=async (id)=>{
     setShowModaldelete(true);
     setdid(id);
-    // let result = await fetch(`http://localhost:4002/user/ftydeleteachievements/${id}`, {
+    // let result = await fetch(`${BACKEND_URL}/user/ftydeleteachievements/${id}`, {
     //   method:"Delete"});
     //  // result=await result.json()
     //   window.location.reload();
@@ -54,7 +55,7 @@ function FtyAchievements() {
     
   const deleteRowyes=async ()=>{
   
-    let result = await fetch(`http://localhost:4002/user/ftydeleteachievements/${did}`, {
+    let result = await fetch(`${BACKEND_URL}/user/ftydeleteachievements/${did}`, {
       method:"Delete"});
      // result=await result.json()
      setShowModaldelete(false);
@@ -101,7 +102,7 @@ function FtyAchievements() {
     document.body.appendChild(aTag);
     aTag.click();
     aTag.remove();
-    console.log(data[0].faculty_name)
+    
     
    navigate("./FtyAchievementCsv" ,{state:{
       utype: utype,

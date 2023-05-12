@@ -8,6 +8,7 @@ import CurrencyExchangeSharpIcon from '@mui/icons-material/CurrencyExchangeSharp
 import VerifiedIcon from '@mui/icons-material/Verified';
 import StarsIcon from '@mui/icons-material/Stars';
 import AirplanemodeActiveOutlinedIcon from '@mui/icons-material/AirplanemodeActiveOutlined';
+import FileCopyIcon from '@mui/icons-material/FileCopy';
 export const FtySidebarData = [
     {
         title:"Home",
@@ -46,7 +47,7 @@ export const FtySidebarData = [
         fname:""
     },
     {
-        title:"Project Grants",
+        title:"Research Projects",
         icon:<CurrencyExchangeSharpIcon />,
         link:"/faculty/Projects",
         fname:""
@@ -54,7 +55,7 @@ export const FtySidebarData = [
 
     {
         title:"Combined Pdf",
-        icon:<ImportContactsSharpIcon />,
+        icon:<FileCopyIcon/>,
         link:"/faculty/Fac_Combined",
         fname:"/faculty/"
     },

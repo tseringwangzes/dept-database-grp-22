@@ -8,7 +8,7 @@ function Fac_Combined() {
   let componentRef = useRef();
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-
+  const email = localStorage.getItem('email')
   var handleStartDateChange = (event) => {
     setStartDate(event.target.value);
   };
@@ -66,7 +66,7 @@ function Fac_Combined() {
 
   return (
     <>
-      <div className="absolute right-0 w-3/4 bg-gray-100 text-gray-900">
+     <div className="absolute right-0 w-3/4 bg-gray-100 text-gray-900">
         <FtySidebar />
         <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
           <div className="mt-4">
@@ -89,17 +89,23 @@ function Fac_Combined() {
             <ReactToPrint
               trigger={() => <button>Print this out!</button>}
               content={() => componentRef.current}
-              documentTitle="BOG MEETING DATA"
+              documentTitle="Combined Data"
             />
-            <ComponentToPrint ref={componentRef} startDate={startDate} endDate={endDate} />
-            <button onClick={handleDownloadPDFToDOC}>
+            <ComponentToPrint ref={componentRef} startDate={startDate} endDate={endDate} Ftyemail={email}/>
+            {/* <button onClick={handleDownloadPDFToDOC}>
               Convert and Download as DOC
-            </button>
-          </div>
-        </main>
-      </div>
+            </button> */}
+            </div>
+            </main>
+          </div> 
+     
     </>
   );
 }
 
 export default Fac_Combined;
+
+/**
+ 
+
+ */

@@ -1,0 +1,35 @@
+.bg-image {
+    background-image: url('https://example.com/background-image.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+  }
+  
+  .btn-student,
+  .btn-faculty,
+  .btn-staff,
+  .btn-admin {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 20px;
+    font-size: 1.5rem;
+    padding: 10px;
+  }
+  
+  .btn-student {
+    background-color: #FEB2B2;
+  }
+  
+  .btn-faculty {
+    background-color: #C7D2FE;
+  }
+  
+  .btn-staff {
+    background-color: #FEEBC8;
+  }
+  
+  .btn-admin {
+    background-color: #C4F5B7;
+  }
+  

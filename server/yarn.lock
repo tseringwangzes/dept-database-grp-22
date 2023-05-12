@@ -151,8 +151,6 @@ chokidar@^3.5.2:
     is-glob "~4.0.1"
     normalize-path "~3.0.0"
     readdirp "~3.6.0"
-  optionalDependencies:
-    fsevents "~2.3.2"
 
 concat-map@0.0.1:
   version "0.0.1"

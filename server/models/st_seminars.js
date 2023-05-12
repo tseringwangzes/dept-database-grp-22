@@ -2,16 +2,12 @@ const mongoose = require("mongoose");
 
 const stseminar = new mongoose.Schema({
     faculty_name:String,
-    student_name:String,
-    type: String,
     title: String,
+    institute: String,
+    dept: String,
     date: String,
-    venue: String,
-    chief_guest: String,
-    mode: String,
-    collaborator: String,
-    link: String,
-    status: String,
+    additional_info: String,
+ 
     
 },
     {

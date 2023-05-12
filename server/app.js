@@ -1,13 +1,12 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const cors = require("cors");
+var cors = require('cors');
 require("./db/conn");
 const bodyParser = require('body-parser');
 const csv = require('csvtojson');
 const router = require("./Routes/router");
-const PORT = 4002;
-
+const PORT = process.env.PORT ||  4002;
 
 
 // middleware

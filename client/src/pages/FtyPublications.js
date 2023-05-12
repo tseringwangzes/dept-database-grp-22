@@ -5,6 +5,7 @@ import FtyTablesPublications, { StatusPill } from "../tables/FtyTablesPublicatio
 import FtySidebar from "../components/FtySidebar";
 import jsPDF from 'jspdf';
 import {ft_home} from '../services/Apis';
+import {BACKEND_URL} from "../services/helper";
 
 function FtyPublications() {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ function FtyPublications() {
   const [showModaldelete, setShowModaldelete] = useState(false);
   const [did, setdid] = useState("");
   const [stData, setData] = useState([]);
-  const url='http://localhost:3000/Fty_Publication_Header.csv'
+  const url='https://dep-t22-iitropar-department-databas.netlify.app/Sample_Fty_Publication_Header.csv'
 
   useEffect(() => {
     const fetchData = async (e) => {
@@ -41,7 +42,7 @@ function FtyPublications() {
   const deleteRow=async (id)=>{
     setShowModaldelete(true);
     setdid(id);
-    // let result = await fetch(`http://localhost:4002/user/ftydeletepublication/${id}`, {
+    // let result = await fetch(`${BACKEND_URL}/user/ftydeletepublication/${id}`, {
     //   method:"Delete"});
     //  // result=await result.json()
     //   window.location.reload();
@@ -49,7 +50,7 @@ function FtyPublications() {
 
   const deleteRowyes=async ()=>{
   
-    let result = await fetch(`http://localhost:4002/user/ftydeletepublication/${did}`, {
+    let result = await fetch(`${BACKEND_URL}/user/ftydeletepublication/${did}`, {
       method:"Delete"});
      // result=await result.json()
      setShowModaldelete(false);
@@ -95,7 +96,7 @@ function FtyPublications() {
         accessor: "author",
       },
       {
-        Header: "Publications/Journals/Patents",
+        Header: "Conference Name",
         accessor: "type",
       },
       {
@@ -103,7 +104,7 @@ function FtyPublications() {
         accessor: "title_publish",
       },
       {
-        Header: "Volume/Issue/Patent No.",
+        Header: "Page/Issue/Patent No.",
         accessor: "patent_no",
       },
       {
@@ -190,7 +191,7 @@ function FtyPublications() {
     document.body.appendChild(aTag);
     aTag.click();
     aTag.remove();
-    console.log(data[0].faculty_name)
+   
     
     navigate("./FtyPublicationCsv" ,{state:{
       utype: utype,
@@ -251,10 +252,10 @@ function FtyPublications() {
       doc.setFont("helvetica", "normal");
       doc.text("CSE", 72, 70);
       
-      const columns = [["Title", "Authors","Title of Journal","Volume/Issue/Patent No.", "Accepted Date","Published Date","DOI/ISBN/Assignee","Impact Factor"]];
+      const columns = [["Title", "Authors","Conference Name","Title of Journal","Page/Issue/Patent No.", "Accepted Date","Published Date","DOI/ISBN/Assignee","Impact Factor"]];
       const filteredData = data.filter(item => item.faculty_name === email);
   
-  const rows = filteredData.map(user=>[user.title,user.author,user.title_publish,user.patent_no,user.accepted_date,user.published_date,user.assignee,user.impact_factor]);
+  const rows = filteredData.map(user=>[user.title,user.author,user.type,user.title_publish,user.patent_no,user.accepted_date,user.published_date,user.assignee,user.impact_factor]);
       doc.autoTable({
         head: columns,
         body: rows,

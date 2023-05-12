@@ -6,7 +6,7 @@ import Sidebar from "../components/Sidebar";
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import {st_home} from '../services/Apis';
-
+import {BACKEND_URL} from "../services/helper";
 
 function Awards() {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ function Awards() {
   const [did, setdid] = useState("");
   const [stData, setData] = useState([]);
 
-  const url='http://localhost:3000/St_Award_Header.csv'
+  const url='https://dep-t22-iitropar-department-databas.netlify.app/Sample_St_Award_Header.csv'
 
   useEffect(() => {
     const fetchData = async (e) => {
@@ -43,7 +43,7 @@ function Awards() {
   const deleteRow=async (id)=>{
     setShowModaldelete(true);
     setdid(id);
-    // let result= await fetch(`http://localhost:4002/user/deleteid/${id}`,{
+    // let result= await fetch(`${BACKEND_URL}/user/deleteid/${id}`,{
     //   method:"Delete"});
     //  // result=await result.json()
     //   window.location.reload();
@@ -51,7 +51,7 @@ function Awards() {
   
   const deleteRowyes=async ()=>{
   
-    let result= await fetch(`http://localhost:4002/user/deleteid/${did}`,{
+    let result= await fetch(`${BACKEND_URL}/user/deleteid/${did}`,{
       method:"Delete"});
      // result=await result.json()
      setShowModaldelete(false);
@@ -79,6 +79,8 @@ function Awards() {
     setTimeout(() => {
     }, 1200)
   }, [])
+
+  console.log(data.length);
 
 
   const columns = React.useMemo(
@@ -129,6 +131,7 @@ function Awards() {
                 utype: utype,
               }
             })}>Edit</button>
+            
           </div>);
 
 
@@ -150,15 +153,25 @@ function Awards() {
     []
   );
 
+var fname="";
+
+
 
  function uploadbulk2(){
+  if(data.length===0){
+    fname="puneet@iitrpr.ac.in"
+  }
+  else{
+    fname=data[0].faculty_name
+  }
   navigate("./StAwardCsv" ,{state:{
     utype: utype,
-    fname: data[0].faculty_name,
+    fname: fname,
     email: email,
  }})
  }
 
+ 
 
 function uploadbulk(){
  
@@ -170,13 +183,19 @@ aTag.setAttribute("download","Sample_Student_Awards");
 document.body.appendChild(aTag);
 aTag.click();
 aTag.remove();
-console.log(data[0].faculty_name)
-  
 
+if(data.length===0){
+  fname="puneet@iitrpr.ac.in"
+}
+else{
+  fname=data[0].faculty_name
+}
+  
+console.log(fname);
 
   navigate("./StAwardCsv" ,{state:{
     utype: utype,
-    fname: data[0].faculty_name,
+    fname: fname,
     email: email,
  }})
 

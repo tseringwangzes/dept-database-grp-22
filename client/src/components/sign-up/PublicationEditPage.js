@@ -4,6 +4,7 @@ import signupStyle from "../../pages/Home.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import { publicationEdit } from "../../services/Apis";
 import { useNavigate } from "react-router-dom";
+import {BACKEND_URL} from "../../services/helper";
 
 const PublicationEditPage = () => {
 
@@ -34,7 +35,7 @@ const PublicationEditPage = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
 
     const deleteid = async (id) => {
-        let result = await fetch(`http://localhost:4002/user/deletepublicationid/${id}`, {
+        let result = await fetch(`${BACKEND_URL}/user/deletepublicationid/${id}`, {
             method: "Delete"
         });
         result = await result.json()
@@ -123,7 +124,7 @@ const PublicationEditPage = () => {
                     </div>
 
                     <div className={signupStyle["form-item"]} id="type">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Publications/Journals/Patents</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Conference Name</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the Publications/Journals/Patents"
                             name="type"
@@ -145,7 +146,7 @@ const PublicationEditPage = () => {
                     </div>
 
                     <div className={signupStyle["form-item"]} id="patent_no">
-                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Volume/Issue/Patent No.</label>
+                        <label style={{ fontSize: 20 }} className={signupStyle.myLabel}>Page/Issue/Patent No.</label>
                         <input style={{ height: "30px" }} className={signupStyle.myInput}
                             placeholder="Enter the Volume/Issue/Patent No."
                             name="patent_no"

@@ -6,6 +6,7 @@ import FtySidebar from "../components/FtySidebar";
 import { useLocation } from 'react-router-dom';
 import jsPDF from 'jspdf';
 import {ft_home} from '../services/Apis';
+import {BACKEND_URL} from "../services/helper";
 
 function FtySeminars() {
   const utype= "0";
@@ -15,7 +16,7 @@ function FtySeminars() {
   const [showModaldelete, setShowModaldelete] = useState(false);
   const [did, setdid] = useState("");
   const [stData, setData] = useState([]);
-  const url='http://localhost:3000/Fty_Seminar_Header.csv'
+  const url='https://dep-t22-iitropar-department-databas.netlify.app/Sample_Fty_Lecture_Experts_Header.csv'
 
   useEffect(() => {
     const fetchData = async (e) => {
@@ -44,7 +45,7 @@ function FtySeminars() {
   const deleteRow=async (id)=>{
     setShowModaldelete(true);
     setdid(id);
-    // let result = await fetch(`http://localhost:4002/user/ftydeleteseminar/${id}`, {
+    // let result = await fetch(`${BACKEND_URL}/user/ftydeleteseminar/${id}`, {
     //   method:"Delete"});
     //  // result=await result.json()
     //   window.location.reload();
@@ -52,7 +53,7 @@ function FtySeminars() {
 
   const deleteRowyes=async ()=>{
   
-    let result = await fetch(`http://localhost:4002/user/ftydeleteseminar/${did}`, {
+    let result = await fetch(`${BACKEND_URL}/user/ftydeleteseminar/${did}`, {
       method:"Delete"});
      // result=await result.json()
      setShowModaldelete(false);
@@ -178,7 +179,7 @@ function FtySeminars() {
     document.body.appendChild(aTag);
     aTag.click();
     aTag.remove();
-    console.log(data[0].faculty_name)
+  
     
     navigate("./FtySeminarCsv" ,{state:{
       utype: utype,

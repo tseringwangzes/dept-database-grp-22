@@ -4,7 +4,7 @@ import signupStyle from "./Home.module.css";
 import { ToastContainer,toast } from "react-toastify";
 import { editdeptinfo } from "../services/Apis";
 import { useNavigate } from "react-router-dom";
-
+import {BACKEND_URL} from "../services/helper";
 
 const Editdeptinfo = () => {
 
@@ -13,7 +13,7 @@ const Editdeptinfo = () => {
 
   const deleteold=async (id)=>{
   
-    let result= await fetch(`http://localhost:4002/user/deleteolddeptinfo/${id}`,{
+    let result= await fetch(`${BACKEND_URL}/user/deleteolddeptinfo/${id}`,{
       method:"Delete"});
   
   }
@@ -42,7 +42,7 @@ const Editdeptinfo = () => {
   console.log(defaultFormFields);
 
 //   const deleteid=async (id)=>{
-//     let result= await fetch(`http://localhost:4002/user/deleteid/${id}`,{
+//     let result= await fetch(`${BACKEND_URL}/user/deleteid/${id}`,{
 //       method:"Delete"});
 //       result=await result.json()
 //   }
