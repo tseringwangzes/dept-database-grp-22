@@ -57,7 +57,7 @@ const ProjectAddPage = () => {
             toast.error("Enter title Name")
 
         }
-        if (date === "") {
+        if (start_date === "") {
 
             toast.error("Enter the date")
 
