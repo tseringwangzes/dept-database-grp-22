@@ -8,10 +8,6 @@ import Sidebar from "../components/AdminSidebar";
 const Register = () => {
 
   const [inputdata,setInputdata] = useState({
-    fname:"",
-    email:"",
-    faculty_email:"",
-    password:""
   });
 
   const navigate = useNavigate();
@@ -25,8 +21,9 @@ const Register = () => {
       const value=e.target.value.toLowerCase();
       setInputdata({...inputdata,[name]:value})
     }
+    else{
     const {name,value} = e.target;
-    setInputdata({...inputdata,[name]:value})
+    setInputdata({...inputdata,[name]:value})}
   }
 
 
@@ -46,8 +43,12 @@ const Register = () => {
     }else if(!email.includes("@iitrpr.ac.in")){
 
       toast.error("Enter Valid IITRPR Email")
-
-    }else if(usertype === ""){
+    }
+    else if(email.includes(" ")){
+      toast.error("Spaces are not allowed in the email id")
+    }
+    
+    else if(usertype === ""){
 
       toast.error("Enter User Type")
 
@@ -107,6 +108,11 @@ const Register = () => {
               <label className = {registerStyle.myLabel} htmlFor="usertype">User Type</label>
               <input className = {registerStyle.myData} type="text" name="usertype" id=""  onChange={handleChange}  placeholder='Enter User Type' />
             </div>
+
+            <h6>Enter user type -1 for Student</h6>
+            <h6>Enter user type -2 for Faculty</h6>
+            <h6>Enter user type -3 for Office Staff</h6>
+            <h6>Enter user type -4 for Admin</h6>
             
             <button className={registerStyle.btn} onClick={handleSubmit}>Sign Up</button>
             
