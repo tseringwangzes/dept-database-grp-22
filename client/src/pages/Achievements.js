@@ -39,7 +39,7 @@ const utype = "0";
     }, [email]);
 
 
-const url='http://localhost:3000/St_Achievement_Header.csv'
+const url='https://dep-t22-iitropar-department-databas.netlify.app/St_Achievement_Header.csv'
 const getName = async (e) => {
 
 }

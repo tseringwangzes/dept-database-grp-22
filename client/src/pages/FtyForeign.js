@@ -16,7 +16,7 @@ function FtyForeign() {
     const [showModaldelete, setShowModaldelete] = useState(false);
     const [did, setdid] = useState("");
     const [stData, setData] = useState([]);
-    const url='http://localhost:3000/Fty_Foreign_Header.csv'
+    const url='https://dep-t22-iitropar-department-databas.netlify.app/Fty_Foreign_Header.csv'
 
     useEffect(() => {
         const fetchData = async (e) => {

@@ -17,7 +17,7 @@ function Projects() {
   const [did, setdid] = useState("");
   const [stData, setData] = useState([]);
 
-  const url = 'http://localhost:3000/St_Project_Header.csv'
+  const url = 'https://dep-t22-iitropar-department-databas.netlify.app/St_Project_Header.csv'
 
   useEffect(() => {
     const fetchData = async (e) => {

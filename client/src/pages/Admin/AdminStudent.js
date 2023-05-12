@@ -12,8 +12,8 @@ function StaffStudent() {
   const navigate = useNavigate();
   var email = localStorage.getItem('email');
   const utype = "4";
-  const url='http://localhost:3000/Staff_St_Award_Header.csv'
-  const url2='http://localhost:3000/Staff_Fty_Award_Header.csv'
+  const url='https://dep-t22-iitropar-department-databas.netlify.app/Staff_St_Award_Header.csv'
+  const url2='https://dep-t22-iitropar-department-databas.netlify.app/Staff_Fty_Award_Header.csv'
 
   const [data, setUserData] = useState([]);
 

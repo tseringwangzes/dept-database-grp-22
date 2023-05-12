@@ -20,7 +20,7 @@ function FtyAchievements() {
   const [stData, setData] = useState([]);
   
   console.log(email)
-  const url='http://localhost:3000/Fty_Achievement_Header.csv'
+  const url='https://dep-t22-iitropar-department-databas.netlify.app/Fty_Achievement_Header.csv'
 
   useEffect(() => {
     const fetchData = async (e) => {

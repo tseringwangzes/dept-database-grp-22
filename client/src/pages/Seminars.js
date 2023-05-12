@@ -17,7 +17,7 @@ const [showModal, setShowModal] = useState(false);
 const [showModaldelete, setShowModaldelete] = useState(false);
 const [did, setdid] = useState("");
 
-const url='http://localhost:3000/St_Seminar_Header.csv'
+const url='https://dep-t22-iitropar-department-databas.netlify.app/St_Seminar_Header.csv'
 
 
 const deleteRow=async (id)=>{
