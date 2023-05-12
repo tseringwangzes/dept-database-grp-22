@@ -7,7 +7,6 @@ import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import {st_home} from '../services/Apis';
 
-
 function Awards() {
   const navigate = useNavigate();
   var email = localStorage.getItem('email');
