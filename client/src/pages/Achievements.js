@@ -152,11 +152,19 @@ const deleteRow=async (id)=>{
     []
   );
 
+  var fname="";
+ 
   
  function uploadbulk2(){
+  if(data.length===0){
+    fname="puneet@iitrpr.ac.in"
+  }
+  else{
+    fname=data[0].faculty_name
+  }
  navigate("./StAchievementCsv" ,{state:{
                utype: utype,
-               fname: "puneet@iitrpr.ac.in",
+               fname: fname,
             }})
  }
 
@@ -171,9 +179,16 @@ aTag.click();
 aTag.remove();
 console.log(data[0].faculty_name)
 
+if(data.length===0){
+  fname="puneet@iitrpr.ac.in"
+}
+else{
+  fname=data[0].faculty_name
+}
+
   navigate("./StAchievementCsv" ,{state:{
                utype: utype,
-               fname: "puneet@iitrpr.ac.in",
+               fname: fname,
             }})
           }
 

@@ -15,7 +15,7 @@ function FtyPublications() {
   const [showModaldelete, setShowModaldelete] = useState(false);
   const [did, setdid] = useState("");
   const [stData, setData] = useState([]);
-  const url='https://dep-t22-iitropar-department-databas.netlify.app/Fty_Publication_Header.csv'
+  const url='https://dep-t22-iitropar-department-databas.netlify.app/Sample_Fty_Publication_Header.csv'
 
   useEffect(() => {
     const fetchData = async (e) => {

@@ -25,7 +25,7 @@ const Addmorep2 = () => {
   }
   else {
     defaultFormFields = {
-      faculty_name: "femail",
+      faculty_name: "puneet@iitrpr.ac.in",
       student_name: email,
       award_name: "",
       date: "",

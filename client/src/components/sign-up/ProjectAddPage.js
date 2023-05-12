@@ -31,7 +31,7 @@ const ProjectAddPage = () => {
             title: "",
             start_date: "",
             dept:"",
-            faculty_name:"",    
+            faculty_name:"puneet@iitrpr.ac.in",    
             student_name:email,
             funding_agency: "",
             funds: "",    

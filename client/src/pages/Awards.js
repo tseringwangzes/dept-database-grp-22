@@ -80,6 +80,8 @@ function Awards() {
     }, 1200)
   }, [])
 
+  console.log(data.length);
+
 
   const columns = React.useMemo(
     () => [
@@ -129,6 +131,7 @@ function Awards() {
                 utype: utype,
               }
             })}>Edit</button>
+            
           </div>);
 
 
@@ -150,12 +153,12 @@ function Awards() {
     []
   );
 
-const fname="";
+var fname="";
 
 
 
  function uploadbulk2(){
-  if(data[0].faculty_name===""){
+  if(data.length===0){
     fname="puneet@iitrpr.ac.in"
   }
   else{
@@ -163,11 +166,12 @@ const fname="";
   }
   navigate("./StAwardCsv" ,{state:{
     utype: utype,
-    fname: "puneet@iitrpr.ac.in",
+    fname: fname,
     email: email,
  }})
  }
 
+ 
 
 function uploadbulk(){
  
@@ -180,18 +184,18 @@ document.body.appendChild(aTag);
 aTag.click();
 aTag.remove();
 
-if(data[0].faculty_name===""){
+if(data.length===0){
   fname="puneet@iitrpr.ac.in"
 }
 else{
   fname=data[0].faculty_name
 }
   
-
+console.log(fname);
 
   navigate("./StAwardCsv" ,{state:{
     utype: utype,
-    fname: "puneet@iitrpr.ac.in",
+    fname: fname,
     email: email,
  }})
 

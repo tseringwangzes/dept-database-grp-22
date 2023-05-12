@@ -27,7 +27,7 @@ const SeminarAddPage = () => {
   }
   else {
     defaultFormFields = {
-      faculty_name: "2020csb1136@iitrpr.ac.in",
+      faculty_name: "puneet@iitrpr.ac.in",
       student_name: email,
       title: "",
       type: "",

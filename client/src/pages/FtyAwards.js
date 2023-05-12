@@ -16,7 +16,7 @@ function FtyAwards() {
   const [did, setdid] = useState("");
   const [stData, setData] = useState([]);
 
-  const url='https://dep-t22-iitropar-department-databas.netlify.app/Fty_Award_Header.csv'
+  const url='https://dep-t22-iitropar-department-databas.netlify.app/Sample_Fty_Award_Header.csv'
 
   useEffect(() => {
     const fetchData = async (e) => {

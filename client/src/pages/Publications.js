@@ -20,7 +20,7 @@ function Publications() {
   const [stData, setData] = useState([]);
   var email = localStorage.getItem('email');
 
-  const url='https://dep-t22-iitropar-department-databas.netlify.app/St_Publication_Header.csv'
+  const url='https://dep-t22-iitropar-department-databas.netlify.app/Sample_St_Publication_Header.csv'
 
   useEffect(() => {
     const fetchData = async (e) => {
@@ -180,15 +180,30 @@ function Publications() {
     ],
     []
   );
+  var fname="";
+ 
+
   function uploadbulk2(){
+    if(data.length===0){
+      fname="puneet@iitrpr.ac.in"
+  }
+  else{
+      fname=data[0].faculty_name;
+  }
     navigate("./StPublicationCsv" ,{state:{
       utype: utype,
-      fname: "puneet@iitrpr.ac.in",
+      fname: fname,
       email:email,
    }})
    }
 
   function uploadbulk(){
+    if(data.length===0){
+      fname="puneet@iitrpr.ac.in"
+  }
+  else{
+      fname=data[0].faculty_name;
+  }
 
     const aTag=document.createElement("a");
     aTag.href=url;
@@ -199,7 +214,7 @@ function Publications() {
     
      navigate("./StPublicationCsv" ,{state:{
       utype: utype,
-      fname: "puneet@iitrpr.ac.in",
+      fname: fname,
       email:email,
    }})
     

@@ -14,7 +14,7 @@ function StaffSeminar() {
 
   const utype = "4";
   const url='https://dep-t22-iitropar-department-databas.netlify.app/Staff_St_Seminar_Header.csv'
-  const url2='https://dep-t22-iitropar-department-databas.netlify.app/Staff_Fty_Seminar_Header.csv'
+  const url2='https://dep-t22-iitropar-department-databas.netlify.app/Sample_Staff_Fty_Lecture_Experts_Header.csv'
 
   function uploadbulk(){
 

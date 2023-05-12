@@ -13,8 +13,8 @@ function StaffStudent() {
   var email = localStorage.getItem('email');
   const admin = "admin";
   const utype = "1";
-    const url='https://dep-t22-iitropar-department-databas.netlify.app/Staff_St_Award_Header.csv'
-    const url2='https://dep-t22-iitropar-department-databas.netlify.app/Staff_Fty_Award_Header.csv'
+    const url='https://dep-t22-iitropar-department-databas.netlify.app/Sample_Staff_St_Award_Header.csv'
+    const url2='https://dep-t22-iitropar-department-databas.netlify.app/Sample_Staff_Fty_Award_Header.csv'
 
   const [data, setUserData] = useState([]);
   const [showModal, setShowModal] = useState(false);

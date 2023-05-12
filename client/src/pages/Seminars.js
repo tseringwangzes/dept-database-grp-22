@@ -142,16 +142,35 @@ function canceldelete(){
     ],
     []
   );
+
+  var fname="";
+
   function uploadbulk2(){
+
+    if(data.length===0){
+      fname="puneet@iitrpr.ac.in"
+  }
+  else{
+      fname=data[0].faculty_name;
+  }
     navigate("./StSeminarCsv" ,{state:{
       utype: utype,
-      fname: "puneet@iitrpr.ac.in",
+      fname: fname,
 
    }})
    }
+  
+  
 
 
   function uploadbulk(){
+
+    if(data.length===0){
+      fname="puneet@iitrpr.ac.in"
+  }
+  else{
+      fname=data[0].faculty_name;
+  }
 
     const aTag=document.createElement("a");
     aTag.href=url;
@@ -162,7 +181,7 @@ function canceldelete(){
     
     navigate("./StSeminarCsv" ,{state:{
       utype: utype,
-      fname: "puneet@iitrpr.ac.in",
+      fname: fname,
 
    }})
     

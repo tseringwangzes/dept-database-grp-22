@@ -26,7 +26,7 @@ const ForeignAddPage = () => {
     else {
         defaultFormFields = {
             student_name: email,
-            faculty_name: "",
+            faculty_name: "puneet@iitrpr.ac.in",
             topic: "",
             start_date: "",
             end_date: "",
