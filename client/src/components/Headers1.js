@@ -30,7 +30,7 @@ const Headers = () => {
               to="/register"
               className="text-white font-bold text-base md:text-lg mr-4 hover:text-gray-300 transition duration-200"
             >
-              Signup
+              Sign Up
             </NavLink>
             {/* <NavLink
               exact
