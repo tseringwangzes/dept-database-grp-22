@@ -54,6 +54,11 @@ const FtySeminarAddPage = () => {
             toast.error("Enter Speaker Name")
 
         }
+        if (date === "") {
+
+            toast.error("Enter the date")
+
+        }
         else {
             const response = await FtyEditSeminars(formFields);
             if (response.status === 200) {

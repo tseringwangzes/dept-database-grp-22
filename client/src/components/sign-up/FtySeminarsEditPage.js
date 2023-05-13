@@ -49,6 +49,11 @@ const utype = state.utype;
             toast.error("Enter the name of speaker ")
 
         }
+        if (date === "") {
+
+            toast.error("Enter the date ")
+
+        }
         else {
             const response = await FtyEditSeminars(formFields);
             if (response.status === 200) {

@@ -47,6 +47,11 @@ const navigate = useNavigate();
       toast.error("Enter Award Name")
 
     }
+    if(date === ""){
+
+      toast.error("Enter the date")
+
+    }
     else{
       const response = await FtyAddAwards(formFields);
       if(response.status === 200){

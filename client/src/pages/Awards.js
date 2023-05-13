@@ -131,7 +131,6 @@ function Awards() {
                 utype: utype,
               }
             })}>Edit</button>
-            
           </div>);
 
 

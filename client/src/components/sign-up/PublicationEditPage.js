@@ -55,6 +55,11 @@ const PublicationEditPage = () => {
             toast.error("Enter topic Name")
 
         }
+        if (accepted_date === "") {
+
+            toast.error("Enter the accepted date")
+
+        }
         else {
             const response = await publicationEdit(formFields);
             if (response.status === 200) {

@@ -56,6 +56,11 @@ const SeminarAddPage = () => {
       toast.error("Enter title Name")
 
     }
+    if (date === "") {
+
+      toast.error("Enter the date")
+
+    }
     else {
       const response = await seminarEdit(formFields);
       if (response.status === 200) {
