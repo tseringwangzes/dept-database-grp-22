@@ -132,7 +132,7 @@ function StForeignCsv(){
                 onChange={handleSubmit}
               /> <br />
   
-  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full " onClick={handleClick}>submit</button>
+  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full " onClick={handleClick}>Submit</button>
   
   </div>
   
@@ -169,7 +169,7 @@ function StForeignCsv(){
                   onChange={handleSubmit}
                 /> <br />
     
-    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full " onClick={handleClick}>submit</button>
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full " onClick={handleClick}>Submit</button>
     
     </div>
     
@@ -206,7 +206,7 @@ function StForeignCsv(){
                     onChange={handleSubmit}
                   /> <br />
       
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full " onClick={handleClick}>submit</button>
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full " onClick={handleClick}>Submit</button>
       
       </div>
       
