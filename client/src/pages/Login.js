@@ -33,14 +33,14 @@ const Login = () => {
                 email: email
             }
 
-           // const response = await sentOtpFunction(data);
+           const response = await sentOtpFunction(data);
 
-           // if (response.status === 200) {
+           if (response.status === 200) {
                 setSpiner(false)
                 navigate("/user/otp",{state:{email:email,idd:id}})
-           // } else {
-                //toast.error(response.response.data.error);
-           // }
+           } else {
+                toast.error(response.response.data.error);
+           }
         }
     }
     return (

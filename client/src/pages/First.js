@@ -38,7 +38,7 @@ function First(){
                   <button className={firstStyle.btn} onClick={()=>history('/Login',{state:"4"})}>Admin</button>  
                 </form>
             </div> */}
-           <div className="flex flex-col items-center justify-start -mt-3" style={styles}>
+           <div className="flex flex-col items-center justify-start -mt-5" style={styles}>
            <h1 className = 'text-gray-700' style={styles2}>Welcome to Department Database</h1>
   <div className="flex flex-col md:flex-row items-center mt-1">
     <div className="card bg-white rounded-lg shadow-lg w-80 p-6 m-4 cursor-pointer transform transition duration-300 hover:shadow-xl hover:scale-105 hover:text-black flex flex-col justify-center items-center" onClick={() => history('/Login', { state: "1" })}>
