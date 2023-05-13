@@ -102,8 +102,8 @@ exports.userOtpSend = async (req, res) => {
         const presuer = await users.findOne({ email: email });
 
         if (presuer) {
-            //const OTP = Math.floor(100000 + Math.random() * 900000);
-            const OTP = 123456;
+            const OTP = Math.floor(100000 + Math.random() * 900000);
+            //const OTP = 123456;
 
             const existEmail = await userotp.findOne({ email: email });
 
@@ -123,15 +123,15 @@ exports.userOtpSend = async (req, res) => {
                 }
 
 
-                // tarnsporter.sendMail(mailOptions, (error, info) => {
-                //     if (error) {
-                //         console.log("error", error);
-                //         res.status(400).json({ error: "Email not send" })
-                //     } else {
-                //         console.log("Email sent", info.response);
-                //         res.status(200).json({ message: "Email sent Successfully" })
-                //     }
-                // })
+                tarnsporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        console.log("error", error);
+                        res.status(400).json({ error: "Email not send" })
+                    } else {
+                        console.log("Email sent", info.response);
+                        res.status(200).json({ message: "Email sent Successfully" })
+                    }
+                })
                 res.status(200).json({ message: "Email sent Successfully" })//remove this
 
             } else {
@@ -150,15 +150,15 @@ exports.userOtpSend = async (req, res) => {
                 }
 
 
-                // tarnsporter.sendMail(mailOptions, (error, info) => {
-                //     if (error) {
-                //         console.log("error", error);
-                //         res.status(400).json({ error: "email not send" })
-                //     } else {
-                //         console.log("Email sent", info.response);
-                //         res.status(200).json({ message: "Email sent Successfully" })
-                //     }
-                // })
+                tarnsporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        console.log("error", error);
+                        res.status(400).json({ error: "email not send" })
+                    } else {
+                        console.log("Email sent", info.response);
+                        res.status(200).json({ message: "Email sent Successfully" })
+                    }
+                })
                 res.status(200).json({ message: "Email sent Successfully" })//remove this
             }
         } else {

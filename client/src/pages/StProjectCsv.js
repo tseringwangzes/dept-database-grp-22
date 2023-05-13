@@ -35,7 +35,7 @@ function StProjectCsv(){
         delimiter: ',',
         skipEmptyLines: true,
   
-        columns: ['student_name', 'title', 'start_date', 'faculty_name','funding_agency','funds','ongoing','link'],
+        columns: ['student_name', 'title', 'start_date', 'dept','faculty_name','funding_agency','funds','ongoing','link'],
         header: true, complete: function (results) {
           let data=results.data;
 

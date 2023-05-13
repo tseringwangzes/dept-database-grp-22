@@ -52,6 +52,11 @@ const FtyPublicationsEditPage = () => {
             toast.error("Enter Title")
 
         }
+        if (accepted_date === "") {
+
+            toast.error("Enter the accepted date")
+
+        }
         else {
             const response = await FtyEditPublications(formFields);
             if (response.status === 200) {

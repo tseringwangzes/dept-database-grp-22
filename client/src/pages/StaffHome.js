@@ -71,7 +71,6 @@ function StaffHome() {
         <main className="absolute max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
           <div className="mt-4 flex flex-col">
             Choose Start Date 
-          {/* </div> */}
 
          <input
             type="date"
@@ -93,12 +92,11 @@ function StaffHome() {
             <ReactToPrint
               trigger={() => <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full mb-3">Print this out!</button>}
               content={() => componentRef.current}
-              documentTitle="BOG MEETING DATA"
+              documentTitle="BOG_MEETING_DATA"
             />
             <ComponentToPrint ref={componentRef} startDate={startDate} endDate={EndDate} />
-            <button onClick={handleDownloadPDFToDOC}>
-              Convert and Download as DOC
-            </button>
+            {/* <button onClick={handleDownloadPDFToDOC}>
+            </button> */}
         </main>
       </div>
     </>
